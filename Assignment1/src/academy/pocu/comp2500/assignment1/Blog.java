@@ -26,8 +26,8 @@ public class Blog {
         }
         return new ArrayList<>(articles);
     }
-    public Article getArticle(int index) {
-        return this.articles.get(index);
+    public Article getArticle(int postId) {
+        return this.articles.get(postId);
     }
 
 

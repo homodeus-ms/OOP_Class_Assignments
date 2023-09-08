@@ -53,8 +53,8 @@ public class Article {
         sortByVote();
         return new ArrayList<>(this.comments);
     }
-    public Comment getComment(int index) {
-        return this.comments.get(index);
+    public Comment getComment(int commentId) {
+        return this.comments.get(commentId);
     }
     public int getReactionGreatCount() {
         return reactionGreat.size();
@@ -71,8 +71,6 @@ public class Article {
     public int getReactionLoveCount() {
         return reactionLove.size();
     }
-
-    //public void plusHour(int index) { this.createdDateTime = createdDateTime.plusHours(index); }
 
     public void updateTitle(User user, String title) {
         if (user.getNames().equals(this.author)) {
