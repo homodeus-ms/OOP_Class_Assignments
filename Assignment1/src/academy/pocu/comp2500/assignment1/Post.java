@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
 
-public class Article {
+public class Post {
     private String title;
     private String body;
     private final String author;
@@ -23,7 +23,7 @@ public class Article {
 
     private final ArrayList<Comment> comments = new ArrayList<>();
 
-    public Article(String authorName, String title, String body) {
+    public Post(String authorName, String title, String body) {
         this.title = title;
         this.body = body;
         this.author = authorName;
@@ -41,10 +41,10 @@ public class Article {
         return this.author;
     }
     public OffsetDateTime getCreatedDateTime() {
-        return this.createdDateTime;
+        return OffsetDateTime.from(this.createdDateTime);
     }
     public OffsetDateTime getModifiedDateTime() {
-        return this.modifiedDateTime;
+        return OffsetDateTime.from(this.modifiedDateTime);
     }
     public HashSet<String> getTagsOrNull() {
         return new HashSet<>(this.tags);
