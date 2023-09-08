@@ -102,8 +102,8 @@ public class Blog {
         tagFiltered = false;
     }
 
-    public void addArticle(User user, String title, String body) {
-        Article newArticle = new Article(user, title, body);
+    public void addArticle(String authorName, String title, String body) {
+        Article newArticle = new Article(authorName, title, body);
         articles.add(0, newArticle);
     }
 

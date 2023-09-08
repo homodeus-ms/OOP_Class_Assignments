@@ -23,10 +23,10 @@ public class Article {
 
     private final ArrayList<Comment> comments = new ArrayList<>();
 
-    public Article(User user, String title, String body) {
+    public Article(String authorName, String title, String body) {
         this.title = title;
         this.body = body;
-        this.author = user.getNames();
+        this.author = authorName;
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
     }
