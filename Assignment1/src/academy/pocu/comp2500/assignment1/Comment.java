@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class Comment {
@@ -75,7 +74,7 @@ public class Comment {
             --upVoteCount;
         }
     }
-
+    /*
     Comparator<Comment> byVote = new Comparator<Comment>() {
         @Override
         public int compare(Comment a1, Comment a2) {
@@ -85,8 +84,8 @@ public class Comment {
             return a2.getUpVoteCount() - a1.getUpVoteCount();
         }
     };
-
+    */
     private void sortByVote() {
-        subComments.sort(byVote);
+        return;
     }
 }

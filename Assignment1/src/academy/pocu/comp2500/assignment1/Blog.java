@@ -7,12 +7,14 @@ import java.util.HashSet;
 public class Blog {
     private final ArrayList<Post> posts;
     private final ArrayList<Post> filteredPosts;
+    private User owner;
 
     private boolean tagFiltered;
     private boolean authorFiltered;
     private boolean sortFilter;
 
     public Blog(User user) {
+        this.owner = user;
         posts = new ArrayList<>();
         filteredPosts = new ArrayList<>();
     }
@@ -22,7 +24,7 @@ public class Blog {
             return new ArrayList<>(filteredPosts);
         }
         if (!sortFilter) {
-            posts.sort(byCreatedTimeDesc);
+            posts.sort(new CreatedTimeByDescComparator());
         }
         return new ArrayList<>(posts);
     }
@@ -31,6 +33,37 @@ public class Blog {
     }
 
 
+    public class CreatedTimeByDescComparator implements Comparator<Post> {
+        @Override
+        public int compare(Post a1, Post a2) {
+            return a2.getCreatedDateTime().compareTo(a1.getCreatedDateTime());
+        }
+    }
+    public class CreatedTimeComparator implements Comparator<Post> {
+        @Override
+        public int compare(Post a1, Post a2) {
+            return a1.getCreatedDateTime().compareTo(a2.getCreatedDateTime());
+        }
+    };
+    public class ModifiedTimeByDescComparator implements Comparator<Post> {
+        @Override
+        public int compare(Post a1, Post a2) {
+            return a2.getModifiedDateTime().compareTo(a1.getModifiedDateTime());
+        }
+    };
+    public class ModifiedTimeComparator implements Comparator<Post> {
+        @Override
+        public int compare(Post a1, Post a2) {
+            return a1.getModifiedDateTime().compareTo(a2.getModifiedDateTime());
+        }
+    };
+    public class TitleComparator implements Comparator<Post> {
+        @Override
+        public int compare(Post a1, Post a2) {
+            return a1.getTitle().compareTo(a2.getTitle());
+        }
+    };
+    /*
     Comparator<Post> byCreatedTimeDesc = new Comparator<Post>() {
         @Override
         public int compare(Post a1, Post a2) {
@@ -61,23 +94,24 @@ public class Blog {
             return a1.getTitle().compareTo(a2.getTitle());
         }
     };
+    */
 
     public void sortPosts(SortingMethod sortingType) {
         switch (sortingType) {
             case BY_CREATED_TIME:
-                posts.sort(byCreatedTime);
+                posts.sort(new CreatedTimeComparator());
                 break;
             case BY_CREATED_TIME_DESC:
-                posts.sort(byCreatedTimeDesc);
+                posts.sort(new CreatedTimeByDescComparator());
                 break;
             case BY_MODIFIED_TIME:
-                posts.sort(byModifiedTime);
+                posts.sort(new ModifiedTimeComparator());
                 break;
             case BY_MODIFIED_TIME_DESC:
-                posts.sort(byModifiedTimeDesc);
+                posts.sort(new ModifiedTimeByDescComparator());
                 break;
             case BY_TITLE:
-                posts.sort(byTitle);
+                posts.sort(new TitleComparator());
                 break;
             case OFF:
                 sortFilter = false;
@@ -101,12 +135,7 @@ public class Blog {
         authorFiltered = false;
         tagFiltered = false;
     }
-    /*
-    public void addPost(String authorName, String title, String body) {
-        Post newPost = new Post(authorName, title, body);
-        posts.add(0, newPost);
-    }
-    */
+
     public void addPost(Post post) {
         this.posts.add(post);
     }

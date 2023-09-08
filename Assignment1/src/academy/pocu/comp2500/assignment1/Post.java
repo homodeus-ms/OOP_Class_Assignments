@@ -23,9 +23,9 @@ public class Post {
 
     private final ArrayList<Comment> comments = new ArrayList<>();
 
-    public Post(String authorName, String title, String body) {
+    public Post(String authorName, String title, String content) {
         this.title = title;
-        this.body = body;
+        this.body = content;
         this.author = authorName;
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
@@ -149,7 +149,7 @@ public class Post {
         }
     }
 
-    Comparator<Comment> byVote = new Comparator<Comment>() {
+    public class VoteComparator implements Comparator<Comment> {
         @Override
         public int compare(Comment a1, Comment a2) {
             if (a1.getUpVoteCount() == a2.getUpVoteCount()) {
@@ -164,6 +164,6 @@ public class Post {
     }
 
     private void sortByVote() {
-        comments.sort(byVote);
+        comments.sort(new VoteComparator());
     }
 }
