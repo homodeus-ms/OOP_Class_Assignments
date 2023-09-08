@@ -1,22 +1,23 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
     private final ArrayList<Post> posts;
     private final ArrayList<Post> filteredPosts;
-    private User owner;
 
     private boolean tagFiltered;
     private boolean authorFiltered;
     private boolean sortFilter;
 
     public Blog(User user) {
-        this.owner = user;
         posts = new ArrayList<>();
         filteredPosts = new ArrayList<>();
+        tagFiltered = false;
+        authorFiltered = false;
+        sortFilter = false;
     }
 
     public ArrayList<Post> getPosts() {
@@ -24,7 +25,7 @@ public class Blog {
             return new ArrayList<>(filteredPosts);
         }
         if (!sortFilter) {
-            posts.sort(new CreatedTimeByDescComparator());
+            Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
         }
         return new ArrayList<>(posts);
     }
@@ -32,86 +33,22 @@ public class Blog {
         return this.posts.get(postId);
     }
 
-
-    public class CreatedTimeByDescComparator implements Comparator<Post> {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a2.getCreatedDateTime().compareTo(a1.getCreatedDateTime());
-        }
-    }
-    public class CreatedTimeComparator implements Comparator<Post> {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getCreatedDateTime().compareTo(a2.getCreatedDateTime());
-        }
-    };
-    public class ModifiedTimeByDescComparator implements Comparator<Post> {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a2.getModifiedDateTime().compareTo(a1.getModifiedDateTime());
-        }
-    };
-    public class ModifiedTimeComparator implements Comparator<Post> {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getModifiedDateTime().compareTo(a2.getModifiedDateTime());
-        }
-    };
-    public class TitleComparator implements Comparator<Post> {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getTitle().compareTo(a2.getTitle());
-        }
-    };
-    /*
-    Comparator<Post> byCreatedTimeDesc = new Comparator<Post>() {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a2.getCreatedDateTime().compareTo(a1.getCreatedDateTime());
-        }
-    };
-    Comparator<Post> byCreatedTime = new Comparator<Post>() {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getCreatedDateTime().compareTo(a2.getCreatedDateTime());
-        }
-    };
-    Comparator<Post> byModifiedTimeDesc = new Comparator<Post>() {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a2.getModifiedDateTime().compareTo(a1.getModifiedDateTime());
-        }
-    };
-    Comparator<Post> byModifiedTime = new Comparator<Post>() {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getModifiedDateTime().compareTo(a2.getModifiedDateTime());
-        }
-    };
-    Comparator<Post> byTitle = new Comparator<Post>() {
-        @Override
-        public int compare(Post a1, Post a2) {
-            return a1.getTitle().compareTo(a2.getTitle());
-        }
-    };
-    */
-
     public void sortPosts(SortingMethod sortingType) {
         switch (sortingType) {
             case BY_CREATED_TIME:
-                posts.sort(new CreatedTimeComparator());
+                Collections.sort(posts, (p1, p2) -> p1.getCreatedDateTime().compareTo(p2.getCreatedDateTime()));
                 break;
             case BY_CREATED_TIME_DESC:
-                posts.sort(new CreatedTimeByDescComparator());
+                Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
                 break;
             case BY_MODIFIED_TIME:
-                posts.sort(new ModifiedTimeComparator());
+                Collections.sort(posts, (p1, p2) -> p1.getModifiedDateTime().compareTo(p2.getModifiedDateTime()));
                 break;
             case BY_MODIFIED_TIME_DESC:
-                posts.sort(new ModifiedTimeByDescComparator());
+                Collections.sort(posts, (p1, p2) -> p2.getModifiedDateTime().compareTo(p1.getModifiedDateTime()));
                 break;
             case BY_TITLE:
-                posts.sort(new TitleComparator());
+                Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
                 break;
             case OFF:
                 sortFilter = false;

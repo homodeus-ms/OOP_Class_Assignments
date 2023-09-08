@@ -1,10 +1,7 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Post {
     private String title;
@@ -50,7 +47,7 @@ public class Post {
         return new HashSet<>(this.tags);
     }
     public ArrayList<Comment> getComments() {
-        sortByVote();
+        sortByVoteComments();
         return new ArrayList<>(this.comments);
     }
     public Comment getComment(int commentId) {
@@ -149,21 +146,17 @@ public class Post {
         }
     }
 
-    public class VoteComparator implements Comparator<Comment> {
-        @Override
-        public int compare(Comment a1, Comment a2) {
-            if (a1.getUpVoteCount() == a2.getUpVoteCount()) {
-                return a1.getDownVoteCount() - a2.getDownVoteCount();
-            }
-            return a2.getUpVoteCount() - a1.getUpVoteCount();
-        }
-    };
-
     private void upDateModifiedTime() {
         this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    private void sortByVote() {
-        comments.sort(new VoteComparator());
+    private void sortByVoteComments() {
+        Collections.sort(comments, (c1, c2) -> {
+            int upVoteDifference = Integer.compare(c2.getUpVoteCount(), c1.getUpVoteCount());
+            if (upVoteDifference == 0) {
+                return Integer.compare(c1.getDownVoteCount(), c2.getDownVoteCount());
+            }
+            return upVoteDifference;
+        });
     }
 }

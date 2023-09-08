@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Comment {
@@ -29,7 +30,7 @@ public class Comment {
         return downVoteCount;
     }
     public ArrayList<Comment> getSubComments() {
-        sortByVote();
+        sortByVoteSubComments();
         return new ArrayList<>(subComments);
     }
     public Comment getSubComment(int subcommentId) {
@@ -74,18 +75,14 @@ public class Comment {
             --upVoteCount;
         }
     }
-    /*
-    Comparator<Comment> byVote = new Comparator<Comment>() {
-        @Override
-        public int compare(Comment a1, Comment a2) {
-            if (a1.getUpVoteCount() == a2.getUpVoteCount()) {
-                return a1.getDownVoteCount() - a2.getDownVoteCount();
+
+    private void sortByVoteSubComments() {
+        Collections.sort(subComments, (c1, c2) -> {
+            int upVoteDifference = Integer.compare(c2.getUpVoteCount(), c1.getUpVoteCount());
+            if (upVoteDifference == 0) {
+                return Integer.compare(c1.getDownVoteCount(), c2.getDownVoteCount());
             }
-            return a2.getUpVoteCount() - a1.getUpVoteCount();
-        }
-    };
-    */
-    private void sortByVote() {
-        return;
+            return upVoteDifference;
+        });
     }
 }
