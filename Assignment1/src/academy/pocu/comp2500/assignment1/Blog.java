@@ -107,8 +107,8 @@ public class Blog {
         posts.add(0, newPost);
     }
     */
-    public void addPost(Post newPost) {
-        this.posts.add(newPost);
+    public void addPost(Post post) {
+        this.posts.add(post);
     }
 
     private void filterByTag(String tag) {
