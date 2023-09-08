@@ -23,10 +23,10 @@ public class Post {
 
     private final ArrayList<Comment> comments = new ArrayList<>();
 
-    public Post(String authorName, String title, String content) {
+    public Post(User user, String title, String content) {
         this.title = title;
         this.body = content;
-        this.author = authorName;
+        this.author = user.getNames();
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
     }
