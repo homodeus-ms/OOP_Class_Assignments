@@ -62,8 +62,8 @@ public class Blog {
         }
     };
 
-    public void sortArticles(SortingMethod method) {
-        switch (method) {
+    public void sortArticles(SortingMethod sortingType) {
+        switch (sortingType) {
             case BY_CREATED_TIME:
                 articles.sort(byCreatedTime);
                 break;
