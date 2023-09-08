@@ -33,8 +33,8 @@ public class Comment {
         sortByVote();
         return new ArrayList<>(subComments);
     }
-    public Comment getSubComment(int subCommentId) {
-        return subComments.get(subCommentId);
+    public Comment getSubComment(int subcommentId) {
+        return subComments.get(subcommentId);
     }
 
     public void updateComment(User user, String comment) {
@@ -48,8 +48,8 @@ public class Comment {
         subComments.add(newComment);
     }
 
-    public void updateSubComment(User user, int subCommentId, String comment) {
-        Comment subComment = this.subComments.get(subCommentId);
+    public void updateSubComment(User user, int subcommentId, String comment) {
+        Comment subComment = this.subComments.get(subcommentId);
         if (subComment.getAuthor().equals(user.getNames())) {
             subComment.updateComment(user, comment);
         }
