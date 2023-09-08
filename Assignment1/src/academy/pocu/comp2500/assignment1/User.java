@@ -4,19 +4,13 @@ import java.util.HashSet;
 
 public class User {
     private String name;
-    private static final HashSet<String> users = new HashSet<>();
-
+    private static final HashSet<String> USERS = new HashSet<>();
     public User(String name) {
-        if (this.users.add(name)) {
+        if (User.USERS.add(name)) {
             this.name = name;
-
-        } else {
-            assert(false);
         }
     }
     public String getNames() {
         return this.name;
     }
-
-
 }

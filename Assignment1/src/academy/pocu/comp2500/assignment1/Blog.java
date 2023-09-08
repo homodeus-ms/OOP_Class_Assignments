@@ -83,7 +83,7 @@ public class Blog {
                 sortFilter = false;
                 return;
             default:
-                assert(false) : "Just 5 method";
+                assert (false) : "Just 5 method";
                 break;
         }
         sortFilter = true;
@@ -108,7 +108,7 @@ public class Blog {
     }
 
     private void filterByTag(String tag) {
-        assert(tag != null) : "input is null";
+        assert (tag != null) : "input is null";
 
         if (this.authorFiltered) {
             for (int i = 0; i < filteredArticles.size(); ++i) {
@@ -140,7 +140,7 @@ public class Blog {
         this.tagFiltered = true;
     }
     private void filterByAuthor(String name) {
-        assert(name != null) : "input is Null";
+        assert (name != null) : "input is Null";
 
         if (this.authorFiltered) {
             filteredArticles.clear();

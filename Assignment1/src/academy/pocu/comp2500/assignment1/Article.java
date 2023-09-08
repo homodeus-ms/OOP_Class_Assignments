@@ -118,7 +118,7 @@ public class Article {
                 reactions.put(Reaction.LOVE, reactionLove);
                 break;
             default:
-                assert(false) : "Unknown reaction!";
+                assert (false) : "Unknown reaction!";
                 break;
         }
     }
@@ -146,7 +146,7 @@ public class Article {
                 reactions.put(Reaction.LOVE, reactionLove);
                 break;
             default:
-                assert(false) : "Unknown reaction!";
+                assert (false) : "Unknown reaction!";
                 break;
         }
     }
