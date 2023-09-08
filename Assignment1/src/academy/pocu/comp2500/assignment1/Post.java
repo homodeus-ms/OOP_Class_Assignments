@@ -41,10 +41,10 @@ public class Post {
         return this.author;
     }
     public OffsetDateTime getCreatedDateTime() {
-        return OffsetDateTime.from(this.createdDateTime);
+        return this.createdDateTime;
     }
     public OffsetDateTime getModifiedDateTime() {
-        return OffsetDateTime.from(this.modifiedDateTime);
+        return this.modifiedDateTime;
     }
     public HashSet<String> getTagsOrNull() {
         return new HashSet<>(this.tags);
