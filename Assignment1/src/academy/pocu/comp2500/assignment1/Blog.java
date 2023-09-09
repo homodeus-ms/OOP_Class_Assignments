@@ -2,6 +2,7 @@ package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class Blog {
     private ArrayList<Post> posts;
@@ -63,15 +64,12 @@ public class Blog {
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
-
     public String getAuthorFilter() {
         return this.authorFilter;
     }
-
     public ArrayList<Post> getFilteredPosts() {
         return new ArrayList<>(this.filteredPosts);
     }
-
     public SortingType getSortingType() {
         return this.sortingType;
     }
@@ -81,7 +79,6 @@ public class Blog {
     }
 
  */
-
 
     public void setSortType(SortingType sortingType) {
         this.sortingType = sortingType;
@@ -107,11 +104,26 @@ public class Blog {
     }
 
     private void getAuthorFilteredPost() {
-
+        for (Post post : posts) {
+            if (post.getAuthor().equals(authorFilter)) {
+                filteredPosts.add(post);
+            }
+        }
     }
     private void getTaggedPost(ArrayList<Post> posts) {
+        ArrayList<Post> temp = new ArrayList<>(posts);
+        filteredPosts.clear();
 
+        for (Post post : temp) {
+            HashSet<String> tags = post.getTags();
 
+            for (String tag : tagFilters) {
+                if (tags.contains(tag)) {
+                    filteredPosts.add(post);
+                    break;
+                }
+            }
+        }
     }
 
     private void sortByCreatedTimeDesc() {
@@ -129,6 +141,5 @@ public class Blog {
     private void sortByTitle() {
         Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
     }
-
 
 }
