@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 public class Blog {
     private ArrayList<Post> posts;
-    //private ArrayList<String> tagFilters;
-    //private ArrayList<Post> filteredPosts;
+    private ArrayList<String> tagFilters;
+    private ArrayList<Post> filteredPosts;
 
-    //private String authorFilter;
-    //private SortingMethod sortingType;
+    private String authorFilter;
+    private SortingMethod sortingType;
 
     public Blog() {
         posts = new ArrayList<>();
-        //tagFilters = new ArrayList<>();
-        //filteredPosts = new ArrayList<>();
-        //authorFilter = "";
-        //sortingType = SortingMethod.BY_CREATED_TIME_DESC;
+        tagFilters = new ArrayList<>();
+        filteredPosts = new ArrayList<>();
+        authorFilter = "";
+        sortingType = SortingMethod.BY_CREATED_TIME_DESC;
     }
 
     public ArrayList<Post> getPosts() {
         return new ArrayList<>(posts);
     }
-    /*
+
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
@@ -30,16 +30,20 @@ public class Blog {
         return this.authorFilter;
     }
 
+    public ArrayList<Post> getFilteredPosts() {
+        return new ArrayList<>(this.filteredPosts);
+    }
+
     public SortingMethod getSortingType() {
         return this.sortingType;
     }
-
-
-
+/*
     public Post getPost(int postId) {
         return this.posts.get(postId);
     }
-    */
+
+ */
+
 
     public void setSortType(SortingMethod sortingType) {
         //this.sortingType = sortingType;
