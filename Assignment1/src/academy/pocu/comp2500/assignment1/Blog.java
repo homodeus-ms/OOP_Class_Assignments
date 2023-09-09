@@ -5,18 +5,16 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private ArrayList<Post> posts = new ArrayList<>();
-    private ArrayList<Post> filteredPosts = new ArrayList<>();
-    private String ownerName;
+    private ArrayList<Post> posts;
+    private ArrayList<Post> filteredPosts;
 
     private boolean tagFiltered;
     private boolean authorFiltered;
     private boolean sortFilter;
 
-    public Blog(User user) {
-        assert(user != null) : "User is null";
-
-        ownerName = user.getNames();
+    public Blog() {
+        posts = new ArrayList<>();
+        filteredPosts = new ArrayList<>();
     }
 
     public ArrayList<Post> getPosts() {
