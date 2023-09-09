@@ -9,7 +9,6 @@ public class Blog {
     private ArrayList<String> tagFilters;
     private String authorFilter;
     private SortingMethod sortingType;
-
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
