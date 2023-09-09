@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 
 public class Blog {
     private ArrayList<Post> posts;
@@ -54,7 +52,7 @@ public class Blog {
     }
 
     public void addPost(Post post) {
-        this.posts.add(post);
+        this.posts.add(0, post);
     }
 
     private void getAuthorFilteredPost() {
