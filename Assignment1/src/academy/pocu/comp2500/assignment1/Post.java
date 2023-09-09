@@ -10,7 +10,7 @@ public class Post {
     private String title;
     private String body;
     private String author;
-    private OffsetDateTime createdDateTime;
+    private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<String> tags;
     // Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
@@ -77,7 +77,21 @@ public class Post {
     }
 
  */
-
+    public HashSet<User> getReactionGreat() {
+        return new HashSet<>(reactionGreat);
+    }
+    public HashSet<User> getReactionSad() {
+        return new HashSet<>(reactionSad);
+    }
+    public HashSet<User> getReactionAngry() {
+        return new HashSet<>(reactionAngry);
+    }
+    public HashSet<User> getReactionFun() {
+        return new HashSet<>(reactionFun);
+    }
+    public HashSet<User> getReactionLove() {
+        return new HashSet<>(reactionLove);
+    }
 
     public int getReactionGreatCount() {
         return reactionGreat.size();
@@ -96,19 +110,22 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-        if (user.getName().equals(this.author)) {
-            this.title = title;
-            upDateModifiedTime();
-        }
+        //if (user.getName().equals(this.author)) {
+        //    this.title = title;
+        //    upDateModifiedTime();
+        //}
     }
     public void updateBody(User user, String body) {
-        if (user.getName().equals(this.author)) {
-            this.body = body;
-            upDateModifiedTime();
-        }
+        //if (user.getName().equals(this.author)) {
+        //    this.body = body;
+        //    upDateModifiedTime();
+        //}
     }
     public void addTag(String tag) {
         tags.add(tag);
+    }
+    public void resetTag() {
+        tags.clear();
     }
 
     public void addComment(User user, String comment) {
