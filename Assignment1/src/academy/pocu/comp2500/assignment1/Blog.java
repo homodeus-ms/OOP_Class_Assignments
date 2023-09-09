@@ -8,11 +8,13 @@ public class Blog {
     private ArrayList<Post> posts;
     private ArrayList<String> tagFilters;
     private String authorFilter;
-    private SortingMethod sortingType = SortingMethod.BY_CREATED_TIME_DESC;
+    private SortingMethod sortingType;
 
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
+        authorFilter = null;
+        sortingType = SortingMethod.BY_CREATED_TIME_DESC;
     }
 
     public ArrayList<Post> getPosts() {
@@ -46,6 +48,7 @@ public class Blog {
 
         if (tagFilters.isEmpty() && authorFilter == null) {
             return new ArrayList<>(posts);
+
         } else if (!tagFilters.isEmpty() && authorFilter != null) {
 
             getAuthorFilteredPost(filtered);
@@ -62,6 +65,7 @@ public class Blog {
 
         return new ArrayList<>(filtered);
     }
+
     public Post getPost(int postId) {
         return this.posts.get(postId);
     }
@@ -69,7 +73,6 @@ public class Blog {
     public void setSortType(SortingMethod sortingType) {
         this.sortingType = sortingType;
     }
-
     public void setTagFilter(String tag) {
         this.tagFilters.add(tag);
     }
@@ -94,7 +97,6 @@ public class Blog {
             }
         }
     }
-
     private void getTaggedPost(ArrayList<Post> posts, ArrayList<Post> filtered) {
         for (Post post : posts) {
             HashSet<String> tags = post.getTagsOrNull();
