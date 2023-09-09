@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private final ArrayList<Post> posts = new ArrayList<>();
-    private final ArrayList<Post> filteredPosts = new ArrayList<>();
+    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Post> filteredPosts = new ArrayList<>();
     private String ownerName;
     private boolean tagFiltered;
     private boolean authorFiltered;

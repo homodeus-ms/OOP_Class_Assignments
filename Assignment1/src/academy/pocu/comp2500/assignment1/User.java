@@ -10,6 +10,7 @@ public class User {
             this.name = name;
         }
     }
+
     public String getNames() {
         return this.name;
     }
