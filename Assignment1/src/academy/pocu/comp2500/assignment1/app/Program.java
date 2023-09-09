@@ -5,6 +5,7 @@ import academy.pocu.comp2500.assignment1.Blog;
 import academy.pocu.comp2500.assignment1.User;
 import academy.pocu.comp2500.assignment1.registry.Registry;
 
+import java.util.HashSet;
 
 
 public class Program {
@@ -15,8 +16,6 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        User user0 = new User("smith");
-        Blog blog0 = new Blog();
 
 
         System.out.println("??");

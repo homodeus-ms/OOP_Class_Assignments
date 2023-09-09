@@ -29,7 +29,7 @@ public class Post {
 
         this.title = title;
         this.body = body;
-        this.author = user.getNames();
+        this.author = user.getName();
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
     }
@@ -76,13 +76,13 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-        if (user.getNames().equals(this.author)) {
+        if (user.getName().equals(this.author)) {
             this.title = title;
             upDateModifiedTime();
         }
     }
     public void updateBody(User user, String body) {
-        if (user.getNames().equals(this.author)) {
+        if (user.getName().equals(this.author)) {
             this.body = body;
             upDateModifiedTime();
         }

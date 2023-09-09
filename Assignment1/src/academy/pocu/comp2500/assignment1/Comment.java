@@ -13,7 +13,7 @@ public class Comment {
     private final ArrayList<Comment> subComments = new ArrayList<>();
 
     public Comment(User user, String comment) {
-        this.author = user.getNames();
+        this.author = user.getName();
         this.comment = comment;
     }
 
@@ -38,7 +38,7 @@ public class Comment {
     }
 
     public void updateComment(User user, String comment) {
-        if (this.author.equals(user.getNames())) {
+        if (this.author.equals(user.getName())) {
             this.comment = comment;
         }
     }
@@ -50,13 +50,13 @@ public class Comment {
 
     public void updateSubComment(User user, int subcommentId, String comment) {
         Comment subComment = this.subComments.get(subcommentId);
-        if (subComment.getAuthor().equals(user.getNames())) {
+        if (subComment.getAuthor().equals(user.getName())) {
             subComment.updateComment(user, comment);
         }
     }
 
     public void addUpVote(User user) {
-        String userName = user.getNames();
+        String userName = user.getName();
         if (!votes.containsKey(userName)) {
             votes.put(userName, Vote.UP_VOTE);
             ++upVoteCount;
@@ -66,7 +66,7 @@ public class Comment {
         }
     }
     public void addDownVote(User user) {
-        String userName = user.getNames();
+        String userName = user.getName();
         if (!votes.containsKey(userName)) {
             votes.put(userName, Vote.DOWN_VOTE);
             ++downVoteCount;

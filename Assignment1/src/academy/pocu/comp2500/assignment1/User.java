@@ -11,10 +11,13 @@ public class User {
 
         if (User.USERS.add(name)) {
             this.name = name;
+        } else {
+            assert (false) : "User Name already exist";
         }
     }
 
-    public String getNames() {
+    public String getName() {
         return this.name;
     }
+
 }
