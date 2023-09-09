@@ -12,7 +12,7 @@ public class Blog {
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
-        authorFilter = null;
+        authorFilter = new String("");
         sortingType = SortingMethod.BY_CREATED_TIME_DESC;
     }
 
@@ -45,17 +45,17 @@ public class Blog {
 
         ArrayList<Post> filtered = new ArrayList<>();
 
-        if (tagFilters.isEmpty() && authorFilter == null) {
+        if (tagFilters.isEmpty() && authorFilter.equals("")) {
             return new ArrayList<>(posts);
 
-        } else if (!tagFilters.isEmpty() && authorFilter != null) {
+        } else if (!tagFilters.isEmpty() && !authorFilter.equals("")) {
 
             getAuthorFilteredPost(filtered);
             ArrayList<Post> temp = new ArrayList<>(filtered);
             filtered.clear();
             getTaggedPost(temp, filtered);
 
-        } else if (authorFilter != null) {
+        } else if (!authorFilter.equals("")) {
             getAuthorFilteredPost(filtered);
 
         } else {
