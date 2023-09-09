@@ -6,5 +6,4 @@ public enum SortingMethod {
     BY_MODIFIED_TIME,
     BY_MODIFIED_TIME_DESC,
     BY_TITLE,
-    OFF,
 }

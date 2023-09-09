@@ -16,6 +16,7 @@ public class Program {
         registry.validate();
 
         User user0 = new User("smith");
+        Blog blog0 = new Blog();
 
 
         System.out.println("??");
