@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Blog {
     private ArrayList<Post> posts;
@@ -19,7 +20,15 @@ public class Blog {
     }
 
     public ArrayList<Post> getPosts() {
-        return new ArrayList<>(posts);
+        
+        sortByCreatedTimeDesc();
+
+        if (tagFilters.isEmpty() && authorFilter.equals("")) {
+            return new ArrayList<>(posts);
+        } else {
+            return new ArrayList<>(filteredPosts);
+        }
+
     }
 
     public ArrayList<String> getTags() {
@@ -66,7 +75,7 @@ public class Blog {
 
 
     }
-    /*
+
     private void sortByCreatedTimeDesc() {
         Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
     }
@@ -82,6 +91,6 @@ public class Blog {
     private void sortByTitle() {
         Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
     }
-    */
+
 
 }
