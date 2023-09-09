@@ -7,7 +7,7 @@ public class User {
     private static final HashSet<String> USERS = new HashSet<>();
     public User(String name) {
 
-        assert(name != null) : "User name is null";
+        assert (name != null) : "User name is null";
 
         if (User.USERS.add(name)) {
             this.name = name;
