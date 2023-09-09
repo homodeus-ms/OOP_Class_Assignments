@@ -8,15 +8,15 @@ public class Blog {
     private ArrayList<Post> posts = new ArrayList<>();
     private ArrayList<Post> filteredPosts = new ArrayList<>();
     private String ownerName;
+
     private boolean tagFiltered;
     private boolean authorFiltered;
     private boolean sortFilter;
 
     public Blog(User user) {
+        assert(user != null) : "User is null";
+
         ownerName = user.getNames();
-        tagFiltered = false;
-        authorFiltered = false;
-        sortFilter = false;
     }
 
     public ArrayList<Post> getPosts() {

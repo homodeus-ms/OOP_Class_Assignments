@@ -23,9 +23,12 @@ public class Post {
 
     private final ArrayList<Comment> comments = new ArrayList<>();
 
-    public Post(User user, String title, String content) {
+    public Post(User user, String title, String body) {
+        assert(title != null) : "Post title is null";
+        assert(body != null) : "Post body is null";
+
         this.title = title;
-        this.body = content;
+        this.body = body;
         this.author = user.getNames();
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = this.createdDateTime;
