@@ -52,6 +52,9 @@ public class Post {
     public HashSet<String> getTagsOrNull() {
         return new HashSet<>(this.tags);
     }
+    public HashMap<Reaction, HashSet<User>> getReactions() {
+        return new HashMap<>(this.reactions);
+    }
     public ArrayList<Comment> getComments() {
         sortByVoteComments();
         return new ArrayList<>(this.comments);

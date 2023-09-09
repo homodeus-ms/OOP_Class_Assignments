@@ -10,6 +10,7 @@ public class Blog {
 
     private String authorFilter;
     private SortingMethod sortingType;
+
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
@@ -64,6 +65,18 @@ public class Blog {
         }
 
         return new ArrayList<>(filtered);
+    }
+
+    public ArrayList<String> getTags() {
+        return new ArrayList<>(this.tagFilters);
+    }
+
+    public String getAuthorFilter() {
+        return this.authorFilter;
+    }
+
+    public SortingMethod getSortingType() {
+        return this.sortingType;
     }
 
     public Post getPost(int postId) {
