@@ -19,7 +19,7 @@ public class Blog {
     }
 
     public ArrayList<Post> getPosts() {
-        return posts;
+        return new ArrayList<>(posts);
     }
     /*
     public ArrayList<String> getTags() {
