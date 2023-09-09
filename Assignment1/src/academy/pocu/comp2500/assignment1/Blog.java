@@ -7,19 +7,20 @@ import java.util.HashSet;
 public class Blog {
     private ArrayList<Post> posts;
     private ArrayList<String> tagFilters;
+
     private String authorFilter;
     private SortingMethod sortingType;
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
-        authorFilter = new String("");
+        authorFilter = "";
         sortingType = SortingMethod.BY_CREATED_TIME_DESC;
     }
 
     public ArrayList<Post> getPosts() {
         if (posts.isEmpty()) {
             System.out.println("Posts is empty");
-            return posts;
+            return new ArrayList<>();
         }
 
         switch (sortingType) {
