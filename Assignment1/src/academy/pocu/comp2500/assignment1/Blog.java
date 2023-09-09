@@ -9,26 +9,55 @@ public class Blog {
     private ArrayList<Post> filteredPosts;
 
     private String authorFilter;
-    private SortingMethod sortingType;
+    private SortingType sortingType;
 
     public Blog() {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
         authorFilter = "";
-        sortingType = SortingMethod.BY_CREATED_TIME_DESC;
+        sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
     public ArrayList<Post> getPosts() {
-        
-        sortByCreatedTimeDesc();
 
-        if (tagFilters.isEmpty() && authorFilter.equals("")) {
-            return new ArrayList<>(posts);
-        } else {
-            return new ArrayList<>(filteredPosts);
+        switch (sortingType) {
+            case BY_CREATED_TIME_DESC:
+                sortByCreatedTimeDesc();
+                break;
+            case BY_CREATED_TIME:
+                sortByCreatedTime();
+                break;
+            case BY_MODIFIED_TIME_DESC:
+                sortByModifiedTimeDesc();
+                break;
+            case BY_MODIFIED_TIME:
+                sortByModifiedTime();
+                break;
+            case BY_TITLE:
+                sortByTitle();
+                break;
+            default:
+                assert (false) : "there are only 5 types";
+                break;
         }
 
+        if (tagFilters.isEmpty() && authorFilter.equals("")) {
+            return posts;
+
+        } else if (!tagFilters.isEmpty() && !authorFilter.equals("")) {
+
+            getAuthorFilteredPost();
+            getTaggedPost(filteredPosts);
+
+        } else if (!authorFilter.equals("")) {
+            getAuthorFilteredPost();
+
+        } else {
+            getTaggedPost(posts);
+        }
+
+        return filteredPosts;
     }
 
     public ArrayList<String> getTags() {
@@ -43,7 +72,7 @@ public class Blog {
         return new ArrayList<>(this.filteredPosts);
     }
 
-    public SortingMethod getSortingType() {
+    public SortingType getSortingType() {
         return this.sortingType;
     }
 /*
@@ -54,14 +83,23 @@ public class Blog {
  */
 
 
-    public void setSortType(SortingMethod sortingType) {
-        //this.sortingType = sortingType;
+    public void setSortType(SortingType sortingType) {
+        this.sortingType = sortingType;
+    }
+    public void removeSortType() {
+        this.sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
     public void setTagFilter(String tag) {
-        //this.tagFilters.add(tag);
+        this.tagFilters.add(tag);
+    }
+    public void removeTagFilter() {
+        this.tagFilters.clear();
     }
     public void setAuthorFilter(String name) {
-        //this.authorFilter = name;
+        this.authorFilter = name;
+    }
+    public void removeAuthorFilter() {
+        this.authorFilter = "";
     }
 
     public void addPost(Post post) {

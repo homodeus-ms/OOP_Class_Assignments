@@ -49,7 +49,7 @@ public class Post {
     public OffsetDateTime getModifiedDateTime() {
         return this.modifiedDateTime;
     }
-    public HashSet<String> getTagsOrNull() {
+    public HashSet<String> getTags() {
         return new HashSet<>(this.tags);
     }
     public HashMap<Reaction, HashSet<User>> getReactions() {
@@ -59,9 +59,15 @@ public class Post {
         sortByVoteComments();
         return new ArrayList<>(this.comments);
     }
+
+/*
     public Comment getComment(int commentId) {
         return this.comments.get(commentId);
     }
+
+ */
+
+
     public int getReactionGreatCount() {
         return reactionGreat.size();
     }
