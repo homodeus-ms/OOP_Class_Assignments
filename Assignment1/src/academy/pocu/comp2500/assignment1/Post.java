@@ -21,7 +21,7 @@ public class Post {
     private HashSet<User> reactionFun;
     private HashSet<User> reactionLove;
 
-    private ArrayList<Comment> comments = new ArrayList<>();
+    private ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
         assert (title != null) : "Post title is null";
@@ -40,6 +40,8 @@ public class Post {
         reactionAngry = new HashSet<>();
         reactionFun = new HashSet<>();
         reactionLove = new HashSet<>();
+
+        comments = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -110,16 +112,16 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-        //if (user.getName().equals(this.author)) {
-        //    this.title = title;
-        //    upDateModifiedTime();
-        //}
+        if (user.getName().equals(this.author)) {
+            this.title = title;
+            upDateModifiedTime();
+        }
     }
     public void updateBody(User user, String body) {
-        //if (user.getName().equals(this.author)) {
-        //    this.body = body;
-        //    upDateModifiedTime();
-        //}
+        if (user.getName().equals(this.author)) {
+            this.body = body;
+            upDateModifiedTime();
+        }
     }
     public void addTag(String tag) {
         tags.add(tag);

@@ -74,10 +74,6 @@ public class Blog {
         return this.sortingType;
     }
 
-    public Post getPost(int at) {
-        return this.posts.get(at);
-    }
-
     public void setSortType(SortingType sortingType) {
         this.sortingType = sortingType;
     }
