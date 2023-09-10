@@ -8,11 +8,12 @@ public class Blog {
     private ArrayList<Post> posts;
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
-
+    private User owner;
     private String authorFilter;
     private SortingType sortingType;
 
-    public Blog() {
+    public Blog(User user) {
+        owner = user;
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();

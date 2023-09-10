@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Post {
     private String title;
     private String body;
+    private User user;
     private String author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
@@ -21,17 +22,20 @@ public class Post {
     //private HashSet<User> reactionFun;
     //private HashSet<User> reactionLove;
 
-    //private ArrayList<Comment> comments;
+    private ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
+        assert (user != null) : "User is null";
         assert (title != null) : "Post title is null";
         assert (body != null) : "Post body is null";
 
         this.title = title;
         this.body = body;
+        this.user = user;
         this.author = user.getName();
+
         this.createdDateTime = OffsetDateTime.now();
-        this.modifiedDateTime = OffsetDateTime.now();
+        this.modifiedDateTime = this.createdDateTime;
 
         tags = new HashSet<>();
         //reactions = new HashMap<>();
@@ -41,7 +45,7 @@ public class Post {
         //reactionFun = new HashSet<>();
         //reactionLove = new HashSet<>();
 
-        //comments = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -69,9 +73,9 @@ public class Post {
 
      */
 
-    public void getComments() {
+    public ArrayList<Comment> getComments() {
         //sortByVoteComments();
-        //return this.comments;
+        return this.comments;
     }
 
 
@@ -115,6 +119,7 @@ public class Post {
         //    upDateModifiedTime();
         //}
     }
+
     public void addTag(String tag) {
         tags.add(tag);
     }
@@ -123,8 +128,8 @@ public class Post {
     }
 
     public void addComment(User user, String comment) {
-        //Comment newComment = new Comment(user, comment);
-        //this.comments.add(newComment);
+        Comment newComment = new Comment(user, comment);
+        this.comments.add(newComment);
     }
 
 
