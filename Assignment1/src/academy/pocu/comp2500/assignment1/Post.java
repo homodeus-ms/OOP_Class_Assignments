@@ -61,7 +61,7 @@ public class Post {
         return modifiedDateTime;
     }
     public HashSet<String> getTags() {
-        return new HashSet<>();
+        return tags;
     }
 
     /*
