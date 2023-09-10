@@ -10,40 +10,37 @@ public class Post {
     private String title;
     private String body;
     private User author;
-    //private final OffsetDateTime createdDateTime;
-    //private OffsetDateTime modifiedDateTime;
-    //private HashSet<String> tags;
-    // Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
+    private final OffsetDateTime createdDateTime;
+    private OffsetDateTime modifiedDateTime;
+    private HashSet<String> tags;
+    //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     //private HashMap<Reaction, HashSet<User>> reactions;
-    //private HashSet<User> reactionGreat;
-    //private HashSet<User> reactionSad;
-    //private HashSet<User> reactionAngry;
-    //private HashSet<User> reactionFun;
-    //private HashSet<User> reactionLove;
+    private HashSet<User> reactionGreat;
+    private HashSet<User> reactionSad;
+    private HashSet<User> reactionAngry;
+    private HashSet<User> reactionFun;
+    private HashSet<User> reactionLove;
 
-    //private ArrayList<Comment> comments;
+    private ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
-        assert (user != null) : "User is null";
-        assert (title != null) : "Post title is null";
-        assert (body != null) : "Post body is null";
 
         this.title = title;
         this.body = body;
         this.author = user;
 
-        //this.createdDateTime = OffsetDateTime.now();
-        //this.modifiedDateTime = this.createdDateTime;
+        this.createdDateTime = OffsetDateTime.now();
+        this.modifiedDateTime = this.createdDateTime;
 
-        //tags = new HashSet<>();
+        tags = new HashSet<>();
         //reactions = new HashMap<>();
-        //reactionGreat = new HashSet<>();
-        //reactionSad = new HashSet<>();
-        //reactionAngry = new HashSet<>();
-        //reactionFun = new HashSet<>();
-        //reactionLove = new HashSet<>();
+        reactionGreat = new HashSet<>();
+        reactionSad = new HashSet<>();
+        reactionAngry = new HashSet<>();
+        reactionFun = new HashSet<>();
+        reactionLove = new HashSet<>();
 
-        //comments = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -52,7 +49,10 @@ public class Post {
     public String getBody() {
         return this.body;
     }
-    public String getAuthor() {
+    public User getAuthor() {
+        return this.author;
+    }
+    public String getAuthorName() {
         return this.author.getName();
     }
 
@@ -65,16 +65,19 @@ public class Post {
     public HashSet<String> getTags() {
         return new HashSet<>();
     }
+
     /*
     public HashMap<Reaction, HashSet<User>> getReactions() {
         return new HashMap<>(this.reactions);
     }
 
-     */
+    */
+
+
 
     public ArrayList<Comment> getComments() {
         //sortByVoteComments();
-        return new ArrayList<>();
+        return this.comments;
     }
 
 
@@ -87,64 +90,109 @@ public class Post {
  */
 
 
-    /*
+
     public int getReactionGreatCount() {
-        return 0;
+        return this.reactionGreat.size();
     }
     public int getReactionSadCount() {
-        return 0;
+        return this.reactionSad.size();
     }
     public int getReactionAngryCount() {
-        return 0;
+        return this.reactionAngry.size();
     }
     public int getReactionFunCount() {
-        return 0;
+        return this.reactionFun.size();
     }
     public int getReactionLoveCount() {
-        return 0;
+        return this.reactionLove.size();
     }
-
-     */
 
     public void updateTitle(User user, String title) {
-        //if (user.getName().equals(this.author)) {
-        //    this.title = title;
-        //    upDateModifiedTime();
-        //}
+        if (this.author.equals(user)) {
+            this.title = title;
+            upDateModifiedTime();
+        }
     }
     public void updateBody(User user, String body) {
-        //if (user.getName().equals(this.author)) {
-        //    this.body = body;
-        //    upDateModifiedTime();
-        //}
+        if (this.author.equals(user)) {
+            this.body = body;
+            upDateModifiedTime();
+        }
     }
 
     public void addTag(String tag) {
-        //tags.add(tag);
+        tags.add(tag);
     }
     public void resetTag() {
-        //tags.clear();
+        tags.clear();
     }
 
     public void addComment(User user, String comment) {
-        //Comment newComment = new Comment(user, comment);
-        //this.comments.add(newComment);
+        Comment newComment = new Comment(user, comment);
+        this.comments.add(newComment);
     }
 
-
     public void addReaction(User user, Reaction reaction) {
-
+        switch (reaction) {
+            case GREAT:
+                reactionGreat.add(user);
+                //reactions.put(Reaction.GREAT, reactionGreat);
+                break;
+            case SAD:
+                reactionSad.add(user);
+                //reactions.put(Reaction.SAD, reactionSad);
+                break;
+            case ANGRY:
+                reactionAngry.add(user);
+                //reactions.put(Reaction.ANGRY, reactionAngry);
+                break;
+            case FUN:
+                reactionFun.add(user);
+                //reactions.put(Reaction.FUN, reactionFun);
+                break;
+            case LOVE:
+                reactionLove.add(user);
+                //reactions.put(Reaction.LOVE, reactionLove);
+                break;
+            default:
+                assert (false) : "Unknown reaction!";
+                break;
+        }
     }
 
     public void removeReaction(User user, Reaction reaction) {
-
+        switch (reaction) {
+            case GREAT:
+                reactionGreat.remove(user);
+                //reactions.put(Reaction.GREAT, reactionGreat);
+                break;
+            case SAD:
+                reactionSad.remove(user);
+                //reactions.put(Reaction.SAD, reactionSad);
+                break;
+            case ANGRY:
+                reactionAngry.remove(user);
+                //reactions.put(Reaction.ANGRY, reactionAngry);
+                break;
+            case FUN:
+                reactionFun.remove(user);
+                //reactions.put(Reaction.FUN, reactionFun);
+                break;
+            case LOVE:
+                reactionLove.remove(user);
+                //reactions.put(Reaction.LOVE, reactionLove);
+                break;
+            default:
+                assert (false) : "Unknown reaction!";
+                break;
+        }
     }
 
     private void upDateModifiedTime() {
-        //this.modifiedDateTime = OffsetDateTime.now();
+        this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    /*
+
     private void sortByVoteComments() {
         Collections.sort(comments, (c1, c2) -> {
             int upVoteDifference = Integer.compare(c2.getUpVoteCount(), c1.getUpVoteCount());
@@ -154,6 +202,6 @@ public class Post {
             return upVoteDifference;
         });
     }
-    */
+
 
 }

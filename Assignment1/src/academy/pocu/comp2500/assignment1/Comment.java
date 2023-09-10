@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class Comment {
-    private final String author;
+    private User author;
     private String comment;
     private HashMap<String, Vote> votes;
     private int upVoteCount;
@@ -13,7 +13,7 @@ public class Comment {
     private final ArrayList<Comment> subComments;
 
     public Comment(User user, String comment) {
-        this.author = user.getName();
+        this.author = user;
         this.comment = comment;
         this.votes = new HashMap<>();
         this.upVoteCount = 0;
@@ -21,8 +21,11 @@ public class Comment {
         this.subComments = new ArrayList<>();
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return this.author;
+    }
+    public String getAuthorName() {
+        return this.author.getName();
     }
     public String getComment() {
         return this.comment;
@@ -40,7 +43,7 @@ public class Comment {
 
 
     public void updateComment(User user, String comment) {
-        if (this.author.equals(user.getName())) {
+        if (this.author.equals(user)) {
             this.comment = comment;
         }
     }
@@ -52,28 +55,28 @@ public class Comment {
 
     public void updateSubComment(User user, int subcommentId, String comment) {
         Comment subComment = this.subComments.get(subcommentId);
-        if (subComment.getAuthor().equals(user.getName())) {
+        if (subComment.getAuthor().equals(user)) {
             subComment.updateComment(user, comment);
         }
     }
 
     public void addUpVote(User user) {
-        String userName = user.getName();
-        if (!votes.containsKey(userName)) {
-            votes.put(userName, Vote.UP_VOTE);
+        String userId = user.getUserId();
+        if (!votes.containsKey(userId)) {
+            votes.put(userId, Vote.UP_VOTE);
             ++upVoteCount;
-        } else if (votes.get(userName) == Vote.DOWN_VOTE) {
-            votes.remove(userName);
+        } else if (votes.get(userId) == Vote.DOWN_VOTE) {
+            votes.remove(userId);
             --downVoteCount;
         }
     }
     public void addDownVote(User user) {
-        String userName = user.getName();
-        if (!votes.containsKey(userName)) {
-            votes.put(userName, Vote.DOWN_VOTE);
+        String userId = user.getUserId();
+        if (!votes.containsKey(userId)) {
+            votes.put(userId, Vote.DOWN_VOTE);
             ++downVoteCount;
-        } else if (votes.get(userName) == Vote.UP_VOTE) {
-            votes.remove(userName);
+        } else if (votes.get(userId) == Vote.UP_VOTE) {
+            votes.remove(userId);
             --upVoteCount;
         }
     }
