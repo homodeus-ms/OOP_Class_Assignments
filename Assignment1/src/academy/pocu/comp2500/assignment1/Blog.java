@@ -62,6 +62,13 @@ public class Blog {
         return filteredPosts;
     }
 
+    public Post getPost(int at) {
+        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
+            return this.posts.get(at);
+        }
+        return this.filteredPosts.get(at);
+    }
+
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
