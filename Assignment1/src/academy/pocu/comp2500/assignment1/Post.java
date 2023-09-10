@@ -60,7 +60,7 @@ public class Post {
         return this.modifiedDateTime;
     }
     public HashSet<String> getTags() {
-        return new HashSet<>(this.tags);
+        return this.tags;
     }
     /*
     public HashMap<Reaction, HashSet<User>> getReactions() {
@@ -70,7 +70,7 @@ public class Post {
      */
     public ArrayList<Comment> getComments() {
         //sortByVoteComments();
-        return new ArrayList<>(this.comments);
+        return this.comments;
     }
 
 /*
@@ -80,19 +80,19 @@ public class Post {
 
  */
     public HashSet<User> getReactionGreat() {
-        return new HashSet<>(reactionGreat);
+        return reactionGreat;
     }
     public HashSet<User> getReactionSad() {
-        return new HashSet<>(reactionSad);
+        return reactionSad;
     }
     public HashSet<User> getReactionAngry() {
-        return new HashSet<>(reactionAngry);
+        return reactionAngry;
     }
     public HashSet<User> getReactionFun() {
-        return new HashSet<>(reactionFun);
+        return reactionFun;
     }
     public HashSet<User> getReactionLove() {
-        return new HashSet<>(reactionLove);
+        return reactionLove;
     }
 
     public int getReactionGreatCount() {
@@ -112,16 +112,16 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-        if (user.getName().equals(this.author)) {
-            this.title = title;
-            upDateModifiedTime();
-        }
+        //if (user.getName().equals(this.author)) {
+        //    this.title = title;
+        //    upDateModifiedTime();
+        //}
     }
     public void updateBody(User user, String body) {
-        if (user.getName().equals(this.author)) {
-            this.body = body;
-            upDateModifiedTime();
-        }
+        //if (user.getName().equals(this.author)) {
+        //    this.body = body;
+        //    upDateModifiedTime();
+        //}
     }
     public void addTag(String tag) {
         tags.add(tag);

@@ -44,7 +44,7 @@ public class Blog {
         }
 
         if (tagFilters.isEmpty() && authorFilter.equals("")) {
-            return posts;
+            return new ArrayList<>(posts);
 
         } else if (!tagFilters.isEmpty() && !authorFilter.equals("")) {
 
@@ -58,7 +58,7 @@ public class Blog {
             getTaggedPost(posts);
         }
 
-        return filteredPosts;
+        return new ArrayList<>(filteredPosts);
     }
 
     public ArrayList<String> getTags() {
