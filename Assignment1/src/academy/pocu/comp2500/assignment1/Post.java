@@ -21,7 +21,7 @@ public class Post {
     //private HashSet<User> reactionFun;
     //private HashSet<User> reactionLove;
 
-    private ArrayList<Comment> comments;
+    //private ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
         assert (title != null) : "Post title is null";
@@ -41,7 +41,7 @@ public class Post {
         //reactionFun = new HashSet<>();
         //reactionLove = new HashSet<>();
 
-        comments = new ArrayList<>();
+        //comments = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -69,9 +69,9 @@ public class Post {
 
      */
 
-    public ArrayList<Comment> getComments() {
+    public void getComments() {
         //sortByVoteComments();
-        return this.comments;
+        //return this.comments;
     }
 
 
@@ -123,8 +123,8 @@ public class Post {
     }
 
     public void addComment(User user, String comment) {
-        Comment newComment = new Comment(user, comment);
-        this.comments.add(newComment);
+        //Comment newComment = new Comment(user, comment);
+        //this.comments.add(newComment);
     }
 
 
