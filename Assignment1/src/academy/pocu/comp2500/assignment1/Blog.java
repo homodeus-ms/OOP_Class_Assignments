@@ -8,12 +8,13 @@ public class Blog {
     private ArrayList<Post> posts;
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
-    private User owner;
+
+    private String ownerName;
     private String authorFilter;
     private SortingType sortingType;
 
     public Blog(User user) {
-        owner = user;
+        String ownerName = user.getName();
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();

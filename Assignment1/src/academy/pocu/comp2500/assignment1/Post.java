@@ -10,6 +10,7 @@ public class Post {
     private String title;
     private String body;
     private User user;
+
     private String author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
@@ -47,7 +48,9 @@ public class Post {
 
         comments = new ArrayList<>();
     }
-
+    public User getUser() {
+        return this.user;
+    }
     public String getTitle() {
         return this.title;
     }
