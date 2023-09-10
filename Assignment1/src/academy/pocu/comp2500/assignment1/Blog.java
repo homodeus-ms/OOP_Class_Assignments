@@ -9,7 +9,7 @@ public class Blog {
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
 
-    private String authorFilter;
+    private User authorFilter;
     private SortingType sortingType;
 
     public Blog() {
@@ -17,7 +17,7 @@ public class Blog {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
-        authorFilter = "";
+        authorFilter = null;
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
@@ -44,15 +44,15 @@ public class Blog {
                 break;
         }
 
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
+        if (tagFilters.isEmpty() && authorFilter == null) {
             return new ArrayList<>(posts);
 
-        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
+        } else if (!tagFilters.isEmpty() && authorFilter != null) {
 
             getAuthorFilteredPost();
             getTaggedPost(filteredPosts);
 
-        } else if (!authorFilter.isEmpty()) {
+        } else if (authorFilter != null) {
             getAuthorFilteredPost();
 
         } else {
@@ -65,7 +65,7 @@ public class Blog {
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
-    public String getAuthorFilter() {
+    public User getAuthorFilter() {
         return this.authorFilter;
     }
     public ArrayList<Post> getFilteredPosts() {
@@ -88,10 +88,10 @@ public class Blog {
         this.tagFilters.clear();
     }
     public void setAuthorFilter(User user) {
-        this.authorFilter = user.getUserId();
+        this.authorFilter = user;
     }
     public void removeAuthorFilter() {
-        this.authorFilter = "";
+        this.authorFilter = null;
     }
 
     public void addPost(Post post) {
