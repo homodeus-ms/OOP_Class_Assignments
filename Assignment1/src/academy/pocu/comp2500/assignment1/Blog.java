@@ -9,12 +9,12 @@ public class Blog {
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
 
-    private String ownerName;
+    private String ownerId;
     private String authorFilter;
     private SortingType sortingType;
 
     public Blog(User user) {
-        String ownerName = user.getName();
+        String ownerId = user.getUserId();
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();

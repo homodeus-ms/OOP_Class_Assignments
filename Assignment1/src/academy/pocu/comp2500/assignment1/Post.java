@@ -9,9 +9,7 @@ import java.util.ArrayList;
 public class Post {
     private String title;
     private String body;
-    private User user;
-
-    private String author;
+    private User author;
     //private final OffsetDateTime createdDateTime;
     //private OffsetDateTime modifiedDateTime;
     //private HashSet<String> tags;
@@ -32,8 +30,7 @@ public class Post {
 
         this.title = title;
         this.body = body;
-        this.user = user;
-        this.author = user.getName();
+        this.author = user;
 
         //this.createdDateTime = OffsetDateTime.now();
         //this.modifiedDateTime = this.createdDateTime;
@@ -48,9 +45,7 @@ public class Post {
 
         //comments = new ArrayList<>();
     }
-    public User getUser() {
-        return this.user;
-    }
+
     public String getTitle() {
         return this.title;
     }
@@ -58,7 +53,7 @@ public class Post {
         return this.body;
     }
     public String getAuthor() {
-        return this.author;
+        return this.author.getName();
     }
 
     public OffsetDateTime getCreatedDateTime() {
