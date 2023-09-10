@@ -12,9 +12,9 @@ public class Post {
     private User user;
 
     private String author;
-    private final OffsetDateTime createdDateTime;
-    private OffsetDateTime modifiedDateTime;
-    private HashSet<String> tags;
+    //private final OffsetDateTime createdDateTime;
+    //private OffsetDateTime modifiedDateTime;
+    //private HashSet<String> tags;
     // Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     //private HashMap<Reaction, HashSet<User>> reactions;
     //private HashSet<User> reactionGreat;
@@ -23,7 +23,7 @@ public class Post {
     //private HashSet<User> reactionFun;
     //private HashSet<User> reactionLove;
 
-    private ArrayList<Comment> comments;
+    //private ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
         assert (user != null) : "User is null";
@@ -35,10 +35,10 @@ public class Post {
         this.user = user;
         this.author = user.getName();
 
-        this.createdDateTime = OffsetDateTime.now();
-        this.modifiedDateTime = this.createdDateTime;
+        //this.createdDateTime = OffsetDateTime.now();
+        //this.modifiedDateTime = this.createdDateTime;
 
-        tags = new HashSet<>();
+        //tags = new HashSet<>();
         //reactions = new HashMap<>();
         //reactionGreat = new HashSet<>();
         //reactionSad = new HashSet<>();
@@ -46,7 +46,7 @@ public class Post {
         //reactionFun = new HashSet<>();
         //reactionLove = new HashSet<>();
 
-        comments = new ArrayList<>();
+        //comments = new ArrayList<>();
     }
     public User getUser() {
         return this.user;
@@ -60,14 +60,15 @@ public class Post {
     public String getAuthor() {
         return this.author;
     }
+
     public OffsetDateTime getCreatedDateTime() {
-        return this.createdDateTime;
+        return OffsetDateTime.now();
     }
     public OffsetDateTime getModifiedDateTime() {
-        return this.modifiedDateTime;
+        return OffsetDateTime.now();
     }
     public HashSet<String> getTags() {
-        return this.tags;
+        return new HashSet<>();
     }
     /*
     public HashMap<Reaction, HashSet<User>> getReactions() {
@@ -78,7 +79,7 @@ public class Post {
 
     public ArrayList<Comment> getComments() {
         //sortByVoteComments();
-        return this.comments;
+        return new ArrayList<>();
     }
 
 
@@ -124,15 +125,15 @@ public class Post {
     }
 
     public void addTag(String tag) {
-        tags.add(tag);
+        //tags.add(tag);
     }
     public void resetTag() {
-        tags.clear();
+        //tags.clear();
     }
 
     public void addComment(User user, String comment) {
-        Comment newComment = new Comment(user, comment);
-        this.comments.add(newComment);
+        //Comment newComment = new Comment(user, comment);
+        //this.comments.add(newComment);
     }
 
 
@@ -145,7 +146,7 @@ public class Post {
     }
 
     private void upDateModifiedTime() {
-        this.modifiedDateTime = OffsetDateTime.now();
+        //this.modifiedDateTime = OffsetDateTime.now();
     }
 
     /*
