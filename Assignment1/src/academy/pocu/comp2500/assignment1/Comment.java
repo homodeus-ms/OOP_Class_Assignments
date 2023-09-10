@@ -7,14 +7,18 @@ import java.util.HashMap;
 public class Comment {
     private final String author;
     private String comment;
-    private final HashMap<String, Vote> votes = new HashMap<>();
+    private HashMap<String, Vote> votes;
     private int upVoteCount;
     private int downVoteCount;
-    private final ArrayList<Comment> subComments = new ArrayList<>();
+    private final ArrayList<Comment> subComments;
 
     public Comment(User user, String comment) {
         this.author = user.getName();
         this.comment = comment;
+        this.votes = new HashMap<>();
+        this.upVoteCount = 0;
+        this.downVoteCount = 0;
+        this.subComments = new ArrayList<>();
     }
 
     public String getAuthor() {
@@ -31,11 +35,9 @@ public class Comment {
     }
     public ArrayList<Comment> getSubComments() {
         sortByVoteSubComments();
-        return new ArrayList<>(subComments);
+        return this.subComments;
     }
-    public Comment getSubComment(int subcommentId) {
-        return subComments.get(subcommentId);
-    }
+
 
     public void updateComment(User user, String comment) {
         if (this.author.equals(user.getName())) {
