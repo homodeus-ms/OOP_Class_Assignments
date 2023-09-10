@@ -9,12 +9,11 @@ public class Blog {
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
 
-    private String ownerId;
     private String authorFilter;
     private SortingType sortingType;
 
-    public Blog(User user) {
-        String ownerId = user.getUserId();
+    public Blog() {
+
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
@@ -121,7 +120,6 @@ public class Blog {
             }
         }
     }
-
     private void sortByCreatedTimeDesc() {
         Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
     }

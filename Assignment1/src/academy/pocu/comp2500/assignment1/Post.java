@@ -30,7 +30,7 @@ public class Post {
         this.author = user.getUserId();
 
         this.createdDateTime = OffsetDateTime.now();
-        this.modifiedDateTime = this.createdDateTime;
+        this.modifiedDateTime = createdDateTime;
 
         tags = new HashSet<>();
         //reactions = new HashMap<>();
@@ -55,10 +55,10 @@ public class Post {
 
 
     public OffsetDateTime getCreatedDateTime() {
-        return OffsetDateTime.now();
+        return createdDateTime;
     }
     public OffsetDateTime getModifiedDateTime() {
-        return OffsetDateTime.now();
+        return modifiedDateTime;
     }
     public HashSet<String> getTags() {
         return new HashSet<>();
@@ -74,7 +74,7 @@ public class Post {
 
 
     public ArrayList<Comment> getComments() {
-        //sortByVoteComments();
+        sortByVoteComments();
         return this.comments;
     }
 
