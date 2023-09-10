@@ -31,7 +31,7 @@ public class Post {
         this.body = body;
         this.author = user.getName();
         this.createdDateTime = OffsetDateTime.now();
-        this.modifiedDateTime = this.createdDateTime;
+        this.modifiedDateTime = OffsetDateTime.now();
 
         tags = new HashSet<>();
         //reactions = new HashMap<>();
@@ -68,10 +68,13 @@ public class Post {
     }
 
      */
+
     public ArrayList<Comment> getComments() {
         //sortByVoteComments();
         return this.comments;
     }
+
+
 
 /*
     public Comment getComment(int commentId) {
@@ -120,8 +123,8 @@ public class Post {
     }
 
     public void addComment(User user, String comment) {
-        //Comment newComment = new Comment(user, comment);
-        //this.comments.add(newComment);
+        Comment newComment = new Comment(user, comment);
+        this.comments.add(newComment);
     }
 
 
