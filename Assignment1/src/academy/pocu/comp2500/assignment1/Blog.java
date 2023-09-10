@@ -45,21 +45,21 @@ public class Blog {
         }
 
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return new ArrayList<>(posts);
+            return posts;
 
         } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
-            getAuthorFilteredPost();
-            getTaggedPost(filteredPosts);
+            getAuthorFilteredPosts();
+            getTaggedPosts(filteredPosts);
 
         } else if (!authorFilter.isEmpty()) {
-            getAuthorFilteredPost();
+            getAuthorFilteredPosts();
 
         } else {
-            getTaggedPost(posts);
+            getTaggedPosts(posts);
         }
 
-        return new ArrayList<>(filteredPosts);
+        return filteredPosts;
     }
 
     public ArrayList<String> getTags() {
@@ -98,14 +98,14 @@ public class Blog {
         this.posts.add(0, post);
     }
 
-    private void getAuthorFilteredPost() {
+    private void getAuthorFilteredPosts() {
         for (Post post : posts) {
             if (post.getAuthor().getUserName().equals(authorFilter)) {
                 filteredPosts.add(post);
             }
         }
     }
-    private void getTaggedPost(ArrayList<Post> posts) {
+    private void getTaggedPosts(ArrayList<Post> posts) {
         ArrayList<Post> temp = new ArrayList<>(posts);
         filteredPosts.clear();
 

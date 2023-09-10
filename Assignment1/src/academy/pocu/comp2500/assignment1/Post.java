@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Post {
     private String title;
     private String body;
-    private User author;
+    private final User author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private HashSet<String> tags;
@@ -20,17 +20,17 @@ public class Post {
     private HashSet<User> reactionAngry;
     private HashSet<User> reactionFun;
     private HashSet<User> reactionLove;
-
     private ArrayList<Comment> comments;
+
 
     public Post(User user, String title, String body) {
 
         this.title = title;
         this.body = body;
         this.author = user;
-
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = createdDateTime;
+        this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
         //reactions = new HashMap<>();
@@ -39,9 +39,8 @@ public class Post {
         reactionAngry = new HashSet<>();
         reactionFun = new HashSet<>();
         reactionLove = new HashSet<>();
-
-        comments = new ArrayList<>();
     }
+
 
     public String getTitle() {
         return this.title;
@@ -55,8 +54,6 @@ public class Post {
     public User getAuthor() {
         return this.author;
     }
-
-
     public OffsetDateTime getCreatedDateTime() {
         return createdDateTime;
     }
@@ -66,32 +63,10 @@ public class Post {
     public HashSet<String> getTags() {
         return tags;
     }
-
-    /*
-    public HashMap<Reaction, HashSet<User>> getReactions() {
-        return new HashMap<>(this.reactions);
-    }
-
-    */
-
-
-
     public ArrayList<Comment> getComments() {
         sortByVoteComments();
         return this.comments;
     }
-
-
-
-/*
-    public Comment getComment(int commentId) {
-        return this.comments.get(commentId);
-    }
-
- */
-
-
-
     public int getReactionGreatCount() {
         return this.reactionGreat.size();
     }
@@ -108,8 +83,10 @@ public class Post {
         return this.reactionLove.size();
     }
 
+
+
     public void updateTitle(User user, String title) {
-        if (this.author.equals(user)) {
+        if (this.author.equals(user) && !title.isEmpty()) {
             this.title = title;
             upDateModifiedTime();
         }
@@ -128,9 +105,8 @@ public class Post {
         tags.clear();
     }
 
-    public void addComment(User user, String comment) {
-        Comment newComment = new Comment(user, comment);
-        this.comments.add(newComment);
+    public void addComment(Comment comment) {
+        this.comments.add(0, comment);
     }
 
     public void addReaction(User user, Reaction reaction) {
@@ -203,6 +179,4 @@ public class Post {
             return upVoteDifference;
         });
     }
-
-
 }

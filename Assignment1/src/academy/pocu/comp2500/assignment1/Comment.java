@@ -27,7 +27,6 @@ public class Comment {
     public User getAuthor() {
         return this.author;
     }
-
     public String getComment() {
         return this.comment;
     }
