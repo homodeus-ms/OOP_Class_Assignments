@@ -9,7 +9,7 @@ public class Blog {
     private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
 
-    private User authorFilter;
+    private String authorFilter;
     private SortingType sortingType;
 
     public Blog() {
@@ -17,7 +17,7 @@ public class Blog {
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
-        authorFilter = null;
+        authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
@@ -44,15 +44,15 @@ public class Blog {
                 break;
         }
 
-        if (tagFilters.isEmpty() && authorFilter == null) {
+        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
             return new ArrayList<>(posts);
 
-        } else if (!tagFilters.isEmpty() && authorFilter != null) {
+        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
             getAuthorFilteredPost();
             getTaggedPost(filteredPosts);
 
-        } else if (authorFilter != null) {
+        } else if (!authorFilter.isEmpty()) {
             getAuthorFilteredPost();
 
         } else {
@@ -65,7 +65,7 @@ public class Blog {
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
-    public User getAuthorFilter() {
+    public String getAuthorFilter() {
         return this.authorFilter;
     }
     public ArrayList<Post> getFilteredPosts() {
@@ -87,11 +87,11 @@ public class Blog {
     public void removeTagFilter() {
         this.tagFilters.clear();
     }
-    public void setAuthorFilter(User user) {
-        this.authorFilter = user;
+    public void setAuthorFilter(String authorName) {
+        this.authorFilter = authorName;
     }
     public void removeAuthorFilter() {
-        this.authorFilter = null;
+        this.authorFilter = "";
     }
 
     public void addPost(Post post) {
@@ -100,7 +100,7 @@ public class Blog {
 
     private void getAuthorFilteredPost() {
         for (Post post : posts) {
-            if (post.getAuthor().equals(authorFilter)) {
+            if (post.getAuthor().getUserName().equals(authorFilter)) {
                 filteredPosts.add(post);
             }
         }
