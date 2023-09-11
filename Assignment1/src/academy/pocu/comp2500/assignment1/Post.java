@@ -95,19 +95,16 @@ public class Post {
 
         if (post.getAuthor().equals(user) && !title.isEmpty()) {
             post.title = title;
-            upDateModifiedTime();
+            modifiedDateTime = OffsetDateTime.now();
         }
     }
     public void updateBody(Post post, User user, String body) {
 
         if (this.author.equals(user)) {
             post.body = body;
-            upDateModifiedTime();
+            modifiedDateTime = OffsetDateTime.now();
         }
     }
-
-
-
 
     public void addTag(String tag) {
         tags.add(tag);
@@ -173,10 +170,6 @@ public class Post {
                 assert (false) : "Unknown reaction!";
                 break;
         }
-    }
-
-    private void upDateModifiedTime() {
-        this.modifiedDateTime = OffsetDateTime.now();
     }
 
 

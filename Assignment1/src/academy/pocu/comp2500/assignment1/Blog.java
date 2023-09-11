@@ -13,7 +13,6 @@ public class Blog {
     private SortingType sortingType;
 
     public Blog() {
-
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
@@ -45,7 +44,7 @@ public class Blog {
         }
 
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return posts;
+            return new ArrayList<>(posts);
 
         } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
@@ -59,7 +58,7 @@ public class Blog {
             getTaggedPosts(posts);
         }
 
-        return filteredPosts;
+        return new ArrayList<>(filteredPosts);
     }
     public Post getPostOrNull(int at) {
         if (this.posts.isEmpty()) {

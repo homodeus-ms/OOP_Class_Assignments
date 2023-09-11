@@ -49,11 +49,14 @@ public class Program {
         blog0.addPost(post0);
         blog0.addPost(post1);
 
-        print1(blog0.getPosts());
+        var list = blog0.getPosts();
+        Post post2 = new Post(user1, "ccc", "333");
+        list.add(post2);
+        list = blog0.getPosts();
+        //print1(list);
+        list.clear();
+        print1(list);
 
-        post0.updateTitle(post1, user1, "ccc");
-        post0.updateBody(post1, user1, "555");
-        print1(blog0.getPosts());
         //post.updateTitle(post, user0, "War");
         /*
         Post post0 = new Post(user0, "aaa", "aaa-1");
