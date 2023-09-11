@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private ArrayList<Post> posts;
-    private ArrayList<String> tagFilters;
-    private ArrayList<Post> filteredPosts;
+    private final ArrayList<Post> posts;
+    private final ArrayList<String> tagFilters;
+    private final ArrayList<Post> filteredPosts;
 
     private String authorFilter;
     private SortingType sortingType;
@@ -104,7 +104,6 @@ public class Blog {
     }
 
     public void addPost(Post post) {
-
         this.posts.add(0, post);
     }
 

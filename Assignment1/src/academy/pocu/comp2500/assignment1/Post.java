@@ -12,15 +12,15 @@ public class Post {
     private final User author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
-    private HashSet<String> tags;
+    private final HashSet<String> tags;
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     //private HashMap<Reaction, HashSet<User>> reactions;
-    private HashSet<User> reactionGreat;
-    private HashSet<User> reactionSad;
-    private HashSet<User> reactionAngry;
-    private HashSet<User> reactionFun;
-    private HashSet<User> reactionLove;
-    private ArrayList<Comment> comments;
+    private final HashSet<User> reactionGreat;
+    private final HashSet<User> reactionSad;
+    private final HashSet<User> reactionAngry;
+    private final HashSet<User> reactionFun;
+    private final HashSet<User> reactionLove;
+    private final ArrayList<Comment> comments;
 
 
     public Post(User user, String title, String body) {
@@ -65,7 +65,7 @@ public class Post {
     }
     public ArrayList<Comment> getComments() {
         sortByVoteComments();
-        return this.comments;
+        return new ArrayList<>(this.comments);
     }
     public Comment getCommentOrNull(int at) {
         if (this.comments.isEmpty()) {
@@ -91,17 +91,17 @@ public class Post {
         return this.reactionLove.size();
     }
 
-    public void updateTitle(Post post, User user, String title) {
-
-        if (post.getAuthor().equals(user) && !title.isEmpty()) {
-            post.title = title;
+    public void updateTitle(User user, Post post) {
+        assert (post != null);
+        if (this.author.equals(user) && !(post.title.isEmpty())) {
+            this.title = post.title;
             modifiedDateTime = OffsetDateTime.now();
         }
     }
-    public void updateBody(Post post, User user, String body) {
-
+    public void updateBody(User user, Post post) {
+        assert (post != null);
         if (this.author.equals(user)) {
-            post.body = body;
+            this.body = post.body;
             modifiedDateTime = OffsetDateTime.now();
         }
     }

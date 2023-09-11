@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class Comment {
-    private User author;
+    private final User author;
     private String comment;
-    private HashMap<User, Vote> votes;
+    private final HashMap<User, Vote> votes;
     private int upVoteCount;
     private int downVoteCount;
     private final ArrayList<Comment> subComments;
@@ -48,7 +48,6 @@ public class Comment {
         return this.subComments.get(at);
     }
 
-
     public void updateComment(User user, String comment) {
         if (this.author.equals(user)) {
             this.comment = comment;
@@ -56,8 +55,8 @@ public class Comment {
     }
 
     public void addSubComment(Comment comment, Comment subcomment) {
-        if (comment != null) {
-            comment.getSubComments().add(subcomment);
+        if (comment != null && subcomment != null) {
+            comment.subComments.add(subcomment);
         }
     }
 
