@@ -91,17 +91,17 @@ public class Post {
         return this.reactionLove.size();
     }
 
-    public void updateTitle(User user, Post post) {
-        assert (post != null);
-        if (this.author.equals(user) && !(post.title.isEmpty())) {
-            this.title = post.title;
+    public void updateTitle(User user, String title) {
+
+        if (this.author.equals(user)) {
+            this.title = title;
             modifiedDateTime = OffsetDateTime.now();
         }
     }
-    public void updateBody(User user, Post post) {
-        assert (post != null);
+    public void updateBody(User user, String body) {
+
         if (this.author.equals(user)) {
-            this.body = post.body;
+            this.body = body;
             modifiedDateTime = OffsetDateTime.now();
         }
     }

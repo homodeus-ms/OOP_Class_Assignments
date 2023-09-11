@@ -55,9 +55,9 @@ public class Comment {
     }
 
     public void addSubComment(Comment comment, Comment subcomment) {
-        if (comment != null && subcomment != null) {
-            comment.subComments.add(subcomment);
-        }
+
+        comment.subComments.add(subcomment);
+
     }
 
     public void updateSubComment(User user, int at, String comment) {
