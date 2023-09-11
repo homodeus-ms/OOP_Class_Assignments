@@ -101,7 +101,7 @@ public class Post {
     public void updateBody(Post post, User user, String body) {
 
         if (this.author.equals(user)) {
-            this.body = body;
+            post.body = body;
             upDateModifiedTime();
         }
     }

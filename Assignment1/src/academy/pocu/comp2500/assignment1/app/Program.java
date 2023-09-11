@@ -44,7 +44,16 @@ public class Program {
         User user1 = new User("Pope");
 
         Blog blog0 = new Blog();
-        var post = blog0.getPostOrNull(1);
+        Post post0 = new Post(user0, "aaa", "111");
+        Post post1 = new Post(user0, "bbb", "222");
+        blog0.addPost(post0);
+        blog0.addPost(post1);
+
+        print1(blog0.getPosts());
+
+        post0.updateTitle(post1, user1, "ccc");
+        post0.updateBody(post1, user1, "555");
+        print1(blog0.getPosts());
         //post.updateTitle(post, user0, "War");
         /*
         Post post0 = new Post(user0, "aaa", "aaa-1");
