@@ -91,15 +91,15 @@ public class Post {
         return this.reactionLove.size();
     }
 
+    public void updateTitle(Post post, User user, String title) {
 
-
-    public void updateTitle(User user, String title) {
-        if (this.author.equals(user) && !title.isEmpty()) {
-            this.title = title;
+        if (post.getAuthor().equals(user) && !title.isEmpty()) {
+            post.title = title;
             upDateModifiedTime();
         }
     }
-    public void updateBody(User user, String body) {
+    public void updateBody(Post post, User user, String body) {
+
         if (this.author.equals(user)) {
             this.body = body;
             upDateModifiedTime();
