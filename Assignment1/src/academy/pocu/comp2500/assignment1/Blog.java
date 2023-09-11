@@ -62,13 +62,6 @@ public class Blog {
         return filteredPosts;
     }
 
-    public Post getPost(int at) {
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return this.posts.get(at);
-        }
-        return this.filteredPosts.get(at);
-    }
-
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
@@ -103,6 +96,19 @@ public class Blog {
 
     public void addPost(Post post) {
         this.posts.add(0, post);
+    }
+
+    public void updatePostTitle(User user, int at, String title) {
+        Post target = getPosts().get(at);
+        if (target.getAuthor().equals(user)) {
+            target.updateTitle(title);
+        }
+    }
+    public void updatePostBody(User user, int at, String body) {
+        Post target = getPosts().get(at);
+        if (target.getAuthor().equals(user)) {
+            target.updateBody(body);
+        }
     }
 
     private void getAuthorFilteredPosts() {

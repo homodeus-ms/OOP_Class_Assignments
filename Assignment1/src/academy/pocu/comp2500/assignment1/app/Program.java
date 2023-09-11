@@ -42,10 +42,6 @@ public class Program {
 
         print1(posts);
 
-        posts.get(0).updateTitle(user1, "aaaaaaaaa");
-
-        posts = blog0.getPosts();
-        print1(posts);
 
 
 
