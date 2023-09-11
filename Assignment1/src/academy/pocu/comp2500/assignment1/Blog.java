@@ -60,6 +60,7 @@ public class Blog {
 
         return new ArrayList<>(filteredPosts);
     }
+    /*
     public Post getPostOrNull(int at) {
         if (this.posts.isEmpty()) {
             return null;
@@ -70,6 +71,8 @@ public class Blog {
             return this.filteredPosts.get(at);
         }
     }
+    */
+
 
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
