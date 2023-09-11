@@ -67,6 +67,14 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
+    public Comment getCommentOrNull(int at) {
+        if (this.comments.isEmpty()) {
+            return null;
+        }
+        sortByVoteComments();
+        return this.comments.get(at);
+    }
+
     public int getReactionGreatCount() {
         return this.reactionGreat.size();
     }
@@ -139,7 +147,6 @@ public class Post {
                 break;
         }
     }
-
     public void removeReaction(User user, Reaction reaction) {
         switch (reaction) {
             case GREAT:

@@ -40,6 +40,13 @@ public class Comment {
         sortByVoteSubComments();
         return this.subComments;
     }
+    public Comment getSubCommentOrNull(int at) {
+        if (this.subComments.isEmpty()) {
+            return null;
+        }
+        sortByVoteSubComments();
+        return this.subComments.get(at);
+    }
 
 
     public void updateComment(User user, String comment) {
@@ -49,11 +56,11 @@ public class Comment {
     }
 
     public void addSubComment(Comment subcomment) {
-        subComments.add(subcomment);
+        this.subComments.add(subcomment);
     }
 
-    public void updateSubComment(User user, int subcommentId, String comment) {
-        Comment subComment = this.subComments.get(subcommentId);
+    public void updateSubComment(User user, int at, String comment) {
+        Comment subComment = this.subComments.get(at);
         if (subComment.getAuthor().equals(user)) {
             subComment.updateComment(user, comment);
         }
