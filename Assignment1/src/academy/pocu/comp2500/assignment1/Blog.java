@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Blog {
     private final ArrayList<Post> posts;
-    private final ArrayList<String> tagFilters;
+    private ArrayList<String> tagFilters;
     private final ArrayList<Post> filteredPosts;
 
     private String authorFilter;
@@ -21,29 +21,8 @@ public class Blog {
     }
 
     public ArrayList<Post> getPosts() {
-
-        switch (sortingType) {
-            case BY_CREATED_TIME_DESC:
-                sortByCreatedTimeDesc();
-                break;
-            case BY_CREATED_TIME:
-                sortByCreatedTime();
-                break;
-            case BY_MODIFIED_TIME_DESC:
-                sortByModifiedTimeDesc();
-                break;
-            case BY_MODIFIED_TIME:
-                sortByModifiedTime();
-                break;
-            case BY_TITLE:
-                sortByTitle();
-                break;
-            default:
-                assert (false) : "there are only 5 types";
-                break;
-        }
-
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
+            sortBySotingType(posts);
             return new ArrayList<>(posts);
 
         } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
@@ -58,6 +37,7 @@ public class Blog {
             getTaggedPosts(posts);
         }
 
+        sortBySotingType(filteredPosts);
         return new ArrayList<>(filteredPosts);
     }
     public Post getPostOrNull(int at) {
@@ -90,25 +70,16 @@ public class Blog {
     public void removeSortType() {
         this.sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
-    public void setTagFilter(String tag) {
-        this.tagFilters.add(tag);
+    public void setTagFilter(Tag tag) {
+        this.tagFilters = tag.getTagFilters();
     }
-    public void removeTagFilter() {
-        this.tagFilters.clear();
-    }
-    public void setAuthorFilter(String authorName) {
-        this.authorFilter = authorName;
-    }
-    public void removeAuthorFilter() {
-        this.authorFilter = "";
+    public void setAuthorFilter(AuthorFilter author) {
+        this.authorFilter = author.getAuthorFilter();
     }
 
     public void addPost(Post post) {
         this.posts.add(0, post);
     }
-
-
-
     private void getAuthorFilteredPosts() {
         for (Post post : posts) {
             if (post.getAuthor().getUserName().equals(authorFilter)) {
@@ -131,20 +102,44 @@ public class Blog {
             }
         }
     }
-    private void sortByCreatedTimeDesc() {
-        Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
+
+    private void sortBySotingType(ArrayList<Post> target) {
+        switch (this.sortingType) {
+            case BY_CREATED_TIME_DESC:
+                sortByCreatedTimeDesc(target);
+                break;
+            case BY_CREATED_TIME:
+                sortByCreatedTime(target);
+                break;
+            case BY_MODIFIED_TIME_DESC:
+                sortByModifiedTimeDesc(target);
+                break;
+            case BY_MODIFIED_TIME:
+                sortByModifiedTime(target);
+                break;
+            case BY_TITLE:
+                sortByTitle(target);
+                break;
+            default:
+                assert (false) : "there are only 5 types";
+                break;
+        }
     }
-    private void sortByCreatedTime() {
-        Collections.sort(posts, (p1, p2) -> p1.getCreatedDateTime().compareTo(p2.getCreatedDateTime()));
+
+    private void sortByCreatedTimeDesc(ArrayList<Post> target) {
+        Collections.sort(target, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
     }
-    private void sortByModifiedTimeDesc() {
-        Collections.sort(posts, (p1, p2) -> p2.getModifiedDateTime().compareTo(p1.getModifiedDateTime()));
+    private void sortByCreatedTime(ArrayList<Post> target) {
+        Collections.sort(target, (p1, p2) -> p1.getCreatedDateTime().compareTo(p2.getCreatedDateTime()));
     }
-    private void sortByModifiedTime() {
-        Collections.sort(posts, (p1, p2) -> p1.getModifiedDateTime().compareTo(p2.getModifiedDateTime()));
+    private void sortByModifiedTimeDesc(ArrayList<Post> target) {
+        Collections.sort(target, (p1, p2) -> p2.getModifiedDateTime().compareTo(p1.getModifiedDateTime()));
     }
-    private void sortByTitle() {
-        Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
+    private void sortByModifiedTime(ArrayList<Post> target) {
+        Collections.sort(target, (p1, p2) -> p1.getModifiedDateTime().compareTo(p2.getModifiedDateTime()));
+    }
+    private void sortByTitle(ArrayList<Post> target) {
+        Collections.sort(target, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
     }
 
 }

@@ -40,8 +40,6 @@ public class Post {
         reactionFun = new HashSet<>();
         reactionLove = new HashSet<>();
     }
-
-
     public String getTitle() {
         return this.title;
     }
