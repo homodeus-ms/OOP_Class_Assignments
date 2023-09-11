@@ -25,7 +25,7 @@ public class ComplexNumber {
     }
 
     public boolean isImaginary() {
-        if (!this.isReal() && this.real == 0.0) {
+        if (this.real == 0.0) {
             return true;
         }
         return false;
