@@ -85,26 +85,19 @@ public class Post {
 
 
 
-    public void updateTitle(String title) {
-        this.title = title;
-        /*
+    public void updateTitle(User user, String title) {
         if (this.author.equals(user) && !title.isEmpty()) {
             this.title = title;
             upDateModifiedTime();
         }
-        */
-
     }
-    public void updateBody(String body) {
-        this.body = body;
-        /*
+    public void updateBody(User user, String body) {
         if (this.author.equals(user)) {
             this.body = body;
             upDateModifiedTime();
         }
-
-         */
     }
+
 
 
 
