@@ -25,7 +25,7 @@ public class ComplexNumber {
     }
 
     public boolean isImaginary() {
-        if (this.real == 0.0 && this.imaginary != 0.0) {
+        if (!this.isReal() && this.real == 0.0) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public class ComplexNumber {
     }
     public ComplexNumber multiply(ComplexNumber num) {
         double multipliedReal = (this.real * num.real) - (this.imaginary * num.imaginary);
-        double multipliedImaginary = (this.real * num.imaginary) + (num.real * num.imaginary);
+        double multipliedImaginary = (this.real * num.imaginary) + (num.real * this.imaginary);
         return new ComplexNumber(multipliedReal, multipliedImaginary);
     }
     public ComplexNumber divide(ComplexNumber num) {
