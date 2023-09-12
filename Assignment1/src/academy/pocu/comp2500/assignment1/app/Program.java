@@ -51,8 +51,15 @@ public class Program {
         blog0.addPost(post0);
         blog0.addPost(post1);
 
+        post0.updateTitle(user1, "bbb");
 
+        var list = blog0.getPosts();
 
+        print1(list);
+
+        post0.updateTitle(user0, "ccc");
+
+        print1(list);
 
 
         //post.updateTitle(post, user0, "War");

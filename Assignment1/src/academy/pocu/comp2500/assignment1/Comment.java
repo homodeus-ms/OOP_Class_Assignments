@@ -48,15 +48,12 @@ public class Comment {
     }
 
     public void addSubComment(Comment comment, Comment subcomment) {
-
         comment.subComments.add(subcomment);
-
     }
 
-    public void updateSubComment(User user, int at, String comment) {
-        Comment subComment = this.subComments.get(at);
-        if (subComment.getAuthor().equals(user)) {
-            subComment.updateComment(user, comment);
+    public void updateSubComment(User user, String comment) {
+        if (this.author == user) {
+            this.comment = comment;
         }
     }
 
