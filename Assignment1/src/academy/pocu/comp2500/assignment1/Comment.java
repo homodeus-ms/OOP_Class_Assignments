@@ -42,7 +42,7 @@ public class Comment {
     }
 
     public void updateComment(User user, String comment) {
-        if (this.author.isSameUser(user)) {
+        if (this.author.getUserName().equals(user.getUserName())) {
             this.comment = comment;
         }
     }
@@ -52,7 +52,7 @@ public class Comment {
     }
 
     public void updateSubComment(User user, String comment) {
-        if (this.author.isSameUser(user)) {
+        if (this.author == user) {
             this.comment = comment;
         }
     }
