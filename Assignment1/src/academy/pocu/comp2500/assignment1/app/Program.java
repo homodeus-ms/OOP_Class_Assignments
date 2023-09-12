@@ -55,17 +55,6 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
-        AuthorFilter filter0 = new AuthorFilter("Pope");
-        AuthorFilter filter1 = new AuthorFilter();
-
-        blog.setAuthorFilter(filter1);
-        var list = blog.getPosts();
-        print1(list);
-
-        filter1.setFilterOn();
-        list = blog.getPosts();
-        print1(list);
-
         System.out.println("??");
 
     }
