@@ -40,18 +40,11 @@ public class Comment {
         sortByVoteSubComments();
         return this.subComments;
     }
-    public Comment getSubCommentOrNull(int at) {
-        if (this.subComments.isEmpty()) {
-            return null;
-        }
-        sortByVoteSubComments();
-        return this.subComments.get(at);
-    }
 
     public void updateComment(User user, String comment) {
-        if (this.author.equals(user)) {
-            this.comment = comment;
-        }
+
+        this.comment = comment;
+
     }
 
     public void addSubComment(Comment comment, Comment subcomment) {

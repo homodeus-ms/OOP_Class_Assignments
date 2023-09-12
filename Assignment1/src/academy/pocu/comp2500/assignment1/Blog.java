@@ -21,14 +21,11 @@ public class Blog {
 
         authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
-
     }
 
     public ArrayList<Post> getPosts() {
         return posts;
     }
-
-
     public ArrayList<String> getTags() {
         return new ArrayList<>(this.tagFilters);
     }
