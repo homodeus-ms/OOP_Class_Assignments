@@ -40,32 +40,31 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        //post.updateTitle(post, user0, "War");
-        /*
-        Post post0 = new Post(user0, "aaa", "aaa-1");
-        Post post1 = new Post(user1, "bbb", "bbb-1");
-        blog0.addPost(post0);
-        blog0.addPost(post1);
+        User pope = new User("Pope", "aaaa");
+        User kiwi = new User("Kiwi", "bbbb");
 
-        var posts = blog0.getPosts();
-        print1(posts);
+        Blog blog = new Blog();
 
-        Comment com0 = new Comment(user0, "aaa-2");
-        post0.addComment(com0);
+        Post post0 = new Post(pope, "aaa", "111");
+        Post post1 = new Post(pope, "bbb", "222");
+        Post post2 = new Post(kiwi, "ccc", "333");
+        Post post3 = new Post(kiwi, "ddd", "444");
 
-        Comment subCom0 = new Comment(user0, "aaa-3");
-        com0.addSubComment(com0, subCom0);
+        blog.addPost(post0);
+        blog.addPost(post1);
+        blog.addPost(post2);
+        blog.addPost(post3);
 
-        var comments = blog0.getPosts().get(1).getComments();
+        AuthorFilter filter0 = new AuthorFilter("Pope");
+        AuthorFilter filter1 = new AuthorFilter();
 
-        print2(comments);
+        blog.setAuthorFilter(filter1);
+        var list = blog.getPosts();
+        print1(list);
 
-        var subComments = com0.getSubComments();
-
-        print2(subComments);
-
-        */
-
+        filter1.setFilterOn();
+        list = blog.getPosts();
+        print1(list);
 
         System.out.println("??");
 

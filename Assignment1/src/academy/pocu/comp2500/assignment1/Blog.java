@@ -47,15 +47,15 @@ public class Blog {
                 break;
         }
 
-        if (tags.isEmpty() && authorFilter.isEmpty()) {
+        if (tags.isEmpty() && (!authorFilter.isFilterOn() || authorFilter.getName().isEmpty())) {
             return this.posts;
 
-        } else if (!tags.isEmpty() && !authorFilter.isEmpty()) {
+        } else if (!tags.isEmpty() && authorFilter.isFilterOn()) {
 
             getAuthorFilteredPosts();
             getTaggedPosts(filteredPosts);
 
-        } else if (!authorFilter.isEmpty()) {
+        } else if (authorFilter.isFilterOn()) {
             getAuthorFilteredPosts();
 
         } else {
@@ -71,7 +71,7 @@ public class Blog {
         return this.authorFilter.getName();
     }
     public ArrayList<Post> getFilteredPosts() {
-        return new ArrayList<>(this.filteredPosts);
+        return this.filteredPosts;
     }
     public SortingType getSortingType() {
         return this.sortingType;
@@ -91,7 +91,6 @@ public class Blog {
     public void setAuthorFilter(AuthorFilter authorName) {
         this.authorFilter = authorName;
     }
-
 
     public void addPost(Post post) {
 
