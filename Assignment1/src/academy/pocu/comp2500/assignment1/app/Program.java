@@ -50,10 +50,10 @@ public class Program {
         blog0.addPost(post0);
         blog0.addPost(post1);
 
-        var list = blog0.getPosts();
-        print1(list);
+        var mody = blog0.getPostOrNull(post0);
+        mody.updateTitle(user0, "ccc");
 
-        list.get(0).updateTitle(user0, "ccc");
+        var list = blog0.getPosts();
         print1(list);
 
 

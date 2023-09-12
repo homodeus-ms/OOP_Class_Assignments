@@ -48,7 +48,7 @@ public class Blog {
         }
 
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return posts;
+            return new ArrayList<>(this.posts);
 
         } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
@@ -62,7 +62,15 @@ public class Blog {
             getTaggedPosts(posts);
         }
 
-        return filteredPosts;
+        return new ArrayList<>(this.filteredPosts);
+    }
+    public Post getPostOrNull(Post post) {
+        for (Post p : this.posts) {
+            if (p.equals(post)) {
+                return p;
+            }
+        }
+        return null;
     }
     /*
     public Post getPostOrNull(int at) {
