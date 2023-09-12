@@ -1,21 +1,17 @@
 package academy.pocu.comp2500.assignment1;
 
 public class AuthorFilter {
-    private String authorFilter;
-    private boolean filterOn;
+    String authorFilter;
 
     public AuthorFilter(String authorNameOrNull) {
-        if (authorNameOrNull == null || authorNameOrNull.isEmpty()) {
+        if (authorNameOrNull == null) {
             authorFilter = "";
-            filterOn = false;
         } else {
             authorFilter = authorNameOrNull;
-            filterOn = true;
         }
     }
     public AuthorFilter() {
         authorFilter = "";
-        filterOn = false;
     }
     public AuthorFilter getAuthorFilter() {
         return this;
@@ -23,23 +19,17 @@ public class AuthorFilter {
     public String getName() {
         return this.authorFilter;
     }
-    public boolean isFilterOn() {
-        return this.filterOn;
+    public boolean isEmpty() {
+        if (this.authorFilter.isEmpty()) {
+            return true;
+        }
+        return false;
     }
-
     public void setAuthorFilter(String authorNameOrNull) {
-        if (authorNameOrNull == null || authorNameOrNull.isEmpty()) {
+        if (authorNameOrNull == null) {
             authorFilter = "";
-            filterOn = false;
             return;
         }
         authorFilter = authorNameOrNull;
-        filterOn = true;
-    }
-    public void setFilterOn() {
-        this.filterOn = true;
-    }
-    public void setFilterOff() {
-        this.filterOn = false;
     }
 }
