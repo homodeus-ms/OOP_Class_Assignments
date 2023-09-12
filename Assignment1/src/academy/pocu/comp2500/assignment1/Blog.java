@@ -7,19 +7,21 @@ import java.util.HashSet;
 public class Blog {
 
     private ArrayList<Post> posts;
-    private ArrayList<String> tagFilters;
     private ArrayList<Post> filteredPosts;
 
-    private String authorFilter;
+    private TagFilter tagFilter;
+    private HashSet<String> tags;
+    private AuthorFilter authorFilter;
     private SortingType sortingType;
 
     public Blog() {
 
         posts = new ArrayList<>();
-        tagFilters = new ArrayList<>();
+        tagFilter = new TagFilter();
+        tags = tagFilter.getTags();
         filteredPosts = new ArrayList<>();
 
-        authorFilter = "";
+        authorFilter = new AuthorFilter();
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
@@ -45,10 +47,10 @@ public class Blog {
                 break;
         }
 
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
+        if (tags.isEmpty() && authorFilter.isEmpty()) {
             return this.posts;
 
-        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
+        } else if (!tags.isEmpty() && !authorFilter.isEmpty()) {
 
             getAuthorFilteredPosts();
             getTaggedPosts(filteredPosts);
@@ -62,11 +64,11 @@ public class Blog {
 
         return filteredPosts;
     }
-    public ArrayList<String> getTags() {
-        return new ArrayList<>(this.tagFilters);
+    public HashSet<String> getTags() {
+        return this.tags;
     }
     public String getAuthorFilter() {
-        return this.authorFilter;
+        return this.authorFilter.getName();
     }
     public ArrayList<Post> getFilteredPosts() {
         return new ArrayList<>(this.filteredPosts);
@@ -81,18 +83,15 @@ public class Blog {
     public void removeSortType() {
         this.sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
-    public void setTagFilter(String tag) {
-        this.tagFilters.add(tag);
+    public void setTagFilter(TagFilter tag) {
+        this.tagFilter = tag;
+        this.tags = tag.getTags();
     }
-    public void removeTagFilter() {
-        this.tagFilters.clear();
-    }
-    public void setAuthorFilter(String authorName) {
+
+    public void setAuthorFilter(AuthorFilter authorName) {
         this.authorFilter = authorName;
     }
-    public void removeAuthorFilter() {
-        this.authorFilter = "";
-    }
+
 
     public void addPost(Post post) {
 
@@ -100,8 +99,9 @@ public class Blog {
     }
 
     private void getAuthorFilteredPosts() {
+
         for (Post post : posts) {
-            if (post.getAuthor().getUserName().equals(authorFilter)) {
+            if (post.getAuthor().getUserName().equals(authorFilter.getName())) {
                 filteredPosts.add(post);
             }
         }
@@ -113,7 +113,7 @@ public class Blog {
         for (Post post : temp) {
             HashSet<String> tags = post.getTags();
 
-            for (String tag : tagFilters) {
+            for (String tag : this.tags) {
                 if (tags.contains(tag)) {
                     filteredPosts.add(post);
                     break;
