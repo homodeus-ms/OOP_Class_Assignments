@@ -10,7 +10,7 @@ public class Comment {
     private final HashMap<User, Vote> votes;
     private int upVoteCount;
     private int downVoteCount;
-    private final ArrayList<Comment> subComments;
+    private final ArrayList<Comment> comments;
 
     public Comment(User user, String comment) {
         this.author = user;
@@ -18,7 +18,7 @@ public class Comment {
         this.votes = new HashMap<>();
         this.upVoteCount = 0;
         this.downVoteCount = 0;
-        this.subComments = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public String getAuthorName() {
@@ -36,22 +36,16 @@ public class Comment {
     public int getDownVoteCount() {
         return downVoteCount;
     }
-    public ArrayList<Comment> getSubComments() {
-        sortByVoteSubComments();
-        return this.subComments;
+    public ArrayList<Comment> getComments() {
+        sortByVoteComments();
+        return this.comments;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(0, comment);
     }
 
     public void updateComment(User user, String comment) {
-        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
-            this.comment = comment;
-        }
-    }
-
-    public void addSubComment(Comment subcomment) {
-        this.subComments.add(subcomment);
-    }
-
-    public void updateSubComment(User user, String comment) {
         if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
             this.comment = comment;
         }
@@ -78,8 +72,8 @@ public class Comment {
         }
     }
 
-    private void sortByVoteSubComments() {
-        Collections.sort(subComments, (c1, c2) -> {
+    private void sortByVoteComments() {
+        Collections.sort(comments, (c1, c2) -> {
             int upVoteDifference = Integer.compare(c2.getUpVoteCount(), c1.getUpVoteCount());
             if (upVoteDifference == 0) {
                 return Integer.compare(c1.getDownVoteCount(), c2.getDownVoteCount());

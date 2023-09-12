@@ -14,15 +14,15 @@ public class App {
         registry.registerPostBodyUpdater("Post", "updateBody");
         registry.registerPostTagAdder("Post", "addTag");
         registry.registerCommentAdder("Post", "addComment");
-        registry.registerSubcommentAdder("Comment", "addSubComment");
+        registry.registerSubcommentAdder("Comment", "addComment");
         registry.registerCommentUpdater("Comment", "updateComment");
-        registry.registerSubcommentUpdater("Comment", "updateSubComment");
+        registry.registerSubcommentUpdater("Comment", "updateComment");
         registry.registerReactionAdder("Post", "addReaction");
         registry.registerReactionRemover("Post", "removeReaction");
         registry.registerCommentUpvoter("Comment", "addUpVote");
         registry.registerCommentDownvoter("Comment", "addDownVote");
         registry.registerCommentListGetter("Post", "getComments");
-        registry.registerSubcommentListGetter("Comment", "getSubComments");
+        registry.registerSubcommentListGetter("Comment", "getComments");
         registry.registerSubcommentUpvoter("Comment", "addUpVote");
         registry.registerSubcommentDownvoter("Comment", "addDownVote");
     }
