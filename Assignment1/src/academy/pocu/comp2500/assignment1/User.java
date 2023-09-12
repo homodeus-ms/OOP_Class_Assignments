@@ -18,7 +18,7 @@ public class User {
     }
 
     public boolean isSameUser(User user) {
-        if (this.userId.equals(user.userId)) {
+        if (this.userId.equals(user.userId) && this.name.equals(user.name)) {
             return true;
         }
         return false;

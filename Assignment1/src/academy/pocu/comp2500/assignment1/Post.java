@@ -93,15 +93,17 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-
-        this.title = title;
-        modifiedDateTime = OffsetDateTime.now();
+        if (this.author.isSameUser(user)) {
+            this.title = title;
+            modifiedDateTime = OffsetDateTime.now();
+        }
 
     }
     public void updateBody(User user, String body) {
-
-        this.body = body;
-        modifiedDateTime = OffsetDateTime.now();
+        if (this.author.isSameUser(user)) {
+            this.body = body;
+            modifiedDateTime = OffsetDateTime.now();
+        }
 
     }
 
