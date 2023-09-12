@@ -40,21 +40,6 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        User user0 = new User("Pope");
-        User user1 = new User("Pope");
-
-        Blog blog0 = new Blog();
-        Blog blog1 = new Blog();
-        Post post0 = new Post(user0, "aaa", "111");
-        Post post1 = new Post(user0, "bbb", "222");
-        Post post2 = new Post(user0, "aaa", "333");
-        blog0.addPost(post0);
-        blog0.addPost(post1);
-
-        var list = blog0.getPosts();
-
-        post0.updateTitle(user1, "ccc");
-        print1(list);
         //post.updateTitle(post, user0, "War");
         /*
         Post post0 = new Post(user0, "aaa", "aaa-1");

@@ -4,17 +4,17 @@ import java.util.UUID;
 
 public class User {
     private final String name;
-    private final UUID userId;
+    private final String emailAddress;
 
-    public User(String name) {
+    public User(String name, String emailAddress) {
         this.name = name;
-        this.userId = UUID.randomUUID();
+        this.emailAddress = emailAddress;
     }
 
     public String getUserName() {
         return name;
     }
-    public String getUserId() {
-        return userId.toString();
+    public String getUserEmailAddress() {
+        return emailAddress;
     }
 }

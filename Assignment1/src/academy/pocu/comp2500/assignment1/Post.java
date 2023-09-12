@@ -94,13 +94,13 @@ public class Post {
 
     public void updateTitle(User user, String title) {
 
-        if (this.author.getUserId().equals(user.getUserId())) {
+        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
             this.title = title;
             modifiedDateTime = OffsetDateTime.now();
         }
     }
     public void updateBody(User user, String body) {
-        if (this.author.getUserId().equals(user.getUserId())) {
+        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
             this.body = body;
             modifiedDateTime = OffsetDateTime.now();
         }
