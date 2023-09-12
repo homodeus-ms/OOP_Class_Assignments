@@ -1,29 +1,20 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
     private final String name;
-    private final String userId;
-    private static final ArrayList<String> USERS = new ArrayList<>();
+    private final UUID userId;
 
     public User(String name) {
         this.name = name;
-        USERS.add(name);
-        this.userId = name + USERS.lastIndexOf(name);
+        this.userId = UUID.randomUUID();
     }
 
     public String getUserName() {
         return name;
     }
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
-    }
-
-    public boolean isSameUser(User user) {
-        if (this.userId.equals(user.userId) && this.name.equals(user.name)) {
-            return true;
-        }
-        return false;
     }
 }

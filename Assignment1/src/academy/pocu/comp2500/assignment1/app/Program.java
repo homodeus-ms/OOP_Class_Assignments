@@ -54,8 +54,6 @@ public class Program {
         var list = blog0.getPosts();
 
 
-        post0.updateTitle(null, "bbb");
-
         print1(list);
         //post.updateTitle(post, user0, "War");
         /*
