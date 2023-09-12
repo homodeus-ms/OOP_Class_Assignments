@@ -5,19 +5,23 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private final ArrayList<Post> posts;
-    private final ArrayList<String> tagFilters;
-    private final ArrayList<Post> filteredPosts;
+
+    private ArrayList<Post> posts;
+    private ArrayList<String> tagFilters;
+    private ArrayList<Post> filteredPosts;
 
     private String authorFilter;
     private SortingType sortingType;
 
     public Blog() {
+
         posts = new ArrayList<>();
         tagFilters = new ArrayList<>();
         filteredPosts = new ArrayList<>();
+
         authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
+
     }
 
     public ArrayList<Post> getPosts() {
@@ -44,7 +48,7 @@ public class Blog {
         }
 
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return new ArrayList<>(posts);
+            return posts;
 
         } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
@@ -58,7 +62,7 @@ public class Blog {
             getTaggedPosts(posts);
         }
 
-        return new ArrayList<>(filteredPosts);
+        return filteredPosts;
     }
     /*
     public Post getPostOrNull(int at) {

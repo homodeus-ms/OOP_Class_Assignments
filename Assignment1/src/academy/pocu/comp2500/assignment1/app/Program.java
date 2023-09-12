@@ -46,16 +46,16 @@ public class Program {
         Blog blog0 = new Blog();
         Post post0 = new Post(user0, "aaa", "111");
         Post post1 = new Post(user0, "bbb", "222");
+
         blog0.addPost(post0);
         blog0.addPost(post1);
 
         var list = blog0.getPosts();
-        Post post2 = new Post(user1, "ccc", "333");
-        list.add(post2);
-        list = blog0.getPosts();
-        //print1(list);
-        list.clear();
         print1(list);
+
+        list.get(0).updateTitle(user0, "ccc");
+        print1(list);
+
 
         //post.updateTitle(post, user0, "War");
         /*

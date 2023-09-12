@@ -22,7 +22,6 @@ public class Post {
     private final HashSet<User> reactionLove;
     private final ArrayList<Comment> comments;
 
-
     public Post(User user, String title, String body) {
 
         this.title = title;
@@ -92,7 +91,6 @@ public class Post {
     }
 
     public void updateTitle(User user, String title) {
-
         if (this.author.equals(user)) {
             this.title = title;
             modifiedDateTime = OffsetDateTime.now();
