@@ -94,14 +94,14 @@ public class Post {
 
     public void updateTitle(User user, String title) {
 
-        if (user != null && this.author == user) {
+        if (user != null && this.author.isSameUser(user)) {
             this.title = title;
             modifiedDateTime = OffsetDateTime.now();
         }
 
     }
     public void updateBody(User user, String body) {
-        if (user != null && this.author == user) {
+        if (user != null && this.author.isSameUser(user)) {
             this.body = body;
             modifiedDateTime = OffsetDateTime.now();
         }

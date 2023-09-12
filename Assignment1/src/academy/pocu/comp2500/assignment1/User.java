@@ -16,6 +16,9 @@ public class User {
     public String getUserName() {
         return name;
     }
+    public String getUserId() {
+        return userId;
+    }
 
     public boolean isSameUser(User user) {
         if (this.userId.equals(user.userId) && this.name.equals(user.name)) {
