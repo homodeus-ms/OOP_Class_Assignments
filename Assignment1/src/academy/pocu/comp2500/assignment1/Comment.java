@@ -42,9 +42,9 @@ public class Comment {
     }
 
     public void updateComment(User user, String comment) {
-
-        this.comment = comment;
-
+        if (this.author == user) {
+            this.comment = comment;
+        }
     }
 
     public void addSubComment(Comment comment, Comment subcomment) {
