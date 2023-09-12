@@ -98,14 +98,12 @@ public class Post {
             this.title = title;
             modifiedDateTime = OffsetDateTime.now();
         }
-
     }
     public void updateBody(User user, String body) {
         if (this.author.getUserId().equals(user.getUserId())) {
             this.body = body;
             modifiedDateTime = OffsetDateTime.now();
         }
-
     }
 
     public void addTag(String tag) {

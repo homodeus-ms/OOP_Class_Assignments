@@ -14,7 +14,7 @@ public class User {
     public String getUserName() {
         return name;
     }
-    public UUID getUserId() {
-        return userId;
+    public String getUserId() {
+        return userId.toString();
     }
 }
