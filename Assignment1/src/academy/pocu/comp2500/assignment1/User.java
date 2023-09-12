@@ -17,4 +17,25 @@ public class User {
     public String getUserEmailAddress() {
         return emailAddress;
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + emailAddress.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object user) {
+        if (this == user) {
+            return true;
+        }
+        if (user == null) {
+            return false;
+        }
+
+        User other = (User)user;
+
+        return this.name.equals((other.name)) && this.emailAddress.equals(other.emailAddress);
+    }
+
+
 }

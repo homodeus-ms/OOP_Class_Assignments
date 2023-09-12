@@ -19,11 +19,14 @@ public class Post {
     private final HashSet<String> tags;
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     //private HashMap<Reaction, HashSet<User>> reactions;
-    private final HashSet<User> reactionGreat;
-    private final HashSet<User> reactionSad;
-    private final HashSet<User> reactionAngry;
-    private final HashSet<User> reactionFun;
-    private final HashSet<User> reactionLove;
+    //private final HashSet<User> reactionGreat;
+    //private final HashSet<User> reactionSad;
+    //private final HashSet<User> reactionAngry;
+    //private final HashSet<User> reactionFun;
+    //private final HashSet<User> reactionLove;
+
+    private final HashSet<Reaction> reactions;
+
     private final ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
@@ -39,12 +42,12 @@ public class Post {
         this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
-        //reactions = new HashMap<>();
-        reactionGreat = new HashSet<>();
-        reactionSad = new HashSet<>();
-        reactionAngry = new HashSet<>();
-        reactionFun = new HashSet<>();
-        reactionLove = new HashSet<>();
+        reactions = new HashSet<>();
+        //reactionGreat = new HashSet<>();
+        //reactionSad = new HashSet<>();
+        //reactionAngry = new HashSet<>();
+        //reactionFun = new HashSet<>();
+        //reactionLove = new HashSet<>();
     }
 
     //public int getPostId() {
@@ -75,7 +78,10 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
-
+    public HashSet<Reaction> getReactions() {
+        return this.reactions;
+    }
+    /*
     public int getReactionGreatCount() {
         return this.reactionGreat.size();
     }
@@ -91,7 +97,7 @@ public class Post {
     public int getReactionLoveCount() {
         return this.reactionLove.size();
     }
-
+    */
     public void updateTitle(User user, String title) {
 
         if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
@@ -116,9 +122,19 @@ public class Post {
     public void addComment(Comment comment) {
         this.comments.add(0, comment);
     }
+    public void addReaction(Reaction reaction) {
+        this.reactions.add(reaction);
+    }
+    public void removeReaction(Reaction reaction) {
+        this.reactions.remove(reaction);
+    }
 
-    public void addReaction(User user, Reaction reaction) {
-        switch (reaction) {
+    /*
+    public void addReaction(Reaction reaction) {
+        Reaction.Reactions type = reaction.getReaction();
+        User user = reaction.getUser();
+
+        switch (type) {
             case GREAT:
                 reactionGreat.add(user);
                 //reactions.put(Reaction.GREAT, reactionGreat);
@@ -171,7 +187,7 @@ public class Post {
                 break;
         }
     }
-
+    */
 
     private void sortByVoteComments() {
         Collections.sort(comments, (c1, c2) -> {

@@ -42,6 +42,19 @@ public class Program {
 
         User pope = new User("Pope", "aaaa");
         User kiwi = new User("Kiwi", "bbbb");
+        User pope2 = new User("Pope", "aaaa");
+        User pope3 = new User("PPpe", "aaaa");
+
+        System.out.println(pope.equals(pope2));
+        System.out.println(pope.equals(pope3));
+
+        HashSet<User> users = new HashSet<>();
+        users.add(pope);
+        users.add(kiwi);
+        users.add(pope2);
+        users.add(pope3);
+
+        System.out.println(users.size());
 
         Blog blog = new Blog();
 
@@ -55,6 +68,19 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
+        Reaction react1 = new Reaction(pope, Reactions.GREAT);
+        Reaction react2 = new Reaction(pope, Reactions.SAD);
+        Reaction react3 = new Reaction(pope, Reactions.GREAT);
+        post0.addReaction(react1);
+        post0.addReaction(react2);
+        post0.addReaction(react3);
+
+
+        System.out.println(post0.getReactions().size());
+
+        post0.removeReaction(react3);
+
+        System.out.println(post0.getReactions().size());
         System.out.println("??");
 
     }
