@@ -88,13 +88,12 @@ public class Blog {
         }
         this.tagFilters.add(tagOrNull);
     }
-
-    public void setAuthorFilter(String authorNameOrNull) {
-        if (authorNameOrNull == null) {
+    public void setAuthorFilter(User userOrNull) {
+        if (userOrNull == null) {
             authorFilter = "";
             return;
         }
-        this.authorFilter = authorNameOrNull;
+        this.authorFilter = userOrNull.getUserName();
     }
 
     public void addPost(Post post) {
