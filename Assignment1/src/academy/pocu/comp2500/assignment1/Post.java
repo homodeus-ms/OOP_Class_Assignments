@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Post {
+
+    //private static final ArrayList<String> postTitles = new ArrayList<>();
+
+    //private int postId;
     private String title;
     private String body;
     private final User author;
@@ -25,6 +29,9 @@ public class Post {
     public Post(User user, String title, String body) {
 
         this.title = title;
+        //this.postTitles.add(title);
+        //postId = (title + postTitles.lastIndexOf(title)).hashCode();
+
         this.body = body;
         this.author = user;
         this.createdDateTime = OffsetDateTime.now();
@@ -40,7 +47,9 @@ public class Post {
         reactionLove = new HashSet<>();
     }
 
-
+    //public int getPostId() {
+    //    return this.postId;
+    //}
     public String getTitle() {
         return this.title;
     }

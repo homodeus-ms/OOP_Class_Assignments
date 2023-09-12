@@ -25,65 +25,8 @@ public class Blog {
     }
 
     public ArrayList<Post> getPosts() {
-
-        switch (sortingType) {
-            case BY_CREATED_TIME_DESC:
-                sortByCreatedTimeDesc();
-                break;
-            case BY_CREATED_TIME:
-                sortByCreatedTime();
-                break;
-            case BY_MODIFIED_TIME_DESC:
-                sortByModifiedTimeDesc();
-                break;
-            case BY_MODIFIED_TIME:
-                sortByModifiedTime();
-                break;
-            case BY_TITLE:
-                sortByTitle();
-                break;
-            default:
-                assert (false) : "there are only 5 types";
-                break;
-        }
-
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return new ArrayList<>(this.posts);
-
-        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
-
-            getAuthorFilteredPosts();
-            getTaggedPosts(filteredPosts);
-
-        } else if (!authorFilter.isEmpty()) {
-            getAuthorFilteredPosts();
-
-        } else {
-            getTaggedPosts(posts);
-        }
-
-        return new ArrayList<>(this.filteredPosts);
+        return posts;
     }
-    public Post getPostOrNull(Post post) {
-        for (Post p : this.posts) {
-            if (p.equals(post)) {
-                return p;
-            }
-        }
-        return null;
-    }
-    /*
-    public Post getPostOrNull(int at) {
-        if (this.posts.isEmpty()) {
-            return null;
-        }
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
-            return this.posts.get(at);
-        } else {
-            return this.filteredPosts.get(at);
-        }
-    }
-    */
 
 
     public ArrayList<String> getTags() {
@@ -119,10 +62,9 @@ public class Blog {
     }
 
     public void addPost(Post post) {
+
         this.posts.add(0, post);
     }
-
-
 
     private void getAuthorFilteredPosts() {
         for (Post post : posts) {
@@ -146,6 +88,8 @@ public class Blog {
             }
         }
     }
+
+
     private void sortByCreatedTimeDesc() {
         Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
     }
@@ -161,5 +105,4 @@ public class Blog {
     private void sortByTitle() {
         Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
     }
-
 }

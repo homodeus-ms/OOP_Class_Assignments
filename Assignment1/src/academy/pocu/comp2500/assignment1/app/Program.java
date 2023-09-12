@@ -44,17 +44,15 @@ public class Program {
         User user1 = new User("Pope");
 
         Blog blog0 = new Blog();
+        Blog blog1 = new Blog();
         Post post0 = new Post(user0, "aaa", "111");
         Post post1 = new Post(user0, "bbb", "222");
-
+        Post post2 = new Post(user0, "aaa", "333");
         blog0.addPost(post0);
         blog0.addPost(post1);
 
-        var mody = blog0.getPostOrNull(post0);
-        mody.updateTitle(user0, "ccc");
 
-        var list = blog0.getPosts();
-        print1(list);
+
 
 
         //post.updateTitle(post, user0, "War");
