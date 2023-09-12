@@ -10,10 +10,17 @@ public class User {
     public User(String name) {
         this.name = name;
         USERS.add(name);
-        this.userId = name + USERS.indexOf(name);
+        this.userId = name + USERS.lastIndexOf(name);
     }
 
     public String getUserName() {
         return name;
+    }
+
+    public boolean isSameUser(User user) {
+        if (this.userId.equals(user.userId)) {
+            return true;
+        }
+        return false;
     }
 }
