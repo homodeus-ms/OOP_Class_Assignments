@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class Comment {
-    private final User author;
+    private final String author;
     private String comment;
     private final HashMap<User, Vote> votes;
     private int upVoteCount;
     private int downVoteCount;
     private final ArrayList<Comment> comments;
 
-    public Comment(User user, String comment) {
-        this.author = user;
+    public Comment(String author, String comment) {
+        this.author = author;
         this.comment = comment;
         this.votes = new HashMap<>();
         this.upVoteCount = 0;
@@ -21,10 +21,7 @@ public class Comment {
         this.comments = new ArrayList<>();
     }
 
-    public String getAuthorName() {
-        return this.author.getUserName();
-    }
-    public User getAuthor() {
+    public String getAuthor() {
         return this.author;
     }
     public String getComment() {
@@ -43,11 +40,10 @@ public class Comment {
 
     public void addComment(Comment comment) {
         this.comments.add(0, comment);
-        comment.author.addComment(comment);
     }
 
-    public void updateComment(User user, String comment) {
-        if (user.isUsersComment(this)) {
+    public void updateComment(String author, String comment) {
+        if (this.author.equals(author)) {
             this.comment = comment;
         }
     }

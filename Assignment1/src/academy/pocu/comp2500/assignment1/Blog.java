@@ -103,7 +103,6 @@ public class Blog {
     public void addPost(Post post) {
 
         this.posts.add(0, post);
-        post.getAuthor().addPost(post);
     }
 
     private void getAuthorFilteredPosts() {
