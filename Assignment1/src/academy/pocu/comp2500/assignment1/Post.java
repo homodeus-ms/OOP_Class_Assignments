@@ -25,7 +25,7 @@ public class Post {
     //private final HashSet<User> reactionFun;
     //private final HashSet<User> reactionLove;
 
-    private final HashSet<Reaction> reactions;
+    private final ArrayList<Reaction> reactions;
 
     private final ArrayList<Comment> comments;
 
@@ -42,7 +42,7 @@ public class Post {
         this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
-        reactions = new HashSet<>();
+        reactions = new ArrayList<>();
         //reactionGreat = new HashSet<>();
         //reactionSad = new HashSet<>();
         //reactionAngry = new HashSet<>();
@@ -78,7 +78,7 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
-    public HashSet<Reaction> getReactions() {
+    public ArrayList<Reaction> getReactions() {
         return this.reactions;
     }
     /*
@@ -123,10 +123,31 @@ public class Post {
         this.comments.add(0, comment);
     }
     public void addReaction(Reaction reaction) {
+        String emailAddress = reaction.getUser().getUserEmailAddress();
+        String userName = reaction.getUser().getUserName();
+        Reactions react = reaction.getReaction();
+
+        for (Reaction r : this.reactions) {
+            if (userName.equals(r.getUser().getUserName()) && emailAddress.equals(r.getUser().getUserEmailAddress())
+                    && react == r.getReaction()) {
+                return;
+            }
+        }
+
         this.reactions.add(reaction);
     }
     public void removeReaction(Reaction reaction) {
-        this.reactions.remove(reaction);
+        String emailAddress = reaction.getUser().getUserEmailAddress();
+        String userName = reaction.getUser().getUserName();
+        Reactions react = reaction.getReaction();
+
+        for (Reaction r : this.reactions) {
+            if (userName.equals(r.getUser().getUserName()) && emailAddress.equals(r.getUser().getUserEmailAddress())
+                    && react == r.getReaction()) {
+                this.reactions.remove(r);
+                return;
+            }
+        }
     }
 
     /*

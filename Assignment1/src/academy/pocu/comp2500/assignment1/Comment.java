@@ -46,7 +46,8 @@ public class Comment {
     }
 
     public void updateComment(User user, String comment) {
-        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
+        if (this.author.getUserName().equals(user.getUserName()) &&
+                this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
             this.comment = comment;
         }
     }
