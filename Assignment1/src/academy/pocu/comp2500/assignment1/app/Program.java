@@ -20,7 +20,7 @@ public class Program {
     public static void print2(ArrayList<Comment> comments) {
 
         for (Comment comment : comments) {
-            System.out.printf("%s %s\n", comment.getAuthor(), comment.getComment());
+            System.out.printf("%s %s\n", comment.getAuthor().getUserName(), comment.getComment());
 
         }
         System.out.println();
@@ -57,15 +57,15 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
-        post0.addComment(new Comment("pope", "aaa"));
-        post0.addComment(new Comment("kiwi", "bbb"));
+        post0.addComment(new Comment(pope, "aaa"));
+        post0.addComment(new Comment(kiwi, "bbb"));
 
 
         User user00 = pope;
         var list = post0.getComments();
 
-        list.get(1).updateComment("pope", "ccc");
-        list.get(0).updateComment("pope", "zzz");
+        list.get(1).updateComment(pope, "ccc");
+        list.get(0).updateComment(pope, "zzz");
 
         print2(list);
 

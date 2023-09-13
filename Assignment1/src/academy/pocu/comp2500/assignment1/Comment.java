@@ -5,14 +5,14 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class Comment {
-    private final String author;
+    private final User author;
     private String comment;
     private final HashMap<User, Vote> votes;
     private int upVoteCount;
     private int downVoteCount;
     private final ArrayList<Comment> comments;
 
-    public Comment(String author, String comment) {
+    public Comment(User author, String comment) {
         this.author = author;
         this.comment = comment;
         this.votes = new HashMap<>();
@@ -20,8 +20,10 @@ public class Comment {
         this.downVoteCount = 0;
         this.comments = new ArrayList<>();
     }
-
-    public String getAuthor() {
+    public String getAuthorName() {
+        return this.author.getUserName();
+    }
+    public User getAuthor() {
         return this.author;
     }
     public String getComment() {
@@ -42,8 +44,8 @@ public class Comment {
         this.comments.add(0, comment);
     }
 
-    public void updateComment(String author, String comment) {
-        if (this.author.equals(author)) {
+    public void updateComment(User author, String comment) {
+        if (this.author.getUserEmailAddress().equals(author.getUserEmailAddress())) {
             this.comment = comment;
         }
     }
