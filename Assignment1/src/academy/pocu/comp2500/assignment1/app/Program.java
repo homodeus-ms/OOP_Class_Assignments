@@ -45,7 +45,6 @@ public class Program {
         User pope2 = new User("Pope", "aaaa");
         User pope3 = new User("PPpe", "aaaa");
 
-
         Blog blog = new Blog();
 
         Post post0 = new Post(pope, "aaa", "111");
@@ -53,38 +52,23 @@ public class Program {
         Post post2 = new Post(kiwi, "ccc", "333");
         Post post3 = new Post(kiwi, "ddd", "444");
 
-        System.out.println(pope.getUserId());
-        System.out.println(kiwi.getUserId());
-        System.out.println(pope2.getUserId());
-        System.out.println(pope3.getUserId());
-
         blog.addPost(post0);
         blog.addPost(post1);
         blog.addPost(post2);
         blog.addPost(post3);
 
-        post0.addTag("t1");
-        post0.addTag("t2");
-        post1.addTag("t2");
-        post1.addTag("t1");
-        post2.addTag("t1");
-        post3.addTag("t2");
+        post0.addComment(new Comment(pope, "aaa"));
+        post0.addComment(new Comment(kiwi, "bbb"));
 
-        blog.setTagFilter("t1");
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("t1");
-        tags.add("t2");
+        var list = post0.getComments();
 
+        User user00 = pope;
+        //Comment com1 = new Comment(null, "zzz");
+        //post0.addComment(com1);
 
-        blog.setAuthorFilter(null);
-
-        //var list = blog.getPosts();
-
-        blog.setTagFilter("t2");
-
-        var list = blog.getPosts();
-
-        print1(list);
+        //list.get(1).updateComment(user00, "ccc");
+        //list.get(0).updateComment(pope, "xxx");
+        print2(list);
 
 
         System.out.println("??");

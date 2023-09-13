@@ -1,10 +1,8 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.util.UUID;
-
 public class User {
 
-    private static final UserNumberFactory numGenerator = new UserNumberFactory();
+    private static final UserNumberFactory NUM_GENERATOR = new UserNumberFactory();
 
     private final String name;
     private final String emailAddress;
@@ -13,8 +11,8 @@ public class User {
     public User(String name, String emailAddress) {
         this.name = name;
         this.emailAddress = emailAddress;
-        numGenerator.increaseNum();
-        this.userId = numGenerator.getNumber();
+        NUM_GENERATOR.increaseNum();
+        this.userId = NUM_GENERATOR.getNumber();
     }
 
     public String getUserName() {

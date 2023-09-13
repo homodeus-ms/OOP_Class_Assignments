@@ -45,9 +45,9 @@ public class Comment {
         this.comments.add(0, comment);
     }
 
-    public void updateComment(User user, String comment) {
-        if (this.author.getUserId() == user.getUserId()) {
-            this.comment = comment;
+    public void updateComment(Comment comment) {
+        if (this.author.getUserId() == comment.author.getUserId()) {
+            this.comment = comment.getComment();
         }
     }
 
