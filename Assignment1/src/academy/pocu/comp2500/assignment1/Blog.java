@@ -45,6 +45,8 @@ public class Blog {
                 break;
         }
 
+        filteredPosts.clear();
+
         if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
             return this.posts;
 
@@ -112,11 +114,13 @@ public class Blog {
         }
     }
     private void getTaggedPosts(ArrayList<Post> posts) {
-        ArrayList<Post> temp = new ArrayList<>(posts);
+        ArrayList<Post> firstFiltered = new ArrayList<>(posts);
         filteredPosts.clear();
 
-        for (Post post : temp) {
+        for (Post post : firstFiltered) {
             HashSet<String> tags = post.getTags();
+
+            assert (!tagFilters.isEmpty()) : "Error of filters condition";
 
             for (String tag : this.tagFilters) {
                 if (tags.contains(tag)) {

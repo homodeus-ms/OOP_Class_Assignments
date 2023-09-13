@@ -59,23 +59,27 @@ public class Program {
         blog.addPost(post3);
 
         post0.addTag("t1");
+        post0.addTag("t2");
         post1.addTag("t2");
+        post1.addTag("t1");
         post2.addTag("t1");
         post3.addTag("t2");
 
         blog.setTagFilter("t1");
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("t1");
+        tags.add("t2");
+
+
+        blog.setAuthorFilter(null);
+
+        //var list = blog.getPosts();
+
         blog.setTagFilter("t2");
 
-        //blog.setAuthorFilter(pope);
+        var list = blog.getPosts();
 
-
-        post0.addComment(new Comment(pope, "aaa"));
-        post0.addComment(new Comment(kiwi, "bbb"));
-
-        var com = post0.getComments();
-        com.get(0).updateComment(new User("Kiwi", "bbbb"), "ccc");
-
-        print2(com);
+        print1(list);
 
 
         System.out.println("??");
