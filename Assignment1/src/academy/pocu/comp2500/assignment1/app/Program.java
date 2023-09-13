@@ -60,13 +60,14 @@ public class Program {
 
         post0.addReaction(pope, Reactions.GREAT);
         post0.addReaction(pope, Reactions.SAD);
-        post0.removeReaction(kiwi, Reactions.GREAT);
+        //post0.addReaction(pope2, Reactions.GREAT);
+        post0.removeReaction(pope2, Reactions.GREAT);
         post0.removeReaction(pope, Reactions.SAD);
 
-        var reaction = post0.getReactions();
-        System.out.println(reaction.get(Reactions.GREAT).size());
-        System.out.println(reaction.get(Reactions.SAD).size());
-        System.out.println(reaction.get(Reactions.ANGRY).size());
+
+        System.out.println(post0.getReactions(Reactions.GREAT).size());
+        System.out.println(post0.getReactions(Reactions.SAD).size());
+        System.out.println(post0.getReactions(Reactions.ANGRY).size());
 
 
 

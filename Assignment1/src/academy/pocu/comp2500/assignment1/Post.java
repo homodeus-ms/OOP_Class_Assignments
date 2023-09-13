@@ -1,5 +1,6 @@
 package academy.pocu.comp2500.assignment1;
 
+import java.lang.reflect.Array;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,17 +20,13 @@ public class Post {
     private final HashSet<String> tags;
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
 
-    private final HashMap<Reactions, HashSet<User>> reactions;
-    private final HashSet<User> reactionGreat;
-    private final HashSet<User> reactionSad;
-    private final HashSet<User> reactionAngry;
-    private final HashSet<User> reactionFun;
-    private final HashSet<User> reactionLove;
-
-
-
+    private final HashMap<Reactions, ArrayList<User>> reactions;
+    private final ArrayList<User> reactionGreat;
+    private final ArrayList<User> reactionSad;
+    private final ArrayList<User> reactionAngry;
+    private final ArrayList<User> reactionFun;
+    private final ArrayList<User> reactionLove;
     private final ArrayList<Comment> comments;
-
     public Post(User user, String title, String body) {
 
         this.title = title;
@@ -44,11 +41,11 @@ public class Post {
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        reactionGreat = new HashSet<>();
-        reactionSad = new HashSet<>();
-        reactionAngry = new HashSet<>();
-        reactionFun = new HashSet<>();
-        reactionLove = new HashSet<>();
+        reactionGreat = new ArrayList<>();
+        reactionSad = new ArrayList<>();
+        reactionAngry = new ArrayList<>();
+        reactionFun = new ArrayList<>();
+        reactionLove = new ArrayList<>();
         reactions.put(Reactions.GREAT, reactionGreat);
         reactions.put(Reactions.SAD, reactionSad);
         reactions.put(Reactions.ANGRY, reactionAngry);
@@ -84,8 +81,8 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
-    public HashMap<Reactions, HashSet<User>> getReactions() {
-        return this.reactions;
+    public ArrayList<User> getReactions(Reactions reaction) {
+        return this.reactions.get(reaction);
     }
     /*
     public int getReactionGreatCount() {
@@ -131,61 +128,25 @@ public class Post {
 
 
     public void addReaction(User user, Reactions reaction) {
+        ArrayList<User> containUsers = reactions.get(reaction);
 
-        switch (reaction) {
-            case GREAT:
-                reactionGreat.add(user);
-                //reactions.put(Reaction.GREAT, reactionGreat);
-                break;
-            case SAD:
-                reactionSad.add(user);
-                //reactions.put(Reaction.SAD, reactionSad);
-                break;
-            case ANGRY:
-                reactionAngry.add(user);
-                //reactions.put(Reaction.ANGRY, reactionAngry);
-                break;
-            case FUN:
-                reactionFun.add(user);
-                //reactions.put(Reaction.FUN, reactionFun);
-                break;
-            case LOVE:
-                reactionLove.add(user);
-                //reactions.put(Reaction.LOVE, reactionLove);
-                break;
-            default:
-                assert (false) : "Unknown reaction!";
-                break;
+        for (User u : containUsers) {
+            if (user.getUserEmailAddress().equals(u.getUserEmailAddress())) {
+                return;
+            }
         }
+        this.reactions.get(reaction).add(user);
     }
     public void removeReaction(User user, Reactions reaction) {
-        switch (reaction) {
-            case GREAT:
-                reactionGreat.remove(user);
-                //reactions.put(Reaction.GREAT, reactionGreat);
-                break;
-            case SAD:
-                reactionSad.remove(user);
-                //reactions.put(Reaction.SAD, reactionSad);
-                break;
-            case ANGRY:
-                reactionAngry.remove(user);
-                //reactions.put(Reaction.ANGRY, reactionAngry);
-                break;
-            case FUN:
-                reactionFun.remove(user);
-                //reactions.put(Reaction.FUN, reactionFun);
-                break;
-            case LOVE:
-                reactionLove.remove(user);
-                //reactions.put(Reaction.LOVE, reactionLove);
-                break;
-            default:
-                assert (false) : "Unknown reaction!";
-                break;
+        ArrayList<User> containUsers = reactions.get(reaction);
+
+        for (User u : containUsers) {
+            if (user.getUserEmailAddress().equals(u.getUserEmailAddress())) {
+                containUsers.remove(u);
+                return;
+            }
         }
     }
-
 
     private void sortByVoteComments() {
         Collections.sort(comments, (c1, c2) -> {
