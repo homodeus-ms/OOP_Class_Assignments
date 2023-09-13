@@ -53,6 +53,11 @@ public class Program {
         Post post2 = new Post(kiwi, "ccc", "333");
         Post post3 = new Post(kiwi, "ddd", "444");
 
+        System.out.println(pope.getUserId());
+        System.out.println(kiwi.getUserId());
+        System.out.println(pope2.getUserId());
+        System.out.println(pope3.getUserId());
+
         blog.addPost(post0);
         blog.addPost(post1);
         blog.addPost(post2);
