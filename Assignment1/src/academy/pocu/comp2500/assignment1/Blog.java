@@ -6,18 +6,18 @@ import java.util.HashSet;
 
 public class Blog {
 
-    private ArrayList<Post> posts;
-    private ArrayList<Post> filteredPosts;
+    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Post> filteredPosts = new ArrayList<>();
 
-    private HashSet<String> tagFilters;
+    private HashSet<String> tagFilters = new HashSet<>();
     private String authorFilter;
     private SortingType sortingType;
 
     public Blog() {
 
-        posts = new ArrayList<>();
-        tagFilters = new HashSet<>();
-        filteredPosts = new ArrayList<>();
+        //posts = new ArrayList<>();
+        //tagFilters = new HashSet<>();
+        //filteredPosts = new ArrayList<>();
 
         authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
