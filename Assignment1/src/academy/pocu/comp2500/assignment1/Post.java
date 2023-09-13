@@ -81,8 +81,8 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
-    public ArrayList<User> getReactions(Reactions reaction) {
-        return this.reactions.get(reaction);
+    public int getReactions(Reactions reaction) {
+        return this.reactions.get(reaction).size();
     }
     /*
     public int getReactionGreatCount() {

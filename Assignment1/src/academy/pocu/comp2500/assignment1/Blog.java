@@ -81,12 +81,18 @@ public class Blog {
     public void removeSortType() {
         this.sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
-    public void setTagFilter(String tagOrNull) {
+    public void setTagFilter(String tagOrNull, TagFilterType type) {
         if (tagOrNull == null) {
             tagFilters.clear();
             return;
         }
-        this.tagFilters.add(tagOrNull);
+        if (type == TagFilterType.PLUS) {
+            this.tagFilters.add(tagOrNull);
+        } else {
+            tagFilters.clear();
+            tagFilters.add(tagOrNull);
+        }
+
     }
     public void setAuthorFilter(User userOrNull) {
         if (userOrNull == null) {

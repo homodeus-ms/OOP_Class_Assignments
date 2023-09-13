@@ -58,17 +58,19 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
-        post0.addReaction(pope, Reactions.GREAT);
-        post0.addReaction(pope, Reactions.SAD);
-        //post0.addReaction(pope2, Reactions.GREAT);
-        post0.removeReaction(pope2, Reactions.GREAT);
-        post0.removeReaction(pope, Reactions.SAD);
+        post0.addTag("t1");
+        post1.addTag("t2");
+        post2.addTag("t1");
+        post3.addTag("t2");
 
+        blog.setTagFilter("t2", TagFilterType.PLUS);
+        blog.setAuthorFilter(pope);
 
-        System.out.println(post0.getReactions(Reactions.GREAT).size());
-        System.out.println(post0.getReactions(Reactions.SAD).size());
-        System.out.println(post0.getReactions(Reactions.ANGRY).size());
+        blog.setTagFilter("t1", TagFilterType.PLUS);
 
+        var list = blog.getPosts();
+
+        print1(list);
 
 
         System.out.println("??");
