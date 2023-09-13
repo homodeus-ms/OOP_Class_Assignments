@@ -60,15 +60,20 @@ public class Program {
         post0.addComment(new Comment(pope, "aaa"));
         post0.addComment(new Comment(kiwi, "bbb"));
 
-        var list = post0.getComments();
 
         User user00 = pope;
-        //Comment com1 = new Comment(null, "zzz");
-        //post0.addComment(com1);
+        var list = post0.getComments();
 
-        //list.get(1).updateComment(user00, "ccc");
-        //list.get(0).updateComment(pope, "xxx");
+        list.get(1).updateComment(pope, "ccc");
+        list.get(0).updateComment(pope, "zzz");
+
         print2(list);
+
+        var list2 = blog.getPosts();
+
+        list2.get(3).updateTitle(pope, "zzz");
+
+        print1(list2);
 
 
         System.out.println("??");

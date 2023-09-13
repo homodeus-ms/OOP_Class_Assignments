@@ -79,13 +79,13 @@ public class Post {
 
     public void updateTitle(User user, String title) {
 
-        if (this.author.getUserId() == user.getUserId()) {
+        if (user.isUsersPost(this)) {
             this.title = title;
             modifiedDateTime = OffsetDateTime.now();
         }
     }
     public void updateBody(User user, String body) {
-        if (this.author.getUserId() == user.getUserId()) {
+        if (user.isUsersPost(this)) {
             this.body = body;
             modifiedDateTime = OffsetDateTime.now();
         }
@@ -100,6 +100,7 @@ public class Post {
 
     public void addComment(Comment comment) {
         this.comments.add(0, comment);
+        comment.getAuthor().addComment(comment);
     }
 
 

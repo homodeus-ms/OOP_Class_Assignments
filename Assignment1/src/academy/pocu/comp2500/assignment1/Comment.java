@@ -43,11 +43,12 @@ public class Comment {
 
     public void addComment(Comment comment) {
         this.comments.add(0, comment);
+        comment.author.addComment(comment);
     }
 
-    public void updateComment(Comment comment) {
-        if (this.author.getUserId() == comment.author.getUserId()) {
-            this.comment = comment.getComment();
+    public void updateComment(User user, String comment) {
+        if (user.isUsersComment(this)) {
+            this.comment = comment;
         }
     }
 
