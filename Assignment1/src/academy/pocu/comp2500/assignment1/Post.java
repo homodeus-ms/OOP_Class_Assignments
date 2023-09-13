@@ -99,7 +99,7 @@ public class Post {
     }
 
     public void addComment(Comment comment) {
-        this.comments.add(0, comment);
+        this.comments.add(comment);
     }
 
 

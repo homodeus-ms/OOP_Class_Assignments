@@ -57,23 +57,24 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
-        post0.addComment(new Comment(pope, "aaa"));
-        post0.addComment(new Comment(kiwi, "bbb"));
+        Comment a = new Comment(pope, "aaa");
+        Comment b = new Comment(kiwi, "bbb");
+        post0.addComment(a);
+        post0.addComment(b);
 
 
-        User user00 = pope;
         var list = post0.getComments();
 
-        list.get(1).updateComment(pope, "ccc");
-        list.get(0).updateComment(pope, "zzz");
+        print2(list);
+        var x = list.get(1);
+        
+        //list.get(1).updateComment(pope, "ccc");
+        //list.get(0).updateComment(pope, "zzz");
+        kiwi = list.get(1).getAuthor();
+        //a.updateComment(kiwi, "yyy");
 
         print2(list);
 
-        var list2 = blog.getPosts();
-
-        list2.get(3).updateTitle(pope, "zzz");
-
-        print1(list2);
 
 
         System.out.println("??");

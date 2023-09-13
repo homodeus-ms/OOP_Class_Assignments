@@ -41,7 +41,7 @@ public class Comment {
     }
 
     public void addComment(Comment comment) {
-        this.comments.add(0, comment);
+        this.comments.add(comment);
     }
 
     public void updateComment(User author, String comment) {
