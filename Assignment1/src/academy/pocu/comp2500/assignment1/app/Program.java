@@ -45,6 +45,7 @@ public class Program {
         User pope2 = new User("Pope", "aaaa");
         User pope3 = new User("PPpe", "aaaa");
 
+
         Blog blog = new Blog();
 
         Post post0 = new Post(pope, "aaa", "111");
@@ -57,18 +58,18 @@ public class Program {
         blog.addPost(post2);
         blog.addPost(post3);
 
-        Reaction react1 = new Reaction(pope, Reactions.GREAT);
-        Reaction react2 = new Reaction(pope, Reactions.SAD);
-        Reaction react3 = new Reaction(kiwi, Reactions.GREAT);
-        post0.addReaction(react1);
-        post0.addReaction(react2);
-        //post0.addReaction(react3);
+        post0.addReaction(pope, Reactions.GREAT);
+        post0.addReaction(pope, Reactions.SAD);
+        post0.removeReaction(kiwi, Reactions.GREAT);
+        post0.removeReaction(pope, Reactions.SAD);
 
-        System.out.println(post0.getReactions().size());
+        var reaction = post0.getReactions();
+        System.out.println(reaction.get(Reactions.GREAT).size());
+        System.out.println(reaction.get(Reactions.SAD).size());
+        System.out.println(reaction.get(Reactions.ANGRY).size());
 
-        post0.removeReaction(react3);
 
-        System.out.println(post0.getReactions().size());
+
         System.out.println("??");
 
     }

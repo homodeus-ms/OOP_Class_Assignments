@@ -18,14 +18,15 @@ public class Post {
     private OffsetDateTime modifiedDateTime;
     private final HashSet<String> tags;
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
-    //private HashMap<Reaction, HashSet<User>> reactions;
-    //private final HashSet<User> reactionGreat;
-    //private final HashSet<User> reactionSad;
-    //private final HashSet<User> reactionAngry;
-    //private final HashSet<User> reactionFun;
-    //private final HashSet<User> reactionLove;
 
-    private final ArrayList<Reaction> reactions;
+    private final HashMap<Reactions, HashSet<User>> reactions;
+    private final HashSet<User> reactionGreat;
+    private final HashSet<User> reactionSad;
+    private final HashSet<User> reactionAngry;
+    private final HashSet<User> reactionFun;
+    private final HashSet<User> reactionLove;
+
+
 
     private final ArrayList<Comment> comments;
 
@@ -42,12 +43,17 @@ public class Post {
         this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
-        reactions = new ArrayList<>();
-        //reactionGreat = new HashSet<>();
-        //reactionSad = new HashSet<>();
-        //reactionAngry = new HashSet<>();
-        //reactionFun = new HashSet<>();
-        //reactionLove = new HashSet<>();
+        reactions = new HashMap<>();
+        reactionGreat = new HashSet<>();
+        reactionSad = new HashSet<>();
+        reactionAngry = new HashSet<>();
+        reactionFun = new HashSet<>();
+        reactionLove = new HashSet<>();
+        reactions.put(Reactions.GREAT, reactionGreat);
+        reactions.put(Reactions.SAD, reactionSad);
+        reactions.put(Reactions.ANGRY, reactionAngry);
+        reactions.put(Reactions.FUN, reactionFun);
+        reactions.put(Reactions.LOVE, reactionLove);
     }
 
     //public int getPostId() {
@@ -78,7 +84,7 @@ public class Post {
         sortByVoteComments();
         return this.comments;
     }
-    public ArrayList<Reaction> getReactions() {
+    public HashMap<Reactions, HashSet<User>> getReactions() {
         return this.reactions;
     }
     /*
@@ -122,40 +128,11 @@ public class Post {
     public void addComment(Comment comment) {
         this.comments.add(0, comment);
     }
-    public void addReaction(Reaction reaction) {
-        String emailAddress = reaction.getUser().getUserEmailAddress();
-        String userName = reaction.getUser().getUserName();
-        Reactions react = reaction.getReaction();
 
-        for (Reaction r : this.reactions) {
-            if (userName.equals(r.getUser().getUserName()) && emailAddress.equals(r.getUser().getUserEmailAddress())
-                    && react == r.getReaction()) {
-                return;
-            }
-        }
 
-        this.reactions.add(reaction);
-    }
-    public void removeReaction(Reaction reaction) {
-        String emailAddress = reaction.getUser().getUserEmailAddress();
-        String userName = reaction.getUser().getUserName();
-        Reactions react = reaction.getReaction();
+    public void addReaction(User user, Reactions reaction) {
 
-        for (Reaction r : this.reactions) {
-            if (userName.equals(r.getUser().getUserName()) && emailAddress.equals(r.getUser().getUserEmailAddress())
-                    && react == r.getReaction()) {
-                this.reactions.remove(r);
-                return;
-            }
-        }
-    }
-
-    /*
-    public void addReaction(Reaction reaction) {
-        Reaction.Reactions type = reaction.getReaction();
-        User user = reaction.getUser();
-
-        switch (type) {
+        switch (reaction) {
             case GREAT:
                 reactionGreat.add(user);
                 //reactions.put(Reaction.GREAT, reactionGreat);
@@ -181,7 +158,7 @@ public class Post {
                 break;
         }
     }
-    public void removeReaction(User user, Reaction reaction) {
+    public void removeReaction(User user, Reactions reaction) {
         switch (reaction) {
             case GREAT:
                 reactionGreat.remove(user);
@@ -208,7 +185,7 @@ public class Post {
                 break;
         }
     }
-    */
+
 
     private void sortByVoteComments() {
         Collections.sort(comments, (c1, c2) -> {
