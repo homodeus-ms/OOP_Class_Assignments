@@ -9,17 +9,14 @@ import java.util.ArrayList;
 
 public class Post {
 
-    //private static final ArrayList<String> postTitles = new ArrayList<>();
-
-    //private int postId;
     private String title;
     private String body;
     private final User author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private final HashSet<String> tags;
-    //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
 
+    //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
     private final ArrayList<User> reactionGreat;
     private final ArrayList<User> reactionSad;
@@ -30,8 +27,6 @@ public class Post {
     public Post(User user, String title, String body) {
 
         this.title = title;
-        //this.postTitles.add(title);
-        //postId = (title + postTitles.lastIndexOf(title)).hashCode();
 
         this.body = body;
         this.author = user;
@@ -53,9 +48,6 @@ public class Post {
         reactions.put(Reactions.LOVE, reactionLove);
     }
 
-    //public int getPostId() {
-    //    return this.postId;
-    //}
     public String getTitle() {
         return this.title;
     }
@@ -84,23 +76,7 @@ public class Post {
     public int getReactions(Reactions reaction) {
         return this.reactions.get(reaction).size();
     }
-    /*
-    public int getReactionGreatCount() {
-        return this.reactionGreat.size();
-    }
-    public int getReactionSadCount() {
-        return this.reactionSad.size();
-    }
-    public int getReactionAngryCount() {
-        return this.reactionAngry.size();
-    }
-    public int getReactionFunCount() {
-        return this.reactionFun.size();
-    }
-    public int getReactionLoveCount() {
-        return this.reactionLove.size();
-    }
-    */
+
     public void updateTitle(User user, String title) {
 
         if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
