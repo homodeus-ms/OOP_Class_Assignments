@@ -17,11 +17,11 @@ public class Post {
 
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
-    //private final ArrayList<User> reactionGreat;
-    //private final ArrayList<User> reactionSad;
-    //private final ArrayList<User> reactionAngry;
-    //private final ArrayList<User> reactionFun;
-    //private final ArrayList<User> reactionLove;
+    private final ArrayList<User> reactionGreat;
+    private final ArrayList<User> reactionSad;
+    private final ArrayList<User> reactionAngry;
+    private final ArrayList<User> reactionFun;
+    private final ArrayList<User> reactionLove;
 
     private final ArrayList<Comment> comments;
 
@@ -36,17 +36,17 @@ public class Post {
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        //reactionGreat = new ArrayList<>();
-        //reactionSad = new ArrayList<>();
-        //reactionAngry = new ArrayList<>();
-        //reactionFun = new ArrayList<>();
-        //reactionLove = new ArrayList<>();
+        reactionGreat = new ArrayList<>();
+        reactionSad = new ArrayList<>();
+        reactionAngry = new ArrayList<>();
+        reactionFun = new ArrayList<>();
+        reactionLove = new ArrayList<>();
 
-        reactions.put(Reactions.GREAT, new ArrayList<>());
-        reactions.put(Reactions.SAD, new ArrayList<>());
-        reactions.put(Reactions.ANGRY, new ArrayList<>());
-        reactions.put(Reactions.FUN, new ArrayList<>());
-        reactions.put(Reactions.LOVE, new ArrayList<>());
+        reactions.put(Reactions.GREAT, reactionGreat);
+        reactions.put(Reactions.SAD, reactionSad);
+        reactions.put(Reactions.ANGRY, reactionAngry);
+        reactions.put(Reactions.FUN, reactionFun);
+        reactions.put(Reactions.LOVE, reactionLove);
     }
 
     public String getTitle() {
@@ -102,7 +102,6 @@ public class Post {
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
-
 
     public void addReaction(User user, Reactions reaction) {
         ArrayList<User> reactedUserList = this.reactions.get(reaction);
