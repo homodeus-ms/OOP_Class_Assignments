@@ -17,11 +17,6 @@ public class Post {
 
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
-    private final ArrayList<User> reactionGreat;
-    private final ArrayList<User> reactionSad;
-    private final ArrayList<User> reactionAngry;
-    private final ArrayList<User> reactionFun;
-    private final ArrayList<User> reactionLove;
 
     private final ArrayList<Comment> comments;
 
@@ -36,17 +31,17 @@ public class Post {
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        reactionGreat = new ArrayList<>();
-        reactionSad = new ArrayList<>();
-        reactionAngry = new ArrayList<>();
-        reactionFun = new ArrayList<>();
-        reactionLove = new ArrayList<>();
+        //ArrayList<User> reactionGreat = new ArrayList<>();
+        //ArrayList<User> reactionSad = new ArrayList<>();
+        //ArrayList<User> reactionAngry = new ArrayList<>();
+        //ArrayList<User> reactionFun = new ArrayList<>();
+        //ArrayList<User> reactionLove = new ArrayList<>();
 
-        reactions.put(Reactions.GREAT, reactionGreat);
-        reactions.put(Reactions.SAD, reactionSad);
-        reactions.put(Reactions.ANGRY, reactionAngry);
-        reactions.put(Reactions.FUN, reactionFun);
-        reactions.put(Reactions.LOVE, reactionLove);
+        reactions.put(Reactions.GREAT, new ArrayList<>());
+        reactions.put(Reactions.SAD, new ArrayList<>());
+        reactions.put(Reactions.ANGRY, new ArrayList<>());
+        reactions.put(Reactions.FUN, new ArrayList<>());
+        reactions.put(Reactions.LOVE, new ArrayList<>());
     }
 
     public String getTitle() {
@@ -104,17 +99,24 @@ public class Post {
     }
 
     public void addReaction(User user, Reactions reaction) {
-        if (hasAlreadyReacted(user, reaction)) {
-            return;
+        ArrayList<User> reactedUserList = this.reactions.get(reaction);
+        for (User u : reactedUserList) {
+            if (u.isSameUser(user)) {
+                return;
+            }
         }
         this.reactions.get(reaction).add(user);
     }
     public void removeReaction(User user, Reactions reaction) {
-        if (hasAlreadyReacted(user, reaction)) {
-            this.reactions.get(reaction).remove(user);
+        ArrayList<User> reactedUserList = this.reactions.get(reaction);
+        for (User u : reactedUserList) {
+            if (u.isSameUser(user)) {
+                reactedUserList.remove(u);
+                return;
+            }
         }
     }
-
+    /*
     private boolean hasAlreadyReacted(User user, Reactions reaction) {
         ArrayList<User> reactedUserList = this.reactions.get(reaction);
         for (User u : reactedUserList) {
@@ -124,6 +126,8 @@ public class Post {
         }
         return false;
     }
+
+    */
 
     private void updateModifiedTime() {
         this.modifiedDateTime = OffsetDateTime.now();
