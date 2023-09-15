@@ -6,46 +6,49 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Post {
+public class Post extends Article {
 
     private String title;
-    private String body;
-    private final User author;
+    //private String body;
+    //private final User author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private final HashSet<String> tags;
 
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
-    //private final ArrayList<User> reactionGreat;
-    //private final ArrayList<User> reactionSad;
-    //private final ArrayList<User> reactionAngry;
-    //private final ArrayList<User> reactionFun;
-    //private final ArrayList<User> reactionLove;
+    private final ArrayList<User> reactionGreat;
+    private final ArrayList<User> reactionSad;
+    private final ArrayList<User> reactionAngry;
+    private final ArrayList<User> reactionFun;
+    private final ArrayList<User> reactionLove;
+
     private final ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
+        super(user, body);
 
         this.title = title;
 
-        this.body = body;
-        this.author = user;
+        //this.body = body;
+        //this.author = user;
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = createdDateTime;
         this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        //reactionGreat = new ArrayList<>();
-        //reactionSad = new ArrayList<>();
-        //reactionAngry = new ArrayList<>();
-        //reactionFun = new ArrayList<>();
-        //reactionLove = new ArrayList<>();
-        reactions.put(Reactions.GREAT, new ArrayList<>());
-        reactions.put(Reactions.SAD, new ArrayList<>());
-        reactions.put(Reactions.ANGRY, new ArrayList<>());
-        reactions.put(Reactions.FUN, new ArrayList<>());
-        reactions.put(Reactions.LOVE, new ArrayList<>());
+        reactionGreat = new ArrayList<>();
+        reactionSad = new ArrayList<>();
+        reactionAngry = new ArrayList<>();
+        reactionFun = new ArrayList<>();
+        reactionLove = new ArrayList<>();
+
+        reactions.put(Reactions.GREAT, reactionGreat);
+        reactions.put(Reactions.SAD, reactionSad);
+        reactions.put(Reactions.ANGRY, reactionAngry);
+        reactions.put(Reactions.FUN, reactionFun);
+        reactions.put(Reactions.LOVE, reactionLove);
     }
 
     public String getTitle() {
@@ -125,7 +128,7 @@ public class Post {
     private boolean hasAlreadyReacted(User user, Reactions reaction) {
         ArrayList<User> reactedUsersList = reactions.get(reaction);
         for (User u : reactedUsersList) {
-            if (user.getUserEmailAddress().equals(u.getUserEmailAddress())) {
+            if (u.getUserEmailAddress().equals(user.getUserEmailAddress())) {
                 return true;
             }
         }

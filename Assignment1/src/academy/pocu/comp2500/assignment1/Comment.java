@@ -16,8 +16,8 @@ public class Comment {
         this.author = author;
         this.comment = comment;
         this.votes = new HashMap<>();
-        this.upVoteCount = 0;
-        this.downVoteCount = 0;
+        //this.upVoteCount = 0;
+        //this.downVoteCount = 0;
         this.comments = new ArrayList<>();
     }
     public String getAuthorName() {
