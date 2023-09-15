@@ -8,11 +8,9 @@ public class Blog {
 
     private ArrayList<Post> posts;
     private ArrayList<Post> filteredPosts;
-
     private HashSet<String> tagFilters;
     private String authorFilter;
     private SortingType sortingType;
-
     public Blog() {
         posts = new ArrayList<>();
         filteredPosts = new ArrayList<>();
@@ -60,11 +58,6 @@ public class Blog {
     public void setSortType(SortingType sortingType) {
         this.sortingType = sortingType;
     }
-    /*
-    public void removeSortType() {
-        this.sortingType = SortingType.BY_CREATED_TIME_DESC;
-    }
-    */
 
     public void setTagFilter(String tag) {
         if (!tagFilters.isEmpty()) {
@@ -135,22 +128,4 @@ public class Blog {
                 break;
         }
     }
-    /*
-    private void sortByCreatedTimeDesc() {
-        Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
-    }
-    private void sortByCreatedTime() {
-        Collections.sort(posts, (p1, p2) -> p1.getCreatedDateTime().compareTo(p2.getCreatedDateTime()));
-    }
-    private void sortByModifiedTimeDesc() {
-        Collections.sort(posts, (p1, p2) -> p2.getModifiedDateTime().compareTo(p1.getModifiedDateTime()));
-    }
-    private void sortByModifiedTime() {
-        Collections.sort(posts, (p1, p2) -> p1.getModifiedDateTime().compareTo(p2.getModifiedDateTime()));
-    }
-    private void sortByTitle() {
-        Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
-    }
-    */
-
 }

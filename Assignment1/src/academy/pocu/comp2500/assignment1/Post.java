@@ -1,6 +1,5 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.lang.reflect.Array;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,12 +17,13 @@ public class Post {
 
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
-    private final ArrayList<User> reactionGreat;
-    private final ArrayList<User> reactionSad;
-    private final ArrayList<User> reactionAngry;
-    private final ArrayList<User> reactionFun;
-    private final ArrayList<User> reactionLove;
+    //private final ArrayList<User> reactionGreat;
+    //private final ArrayList<User> reactionSad;
+    //private final ArrayList<User> reactionAngry;
+    //private final ArrayList<User> reactionFun;
+    //private final ArrayList<User> reactionLove;
     private final ArrayList<Comment> comments;
+
     public Post(User user, String title, String body) {
 
         this.title = title;
@@ -36,16 +36,16 @@ public class Post {
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        reactionGreat = new ArrayList<>();
-        reactionSad = new ArrayList<>();
-        reactionAngry = new ArrayList<>();
-        reactionFun = new ArrayList<>();
-        reactionLove = new ArrayList<>();
-        reactions.put(Reactions.GREAT, reactionGreat);
-        reactions.put(Reactions.SAD, reactionSad);
-        reactions.put(Reactions.ANGRY, reactionAngry);
-        reactions.put(Reactions.FUN, reactionFun);
-        reactions.put(Reactions.LOVE, reactionLove);
+        //reactionGreat = new ArrayList<>();
+        //reactionSad = new ArrayList<>();
+        //reactionAngry = new ArrayList<>();
+        //reactionFun = new ArrayList<>();
+        //reactionLove = new ArrayList<>();
+        reactions.put(Reactions.GREAT, new ArrayList<>());
+        reactions.put(Reactions.SAD, new ArrayList<>());
+        reactions.put(Reactions.ANGRY, new ArrayList<>());
+        reactions.put(Reactions.FUN, new ArrayList<>());
+        reactions.put(Reactions.LOVE, new ArrayList<>());
     }
 
     public String getTitle() {
@@ -79,15 +79,15 @@ public class Post {
 
     public void updateTitle(User user, String title) {
 
-        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
+        if (isSameUser(user)) {
             this.title = title;
-            modifiedDateTime = OffsetDateTime.now();
+            updateModifiedTime();
         }
     }
     public void updateBody(User user, String body) {
-        if (this.author.getUserEmailAddress().equals(user.getUserEmailAddress())) {
+        if (isSameUser(user)) {
             this.body = body;
-            modifiedDateTime = OffsetDateTime.now();
+            updateModifiedTime();
         }
     }
 
@@ -104,24 +104,32 @@ public class Post {
 
 
     public void addReaction(User user, Reactions reaction) {
-        ArrayList<User> containUsers = reactions.get(reaction);
-
-        for (User u : containUsers) {
-            if (user.getUserEmailAddress().equals(u.getUserEmailAddress())) {
-                return;
-            }
+        if (hasAlreadyReacted(user, reaction)) {
+            return;
         }
         this.reactions.get(reaction).add(user);
     }
     public void removeReaction(User user, Reactions reaction) {
-        ArrayList<User> containUsers = reactions.get(reaction);
+        if (hasAlreadyReacted(user, reaction)) {
+            this.reactions.get(reaction).remove(user);
+        }
+    }
 
-        for (User u : containUsers) {
+    private boolean isSameUser(User user) {
+        return this.author.getUserEmailAddress().equals(user.getUserEmailAddress());
+    }
+    private void updateModifiedTime() {
+        this.modifiedDateTime = OffsetDateTime.now();
+    }
+
+    private boolean hasAlreadyReacted(User user, Reactions reaction) {
+        ArrayList<User> reactedUsersList = reactions.get(reaction);
+        for (User u : reactedUsersList) {
             if (user.getUserEmailAddress().equals(u.getUserEmailAddress())) {
-                containUsers.remove(u);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     private void sortByVoteComments() {
