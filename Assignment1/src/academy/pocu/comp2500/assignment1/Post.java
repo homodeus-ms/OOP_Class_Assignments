@@ -6,49 +6,47 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Post extends Article {
+public class Post {
 
     private String title;
-    //private String body;
-    //private final User author;
+    private String body;
+    private final User author;
     private final OffsetDateTime createdDateTime;
     private OffsetDateTime modifiedDateTime;
     private final HashSet<String> tags;
 
     //Reaction.GREAT(0), reaction.SAD(1), Reaction.ANGRY(2), Reaction.FUN(3), Reaction.LOVE(4)
     private final HashMap<Reactions, ArrayList<User>> reactions;
-    private final ArrayList<User> reactionGreat;
-    private final ArrayList<User> reactionSad;
-    private final ArrayList<User> reactionAngry;
-    private final ArrayList<User> reactionFun;
-    private final ArrayList<User> reactionLove;
+    //private final ArrayList<User> reactionGreat;
+    //private final ArrayList<User> reactionSad;
+    //private final ArrayList<User> reactionAngry;
+    //private final ArrayList<User> reactionFun;
+    //private final ArrayList<User> reactionLove;
 
     private final ArrayList<Comment> comments;
 
     public Post(User user, String title, String body) {
-        super(user, body);
 
         this.title = title;
-
-        //this.body = body;
-        //this.author = user;
+        this.body = body;
+        this.author = user;
         this.createdDateTime = OffsetDateTime.now();
         this.modifiedDateTime = createdDateTime;
         this.comments = new ArrayList<>();
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        reactionGreat = new ArrayList<>();
-        reactionSad = new ArrayList<>();
-        reactionAngry = new ArrayList<>();
-        reactionFun = new ArrayList<>();
-        reactionLove = new ArrayList<>();
+        //reactionGreat = new ArrayList<>();
+        //reactionSad = new ArrayList<>();
+        //reactionAngry = new ArrayList<>();
+        //reactionFun = new ArrayList<>();
+        //reactionLove = new ArrayList<>();
 
-        reactions.put(Reactions.GREAT, reactionGreat);
-        reactions.put(Reactions.SAD, reactionSad);
-        reactions.put(Reactions.ANGRY, reactionAngry);
-        reactions.put(Reactions.FUN, reactionFun);
-        reactions.put(Reactions.LOVE, reactionLove);
+        reactions.put(Reactions.GREAT, new ArrayList<>());
+        reactions.put(Reactions.SAD, new ArrayList<>());
+        reactions.put(Reactions.ANGRY, new ArrayList<>());
+        reactions.put(Reactions.FUN, new ArrayList<>());
+        reactions.put(Reactions.LOVE, new ArrayList<>());
     }
 
     public String getTitle() {
@@ -82,13 +80,13 @@ public class Post extends Article {
 
     public void updateTitle(User user, String title) {
 
-        if (isSameUser(user)) {
+        if (this.author.isSameUser(user)) {
             this.title = title;
             updateModifiedTime();
         }
     }
     public void updateBody(User user, String body) {
-        if (isSameUser(user)) {
+        if (this.author.isSameUser(user)) {
             this.body = body;
             updateModifiedTime();
         }
@@ -107,33 +105,28 @@ public class Post extends Article {
 
 
     public void addReaction(User user, Reactions reaction) {
-        if (hasAlreadyReacted(user, reaction)) {
-            return;
+        ArrayList<User> reactedUserList = this.reactions.get(reaction);
+        for (User u : reactedUserList) {
+            if (this.author.isSameUser(user)) {
+                return;
+            }
         }
         this.reactions.get(reaction).add(user);
     }
     public void removeReaction(User user, Reactions reaction) {
-        if (hasAlreadyReacted(user, reaction)) {
-            this.reactions.get(reaction).remove(user);
+        ArrayList<User> reactedUserList = this.reactions.get(reaction);
+        for (User u : reactedUserList) {
+            if (this.author.isSameUser(user)) {
+                reactedUserList.remove(u);
+                return;
+            }
         }
     }
 
-    private boolean isSameUser(User user) {
-        return this.author.getUserEmailAddress().equals(user.getUserEmailAddress());
-    }
     private void updateModifiedTime() {
         this.modifiedDateTime = OffsetDateTime.now();
     }
 
-    private boolean hasAlreadyReacted(User user, Reactions reaction) {
-        ArrayList<User> reactedUsersList = reactions.get(reaction);
-        for (User u : reactedUsersList) {
-            if (u.getUserEmailAddress().equals(user.getUserEmailAddress())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private void sortByVoteComments() {
         Collections.sort(comments, (c1, c2) -> {

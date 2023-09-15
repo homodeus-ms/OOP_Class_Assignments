@@ -44,8 +44,8 @@ public class Comment {
         this.comments.add(comment);
     }
 
-    public void updateComment(User author, String comment) {
-        if (this.author.getUserEmailAddress().equals(author.getUserEmailAddress())) {
+    public void updateComment(User user, String comment) {
+        if (this.author.isSameUser(user)) {
             this.comment = comment;
         }
     }

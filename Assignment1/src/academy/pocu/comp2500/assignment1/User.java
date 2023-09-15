@@ -16,4 +16,7 @@ public class User {
     public String getUserEmailAddress() {
         return emailAddress;
     }
+    public boolean isSameUser(User user) {
+        return this.getUserEmailAddress().equals(user.getUserEmailAddress());
+    }
 }
