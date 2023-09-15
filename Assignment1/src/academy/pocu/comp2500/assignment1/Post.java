@@ -104,22 +104,25 @@ public class Post {
     }
 
     public void addReaction(User user, Reactions reaction) {
-        ArrayList<User> reactedUserList = this.reactions.get(reaction);
-        for (User u : reactedUserList) {
-            if (this.author.isSameUser(user)) {
-                return;
-            }
+        if (hasAlreadyReacted(user, reaction)) {
+            return;
         }
         this.reactions.get(reaction).add(user);
     }
     public void removeReaction(User user, Reactions reaction) {
+        if (hasAlreadyReacted(user, reaction)) {
+            this.reactions.get(reaction).remove(user);
+        }
+    }
+
+    private boolean hasAlreadyReacted(User user, Reactions reaction) {
         ArrayList<User> reactedUserList = this.reactions.get(reaction);
         for (User u : reactedUserList) {
-            if (this.author.isSameUser(user)) {
-                reactedUserList.remove(u);
-                return;
+            if (u.isSameUser(user)) {
+                return true;
             }
         }
+        return false;
     }
 
     private void updateModifiedTime() {
