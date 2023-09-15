@@ -6,44 +6,24 @@ import java.util.HashSet;
 
 public class Blog {
 
-    private ArrayList<Post> posts = new ArrayList<>();
-    private ArrayList<Post> filteredPosts = new ArrayList<>();
+    private ArrayList<Post> posts;
+    private ArrayList<Post> filteredPosts;
 
-    private HashSet<String> tagFilters = new HashSet<>();
+    private HashSet<String> tagFilters;
     private String authorFilter;
     private SortingType sortingType;
 
     public Blog() {
-
-        //posts = new ArrayList<>();
-        //tagFilters = new HashSet<>();
-        //filteredPosts = new ArrayList<>();
-
+        posts = new ArrayList<>();
+        filteredPosts = new ArrayList<>();
+        tagFilters = new HashSet<>();
         authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
     public ArrayList<Post> getPosts() {
-        switch (sortingType) {
-            case BY_CREATED_TIME_DESC:
-                sortByCreatedTimeDesc();
-                break;
-            case BY_CREATED_TIME:
-                sortByCreatedTime();
-                break;
-            case BY_MODIFIED_TIME_DESC:
-                sortByModifiedTimeDesc();
-                break;
-            case BY_MODIFIED_TIME:
-                sortByModifiedTime();
-                break;
-            case BY_TITLE:
-                sortByTitle();
-                break;
-            default:
-                assert (false) : "there are only 5 types";
-                break;
-        }
+
+        sortPosts();
 
         filteredPosts.clear();
 
@@ -80,12 +60,16 @@ public class Blog {
     public void setSortType(SortingType sortingType) {
         this.sortingType = sortingType;
     }
+    /*
     public void removeSortType() {
         this.sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
-    public void setTagFilter(String tag) {
+    */
 
-        this.tagFilters.clear();
+    public void setTagFilter(String tag) {
+        if (!tagFilters.isEmpty()) {
+            this.tagFilters.clear();
+        }
         this.tagFilters.add(tag);
     }
     public void setTagFilter(ArrayList<String> tags) {
@@ -101,12 +85,10 @@ public class Blog {
     }
 
     public void addPost(Post post) {
-
-        this.posts.add(0, post);
+        this.posts.add(post);
     }
 
     private void getAuthorFilteredPosts() {
-
         for (Post post : posts) {
             if (post.getAuthor().getUserName().equals(authorFilter)) {
                 filteredPosts.add(post);
@@ -131,7 +113,29 @@ public class Blog {
         }
     }
 
-
+    private void sortPosts() {
+        switch (this.sortingType) {
+            case BY_CREATED_TIME_DESC:
+                Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
+                break;
+            case BY_CREATED_TIME:
+                Collections.sort(posts, (p1, p2) -> p1.getCreatedDateTime().compareTo(p2.getCreatedDateTime()));
+                break;
+            case BY_MODIFIED_TIME_DESC:
+                Collections.sort(posts, (p1, p2) -> p2.getModifiedDateTime().compareTo(p1.getModifiedDateTime()));
+                break;
+            case BY_MODIFIED_TIME:
+                Collections.sort(posts, (p1, p2) -> p1.getModifiedDateTime().compareTo(p2.getModifiedDateTime()));
+                break;
+            case BY_TITLE:
+                Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
+                break;
+            default:
+                assert (false) : "there are only 5 types";
+                break;
+        }
+    }
+    /*
     private void sortByCreatedTimeDesc() {
         Collections.sort(posts, (p1, p2) -> p2.getCreatedDateTime().compareTo(p1.getCreatedDateTime()));
     }
@@ -147,4 +151,6 @@ public class Blog {
     private void sortByTitle() {
         Collections.sort(posts, (p1, p2) -> p1.getTitle().compareTo(p2.getTitle()));
     }
+    */
+
 }
