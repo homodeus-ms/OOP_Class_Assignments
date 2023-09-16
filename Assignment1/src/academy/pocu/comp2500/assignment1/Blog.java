@@ -89,10 +89,11 @@ public class Blog {
         }
     }
     private void getTaggedPosts(ArrayList<Post> posts) {
+        ArrayList<Post> copiedPosts = new ArrayList<>(posts);
 
         filteredPosts.clear();
 
-        for (Post post : posts) {
+        for (Post post : copiedPosts) {
             HashSet<String> postTags = post.getTags();
 
             assert (!this.tagFilters.isEmpty()) : "Error of filters condition";
