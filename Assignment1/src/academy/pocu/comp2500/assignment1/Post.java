@@ -31,11 +31,6 @@ public class Post {
 
         tags = new HashSet<>();
         reactions = new HashMap<>();
-        //ArrayList<User> reactionGreat = new ArrayList<>();
-        //ArrayList<User> reactionSad = new ArrayList<>();
-        //ArrayList<User> reactionAngry = new ArrayList<>();
-        //ArrayList<User> reactionFun = new ArrayList<>();
-        //ArrayList<User> reactionLove = new ArrayList<>();
 
         reactions.put(Reactions.GREAT, new ArrayList<>());
         reactions.put(Reactions.SAD, new ArrayList<>());

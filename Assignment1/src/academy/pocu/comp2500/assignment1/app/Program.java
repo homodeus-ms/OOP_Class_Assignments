@@ -40,9 +40,20 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        int[] reactions = new int[5];
+        ArrayList<String> strs = new ArrayList<>();
+        strs.add("aaa");
+        strs.add("bbb");
+        strs.add("ccc");
 
-        Reactions react1 = Reactions.SAD;
+        ArrayList<String> copied = new ArrayList<>(strs);
+        copied.set(0, "zzz");
+        for (String s : copied) {
+            System.out.println(s);
+        }
+        System.out.println();
+        for (String s : strs) {
+            System.out.println(s);
+        }
 
         
 
