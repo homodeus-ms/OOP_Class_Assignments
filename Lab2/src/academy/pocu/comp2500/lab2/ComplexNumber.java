@@ -26,7 +26,7 @@ public class ComplexNumber {
     }
 
     public ComplexNumber getConjugate() {
-        return this .imaginary == 0 ? new ComplexNumber(this.real, this.imaginary)
+        return this.imaginary == 0 ? new ComplexNumber(this.real, this.imaginary)
                 : new ComplexNumber(this.real, -this.imaginary);
     }
 
