@@ -18,24 +18,16 @@ public class ComplexNumber {
     }
 
     public boolean isReal() {
-        if (this.imaginary == 0.0) {
-            return true;
-        }
-        return false;
+        return this.imaginary == 0.0;
     }
 
     public boolean isImaginary() {
-        if (this.real == 0.0) {
-            return true;
-        }
-        return false;
+        return this.real == 0.0;
     }
 
     public ComplexNumber getConjugate() {
-        if (this.imaginary == 0) {
-            return new ComplexNumber(this.real, this.imaginary);
-        }
-        return new ComplexNumber(this.real, -this.imaginary);
+        return this .imaginary == 0 ? new ComplexNumber(this.real, this.imaginary)
+                : new ComplexNumber(this.real, -this.imaginary);
     }
 
     public ComplexNumber add(ComplexNumber num) {
@@ -45,9 +37,8 @@ public class ComplexNumber {
         return new ComplexNumber((this.real - num.real), (this.imaginary - num.imaginary));
     }
     public ComplexNumber multiply(ComplexNumber num) {
-        double multipliedReal = (this.real * num.real) - (this.imaginary * num.imaginary);
-        double multipliedImaginary = (this.real * num.imaginary) + (num.real * this.imaginary);
-        return new ComplexNumber(multipliedReal, multipliedImaginary);
+        return new ComplexNumber((this.real * num.real) - (this.imaginary * num.imaginary),
+                (this.real * num.imaginary) + (num.real * this.imaginary));
     }
     public ComplexNumber divide(ComplexNumber num) {
         double denominator = num.real * num.real + num.imaginary * num.imaginary;
@@ -56,5 +47,4 @@ public class ComplexNumber {
         double imaginaryNum = this.imaginary * num.real - this.real * num.imaginary;
         return new ComplexNumber(realNum / denominator, imaginaryNum / denominator);
     }
-
 }
