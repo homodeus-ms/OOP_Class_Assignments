@@ -25,7 +25,7 @@ public class ListItem {
     public char getBulletStyle() {
         return this.bulletStyle;
     }
-    public ListItem getSubListItem(int index) {
+    public ListItem getSublistItem(int index) {
         return this.sublistItems.get(index);
     }
 
@@ -62,15 +62,14 @@ public class ListItem {
 
     private void appendSubItemsRecursive(StringBuilder sb, byte depth, ArrayList<ListItem> items) {
 
-        if (items.isEmpty())
-        {
+        if (items.isEmpty()) {
             return;
         }
 
         ++depth;
 
         for (ListItem item : items) {
-            for (byte i = 0 ; i < depth; ++i) {
+            for (byte i = 0; i < depth; ++i) {
                 sb.append("    ");
             }
 
@@ -82,6 +81,5 @@ public class ListItem {
             appendSubItemsRecursive(sb, depth, item.sublistItems);
         }
     }
-
 }
 
