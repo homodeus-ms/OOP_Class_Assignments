@@ -69,15 +69,13 @@ public class Blog {
         this.tagFilters.clear();
         tagFilters.addAll(tags);
     }
-    public void setAuthorFilter(User user) {
-        /*
-        if (userOrNull == null) {    // null을 넣으면 authorFilter를 비움 (이게 맞는 것일지?)
+    public void setAuthorFilter(User userOrNull) {
+        if (userOrNull == null) {    // null을 넣으면 authorFilter를 비움
             this.authorFilter = "";
             return;
         }
-        */
 
-        this.authorFilter = user.getUserName();
+        this.authorFilter = userOrNull.getUserName();
     }
 
     public void addPost(Post post) {
