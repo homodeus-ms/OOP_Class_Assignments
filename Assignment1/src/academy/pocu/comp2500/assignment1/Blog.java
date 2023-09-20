@@ -15,7 +15,7 @@ public class Blog {
         posts = new ArrayList<>();
         filteredPosts = new ArrayList<>();
         tagFilters = new HashSet<>();
-        authorFilter = null;
+        authorFilter = "";
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
@@ -25,15 +25,15 @@ public class Blog {
 
         filteredPosts.clear();
 
-        if (tagFilters.isEmpty() && authorFilter == null) {
+        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
             return this.posts;
 
-        } else if (!tagFilters.isEmpty() && authorFilter != null) {
+        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
 
             getAuthorFilteredPosts();
             getTaggedPosts(filteredPosts);
 
-        } else if (authorFilter == null) {
+        } else if (!authorFilter.isEmpty()) {
             getAuthorFilteredPosts();
 
         } else {
@@ -69,8 +69,15 @@ public class Blog {
         this.tagFilters.clear();
         tagFilters.addAll(tags);
     }
-    public void setAuthorFilter(User userOrNull) {
-        this.authorFilter = userOrNull.getUserName();
+    public void setAuthorFilter(User user) {
+        /*
+        if (userOrNull == null) {    // null을 넣으면 authorFilter를 비움 (이게 맞는 것일지?)
+            this.authorFilter = "";
+            return;
+        }
+        */
+
+        this.authorFilter = user.getUserName();
     }
 
     public void addPost(Post post) {
