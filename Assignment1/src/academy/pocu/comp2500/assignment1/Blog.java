@@ -6,16 +6,16 @@ import java.util.HashSet;
 
 public class Blog {
 
-    private ArrayList<Post> posts;
-    private ArrayList<Post> filteredPosts;
-    private HashSet<String> tagFilters;
+    private final ArrayList<Post> posts;
+    private final ArrayList<Post> filteredPosts;
+    private final HashSet<String> tagFilters;
     private String authorFilter;
     private SortingType sortingType;
     public Blog() {
         posts = new ArrayList<>();
         filteredPosts = new ArrayList<>();
         tagFilters = new HashSet<>();
-        authorFilter = "";
+        authorFilter = null;
         sortingType = SortingType.BY_CREATED_TIME_DESC;
     }
 
@@ -25,15 +25,15 @@ public class Blog {
 
         filteredPosts.clear();
 
-        if (tagFilters.isEmpty() && authorFilter.isEmpty()) {
+        if (tagFilters.isEmpty() && authorFilter == null) {
             return this.posts;
 
-        } else if (!tagFilters.isEmpty() && !authorFilter.isEmpty()) {
+        } else if (!tagFilters.isEmpty() && authorFilter != null) {
 
             getAuthorFilteredPosts();
             getTaggedPosts(filteredPosts);
 
-        } else if (!authorFilter.isEmpty()) {
+        } else if (authorFilter == null) {
             getAuthorFilteredPosts();
 
         } else {
@@ -70,10 +70,6 @@ public class Blog {
         tagFilters.addAll(tags);
     }
     public void setAuthorFilter(User userOrNull) {
-        if (userOrNull == null) {
-            authorFilter = "";
-            return;
-        }
         this.authorFilter = userOrNull.getUserName();
     }
 
@@ -82,6 +78,8 @@ public class Blog {
     }
 
     private void getAuthorFilteredPosts() {
+        assert (this.authorFilter != null) : "authorFilter is null!";
+
         for (Post post : posts) {
             if (post.getAuthor().getUserName().equals(authorFilter)) {
                 filteredPosts.add(post);
@@ -89,14 +87,14 @@ public class Blog {
         }
     }
     private void getTaggedPosts(ArrayList<Post> posts) {
+        assert (!this.filteredPosts.isEmpty()) : "filteredPosts is empty!";
+
         ArrayList<Post> copiedPosts = new ArrayList<>(posts);
 
         filteredPosts.clear();
 
         for (Post post : copiedPosts) {
             HashSet<String> postTags = post.getTags();
-
-            assert (!this.tagFilters.isEmpty()) : "Error of filters condition";
 
             for (String tag : this.tagFilters) {
                 if (postTags.contains(tag)) {

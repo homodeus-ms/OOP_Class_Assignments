@@ -111,18 +111,6 @@ public class Post {
             }
         }
     }
-    /*
-    private boolean hasAlreadyReacted(User user, Reactions reaction) {
-        ArrayList<User> reactedUserList = this.reactions.get(reaction);
-        for (User u : reactedUserList) {
-            if (u.isSameUser(user)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    */
 
     private void updateModifiedTime() {
         this.modifiedDateTime = OffsetDateTime.now();
