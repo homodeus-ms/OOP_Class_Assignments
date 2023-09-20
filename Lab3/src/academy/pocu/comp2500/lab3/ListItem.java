@@ -41,14 +41,12 @@ public class ListItem {
     }
 
     public String toString() {
-        if (this.text == null || this.text == "") {
+        if (this.text.isEmpty()) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(this.bulletStyle);
-        sb.append(" ");
-        sb.append(this.text);
-        sb.append(System.lineSeparator());
+
+        appendTextByFormat(sb, this.bulletStyle, this.text);
 
         byte depth = 0;
 
@@ -72,14 +70,16 @@ public class ListItem {
             for (byte i = 0; i < depth; ++i) {
                 sb.append("    ");
             }
-
-            sb.append(item.bulletStyle);
-            sb.append(" ");
-            sb.append(item.text);
-            sb.append(System.lineSeparator());
+            appendTextByFormat(sb, item.bulletStyle, item.text);
 
             appendSubItemsRecursive(sb, depth, item.sublistItems);
         }
+    }
+    private void appendTextByFormat(StringBuilder sb, char bulletStyle, String text) {
+        sb.append(bulletStyle);
+        sb.append(" ");
+        sb.append(text);
+        sb.append(System.lineSeparator());
     }
 }
 
