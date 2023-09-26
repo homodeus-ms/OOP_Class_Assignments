@@ -9,22 +9,26 @@ public class MemoryCache {
 
     private static EvictionPolicy currPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     private static HashMap<String, Node<String, MemoryCache>> caches = new HashMap<>();
-    private static MyLinkedList cacheList;
+    private static MyLinkedList<String, MemoryCache> cacheList;
+
+    private final String driveName;
 
     private HashMap<String, Node<String, String>> entry;
-    private MyLinkedList entryList;
+    private MyLinkedList<String, String> entryList;
     private int maxEntryCount;
 
 
-    private MemoryCache() {
+    private MemoryCache(String driveName) {
         entry = new HashMap<>();
-        entryList = new MyLinkedList();
+        entryList = new MyLinkedList<>();
+        this.driveName = driveName;
         maxEntryCount = 0x7FFFFFFF;
     }
 
     public static MemoryCache getInstance(String driveName) {
+
         if (caches.isEmpty()) {
-            cacheList = new MyLinkedList();
+            cacheList = new MyLinkedList<>();
         }
 
         if (caches.containsKey(driveName)) {
@@ -33,8 +37,8 @@ public class MemoryCache {
             return node.getValue();
         }
 
-        MemoryCache instance = new MemoryCache();
-        Node<String, MemoryCache> node = new Node(driveName, instance);
+        MemoryCache instance = new MemoryCache(driveName);
+        Node<String, MemoryCache> node = new Node<>(driveName, instance);
 
         if (cacheList.getElementCount() >= maxInstanceCount) {
             Node<String, MemoryCache> targetNode;
@@ -75,8 +79,9 @@ public class MemoryCache {
     public static void setMaxInstanceCount(int maxCount) {
         maxInstanceCount = maxCount;
         int elementCount = cacheList.getElementCount();
+
         while (elementCount > maxCount) {
-            Node targetNode = cacheList.getLRUNode();
+            Node<String, MemoryCache> targetNode = cacheList.getLRUNode();
             assert (targetNode != null);
             removeCache(targetNode);
             --elementCount;
@@ -90,16 +95,14 @@ public class MemoryCache {
 
         if (entry.containsKey(key)) {
             Node<String, String> node = entry.get(key);
-            cacheList.moveUsedNodeToLast(node);
             node.setValue(value);
-
+            entryList.moveUsedNodeToLast(node);                        // 사용 되었으니 맨 뒤로 (entry)
+            cacheList.moveUsedNodeToLast(caches.get(this.driveName));  // 사용 되었으니 맨 뒤로 (cache)
             return;
         }
 
-
-
         if (entryList.getElementCount() >= maxEntryCount) {
-            Node targetNode;
+            Node<String, String> targetNode;
 
             switch (currPolicy) {
 
@@ -144,18 +147,18 @@ public class MemoryCache {
 
         int elementCount = entryList.getElementCount();
         while (elementCount > maxEntryCount) {
-            Node targetNode = entryList.getLRUNode();
+            Node<String, String> targetNode = entryList.getLRUNode();
             assert (targetNode != null);
             removeEntry(targetNode);
             --elementCount;
         }
     }
 
-    private static void removeCache(Node targetNode) {
+    private static void removeCache(Node<String, MemoryCache> targetNode) {
         caches.remove(targetNode.getKey());
         cacheList.removeNode(targetNode);
     }
-    private void removeEntry(Node targetNode) {
+    private void removeEntry(Node<String, String> targetNode) {
         entry.remove(targetNode.getKey());
         entryList.removeNode(targetNode);
     }
