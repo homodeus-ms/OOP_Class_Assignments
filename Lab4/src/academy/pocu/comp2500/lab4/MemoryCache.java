@@ -73,11 +73,17 @@ public class MemoryCache {
     }
 
     public static void clear() {
+        if (caches.isEmpty()) {
+            return;
+        }
         caches.clear();
         cacheList.clear();
     }
     public static void setMaxInstanceCount(int maxCount) {
         maxInstanceCount = maxCount;
+        if (caches.isEmpty()) {
+            return;
+        }
         int elementCount = cacheList.getElementCount();
 
         while (elementCount > maxCount) {
@@ -97,7 +103,7 @@ public class MemoryCache {
             Node<String, String> node = entry.get(key);
             node.setValue(value);
             entryList.moveUsedNodeToLast(node);                        // 사용 되었으니 맨 뒤로 (entry)
-            cacheList.moveUsedNodeToLast(caches.get(this.driveName));  // 사용 되었으니 맨 뒤로 (cache)
+            //cacheList.moveUsedNodeToLast(caches.get(this.driveName));  // 사용 되었으니 맨 뒤로 (cache)
             return;
         }
 

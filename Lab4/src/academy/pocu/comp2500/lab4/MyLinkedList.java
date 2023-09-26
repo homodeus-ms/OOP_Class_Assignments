@@ -45,7 +45,7 @@ public class MyLinkedList<K, V> {
     public void clear() {
         Node<K, V> node = head;
         Node<K, V> nextNode;
-        while (node.getNext(0) != null) {
+        while (!node.getNext().isEmpty()) {
             nextNode = node.getNext(0);
             nextNode.setPrev(0, null);
             node.setNext(0, null);
@@ -53,7 +53,7 @@ public class MyLinkedList<K, V> {
         }
 
         node = head;
-        while (node.getNext(1) != null) {
+        while (!node.getNext().isEmpty()) {
             nextNode = node.getNext(1);
             nextNode.setPrev(1, null);
             node.setNext(1, null);

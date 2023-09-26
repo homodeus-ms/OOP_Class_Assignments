@@ -30,15 +30,19 @@ public class Node<K, V> {
     public Node<K, V> getNext(int index) {
         return this.next.get(index);
     }
+    public ArrayList<Node<K,V>> getNext() {
+        return this.next;
+    }
+
     public void setPrev(int index, Node<K, V> value) {
-        if (this.prev.size() <= 2) {
+        if (this.prev.size() < 2) {
             this.prev.add(index, value);
             return;
         }
         this.prev.set(index, value);
     }
     public void setNext(int index, Node<K, V> value) {
-        if (this.next.size() <= 2) {
+        if (this.next.size() < 2) {
             this.next.add(index, value);
             return;
         }
