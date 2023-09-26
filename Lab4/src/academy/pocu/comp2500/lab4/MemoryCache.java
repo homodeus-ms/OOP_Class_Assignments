@@ -2,7 +2,6 @@ package academy.pocu.comp2500.lab4;
 
 import java.util.HashMap;
 
-
 public class MemoryCache {
 
     private static int maxInstanceCount = 0x7FFFFFFF;
@@ -103,7 +102,7 @@ public class MemoryCache {
             Node<String, String> node = entry.get(key);
             node.setValue(value);
             entryList.moveUsedNodeToLast(node);                        // 사용 되었으니 맨 뒤로 (entry)
-            //cacheList.moveUsedNodeToLast(caches.get(this.driveName));  // 사용 되었으니 맨 뒤로 (cache)
+            cacheList.moveUsedNodeToLast(caches.get(this.driveName));  // 사용 되었으니 맨 뒤로 (cache)
             return;
         }
 
@@ -148,6 +147,7 @@ public class MemoryCache {
 
         return node.getValue();
     }
+
     public void setMaxEntryCount(int maxEntryCount) {
         this.maxEntryCount = maxEntryCount;
 

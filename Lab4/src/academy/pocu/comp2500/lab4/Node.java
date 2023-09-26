@@ -30,7 +30,7 @@ public class Node<K, V> {
     public Node<K, V> getNext(int index) {
         return this.next.get(index);
     }
-    public ArrayList<Node<K,V>> getNext() {
+    public ArrayList<Node<K, V>> getNext() {
         return this.next;
     }
 
