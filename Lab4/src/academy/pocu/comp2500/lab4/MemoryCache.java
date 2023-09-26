@@ -38,10 +38,10 @@ public class MemoryCache {
 
         MemoryCache instance = new MemoryCache(driveName);
         Node<String, MemoryCache> node = new Node<>(driveName, instance);
+        cutOffOverListedCache(maxInstanceCount - 1);
+
         cacheList.addNode(node);
         caches.put(driveName, node);
-
-        cutOffOverListedCache(maxInstanceCount);
 
         return instance;
     }
@@ -74,11 +74,11 @@ public class MemoryCache {
             return;
         }
 
+        cutOffOverListedEntry(maxEntryCount - 1);
+
         Node<String, String> newNode = new Node<>(key, value);
         entry.put(key, newNode);
         entryList.addNode(newNode);
-
-        cutOffOverListedEntry(maxEntryCount);
     }
 
 
@@ -125,6 +125,7 @@ public class MemoryCache {
                     break;
                 case LEAST_RECENTLY_USED:
                     targetNode = cacheList.getLRUNode();
+                    removeCache(targetNode);
                     break;
                 default:
                     assert (false);
