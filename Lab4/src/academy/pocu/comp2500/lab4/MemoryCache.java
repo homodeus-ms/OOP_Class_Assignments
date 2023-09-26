@@ -6,10 +6,10 @@ public class MemoryCache {
 
     private static int maxInstanceCount = 0x7FFFFFFF;
 
-    private static EvictionPolicy currPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     private static HashMap<String, Node<String, MemoryCache>> caches = new HashMap<>();
     private static MyLinkedList<String, MemoryCache> cacheList;
 
+    private static EvictionPolicy currPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     private final String driveName;
 
     private HashMap<String, Node<String, String>> entry;
@@ -38,35 +38,10 @@ public class MemoryCache {
 
         MemoryCache instance = new MemoryCache(driveName);
         Node<String, MemoryCache> node = new Node<>(driveName, instance);
-
-        if (cacheList.getElementCount() >= maxInstanceCount) {
-            Node<String, MemoryCache> targetNode;
-
-            switch (currPolicy) {
-
-                case FIRST_IN_FIRST_OUT:
-                    targetNode = cacheList.getFirstCreatedNode();
-                    assert (targetNode != null) : "get First Node can't be null";
-                    removeCache(targetNode);
-                    break;
-                case LAST_IN_FIRST_OUT:
-                    targetNode = cacheList.getLastCreatedNode();
-                    assert (targetNode != null) : "get Last Node can't be null";
-                    removeCache(targetNode);
-                    break;
-                case LEAST_RECENTLY_USED:
-                    targetNode = cacheList.getLRUNode();
-                    assert (targetNode != null) : "get First Node Can't be null";
-                    removeCache(targetNode);
-                    break;
-                default:
-                    assert (false);
-                    break;
-            }
-        }
-
         cacheList.addNode(node);
         caches.put(driveName, node);
+
+        cutOffOverListedCache(maxInstanceCount);
 
         return instance;
     }
@@ -78,18 +53,11 @@ public class MemoryCache {
         caches.clear();
         cacheList.clear();
     }
+
     public static void setMaxInstanceCount(int maxCount) {
         maxInstanceCount = maxCount;
-        if (caches.isEmpty()) {
-            return;
-        }
-        int elementCount = cacheList.getElementCount();
-
-        while (elementCount > maxCount) {
-            Node<String, MemoryCache> targetNode = cacheList.getLRUNode();
-            assert (targetNode != null);
-            removeCache(targetNode);
-            --elementCount;
+        if (!caches.isEmpty()) {
+            cutOffOverListedCache(maxCount);
         }
     }
     public void setEvictionPolicy(EvictionPolicy policy) {
@@ -106,34 +74,11 @@ public class MemoryCache {
             return;
         }
 
-        if (entryList.getElementCount() >= maxEntryCount) {
-            Node<String, String> targetNode;
-
-            switch (currPolicy) {
-
-                case FIRST_IN_FIRST_OUT:
-                    targetNode = entryList.getFirstCreatedNode();
-                    assert (targetNode != null) : "get First Node can't be null";
-                    removeEntry(targetNode);
-                    break;
-                case LAST_IN_FIRST_OUT:
-                    targetNode = entryList.getLastCreatedNode();
-                    assert (targetNode != null) : "get Last Node can't be null";
-                    removeEntry(targetNode);
-                    break;
-                case LEAST_RECENTLY_USED:
-                    targetNode = entryList.getLRUNode();
-                    assert (targetNode != null) : "get First Node Can't be null";
-                    removeEntry(targetNode);
-                    break;
-                default:
-                    assert (false);
-                    break;
-            }
-        }
         Node<String, String> newNode = new Node<>(key, value);
         entry.put(key, newNode);
         entryList.addNode(newNode);
+
+        cutOffOverListedEntry(maxEntryCount);
     }
 
 
@@ -150,13 +95,8 @@ public class MemoryCache {
 
     public void setMaxEntryCount(int maxEntryCount) {
         this.maxEntryCount = maxEntryCount;
-
-        int elementCount = entryList.getElementCount();
-        while (elementCount > maxEntryCount) {
-            Node<String, String> targetNode = entryList.getLRUNode();
-            assert (targetNode != null);
-            removeEntry(targetNode);
-            --elementCount;
+        if (!entry.isEmpty()) {
+            cutOffOverListedEntry(maxEntryCount);
         }
     }
 
@@ -167,5 +107,57 @@ public class MemoryCache {
     private void removeEntry(Node<String, String> targetNode) {
         entry.remove(targetNode.getKey());
         entryList.removeNode(targetNode);
+    }
+
+    private static void cutOffOverListedCache(int maxCount) {
+        int elementCount = cacheList.getElementCount();
+        Node<String, MemoryCache> targetNode;
+
+        while (elementCount > maxCount) {
+            switch (currPolicy) {
+                case FIRST_IN_FIRST_OUT:
+                    targetNode = cacheList.getFirstCreatedNode();
+                    removeCache(targetNode);
+                    break;
+                case LAST_IN_FIRST_OUT:
+                    targetNode = cacheList.getLastCreatedNode();
+                    removeCache(targetNode);
+                    break;
+                case LEAST_RECENTLY_USED:
+                    targetNode = cacheList.getLRUNode();
+                    break;
+                default:
+                    assert (false);
+                    break;
+            }
+
+            --elementCount;
+        }
+    }
+    private void cutOffOverListedEntry(int maxCount) {
+        int elementCount = entryList.getElementCount();
+        Node<String, String> targetNode;
+
+        while (elementCount > maxCount) {
+            switch (currPolicy) {
+                case FIRST_IN_FIRST_OUT:
+                    targetNode = entryList.getFirstCreatedNode();
+                    removeEntry(targetNode);
+                    break;
+                case LAST_IN_FIRST_OUT:
+                    targetNode = entryList.getLastCreatedNode();
+                    removeEntry(targetNode);
+                    break;
+                case LEAST_RECENTLY_USED:
+                    targetNode = entryList.getLRUNode();
+                    removeEntry(targetNode);
+                    break;
+                default:
+                    assert (false);
+                    break;
+            }
+
+            --elementCount;
+        }
     }
 }

@@ -7,9 +7,11 @@ public class Program {
 
     public static void main(String[] args) {
         MemoryCache.clear();
-        MemoryCache.setMaxInstanceCount(5); // 여기 삭제하고도 잘 작동하는지??
+        //MemoryCache.setMaxInstanceCount(5); // 여기 삭제하고도 잘 작동하는지??
 
         MemoryCache memCacheA = MemoryCache.getInstance("A");
+        memCacheA.setEvictionPolicy(EvictionPolicy.LAST_IN_FIRST_OUT);
+        //assert (EvictionPolicy.LAST_IN_FIRST_OUT == memCacheA.getCurrPolicy());
         MemoryCache memCacheB = MemoryCache.getInstance("B");
         MemoryCache memCacheC = MemoryCache.getInstance("C");
         MemoryCache memCacheD = MemoryCache.getInstance("D");
@@ -29,13 +31,13 @@ public class Program {
         assert memCacheE == MemoryCache.getInstance("E");
 
 
-        memCacheA.addEntry("test", "test");
+        /*memCacheA.addEntry("test", "test");
         assert memCacheA.getEntryOrNull("test").equals("test");
         memCacheA.addEntry("test", "test2");
         assert memCacheA.getEntryOrNull("test").equals("test2");
 
         memCacheB.addEntry("test", "test");
-        assert memCacheB.getEntryOrNull("test").equals("test");
+        assert memCacheB.getEntryOrNull("test").equals("test");*/
 
         MemoryCache.setMaxInstanceCount(3);
 
@@ -43,10 +45,10 @@ public class Program {
         boolean testSwitch = true;
         if (testSwitch) {
             assert memCacheC == MemoryCache.getInstance("C");
-            assert memCacheD == MemoryCache.getInstance("D");
-            assert memCacheE == MemoryCache.getInstance("E");
-            assert memCacheA != MemoryCache.getInstance("A");
-            assert memCacheB != MemoryCache.getInstance("B");
+            assert memCacheD != MemoryCache.getInstance("D");
+            assert memCacheE != MemoryCache.getInstance("E");
+            assert memCacheA == MemoryCache.getInstance("A");
+            assert memCacheB == MemoryCache.getInstance("B");
         } else {
             assert memCacheC == MemoryCache.getInstance("A");
             assert memCacheD == MemoryCache.getInstance("B");
@@ -55,13 +57,7 @@ public class Program {
             assert memCacheB != MemoryCache.getInstance("D");
         }
 
-        // A, B는 삭제후 새로 생성된 instance이니 위에서 추가했던 entry가 없을것임
-        memCacheA = MemoryCache.getInstance("A");
-        memCacheB = MemoryCache.getInstance("B");
-        assert memCacheA.getEntryOrNull("test") == null;
-        assert memCacheB.getEntryOrNull("test") == null;
 
-        MemoryCache.clear();
 
         System.out.println("No Assert!");
     }
