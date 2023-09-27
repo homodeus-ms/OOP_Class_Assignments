@@ -19,7 +19,7 @@ public class BusinessCard extends Product {
     private ArrayList<String> addedImagePaths;
 
     public BusinessCard(BusinessCardType cardType, ColorType color, PrintOrientation orientation) {
-        super(ProductType.BUSINESS_CARD, color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType));
+        super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType));
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
         this.addedTexts = new ArrayList<>();
@@ -44,6 +44,16 @@ public class BusinessCard extends Product {
     }
     public ArrayList<String> getAddedImagePaths() {
         return this.addedImagePaths;
+    }
+
+    private static ProductType getProductType(BusinessCardType type) {
+        if (type == BusinessCardType.LINEN_SINGLE || type == BusinessCardType.LINEN_DOUBLE) {
+            return ProductType.BUSINESS_CARD_LINEN;
+        } else if (type == BusinessCardType.LAID_SINGLE || type == BusinessCardType.LAID_DOUBLE) {
+            return ProductType.BUSINESS_CARD_LAID;
+        } else {
+            return ProductType.BUSINESS_CARD_SMOOTH;
+        }
     }
 
     private static int getPrice(BusinessCardType cardType) {

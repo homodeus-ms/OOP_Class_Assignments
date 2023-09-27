@@ -8,8 +8,8 @@ public class Banner extends Product {
     private ArrayList<String> addedTexts;
     private ArrayList<String> addedImagePaths;
 
-    public Banner(BannerType type, BannerSize size, ColorType color, int price, PrintOrientation orientation) {
-        super(ProductType.BANNER, color, getWidth(size), getHeight(size), price);
+    public Banner(BannerType banner, BannerSize size, ColorType color, int price, PrintOrientation orientation) {
+        super(getProductType(banner), color, getWidth(size), getHeight(size), price);
         this.orientation = orientation;
         this.addedTexts = new ArrayList<>();
         this.addedImagePaths = new ArrayList<>();
@@ -33,6 +33,20 @@ public class Banner extends Product {
 
     public void addImagePath(String imagePath) {
         this.addedImagePaths.add(imagePath);
+    }
+
+    private static ProductType getProductType(BannerType type) {
+        switch (type) {
+            case GLOSS:
+                return ProductType.BANNER_GLOSS;
+            case SCRIM:
+                return ProductType.BANNER_SCRIM;
+            case MESH:
+                return ProductType.BANNER_MESH;
+            default:
+                assert (false);
+                return ProductType.DEFAULT;
+        }
     }
 
     private static int getWidth(BannerSize size) {

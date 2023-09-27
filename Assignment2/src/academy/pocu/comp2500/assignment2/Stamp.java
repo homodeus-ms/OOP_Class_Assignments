@@ -8,9 +8,9 @@ public class Stamp extends Product {
     private final StampType stampType;
     private final StampSize stampSize;
 
-    public Stamp(StampType type, StampSize size) {
-        super(ProductType.STAMP, getColor(type), getWidth(size), getHeight(size), getPrice(size));
-        this.stampType = type;
+    public Stamp(StampType stamp, StampSize size) {
+        super(getProductType(size), getColor(stamp), getWidth(size), getHeight(size), getPrice(size));
+        this.stampType = stamp;
         this.stampSize = size;
     }
 
@@ -21,8 +21,22 @@ public class Stamp extends Product {
         return this.stampSize;
     }
 
-    private static ColorType getColor(StampType type) {
-        switch (type) {
+    private static ProductType getProductType(StampSize size) {
+        switch (size) {
+            case STAMP_4X3:
+                return ProductType.STAMP_4X3;
+            case STAMP_5X2:
+                return ProductType.STAMP_5X2;
+            case STAMP_7X4:
+                return ProductType.STAMP_7X4;
+            default:
+                assert (false);
+                return ProductType.DEFAULT;
+        }
+    }
+
+    private static ColorType getColor(StampType stamp) {
+        switch (stamp) {
             case RED_STAMP:
                 return ColorType.RED;
             case GREEN_STAMP:

@@ -17,12 +17,26 @@ public class Calendar extends Product {
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(ProductType.CALENDAR, CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
+        super(getProductType(type), CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
         this.calendarType = type;
     }
 
     public CalendarType getCalendarType() {
         return this.calendarType;
+    }
+
+    private static ProductType getProductType(CalendarType type) {
+        switch (type) {
+            case WALL_CALENDAR:
+                return ProductType.CALENDAR_WALL;
+            case DESK_CALENDAR:
+                return ProductType.CALENDAR_DESK;
+            case MAGNET_CALENDAR:
+                return ProductType.CALENDAR_MAGNET;
+            default:
+                assert (false);
+                return ProductType.DEFAULT;
+        }
     }
 
     private static int getWidth(CalendarType type) {
