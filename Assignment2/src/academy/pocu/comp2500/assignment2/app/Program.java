@@ -13,7 +13,7 @@ public class Program {
 
 
 
-        System.out.println("No Assert!");
+        System.out.println("No Assert!!!");
     }
 
 
