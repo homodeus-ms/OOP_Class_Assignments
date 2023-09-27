@@ -11,7 +11,7 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-	    RedStamp red = new RedStamp(StampType.RED_STAMP, StampSize.STAMP_4X3);
+	    Stamp red = new Stamp(StampType.RED_STAMP, StampSize.STAMP_4X3);
         assert (red.getColor() == 0xFF0000);
         testSize(red, 400, 300);
         testPrice(red, 2300);
@@ -19,14 +19,14 @@ public class Program {
         System.out.printf("red : %x\n", red.getColor());
 
 
-        GreenStamp green = new GreenStamp(StampType.GREEN_STAMP, StampSize.STAMP_5X2);
+        Stamp green = new Stamp(StampType.GREEN_STAMP, StampSize.STAMP_5X2);
 
         System.out.printf("green : %x\n", green.getColor());
         //assert (green.getColor() == 0x8000);
         testSize(green, 500, 200);
         testPrice(green, 2300);
 
-        BlueStamp blue = new BlueStamp(StampType.BLUE_STAMP, StampSize.STAMP_7X4);
+        Stamp blue = new Stamp(StampType.BLUE_STAMP, StampSize.STAMP_7X4);
         assert (blue.getColor() == 0xFF);
         testSize(blue, 700, 400);
         testPrice(blue, 2600);
