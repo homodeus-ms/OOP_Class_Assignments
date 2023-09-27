@@ -3,7 +3,65 @@ package academy.pocu.comp2500.assignment2;
 public class Calendar extends Product {
     private static final ColorType CALENDAR_COLOR = ColorType.WHITE;
 
-    protected Calendar(int width, int height, int price) {
-        super(ProductType.CALENDAR, CALENDAR_COLOR, width, height, price);
+    private static final int WALL_CALENDAR_WIDTH = 400;
+    private static final int WALL_CALENDAR_HEIGHT = 400;
+    private static final int DESK_CALENDAR_WIDTH = 200;
+    private static final int DESK_CALENDAR_HEIGHT = 150;
+    private static final int MAGNET_CALENDAR_WIDTH = 100;
+    private static final int MAGNET_CALENDAR_HEIGHT = 200;
+
+    private static final int WALL_CALENDAR_PRICE = 1000;
+    private static final int DESK_CALENDAR_PRICE = 1000;
+    private static final int MAGNET_CALENDAR_PRICE = 1500;
+
+    private final CalendarType calendarType;
+
+    public Calendar(CalendarType type) {
+        super(ProductType.CALENDAR, CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
+        this.calendarType = type;
+    }
+
+    public CalendarType getCalendarType() {
+        return this.calendarType;
+    }
+
+    private static int getWidth(CalendarType type) {
+        switch (type) {
+            case WALL_CALENDAR:
+                return WALL_CALENDAR_WIDTH;
+            case DESK_CALENDAR:
+                return DESK_CALENDAR_WIDTH;
+            case MAGNET_CALENDAR:
+                return MAGNET_CALENDAR_WIDTH;
+            default:
+                assert (false);
+                return -1;
+        }
+    }
+    private static int getHeight(CalendarType type) {
+        switch (type) {
+            case WALL_CALENDAR:
+                return WALL_CALENDAR_HEIGHT;
+            case DESK_CALENDAR:
+                return DESK_CALENDAR_HEIGHT;
+            case MAGNET_CALENDAR:
+                return MAGNET_CALENDAR_HEIGHT;
+            default:
+                assert (false);
+                return -1;
+        }
+    }
+    private static int getPrice(CalendarType type) {
+        switch (type) {
+            case WALL_CALENDAR:
+                return WALL_CALENDAR_PRICE;
+            case DESK_CALENDAR:
+                return DESK_CALENDAR_PRICE;
+            case MAGNET_CALENDAR:
+                return MAGNET_CALENDAR_PRICE;
+            default:
+                assert (false);
+                return -1;
+        }
     }
 }

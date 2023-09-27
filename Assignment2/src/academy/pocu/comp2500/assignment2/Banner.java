@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment2;
 
 import java.util.ArrayList;
 
-public class Banner extends Product{
+public class Banner extends Product {
 
     private PrintOrientation orientation;
     private ArrayList<String> addedTexts;

@@ -5,8 +5,34 @@ public class Stamp extends Product {
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;
 
-    protected Stamp(ColorType color, StampSize size) {
-        super(ProductType.STAMP, color, getWidth(size), getHeight(size), getPrice(size));
+    private final StampType stampType;
+    private final StampSize stampSize;
+
+    public Stamp(StampType type, StampSize size) {
+        super(ProductType.STAMP, getColor(type), getWidth(size), getHeight(size), getPrice(size));
+        this.stampType = type;
+        this.stampSize = size;
+    }
+
+    public StampType getStampType() {
+        return this.stampType;
+    }
+    public StampSize getStampSize() {
+        return this.stampSize;
+    }
+
+    private static ColorType getColor(StampType type) {
+        switch (type) {
+            case RED_STAMP:
+                return ColorType.RED;
+            case GREEN_STAMP:
+                return ColorType.GREEN;
+            case BLUE_STAMP:
+                return ColorType.BLUE;
+            default:
+                assert (false);
+                return ColorType.CUSTOM;
+        }
     }
 
     private static int getWidth(StampSize size) {

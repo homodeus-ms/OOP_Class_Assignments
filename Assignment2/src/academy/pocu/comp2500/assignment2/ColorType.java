@@ -9,28 +9,28 @@ public enum ColorType {
     IVORY(255, 255, 240),
     CUSTOM(0, 0, 0);
 
-    private int R;
-    private int G;
-    private int B;
+    private int r;
+    private int g;
+    private int b;
 
     ColorType(int r, int g, int b) {
-        R = r;
-        G = g;
-        B = b;
+        this.r = r;
+        this.g = g;
+        this.b = b;
     }
     public int getR() {
-        return this.R;
+        return this.r;
     }
     public int getG() {
-        return this.G;
+        return this.g;
     }
     public int getB() {
-        return this.B;
+        return this.b;
     }
     public void setCustomColor(int r, int g, int b) {
-        CUSTOM.R = r;
-        CUSTOM.G = g;
-        CUSTOM.B = b;
+        CUSTOM.r = r;
+        CUSTOM.g = g;
+        CUSTOM.b = b;
     }
 
 }
