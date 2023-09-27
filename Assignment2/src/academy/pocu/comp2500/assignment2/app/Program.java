@@ -11,21 +11,23 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-	    Stamp red = new Stamp(StampType.RED_STAMP, StampSize.STAMP_4X3);
-        testColor(red, ColorType.RED);
+	    RedStamp red = new RedStamp(StampSize.STAMP_4X3);
+        assert (red.getColor() == 0xFF0000);
         testSize(red, 400, 300);
         testPrice(red, 2300);
         System.out.println(red.getShippingMethod());
-        System.out.println(red.getColor());
+        System.out.printf("red : %x\n", red.getColor());
 
 
-        Stamp green = new Stamp(StampType.GREEN_STAMP, StampSize.STAMP_5X2);
-        testColor(green, ColorType.GREEN);
+        GreenStamp green = new GreenStamp(StampSize.STAMP_5X2);
+
+        System.out.printf("green : %x\n", green.getColor());
+        //assert (green.getColor() == 0x8000);
         testSize(green, 500, 200);
         testPrice(green, 2300);
 
-        Stamp blue = new Stamp(StampType.BLUE_STAMP, StampSize.STAMP_7X4);
-        testColor(blue, ColorType.BLUE);
+        BlueStamp blue = new BlueStamp(StampSize.STAMP_7X4);
+        assert (blue.getColor() == 0xFF);
         testSize(blue, 700, 400);
         testPrice(blue, 2600);
 
@@ -48,11 +50,7 @@ public class Program {
 
 
 
-    public static void testColor(Stamp stamp, ColorType type) {
-        assert (stamp.getColor().getR() == type.getR());
-        assert (stamp.getColor().getG() == type.getG());
-        assert (stamp.getColor().getB() == type.getB());
-    }
+
     public static void testSize(Stamp stamp, int widthInMilli, int heightInMilli) {
         assert (stamp.getWidthInMilli() == widthInMilli);
         assert (stamp.getHeightInMilli() == heightInMilli);

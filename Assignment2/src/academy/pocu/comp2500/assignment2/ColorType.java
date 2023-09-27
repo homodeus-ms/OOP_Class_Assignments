@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment2;
 
 public enum ColorType {
     RED(255, 0, 0),
-    GREEN(0, 80, 0),
+    GREEN(0, 128, 0),
     BLUE(0, 0, 255),
     WHITE(255, 255, 255),
     GRAY(230, 230, 230),
@@ -17,6 +17,11 @@ public enum ColorType {
         this.r = r;
         this.g = g;
         this.b = b;
+    }
+    public int getColorValue() {
+        int value = 0;
+        value |= this.r << 16 | this.g << 8 | this.b;
+        return value;
     }
     public int getR() {
         return this.r;

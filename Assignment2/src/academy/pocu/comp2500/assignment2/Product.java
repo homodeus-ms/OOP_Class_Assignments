@@ -20,8 +20,8 @@ public class Product {
         return productType;
     }
 
-    public ColorType getColor() {
-        return color;
+    public int getColor() {
+        return color.getColorValue();
     }
 
     public int getWidthInMilli() {
