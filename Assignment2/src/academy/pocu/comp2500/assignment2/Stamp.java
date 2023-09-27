@@ -8,7 +8,7 @@ public class Stamp extends Product {
     private final StampType stampType;
     private final StampSize stampSize;
 
-    protected Stamp(StampType type, StampSize size) {
+    public Stamp(StampType type, StampSize size) {
         super(ProductType.STAMP, getColor(type), getWidth(size), getHeight(size), getPrice(size));
         this.stampType = type;
         this.stampSize = size;
