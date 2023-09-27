@@ -4,29 +4,25 @@ import java.util.ArrayList;
 
 public class Cart {
 
-    private static final ShippingType DEFAULT_SHIPPING_METHOD = ShippingType.SHIPPING;
-
     private ArrayList<Product> cart;
     private int itemCount;
-    private ArrayList<ShippingType> shippingMethods;
     private int totalPrice;
 
     public Cart() {
         cart = new ArrayList<>();
-        shippingMethods = new ArrayList<>();
     }
 
     public ArrayList<Product> getProducts() {
         return cart;
     }
-    public ShippingType getShippingMethod(int index) {
-        return shippingMethods.get(index);
+    public ShippingMethod getShippingMethod(int index) {
+        return cart.get(index).getShippingMethod();
     }
 
-    public void setShippingMethods(Product product, ShippingType shippingMethod) {
+    public void setShippingMethods(Product product, ShippingMethod shippingMethod) {
         for (int i = 0; i < itemCount; ++i) {
             if (cart.get(i) == product) {
-                shippingMethods.set(i, shippingMethod);
+                cart.get(i).setShippingMethod(shippingMethod);
                 break;
             }
         }
@@ -34,7 +30,6 @@ public class Cart {
 
     public void addProduct(Product product) {
         cart.add(product);
-        this.shippingMethods.add(DEFAULT_SHIPPING_METHOD);
         totalPrice += product.getPrice();
         ++itemCount;
     }
@@ -43,7 +38,6 @@ public class Cart {
 
         for (int i = 0; i < itemCount; ++i) {
             if (cart.get(i) == product) {
-                shippingMethods.remove(i);
                 cart.remove(i);
                 break;
             }

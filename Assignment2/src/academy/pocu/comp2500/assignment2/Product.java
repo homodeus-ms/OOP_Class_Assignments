@@ -6,6 +6,7 @@ public class Product {
     private final int widthInMilli;
     private final int heightInMilli;
     private final int price;
+    private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
     protected Product(ProductType type, ColorType color, int width, int height, int price) {
         this.productType = type;
@@ -33,5 +34,13 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    public ShippingMethod getShippingMethod() {
+        return this.shippingMethod;
+    }
+
+    public void setShippingMethod(ShippingMethod shippingMethod) {
+        this.shippingMethod = shippingMethod;
     }
 }

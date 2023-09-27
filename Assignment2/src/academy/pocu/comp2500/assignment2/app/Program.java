@@ -11,17 +11,19 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-	    Stamp red = new Stamp(StampType.RED_4X3);
+	    RedStamp red = new RedStamp(StampSize.STAMP_4X3);
         testColor(red, ColorType.RED);
         testSize(red, 400, 300);
         testPrice(red, 2300);
+        System.out.println(red.getShippingMethod());
 
-        Stamp green = new Stamp(StampType.GREEN_5X2);
+
+        GreenStamp green = new GreenStamp(StampSize.STAMP_5X2);
         testColor(green, ColorType.GREEN);
         testSize(green, 500, 200);
         testPrice(green, 2300);
 
-        Stamp blue = new Stamp(StampType.BLUE_7X4);
+        BlueStamp blue = new BlueStamp(StampSize.STAMP_7X4);
         testColor(blue, ColorType.BLUE);
         testSize(blue, 700, 400);
         testPrice(blue, 2600);
@@ -34,7 +36,7 @@ public class Program {
         System.out.println(cart1.getTotalPrice());
 
         cart1.removeProduct(green);
-        cart1.setShippingMethods(red, ShippingType.PICKUP);
+        cart1.setShippingMethods(red, ShippingMethod.PICKUP);
         System.out.println(cart1.getTotalPrice());
         System.out.println(cart1.getShippingMethod(0));
         System.out.println(cart1.getProducts().get(0).getColor());
