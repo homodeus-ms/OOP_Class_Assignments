@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
-    private static final ColorType CALENDAR_COLOR = ColorType.WHITE;
+    private static final RGB CALENDAR_COLOR = new RGB(0xFFFFFF);
 
     private static final int WALL_CALENDAR_WIDTH = 400;
     private static final int WALL_CALENDAR_HEIGHT = 400;
@@ -17,7 +17,7 @@ public class Calendar extends Product {
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(getProductType(type), CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
+        super(getDisplayName(type), CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
         this.calendarType = type;
     }
 
@@ -25,7 +25,21 @@ public class Calendar extends Product {
         return this.calendarType;
     }
 
-    private static ProductType getProductType(CalendarType type) {
+    private static String getDisplayName(CalendarType type) {
+        switch (type) {
+            case WALL_CALENDAR:
+                return "Wall Calendar";
+            case DESK_CALENDAR:
+                return "Desk Calendar";
+            case MAGNET_CALENDAR:
+                return "Magnet Calendar";
+            default:
+                assert (false);
+                return "";
+        }
+    }
+
+    /*private static ProductType getProductType(CalendarType type) {
         switch (type) {
             case WALL_CALENDAR:
                 return ProductType.CALENDAR_WALL;
@@ -37,7 +51,7 @@ public class Calendar extends Product {
                 assert (false);
                 return ProductType.DEFAULT;
         }
-    }
+    }*/
 
     private static int getWidth(CalendarType type) {
         switch (type) {

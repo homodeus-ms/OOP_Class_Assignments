@@ -1,37 +1,29 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Stamp extends Product {
+
     private static final int PRICE_4X3 = 2300;
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;
 
 
-    public Stamp(StampSize size, StampColor color) {
-        super(getProductType(size), getColor(color), getWidth(size), getHeight(size), getPrice(size));
 
+    public Stamp(StampSize size, RGB color) {
+        super(getStampName(size), color, getWidth(size), getHeight(size), getPrice(size));
     }
 
-    private static ProductType getProductType(StampSize size) {
-        if (size == StampSize.STAMP_4X3) {
-            return ProductType.STAMP_4X3;
-        } else if (size == StampSize.STAMP_5X2) {
-            return ProductType.STAMP_5X2;
-        } else {
-            return ProductType.STAMP_7X4;
-        }
-    }
 
-    private static ColorType getColor(StampColor color) {
-        switch (color) {
-            case RED:
-                return ColorType.RED;
-            case GREEN:
-                return ColorType.GREEN;
-            case BLUE:
-                return ColorType.BLUE;
+    private static String getStampName(StampSize size) {
+        switch (size) {
+            case STAMP_4X3:
+                return "STAMP (4 x 3)";
+            case STAMP_5X2:
+                return "STAMP (5 x 2)";
+            case STAMP_7X4:
+                return "STAMP (7 x 4)";
             default:
                 assert (false);
-                return ColorType.CUSTOM;
+                return "";
         }
     }
 
@@ -75,3 +67,6 @@ public class Stamp extends Product {
         }
     }
 }
+
+
+

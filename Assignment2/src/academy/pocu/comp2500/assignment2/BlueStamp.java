@@ -1,8 +1,11 @@
 package academy.pocu.comp2500.assignment2;
 
-public class BlueStamp extends Stamp {
-
+public class BlueStamp {
+    private Stamp stamp;
     public BlueStamp(StampSize size) {
-        super(size, StampColor.BLUE);
+        stamp = new Stamp(size, new RGB(0xFF));
+    }
+    public Stamp getStamp() {
+        return this.stamp;
     }
 }

@@ -6,7 +6,7 @@ public class ScrimBanner extends Banner {
     private static final int MEDIUM_PRICE = 5400;
     private static final int LARGE_PRICE = 6100;
 
-    public ScrimBanner(BannerSize size, ColorType color, PrintOrientation orientation) {
+    public ScrimBanner(BannerSize size, int color, PrintOrientation orientation) {
         super(BannerType.SCRIM, size, color, getPrice(size), orientation);
     }
     private static int getPrice(BannerSize size) {
