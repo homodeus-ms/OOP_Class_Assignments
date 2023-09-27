@@ -1,16 +1,14 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Product {
-    private ProductType productType;
-    private String productName;
-    private ColorType color;
-    private int colorValue;
-    private int widthInMilli;
-    private int heightInMilli;
-    private int price;
+    private final ProductType productType;
+    private final String productName;
+    private final ColorType color;
+    private final int colorValue;
+    private final int widthInMilli;
+    private final int heightInMilli;
+    private final int price;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
-
-
 
     protected Product(ProductType type, ColorType color, int width, int height, int price) {
         this.productType = type;

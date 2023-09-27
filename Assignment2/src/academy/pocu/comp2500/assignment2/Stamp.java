@@ -5,36 +5,43 @@ public class Stamp extends Product {
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;
 
-    private StampType stampType;
+    private final StampType stampType;
+    private final StampSize stampSize;
 
-
-    public Stamp(StampType type) {
-        super(getProductType(type), getColor(type.getColor()), getWidth(type.getSize()), getHeight(type.getSize()), getPrice(type.getSize()));
-        this.stampType = type;
+    public Stamp(StampType stamp, StampSize size) {
+        super(getProductType(size), getColor(stamp), getWidth(size), getHeight(size), getPrice(size));
+        this.stampType = stamp;
+        this.stampSize = size;
     }
 
     public StampType getStampType() {
         return this.stampType;
     }
+    public StampSize getStampSize() {
+        return this.stampSize;
+    }
 
-
-    private static ProductType getProductType(StampType type) {
-        if (type.getSize() == StampSize.STAMP_4X3) {
-            return ProductType.STAMP_4X3;
-        } else if (type.getSize() == StampSize.STAMP_5X2) {
-            return ProductType.STAMP_5X2;
-        } else {
-            return ProductType.STAMP_7X4;
+    private static ProductType getProductType(StampSize size) {
+        switch (size) {
+            case STAMP_4X3:
+                return ProductType.STAMP_4X3;
+            case STAMP_5X2:
+                return ProductType.STAMP_5X2;
+            case STAMP_7X4:
+                return ProductType.STAMP_7X4;
+            default:
+                assert (false);
+                return ProductType.DEFAULT;
         }
     }
 
-    private static ColorType getColor(StampColor color) {
-        switch (color) {
-            case RED:
+    private static ColorType getColor(StampType stamp) {
+        switch (stamp) {
+            case RED_STAMP:
                 return ColorType.RED;
-            case GREEN:
+            case GREEN_STAMP:
                 return ColorType.GREEN;
-            case BLUE:
+            case BLUE_STAMP:
                 return ColorType.BLUE;
             default:
                 assert (false);
