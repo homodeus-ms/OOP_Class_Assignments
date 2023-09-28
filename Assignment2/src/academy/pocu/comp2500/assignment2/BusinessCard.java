@@ -16,15 +16,15 @@ public class BusinessCard extends Product {
     private final PrintOrientation printOrientation;
     private final CardPaperType paperType;
 
-    private ArrayList<String> addedTexts;
-    private ArrayList<String> addedImagePaths;
+    private final ArrayList<TextAperture> textApertures;
+    private final ArrayList<ImageAperture> imageApertures;
 
     public BusinessCard(BusinessCardType cardType, RGB color, PrintOrientation orientation, String text) {
         super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType), text);
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
-        this.addedTexts = new ArrayList<>();
-        this.addedImagePaths = new ArrayList<>();
+        this.textApertures = new ArrayList<>();
+        this.imageApertures = new ArrayList<>();
     }
 
     public PrintOrientation getPrintDirection() {
@@ -34,17 +34,32 @@ public class BusinessCard extends Product {
     public CardPaperType getPaperType() {
         return paperType;
     }
-    public void addText(String text) {
-        this.addedTexts.add(text);
+
+    public void addText(TextAperture aperture) {
+        if (aperture.getText() == null) {
+            return;
+        }
+        if (aperture.isValid(this)) {
+            textApertures.add(aperture);
+            price += 5;
+        }
     }
-    public void addImagePath(String imagePath) {
-        this.addedImagePaths.add(imagePath);
+
+    public void addImagePath(ImageAperture aperture) {
+        if (aperture.getImagePath() == null) {
+            return;
+        }
+        if (aperture.isValid(this)) {
+            imageApertures.add(aperture);
+            price += 5;
+        }
     }
-    public ArrayList<String> getAddedTexts() {
-        return this.addedTexts;
+
+    public ArrayList<TextAperture> getAddedTexts() {
+        return this.textApertures;
     }
-    public ArrayList<String> getAddedImagePaths() {
-        return this.addedImagePaths;
+    public ArrayList<ImageAperture> getAddedImagePaths() {
+        return this.imageApertures;
     }
 
     private static ProductType getProductType(BusinessCardType type) {

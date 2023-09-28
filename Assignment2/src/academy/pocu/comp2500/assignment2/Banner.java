@@ -13,39 +13,48 @@ public class Banner extends Product {
     private static final int OTHER_MEDIUM_PRICE = 5400;
     private static final int OTHER_LARGE_PRICE = 6100;
 
-    private PrintOrientation orientation;
-    private ArrayList<TextAperture> textApertures;
-    private ArrayList<String> addedImagePaths;
+    private final PrintOrientation orientation;
+    private final ArrayList<TextAperture> textApertures;
+    private final ArrayList<ImageAperture> imageApertures;
 
 
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
         super(getProductType(type), color, getWidth(size), getHeight(size), getPrice(type, size));
         this.orientation = orientation;
         this.textApertures = new ArrayList<>();
-        this.addedImagePaths = new ArrayList<>();
+        this.imageApertures = new ArrayList<>();
     }
 
     public PrintOrientation getOrientation() {
         return orientation;
     }
 
-    public ArrayList<TextAperture> getAddedTexts() {
+    public ArrayList<TextAperture> getTextApertures() {
         return textApertures;
     }
 
     public void addText(TextAperture aperture) {
-        if (isApertureValid(aperture)) {
+        if (aperture.getText() == null) {
+            return;
+        }
+        if (aperture.isValid(this)) {
             textApertures.add(aperture);
             price += 5;
         }
     }
 
-    public ArrayList<String> getAddedImagePaths() {
-        return addedImagePaths;
+    public ArrayList<ImageAperture> getImageApertures() {
+        return imageApertures;
     }
 
-    public void addImagePath(String imagePath) {
-        this.addedImagePaths.add(imagePath);
+    public void addImagePath(ImageAperture aperture) {
+        if (aperture.getImagePath() == null) {
+            return;
+        }
+        if (aperture.isValid(this)) {
+            imageApertures.add(aperture);
+            price += 5;
+        }
     }
 
     private static ProductType getProductType(BannerType type) {
@@ -144,16 +153,22 @@ public class Banner extends Product {
         return height;
     }
 
-    private boolean isApertureValid(TextAperture aperture) {
+    /*private boolean isApertureValid(Aperture aperture) {
+
+        assert (aperture.getApertureWidth() > 0 && aperture.getApertureHeight() > 0);
+
         int bannerWidth = super.getWidthInMilli();
         int bannerHeight = super.getHeightInMilli();
-        int landscapeSize = aperture.getX_pos() + aperture.getApertureWidth();
-        int horizontalSize = aperture.getY_pos() + aperture.getApertureHeight();
+        int landscapeSize = aperture.getX() + aperture.getApertureWidth();
+        int horizontalSize = aperture.getY() + aperture.getApertureHeight();
 
-        if (landscapeSize > 0 && horizontalSize > 0 &&
+        if (aperture.getX() > 0 && aperture.getX() < bannerWidth &&
+                aperture.getY() > 0 && aperture.getY() < bannerHeight) {
+            return true;
+        } else if (landscapeSize > 0 && horizontalSize > 0 &&
                 landscapeSize <= bannerWidth && horizontalSize <= bannerHeight) {
             return true;
         }
         return false;
-    }
+    }*/
 }
