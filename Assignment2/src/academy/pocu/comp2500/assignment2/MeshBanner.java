@@ -7,7 +7,7 @@ public class MeshBanner extends Banner {
     private static final int LARGE_PRICE = 6100;
 
 
-    public MeshBanner(BannerSize size, int color, PrintOrientation orientation) {
+    public MeshBanner(BannerSize size, RGB color, PrintOrientation orientation) {
         super(BannerType.MESH, size, color, getPrice(size), orientation);
     }
     private static int getPrice(BannerSize size) {

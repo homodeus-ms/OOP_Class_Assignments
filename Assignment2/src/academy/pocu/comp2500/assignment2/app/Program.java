@@ -13,7 +13,7 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        Product p1 = new Stamp(StampSize.STAMP_4X3, StampColor.RED, "This is RedStamp");
+        /*Product p1 = new Stamp(StampSize.STAMP_4X3, StampColor.RED, "This is RedStamp");
 
 
         Product p2 = new Stamp(StampSize.STAMP_7X4, StampColor.BLUE, "This is BlueStamp");
@@ -26,7 +26,9 @@ public class Program {
                 p2.getWidthInMilli(), p2.getHeightInMilli(), p2.getPrice(), p2.getText());
 
         System.out.printf("p3\n%s, %x, %d, %d, %d\n", p3.getProductType(), p3.getColor(),
-                p3.getWidthInMilli(), p3.getHeightInMilli(), p3.getPrice());
+                p3.getWidthInMilli(), p3.getHeightInMilli(), p3.getPrice());*/
+
+
 
         System.out.println("No Assert!!!");
     }

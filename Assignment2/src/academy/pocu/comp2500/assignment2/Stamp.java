@@ -50,17 +50,17 @@ public class Stamp extends Product {
         return this.stampSize;
     }
 
-    private static int getColor(StampColor color) {
+    private static RGB getColor(StampColor color) {
         switch (color) {
             case RED:
-                return 0xFF0000;
+                return new RGB(0xFF0000);
             case GREEN:
-                return 0x8000;
+                return new RGB(0x8000);
             case BLUE:
-                return 0xFF;
+                return new RGB(0xFF);
             default:
                 assert (false);
-                return -1;
+                return new RGB(-1);
         }
     }
 

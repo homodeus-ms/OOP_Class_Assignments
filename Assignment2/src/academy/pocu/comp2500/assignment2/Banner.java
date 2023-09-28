@@ -10,7 +10,7 @@ public class Banner extends Product {
     
 
 
-    public Banner(BannerType type, BannerSize size, int color, int price, PrintOrientation orientation) {
+    public Banner(BannerType type, BannerSize size, RGB color, int price, PrintOrientation orientation) {
         super(getProductType(type), color, getWidth(size), getHeight(size), price);
         this.orientation = orientation;
         this.addedTexts = new ArrayList<>();

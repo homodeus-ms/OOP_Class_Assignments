@@ -18,7 +18,7 @@ public class BusinessCard extends Product {
     private ArrayList<String> addedTexts;
     private ArrayList<String> addedImagePaths;
 
-    public BusinessCard(BusinessCardType cardType, int color, PrintOrientation orientation) {
+    public BusinessCard(BusinessCardType cardType, RGB color, PrintOrientation orientation) {
         super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType));
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
