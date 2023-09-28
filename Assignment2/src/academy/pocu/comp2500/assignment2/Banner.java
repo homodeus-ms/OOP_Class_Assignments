@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public class Banner extends Product {
 
-    private PrintOrientation orientation;
-    private ArrayList<String> addedTexts;
-    private ArrayList<String> addedImagePaths;
-
     private static final int GLOSS_TINY_PRICE = 5000;
     private static final int GLOSS_SMALL_PRICE = 5200;
     private static final int GLOSS_MEDIUM_PRICE = 5300;
@@ -17,11 +13,15 @@ public class Banner extends Product {
     private static final int OTHER_MEDIUM_PRICE = 5400;
     private static final int OTHER_LARGE_PRICE = 6100;
 
+    private PrintOrientation orientation;
+    private ArrayList<TextAperture> textApertures;
+    private ArrayList<String> addedImagePaths;
+
 
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
         super(getProductType(type), color, getWidth(size), getHeight(size), getPrice(type, size));
         this.orientation = orientation;
-        this.addedTexts = new ArrayList<>();
+        this.textApertures = new ArrayList<>();
         this.addedImagePaths = new ArrayList<>();
     }
 
@@ -29,12 +29,15 @@ public class Banner extends Product {
         return orientation;
     }
 
-    public ArrayList<String> getAddedTexts() {
-        return addedTexts;
+    public ArrayList<TextAperture> getAddedTexts() {
+        return textApertures;
     }
 
-    public void addText(String text) {
-        this.addedTexts.add(text);
+    public void addText(TextAperture aperture) {
+        if (isApertureValid(aperture)) {
+            textApertures.add(aperture);
+            price += 5;
+        }
     }
 
     public ArrayList<String> getAddedImagePaths() {
@@ -139,5 +142,18 @@ public class Banner extends Product {
                 break;
         }
         return height;
+    }
+
+    private boolean isApertureValid(TextAperture aperture) {
+        int bannerWidth = super.getWidthInMilli();
+        int bannerHeight = super.getHeightInMilli();
+        int landscapeSize = aperture.getX_pos() + aperture.getApertureWidth();
+        int horizontalSize = aperture.getY_pos() + aperture.getApertureHeight();
+
+        if (landscapeSize > 0 && horizontalSize > 0 &&
+                landscapeSize <= bannerWidth && horizontalSize <= bannerHeight) {
+            return true;
+        }
+        return false;
     }
 }

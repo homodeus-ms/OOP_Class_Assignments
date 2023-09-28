@@ -7,7 +7,7 @@ public class Product {
     private RGB color;
     private int widthInMilli;
     private int heightInMilli;
-    private int price;
+    protected int price;
     protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
