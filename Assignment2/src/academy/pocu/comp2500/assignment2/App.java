@@ -10,8 +10,8 @@ public class App {
         registry.registerWallCalendarCreator("Calendar");
         registry.registerMagnetCalendarCreator("Calendar");
         registry.registerDeskCalendarCreator("Calendar");
-        registry.registerLandscapeBannerCreator("OrientedBannerMaker");
-        registry.registerPortraitBannerCreator("OrientedBannerMaker");
+        registry.registerLandscapeBannerCreator("Banner");
+        registry.registerPortraitBannerCreator("Banner");
         registry.registerGlossBannerCreator("GlossBanner");
         registry.registerScrimBannerCreator("ScrimBanner");
         registry.registerMeshBannerCreator("MeshBanner");

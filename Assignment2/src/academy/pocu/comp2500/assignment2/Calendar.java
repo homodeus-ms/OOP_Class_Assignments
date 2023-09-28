@@ -14,16 +14,16 @@ public class Calendar extends Product {
     private static final int DESK_CALENDAR_PRICE = 1000;
     private static final int MAGNET_CALENDAR_PRICE = 1500;
 
-    //private final CalendarType calendarType;
+    private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
         super(getProductType(type), new RGB(CALENDAR_COLOR), getWidth(type), getHeight(type), getPrice(type));
-
+        this.calendarType = type;
     }
 
-    /*public CalendarType getCalendarType() {
+    public CalendarType getCalendarType() {
         return this.calendarType;
-    }*/
+    }
 
     private static String getDisplayName(CalendarType type) {
         switch (type) {

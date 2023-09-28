@@ -28,9 +28,10 @@ public class Program {
         System.out.printf("p3\n%s, %x, %d, %d, %d\n", p3.getProductType(), p3.getColor(),
                 p3.getWidthInMilli(), p3.getHeightInMilli(), p3.getPrice());*/
 
-        Product p1 = new Stamp(StampSize.STAMP_4X3, StampColor.RED, "p1");
-        Product p2 = new Stamp(StampSize.STAMP_7X4, StampColor.RED, "p2");
-        Product p3 = new Stamp(StampSize.STAMP_5X2, StampColor.BLUE, "p3");
+
+        Calendar c1 = new Calendar(CalendarType.DESK_CALENDAR);
+        Product p1 = new Calendar(CalendarType.DESK_CALENDAR);
+
 
 
 
