@@ -28,10 +28,10 @@ public class Program {
         System.out.printf("p3\n%s, %x, %d, %d, %d\n", p3.getProductType(), p3.getColor(),
                 p3.getWidthInMilli(), p3.getHeightInMilli(), p3.getPrice());*/
 
-        Product c1 = new Calendar(CalendarType.WALL_CALENDAR);
-        Product c2 = new Calendar(CalendarType.DESK_CALENDAR);
-        System.out.println(c1.getColor().equals(c2.getColor()));
-        System.out.println(c1.getColor().equals(new RGB(0xFFFFFF)));
+        Product p1 = new Stamp(StampSize.STAMP_4X3, StampColor.RED, "p1");
+        Product p2 = new Stamp(StampSize.STAMP_7X4, StampColor.RED, "p2");
+        Product p3 = new Stamp(StampSize.STAMP_5X2, StampColor.BLUE, "p3");
+
 
 
         System.out.println("No Assert!!!");

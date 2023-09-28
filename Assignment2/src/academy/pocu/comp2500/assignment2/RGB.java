@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class RGB {
+
     private int r;
     private int g;
     private int b;
