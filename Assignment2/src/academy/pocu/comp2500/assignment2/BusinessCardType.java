@@ -1,11 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public enum BusinessCardType {
-    LINEN_SINGLE,
-    LINEN_DOUBLE,
-    LAID_SINGLE,
-    LAID_DOUBLE,
-    SMOOTH_SINGLE,
-    SMOOTH_DOUBLE,
-
+    LINEN_BUSINESS_CARD,
+    LAID_BUSINESS_CARD,
+    SMOOTH_BUSINESS_CARD
 }

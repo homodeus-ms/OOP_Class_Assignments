@@ -13,18 +13,24 @@ public class BusinessCard extends Product {
     private static final int WIDTH_IN_MILLI = 90;
     private static final int HEIGHT_IN_MILLI = 50;
 
+    private final BusinessCardSides sides;
     private final PrintOrientation printOrientation;
     private final CardPaperType paperType;
 
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
-    public BusinessCard(BusinessCardType cardType, RGB color, PrintOrientation orientation, String text) {
-        super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType), text);
+    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColorType color,
+                        PrintOrientation orientation, String text) {
+        super(getProductType(cardType), getColor(color), WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides), text);
+        this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
+    }
+    public BusinessCardSides getSides() {
+        return this.sides;
     }
 
     public PrintOrientation getPrintDirection() {
@@ -63,38 +69,46 @@ public class BusinessCard extends Product {
     }
 
     private static ProductType getProductType(BusinessCardType type) {
-        if (type == BusinessCardType.LINEN_SINGLE || type == BusinessCardType.LINEN_DOUBLE) {
+        if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
             return ProductType.BUSINESS_CARD_LINEN;
-        } else if (type == BusinessCardType.LAID_SINGLE || type == BusinessCardType.LAID_DOUBLE) {
+        } else if (type == BusinessCardType.LAID_BUSINESS_CARD) {
             return ProductType.BUSINESS_CARD_LAID;
         } else {
             return ProductType.BUSINESS_CARD_SMOOTH;
         }
     }
 
-    private static int getPrice(BusinessCardType cardType) {
+    private static RGB getColor(BusinessCardColorType color) {
+        switch(color) {
+            case GRAY:
+                return RGB.GRAY;
+            case IVORY:
+                return RGB.IVORY;
+            case WHITE:
+                return RGB.WHITE;
+            default:
+                assert (false);
+                return RGB.CUSTOM;
+        }
+    }
+
+    private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
         switch (cardType) {
-            case LINEN_SINGLE:
-                return LINEN_SINGLE_PRICE;
-            case LINEN_DOUBLE:
-                return LINEN_DOUBLE_PRICE;
-            case LAID_SINGLE:
-                return LAID_SINGLE_PRICE;
-            case LAID_DOUBLE:
-                return LAID_DOUBLE_PRICE;
-            case SMOOTH_SINGLE:
-                return SMOOTH_SINGLE_PRICE;
-            case SMOOTH_DOUBLE:
-                return SMOOTH_DOUBLE_PRICE;
+            case LINEN_BUSINESS_CARD:
+                return sides == BusinessCardSides.SINGLE_SIDED_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
+            case LAID_BUSINESS_CARD:
+                return sides == BusinessCardSides.SINGLE_SIDED_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+            case SMOOTH_BUSINESS_CARD:
+                return sides == BusinessCardSides.SINGLE_SIDED_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
             default:
                 assert (false);
                 return -1;
         }
     }
     private static CardPaperType getPaperType(BusinessCardType type) {
-        if (type == BusinessCardType.LINEN_SINGLE || type == BusinessCardType.LINEN_DOUBLE) {
+        if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
             return CardPaperType.LINEN;
-        } else if (type == BusinessCardType.LAID_SINGLE || type == BusinessCardType.LAID_DOUBLE) {
+        } else if (type == BusinessCardType.LAID_BUSINESS_CARD) {
             return CardPaperType.LAID;
         } else {
             return CardPaperType.SMOOTH;
