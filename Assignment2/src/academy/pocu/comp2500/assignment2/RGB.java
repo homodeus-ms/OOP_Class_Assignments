@@ -34,4 +34,8 @@ public class RGB {
     public int getColorValue() {
         return color;
     }
+
+    public boolean equals(RGB color) {
+        return this.getColorValue() == color.getColorValue();
+    }
 }

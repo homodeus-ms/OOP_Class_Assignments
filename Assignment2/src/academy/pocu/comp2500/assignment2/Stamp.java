@@ -6,15 +6,14 @@ public class Stamp extends Product {
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;
 
-    private final StampColor stampColor;
+
     private final StampSize stampSize;
 
     public Stamp(StampSize size, StampColor color, String text) {
         super(getProductType(size), getColor(color), getWidth(size), getHeight(size), getPrice(size), text);
-        stampColor = color;
+
         stampSize = size;
     }
-
 
     private static ProductType getProductType(StampSize size) {
         switch (size) {
@@ -43,9 +42,7 @@ public class Stamp extends Product {
                 return "";
         }
     }*/
-    public StampColor getStampColor() {
-        return this.stampColor;
-    }
+
     public StampSize getStampSize() {
         return this.stampSize;
     }
