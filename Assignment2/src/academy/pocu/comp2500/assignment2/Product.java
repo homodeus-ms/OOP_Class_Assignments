@@ -2,24 +2,27 @@ package academy.pocu.comp2500.assignment2;
 
 public class Product {
 
-    private String displayName;
+    private ProductType productType;
+    //private String displayName;
     private RGB color;
     private int widthInMilli;
     private int heightInMilli;
     private int price;
+    protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
-    protected Product(String displayName, RGB Color, int width, int height, int price) {
-        this.displayName = displayName;
+    protected Product(ProductType type, RGB color, int width, int height, int price) {
+        this.productType = type;
         this.color = color;
         this.widthInMilli = width;
         this.heightInMilli = height;
         this.price = price;
     }
 
-    public String getProductName() {
-        return this.displayName;
+    public ProductType getProductType() {
+        return this.productType;
     }
+
 
     public RGB getColor() {
         return this.color;
@@ -38,6 +41,12 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+
+
+    public String getText() {
+        return this.text;
     }
 
     public ShippingMethod getShippingMethod() {
