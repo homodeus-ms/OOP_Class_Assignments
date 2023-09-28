@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
-    private static final RGB CALENDAR_COLOR = new RGB(0xFFFFFF);
+    private static final int CALENDAR_COLOR = 0xFFFFFF;
 
     private static final int WALL_CALENDAR_WIDTH = 400;
     private static final int WALL_CALENDAR_HEIGHT = 400;
