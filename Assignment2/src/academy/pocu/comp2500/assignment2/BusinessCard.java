@@ -21,13 +21,14 @@ public class BusinessCard extends Product {
     private final ArrayList<ImageAperture> imageApertures;
 
     public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColorType color,
-                        PrintOrientation orientation, String text) {
-        super(getProductType(cardType), getColor(color), WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides), text);
+                        PrintOrientation orientation, TextAperture textAperture) {
+        super(getProductType(cardType), getColor(color), WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides));
         this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
+        textApertures.add(textAperture);
     }
     public BusinessCardSides getSides() {
         return this.sides;

@@ -14,7 +14,7 @@ public class Program {
         registry.validate();
 
         Product p1 = new BusinessCard(BusinessCardType.LINEN_BUSINESS_CARD, BusinessCardSides.DOUBLE_SIDED_CARD,
-                BusinessCardColorType.GRAY, PrintOrientation.LANDSCAPE, "Wegui");
+                BusinessCardColorType.GRAY, PrintOrientation.LANDSCAPE, new TextAperture(0, 0, 1, 1, "wegui"));
 
         System.out.printf("p1: %s, %s, %s, %s, %s\n", p1.getProductType(), p1.getColor(),
                 ((BusinessCard) p1).getSides(), ((BusinessCard) p1).getPrintDirection(), p1.getText());
@@ -23,8 +23,6 @@ public class Program {
 
         System.out.println("No Assert!!!");
     }
-
-
 
 
 
