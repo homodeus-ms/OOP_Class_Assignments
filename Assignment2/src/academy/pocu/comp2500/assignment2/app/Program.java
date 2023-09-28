@@ -29,8 +29,9 @@ public class Program {
                 p3.getWidthInMilli(), p3.getHeightInMilli(), p3.getPrice());*/
 
 
-        Calendar c1 = new Calendar(CalendarType.DESK_CALENDAR);
-        Product p1 = new Calendar(CalendarType.DESK_CALENDAR);
+        RGB color = RGB.CUSTOM.makeCustom(10, 20, 30);
+        Product p1 = new GlossBanner(BannerSize.LARGE, color, PrintOrientation.LANDSCAPE);
+        System.out.println(p1.getColor());
 
 
 

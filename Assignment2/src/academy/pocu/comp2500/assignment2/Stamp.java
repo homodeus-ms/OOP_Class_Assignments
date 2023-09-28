@@ -55,14 +55,14 @@ public class Stamp extends Product {
     private static RGB getColor(StampColor color) {
         switch (color) {
             case RED:
-                return new RGB(0xFF0000);
+                return RGB.RED;
             case GREEN:
-                return new RGB(0x8000);
+                return RGB.GREEN;
             case BLUE:
-                return new RGB(0xFF);
+                return RGB.BLUE;
             default:
                 assert (false);
-                return new RGB(-1);
+                return RGB.CUSTOM;
         }
     }
 

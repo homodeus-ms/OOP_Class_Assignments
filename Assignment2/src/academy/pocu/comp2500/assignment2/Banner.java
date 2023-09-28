@@ -7,11 +7,19 @@ public class Banner extends Product {
     private PrintOrientation orientation;
     private ArrayList<String> addedTexts;
     private ArrayList<String> addedImagePaths;
-    
+
+    private static final int GLOSS_TINY_PRICE = 5000;
+    private static final int GLOSS_SMALL_PRICE = 5200;
+    private static final int GLOSS_MEDIUM_PRICE = 5300;
+    private static final int GLOSS_LARGE_PRICE = 6000;
+    private static final int OTHER_TINY_PRICE = 5100;
+    private static final int OTHER_SMALL_PRICE = 5300;
+    private static final int OTHER_MEDIUM_PRICE = 5400;
+    private static final int OTHER_LARGE_PRICE = 6100;
 
 
-    public Banner(BannerType type, BannerSize size, RGB color, int price, PrintOrientation orientation) {
-        super(getProductType(type), color, getWidth(size), getHeight(size), price);
+    public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
+        super(getProductType(type), color, getWidth(size), getHeight(size), getPrice(type, size));
         this.orientation = orientation;
         this.addedTexts = new ArrayList<>();
         this.addedImagePaths = new ArrayList<>();
@@ -48,6 +56,44 @@ public class Banner extends Product {
             default:
                 assert (false);
                 return ProductType.DEFAULT;
+        }
+    }
+
+    private static int getPrice(BannerType type, BannerSize size) {
+        switch (type) {
+            case GLOSS:
+                switch (size) {
+                    case TINY:
+                        return GLOSS_TINY_PRICE;
+                    case SMALL:
+                        return GLOSS_SMALL_PRICE;
+                    case MEDIUM:
+                        return GLOSS_MEDIUM_PRICE;
+                    case LARGE:
+                        return GLOSS_LARGE_PRICE;
+                    default:
+                        assert (false);
+                        return -1;
+                }
+            case SCRIM:
+                // intentional fall through
+            case MESH:
+                switch (size) {
+                    case TINY:
+                        return OTHER_TINY_PRICE;
+                    case SMALL:
+                        return OTHER_SMALL_PRICE;
+                    case MEDIUM:
+                        return OTHER_MEDIUM_PRICE;
+                    case LARGE:
+                        return OTHER_LARGE_PRICE;
+                    default:
+                        assert (false);
+                        return -1;
+                }
+            default:
+                assert (false);
+                return -1;
         }
     }
 

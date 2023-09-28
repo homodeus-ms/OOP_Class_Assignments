@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public enum StampColor {
-    RED(new RGB(0xFF0000)),
-    GREEN(new RGB(0x8000)),
-    BLUE(new RGB(0xFF));
+    RED(RGB.RED),
+    GREEN(RGB.GREEN),
+    BLUE(RGB.BLUE);
 
     private final RGB color;
 
