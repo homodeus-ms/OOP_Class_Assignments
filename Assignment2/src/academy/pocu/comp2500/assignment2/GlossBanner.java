@@ -6,7 +6,6 @@ public class GlossBanner extends Banner {
     private static final int MEDIUM_PRICE = 5300;
     private static final int LARGE_PRICE = 6000;
 
-
     public GlossBanner(BannerSize size, int color, PrintOrientation orientation) {
         super(BannerType.GLOSS, size, color, getPrice(size), orientation);
     }

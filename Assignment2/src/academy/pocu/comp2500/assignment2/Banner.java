@@ -7,6 +7,8 @@ public class Banner extends Product {
     private PrintOrientation orientation;
     private ArrayList<String> addedTexts;
     private ArrayList<String> addedImagePaths;
+    
+
 
     public Banner(BannerType type, BannerSize size, int color, int price, PrintOrientation orientation) {
         super(getProductType(type), color, getWidth(size), getHeight(size), price);

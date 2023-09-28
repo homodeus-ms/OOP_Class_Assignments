@@ -12,7 +12,7 @@ public class Product {
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
     protected Product(ProductType type, int color, int width, int height, int price) {
-        new Product(type, color, width, height, price, "");
+        this(type, color, width, height, price, "");
     }
     protected Product(ProductType type, int color, int width, int height, int price, String text) {
         this.productType = type;
