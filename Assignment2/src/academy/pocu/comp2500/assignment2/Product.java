@@ -2,20 +2,20 @@ package academy.pocu.comp2500.assignment2;
 
 public class Product {
 
-    private ProductType productType;
+    protected ProductType productType;
     //private String displayName;
-    private RGB color;
-    private int widthInMilli;
-    private int heightInMilli;
+    protected RGB color;
+    protected int widthInMilli;
+    protected int heightInMilli;
 
     protected int price;
     protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
-    protected Product(ProductType type, RGB color, int width, int height, int price) {
+    public Product(ProductType type, RGB color, int width, int height, int price) {
         this(type, color, width, height, price, "");
     }
-    protected Product(ProductType type, RGB color, int width, int height, int price, String text) {
+    public Product(ProductType type, RGB color, int width, int height, int price, String text) {
         this.productType = type;
         this.color = color;
         this.widthInMilli = width;

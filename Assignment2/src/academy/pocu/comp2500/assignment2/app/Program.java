@@ -7,13 +7,18 @@ import java.sql.SQLOutput;
 
 public class Program {
 
+
+
+
     public static void main(String[] args) {
 
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();
 
-        Product p1 = new Stamp(StampSize.STAMP_4X3, RGB.RED, "Stamp");
+        StampColor c1 = StampColor.RED;
+
+
 
 
         System.out.println("No Assert!!!");
