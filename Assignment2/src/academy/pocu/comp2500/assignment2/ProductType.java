@@ -16,10 +16,10 @@ public enum ProductType {
     DEFAULT("EMPTY");
 
 
-    private String displayName;
+    private final String displayName;
 
     ProductType(String name) {
-
+        this.displayName = name;
     }
     public String getName() {
         return this.displayName;

@@ -4,25 +4,31 @@ public class Product {
 
     protected ProductType productType;
     //private String displayName;
-    protected RGB color;
-    protected int widthInMilli;
-    protected int heightInMilli;
+    private final RGB color;
+    private final int widthInMilli;
+    private final int heightInMilli;
 
     protected int price;
-    protected String text;
+    //protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
-    public Product(ProductType type, RGB color, int width, int height, int price) {
-        this(type, color, width, height, price, "");
+    protected Product(ProductType type, RGB color, int width, int height, int price) {
+        //this(type, color, width, height, price, "");
+        this.productType = type;
+        this.color = color;
+        this.widthInMilli = width;
+        this.heightInMilli = height;
+        this.price = price;
+        //this.text = text;
     }
-    public Product(ProductType type, RGB color, int width, int height, int price, String text) {
+    /*protected Product(ProductType type, RGB color, int width, int height, int price, String text) {
         this.productType = type;
         this.color = color;
         this.widthInMilli = width;
         this.heightInMilli = height;
         this.price = price;
         this.text = text;
-    }
+    }*/
 
     public ProductType getProductType() {
         return this.productType;
@@ -34,6 +40,9 @@ public class Product {
 
     public RGB getColor() {
         return this.color;
+    }
+    public int getColorValue() {
+        return this.color.getColorValue();
     }
 
 
@@ -51,9 +60,9 @@ public class Product {
 
 
 
-    public String getText() {
+    /*public String getText() {
         return this.text;
-    }
+    }*/
 
     public ShippingMethod getShippingMethod() {
         return this.shippingMethod;

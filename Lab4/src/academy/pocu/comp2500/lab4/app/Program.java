@@ -3,67 +3,118 @@ package academy.pocu.comp2500.lab4.app;
 import academy.pocu.comp2500.lab4.EvictionPolicy;
 import academy.pocu.comp2500.lab4.MemoryCache;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Program {
 
     public static void main(String[] args) {
-        MemoryCache.clear();
-        MemoryCache.setMaxInstanceCount(5); // 여기 삭제하고도 잘 작동하는지??
+        {
+            /*
+             * COMP2500 202005 Lab4 시간복잡도 테스트 케이스(seolbeen)
+             *
+             * maxN: 총 반복 횟수
+             * count: setMaxInstanceCount/setMaxEntryCount에서 사용하는 매개 변수
+             * step: step 만큼의 시간 측정
+             */
+            int maxN = 100000;
+            int count = 70000;
+            int step = 10000;
 
-        MemoryCache memCacheA = MemoryCache.getInstance("A");
-        MemoryCache memCacheB = MemoryCache.getInstance("B");
-        MemoryCache memCacheC = MemoryCache.getInstance("C");
-        MemoryCache memCacheD = MemoryCache.getInstance("D");
-        MemoryCache memCacheE = MemoryCache.getInstance("E");
+            System.out.printf("===================================\n");
+            System.out.printf("Time complexity test(MAX N: %d)\n", maxN);
+            System.out.printf("===================================\n");
+            ArrayList<String> strings = new ArrayList<>(maxN);
+            for (int i = 0; i < maxN; i++) {
+                strings.add(Integer.toString(i));
+            }
 
+            // initialization for instance test
+            MemoryCache.clear();
+            MemoryCache.setMaxInstanceCount(count);
 
-        assert memCacheA != null;
-        assert memCacheB != null;
-        assert memCacheC != null;
-        assert memCacheD != null;
-        assert memCacheE != null;
+            // test getInstance()
+            System.out.printf("\ngetInstance() test\n");
+            for (int n = 0; n < maxN; n += step) {
+                System.out.printf("%6d ~ %6d: ", n, n + step - 1);
 
-        assert memCacheA == MemoryCache.getInstance("A");
-        assert memCacheB == MemoryCache.getInstance("B");
-        assert memCacheC == MemoryCache.getInstance("C");
-        assert memCacheD == MemoryCache.getInstance("D");
-        assert memCacheE == MemoryCache.getInstance("E");
+                long start = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    MemoryCache.getInstance(strings.get(i));
+                }
+                long end = System.currentTimeMillis();
 
+                System.out.printf("%dms\n", end - start);
+            }
 
-        memCacheA.addEntry("test", "test");
-        assert memCacheA.getEntryOrNull("test").equals("test");
-        memCacheA.addEntry("test", "test2");
-        assert memCacheA.getEntryOrNull("test").equals("test2");
+            // initialization for entry test
+            MemoryCache.clear();
+            MemoryCache.setMaxInstanceCount(3);
 
-        memCacheB.addEntry("test", "test");
-        assert memCacheB.getEntryOrNull("test").equals("test");
+            MemoryCache memCacheFifo = MemoryCache.getInstance("FIFO");
+            MemoryCache memCacheFilo = MemoryCache.getInstance("FILO");
+            MemoryCache memCacheLru = MemoryCache.getInstance("LRU");
 
-        MemoryCache.setMaxInstanceCount(3);
+            memCacheFifo.setEvictionPolicy(EvictionPolicy.FIRST_IN_FIRST_OUT);
+            memCacheFilo.setEvictionPolicy(EvictionPolicy.LAST_IN_FIRST_OUT);
+            memCacheLru.setEvictionPolicy(EvictionPolicy.LEAST_RECENTLY_USED);
 
-        // 구현방식에 따라 testSwitch가 true일 때 통과할 수도 있고 false일 때 통과할 수 도 있음.
-        boolean testSwitch = true;
-        if (testSwitch) {
-            assert memCacheC == MemoryCache.getInstance("C");
-            assert memCacheD == MemoryCache.getInstance("D");
-            assert memCacheE == MemoryCache.getInstance("E");
-            assert memCacheA != MemoryCache.getInstance("A");
-            assert memCacheB != MemoryCache.getInstance("B");
-        } else {
-            assert memCacheC == MemoryCache.getInstance("A");
-            assert memCacheD == MemoryCache.getInstance("B");
-            assert memCacheE == MemoryCache.getInstance("E");
-            assert memCacheA != MemoryCache.getInstance("C");
-            assert memCacheB != MemoryCache.getInstance("D");
+            memCacheFifo.setMaxEntryCount(count);
+            memCacheFilo.setMaxEntryCount(count);
+            memCacheLru.setMaxEntryCount(count);
+
+            // test addEntry()
+            System.out.printf("\naddEntry() test [FIFO / FILO / LRU]\n");
+            for (int n = 0; n < maxN; n += step) {
+                System.out.printf("%6d ~ %6d: ", n, n + step - 1);
+
+                long startFifo = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheFifo.addEntry(strings.get(i), strings.get(i));
+                }
+                long endFifo = System.currentTimeMillis();
+
+                long startFilo = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheFilo.addEntry(strings.get(i), strings.get(i));
+                }
+                long endFilo = System.currentTimeMillis();
+
+                long startLru = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheLru.addEntry(strings.get(i), strings.get(i));
+                }
+                long endLru = System.currentTimeMillis();
+
+                System.out.printf("%dms / %dms / %dms\n", endFifo - startFifo, endFilo - startFilo, endLru - startLru);
+            }
+
+            // test getEntryOrNull()
+            System.out.printf("\ngetEntryOrNull() test [FIFO / FILO / LRU]\n");
+            for (int n = 0; n < maxN; n += step) {
+                System.out.printf("%6d ~ %6d: ", n, n + step - 1);
+
+                long startFifo = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheFifo.getEntryOrNull(strings.get(i));
+                }
+                long endFifo = System.currentTimeMillis();
+
+                long startFilo = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheFilo.getEntryOrNull(strings.get(i));
+                }
+                long endFilo = System.currentTimeMillis();
+
+                long startLru = System.currentTimeMillis();
+                for (int i = n; i < n + step; i++) {
+                    memCacheLru.getEntryOrNull(strings.get(i));
+                }
+                long endLru = System.currentTimeMillis();
+
+                System.out.printf("%dms / %dms / %dms\n", endFifo - startFifo, endFilo - startFilo, endLru - startLru);
+            }
         }
-
-        // A, B는 삭제후 새로 생성된 instance이니 위에서 추가했던 entry가 없을것임
-        memCacheA = MemoryCache.getInstance("A");
-        memCacheB = MemoryCache.getInstance("B");
-        assert memCacheA.getEntryOrNull("test") == null;
-        assert memCacheB.getEntryOrNull("test") == null;
-
-        MemoryCache.clear();
-
-
 
         System.out.println("No Assert!");
     }
