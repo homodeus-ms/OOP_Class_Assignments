@@ -4,6 +4,7 @@ import academy.pocu.comp2500.assignment2.*;
 import academy.pocu.comp2500.assignment2.registry.Registry;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 public class Program {
 
@@ -15,8 +16,6 @@ public class Program {
         Registry registry = new Registry();
         App app = new App(registry);
         registry.validate();
-
-        StampColor c1 = StampColor.RED;
 
 
 

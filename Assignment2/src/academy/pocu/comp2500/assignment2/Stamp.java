@@ -1,16 +1,17 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Stamp extends Product {
-
+/*
     private static final int PRICE_4X3 = 2300;
     private static final int PRICE_5X2 = 2300;
-    private static final int PRICE_7X4 = 2600;
+    private static final int PRICE_7X4 = 2600;*/
 
 
     private final StampSize stampSize;
 
-    public Stamp(StampSize size, RGB color, String text) {
-        super(getProductType(size), color, getWidth(size), getHeight(size), getPrice(size), text);
+    public Stamp(StampSize size, StampColor color, String text) {
+        super(getProductType(size), color.getColor(), size.getWidthInMilli(),
+                size.getHeightInMilli(), size.getPrice(), text);
 
         stampSize = size;
     }
@@ -49,7 +50,7 @@ public class Stamp extends Product {
 
 
 
-    private static int getWidth(StampSize size) {
+    /*private static int getWidth(StampSize size) {
         switch (size) {
             case STAMP_4X3:
                 return 400;
@@ -87,7 +88,7 @@ public class Stamp extends Product {
                 assert (false);
                 return -1;
         }
-    }
+    }*/
 }
 
 
