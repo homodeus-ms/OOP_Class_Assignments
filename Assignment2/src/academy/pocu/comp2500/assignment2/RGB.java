@@ -13,11 +13,11 @@ public class RGB {
 
         colorValue |= r << 16 | g << 8 | b;
     }
-    public RGB(int colorValue) {
-        this.r = colorValue >> 16 & 0xFF;
-        this.g = colorValue >> 8 & 0xFF;
-        this.b = colorValue & 0xFF;
-        this.colorValue = colorValue;
+    public RGB(int color) {
+        this.r = color >> 16 & 0xFF;
+        this.g = color >> 8 & 0xFF;
+        this.b = color & 0xFF;
+        this.colorValue = color;
     }
 
     public int getR() {
@@ -36,7 +36,7 @@ public class RGB {
         return colorValue;
     }
 
-    public boolean equals(RGB other) {
-        return this.colorValue == other.colorValue;
+    public boolean equals(RGB color) {
+        return this.colorValue == color.colorValue;
     }
 }
