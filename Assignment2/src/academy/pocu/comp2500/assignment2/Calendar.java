@@ -17,7 +17,7 @@ public class Calendar extends Product {
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(getProductType(type), RGB.WHITE, getWidth(type), getHeight(type), getPrice(type));
+        super(getProductType(type), new RGB(CALENDAR_COLOR), getWidth(type), getHeight(type), getPrice(type));
         this.calendarType = type;
     }
 

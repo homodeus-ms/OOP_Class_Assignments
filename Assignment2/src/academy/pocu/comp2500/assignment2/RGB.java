@@ -1,29 +1,23 @@
 package academy.pocu.comp2500.assignment2;
 
-public enum RGB {
-    RED(0xFF, 0, 0),
-    GREEN(0, 0x80, 0),
-    BLUE(0, 0, 0xFF),
-    WHITE(0xFF, 0xFF, 0xFF),
-    GRAY(0xE6, 0xE6, 0xE6),
-    IVORY(0xFF, 0xFF, 0xF0),
-    CUSTOM(0, 0, 0);
+public class RGB {
+    private final int r;
+    private final int g;
+    private final int b;
+    private int colorValue;
 
-    private int r;
-    private int g;
-    private int b;
-
-    RGB(int r, int g, int b) {
+    public RGB(int r, int g, int b) {
         this.r = r;
         this.g = g;
         this.b = b;
-    }
 
-    public RGB makeCustom(int r, int g, int b) {
-        CUSTOM.r = r;
-        CUSTOM.g = g;
-        CUSTOM.b = b;
-        return RGB.CUSTOM;
+        colorValue |= r << 16 | g << 8 | b;
+    }
+    public RGB(int colorValue) {
+        this.r = colorValue >> 16 & 0xFF;
+        this.g = colorValue >> 8 & 0xFF;
+        this.b = colorValue & 0xFF;
+        this.colorValue = colorValue;
     }
 
     public int getR() {
@@ -36,5 +30,13 @@ public enum RGB {
 
     public int getB() {
         return b;
+    }
+
+    public int getColorValue() {
+        return colorValue;
+    }
+
+    public boolean equals(RGB other) {
+        return this.colorValue == other.colorValue;
     }
 }

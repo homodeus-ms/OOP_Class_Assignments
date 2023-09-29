@@ -20,9 +20,9 @@ public class BusinessCard extends Product {
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColorType color,
+    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, RGB color,
                         PrintOrientation orientation, TextAperture textAperture) {
-        super(getProductType(cardType), getColor(color), WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides));
+        super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides));
         this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
@@ -79,8 +79,8 @@ public class BusinessCard extends Product {
         }
     }
 
-    private static RGB getColor(BusinessCardColorType color) {
-        switch(color) {
+    /*private static RGB getColor(BusinessCardColorType color) {
+        switch (color) {
             case GRAY:
                 return RGB.GRAY;
             case IVORY:
@@ -91,7 +91,7 @@ public class BusinessCard extends Product {
                 assert (false);
                 return RGB.CUSTOM;
         }
-    }
+    }*/
 
     private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
         switch (cardType) {

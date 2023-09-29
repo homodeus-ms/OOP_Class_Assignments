@@ -13,12 +13,11 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        Product p1 = new BusinessCard(BusinessCardType.LINEN_BUSINESS_CARD, BusinessCardSides.DOUBLE_SIDED_CARD,
-                BusinessCardColorType.GRAY, PrintOrientation.LANDSCAPE, new TextAperture(0, 0, 1, 1, "wegui"));
+        RGB red = new RGB(0xFF, 0x00, 0x00);
+        RGB red2 = new RGB(0xFF, 0x00, 0x00);
 
-        System.out.printf("p1: %s, %s, %s, %s, %s\n", p1.getProductType(), p1.getColor(),
-                ((BusinessCard) p1).getSides(), ((BusinessCard) p1).getPrintDirection(), p1.getText());
-
+        System.out.printf("red: %x\n", red.getColorValue());
+        System.out.println(red.equals(red2));
 
 
         System.out.println("No Assert!!!");

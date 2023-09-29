@@ -8,16 +8,11 @@ public class Stamp extends Product {
 
 
     private final StampSize stampSize;
-    private final StampColor stampColor;
 
-    public Stamp(StampSize size, StampColor color, String text) {
-        super(getProductType(size), color.getColor(), getWidth(size), getHeight(size), getPrice(size), text);
-        stampColor = color;
+    public Stamp(StampSize size, RGB color, String text) {
+        super(getProductType(size), color, getWidth(size), getHeight(size), getPrice(size), text);
+
         stampSize = size;
-    }
-
-    public StampColor getStampColor() {
-        return this.stampColor;
     }
 
     private static ProductType getProductType(StampSize size) {
@@ -52,19 +47,7 @@ public class Stamp extends Product {
         return this.stampSize;
     }
 
-    private static RGB getColor(StampColor color) {
-        switch (color) {
-            case RED:
-                return RGB.RED;
-            case GREEN:
-                return RGB.GREEN;
-            case BLUE:
-                return RGB.BLUE;
-            default:
-                assert (false);
-                return RGB.CUSTOM;
-        }
-    }
+
 
     private static int getWidth(StampSize size) {
         switch (size) {

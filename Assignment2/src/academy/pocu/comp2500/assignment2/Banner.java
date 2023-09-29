@@ -153,22 +153,4 @@ public class Banner extends Product {
         return height;
     }
 
-    /*private boolean isApertureValid(Aperture aperture) {
-
-        assert (aperture.getApertureWidth() > 0 && aperture.getApertureHeight() > 0);
-
-        int bannerWidth = super.getWidthInMilli();
-        int bannerHeight = super.getHeightInMilli();
-        int landscapeSize = aperture.getX() + aperture.getApertureWidth();
-        int horizontalSize = aperture.getY() + aperture.getApertureHeight();
-
-        if (aperture.getX() > 0 && aperture.getX() < bannerWidth &&
-                aperture.getY() > 0 && aperture.getY() < bannerHeight) {
-            return true;
-        } else if (landscapeSize > 0 && horizontalSize > 0 &&
-                landscapeSize <= bannerWidth && horizontalSize <= bannerHeight) {
-            return true;
-        }
-        return false;
-    }*/
 }
