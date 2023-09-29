@@ -7,6 +7,7 @@ public class Product {
     private RGB color;
     private int widthInMilli;
     private int heightInMilli;
+
     protected int price;
     protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
@@ -25,6 +26,9 @@ public class Product {
 
     public ProductType getProductType() {
         return this.productType;
+    }
+    public String getDisplayName() {
+        return this.productType.getName();
     }
 
 
