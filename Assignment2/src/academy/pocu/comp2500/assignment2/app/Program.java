@@ -13,11 +13,7 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        RGB red = new RGB(0xFF, 0x00, 0x00);
-        RGB red2 = new RGB(0xFF, 0x00, 0x00);
-
-        System.out.printf("red: %x\n", red.getColorValue());
-        System.out.println(red.equals(red2));
+        Product p1 = new Stamp(StampSize.STAMP_4X3, RGB.RED, "Stamp");
 
 
         System.out.println("No Assert!!!");
