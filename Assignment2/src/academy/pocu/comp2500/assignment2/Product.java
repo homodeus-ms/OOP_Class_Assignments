@@ -41,9 +41,6 @@ public class Product {
     public RGB getColor() {
         return this.color;
     }
-    public int getColorValue() {
-        return this.color.getColorValue();
-    }
 
 
     public int getWidthInMilli() {
