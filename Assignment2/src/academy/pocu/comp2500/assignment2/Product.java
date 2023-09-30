@@ -5,19 +5,18 @@ public class Product {
     protected ProductType productType;
     //private String displayName;
     private final RGB color;
-    private final int widthInMilli;
-    private final int heightInMilli;
+
+    private final ProductSize size;
 
     protected int price;
     //protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
 
-    protected Product(ProductType type, RGB color, int width, int height, int price) {
+    protected Product(ProductType type, RGB color, ProductSize size, int price) {
         //this(type, color, width, height, price, "");
         this.productType = type;
         this.color = color;
-        this.widthInMilli = width;
-        this.heightInMilli = height;
+        this.size = size;
         this.price = price;
         //this.text = text;
     }
@@ -44,11 +43,11 @@ public class Product {
 
 
     public int getWidthInMilli() {
-        return widthInMilli;
+        return size.getWidthInMilli();
     }
 
     public int getHeightInMilli() {
-        return heightInMilli;
+        return size.getHeightInMilli();
     }
 
     public int getPrice() {

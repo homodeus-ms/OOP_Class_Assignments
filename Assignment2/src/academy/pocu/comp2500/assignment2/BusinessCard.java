@@ -22,7 +22,7 @@ public class BusinessCard extends Product {
 
     public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, RGB color,
                         PrintOrientation orientation, TextAperture textAperture) {
-        super(getProductType(cardType), color, WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides));
+        super(getProductType(cardType), color, ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
         this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);

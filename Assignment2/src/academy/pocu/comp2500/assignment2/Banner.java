@@ -19,7 +19,7 @@ public class Banner extends Product {
 
 
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
-        super(getProductType(type), color, getWidth(size), getHeight(size), getPrice(type, size));
+        super(getProductType(type), color, size.getSize(), getPrice(type, size));
         this.orientation = orientation;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
@@ -70,6 +70,7 @@ public class Banner extends Product {
                 return ProductType.DEFAULT;
         }
     }
+
 
     private static int getPrice(BannerType type, BannerSize size) {
         switch (type) {

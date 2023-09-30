@@ -17,7 +17,7 @@ public class Calendar extends Product {
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(getProductType(type), CALENDAR_COLOR, getWidth(type), getHeight(type), getPrice(type));
+        super(getProductType(type), CALENDAR_COLOR, getSize(type), getPrice(type));
         this.calendarType = type;
     }
 
@@ -53,32 +53,21 @@ public class Calendar extends Product {
         }
     }
 
-    private static int getWidth(CalendarType type) {
+    private static ProductSize getSize(CalendarType type) {
         switch (type) {
             case WALL_CALENDAR:
-                return WALL_CALENDAR_WIDTH;
+                return ProductSize.WALL_CALENDAR;
             case DESK_CALENDAR:
-                return DESK_CALENDAR_WIDTH;
+                return ProductSize.DESK_CALENDAR;
             case MAGNET_CALENDAR:
-                return MAGNET_CALENDAR_WIDTH;
+                return ProductSize.MAGNET_CALENDAR;
             default:
                 assert (false);
-                return -1;
+                return ProductSize.DEFAULT;
         }
     }
-    private static int getHeight(CalendarType type) {
-        switch (type) {
-            case WALL_CALENDAR:
-                return WALL_CALENDAR_HEIGHT;
-            case DESK_CALENDAR:
-                return DESK_CALENDAR_HEIGHT;
-            case MAGNET_CALENDAR:
-                return MAGNET_CALENDAR_HEIGHT;
-            default:
-                assert (false);
-                return -1;
-        }
-    }
+
+
     private static int getPrice(CalendarType type) {
         switch (type) {
             case WALL_CALENDAR:
