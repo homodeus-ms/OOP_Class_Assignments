@@ -4,9 +4,9 @@ import academy.pocu.comp2500.assignment2.registry.Registry;
 
 public class App {
     public App(Registry registry) {
-        registry.registerRedStampCreator("Stamp");
-        registry.registerBlueStampCreator("Stamp");
-        registry.registerGreenStampCreator("Stamp");
+        registry.registerRedStampCreator("RedStamp");
+        registry.registerBlueStampCreator("GreenStamp");
+        registry.registerGreenStampCreator("BlueStamp");
         registry.registerWallCalendarCreator("Calendar");
         registry.registerMagnetCalendarCreator("Calendar");
         registry.registerDeskCalendarCreator("Calendar");
