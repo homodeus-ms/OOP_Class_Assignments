@@ -2,11 +2,11 @@ package academy.pocu.comp2500.assignment2;
 
 public class Product {
 
-    protected ProductType productType;
+    private final ProductType productType;
     //private String displayName;
     private final RGB color;
-
     private final ProductSize size;
+
 
     protected int price;
     //protected String text;
@@ -28,7 +28,7 @@ public class Product {
         this.price = price;
         this.text = text;
     }*/
-    public ProductSize getProductSize() {
+    public ProductSize getSize() {
         return this.size;
     }
     public ProductType getProductType() {
@@ -43,14 +43,6 @@ public class Product {
         return this.color;
     }
 
-
-    public int getWidthInMilli() {
-        return size.getWidthInMilli();
-    }
-
-    public int getHeightInMilli() {
-        return size.getHeightInMilli();
-    }
 
     public int getPrice() {
         return price;

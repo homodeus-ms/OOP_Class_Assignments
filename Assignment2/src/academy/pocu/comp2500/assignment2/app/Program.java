@@ -25,10 +25,6 @@ public class Program {
 
 
 
-    public static void testSize(Stamp stamp, int widthInMilli, int heightInMilli) {
-        assert (stamp.getWidthInMilli() == widthInMilli);
-        assert (stamp.getHeightInMilli() == heightInMilli);
-    }
     public static void testPrice(Stamp stamp, int price) {
         assert (stamp.getPrice() == price);
     }

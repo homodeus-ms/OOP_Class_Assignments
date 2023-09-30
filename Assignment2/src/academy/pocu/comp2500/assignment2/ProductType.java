@@ -8,8 +8,11 @@ public enum ProductType {
     CALENDAR_DESK("Desk Calendar"),
     CALENDAR_MAGNET("Magnet Calendar"),
     BANNER_GLOSS("Gloss Banner"),
+
     BANNER_SCRIM("Scrim Banner"),
+
     BANNER_MESH("Mesh Banner"),
+
     BUSINESS_CARD_LINEN("Linen Business Card"),
     BUSINESS_CARD_LAID("Laid Business Card"),
     BUSINESS_CARD_SMOOTH("Smooth Business Card"),

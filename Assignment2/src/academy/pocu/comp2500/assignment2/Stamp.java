@@ -12,14 +12,17 @@ public class Stamp extends Product {
 
     private final String text;
 
+
     protected Stamp(ProductSize size, RGB color, String text) {
         super(getProductType(size), color, size, getPrice(size));
 
         this.text = text;
+
     }
     public String getText() {
         return this.text;
     }
+
 
     private static int getPrice(ProductSize size) {
         switch (size) {

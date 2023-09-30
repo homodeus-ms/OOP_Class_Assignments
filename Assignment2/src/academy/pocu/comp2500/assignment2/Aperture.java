@@ -33,8 +33,8 @@ public class Aperture {
 
         assert (this.apertureWidth > 0 && this.apertureHeight > 0);
 
-        int productWidth = product.getWidthInMilli();
-        int productHeight = product.getHeightInMilli();
+        int productWidth = product.getSize().getWidthInMilli();
+        int productHeight = product.getSize().getHeightInMilli();
         int landscapeSize = x + apertureWidth;
         int horizontalSize = y + apertureHeight;
 
