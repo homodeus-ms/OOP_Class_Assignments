@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public enum ProductType {
-    STAMP_4X3("STAMP (4 x 3)"),
-    STAMP_5X2("STAMP (5 x 2)"),
-    STAMP_7X4("STAMP (7 x 4)"),
+    STAMP_4X3("STAMP (40mm x 30mm)"),
+    STAMP_5X2("STAMP (50mm x 20mm)"),
+    STAMP_7X4("STAMP (70mm x 40mm)"),
     CALENDAR_WALL("Wall Calendar"),
     CALENDAR_DESK("Desk Calendar"),
     CALENDAR_MAGNET("Magnet Calendar"),

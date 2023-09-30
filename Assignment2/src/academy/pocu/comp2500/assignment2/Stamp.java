@@ -10,8 +10,8 @@ public class Stamp extends Product {
     private final StampSize stampSize;
     private final String text;
 
-    public Stamp(StampSize size, StampColor color, String text) {
-        super(getProductType(size), color.getColor(), size.getWidthInMilli(),
+    public Stamp(StampSize size, RGB color , String text) {
+        super(getProductType(size), color, size.getWidthInMilli(),
                 size.getHeightInMilli(), size.getPrice());
 
         this.text = text;
