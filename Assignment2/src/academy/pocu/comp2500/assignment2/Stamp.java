@@ -5,13 +5,15 @@ public class Stamp extends Product {
     private static final int PRICE_4X3 = 2300;
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;*/
-
+    /*private static final RGB RED = RGB.RED;
+    private static final RGB GREEN = RGB.GREEN;
+    private static final RGB BLUE = RGB.BLUE;*/
 
     private final StampSize stampSize;
     private final String text;
 
-    public Stamp(StampSize size, RGB color , String text) {
-        super(getProductType(size), color, size.getWidthInMilli(),
+    public Stamp(StampSize size, StampColor color, String text) {
+        super(getProductType(size), getRgbColor(color), size.getWidthInMilli(),
                 size.getHeightInMilli(), size.getPrice());
 
         this.text = text;
@@ -19,6 +21,20 @@ public class Stamp extends Product {
     }
     public String getText() {
         return this.text;
+    }
+
+    private static RGB getRgbColor(StampColor color) {
+        switch (color) {
+            case RED:
+                return RGB.RED;
+            case GREEN:
+                return RGB.GREEN;
+            case BLUE:
+                return RGB.BLUE;
+            default:
+                assert (false);
+                return new RGB(0);
+        }
     }
 
     private static ProductType getProductType(StampSize size) {
