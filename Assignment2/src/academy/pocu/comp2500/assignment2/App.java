@@ -12,9 +12,9 @@ public class App {
         registry.registerDeskCalendarCreator("Calendar");
         registry.registerLandscapeBannerCreator("Banner");
         registry.registerPortraitBannerCreator("Banner");
-        registry.registerGlossBannerCreator("GlossBanner");
-        registry.registerScrimBannerCreator("ScrimBanner");
-        registry.registerMeshBannerCreator("MeshBanner");
+        registry.registerGlossBannerCreator("Banner");
+        registry.registerScrimBannerCreator("Banner");
+        registry.registerMeshBannerCreator("Banner");
         registry.registerLandscapeBusinessCardCreator("BusinessCard");
         registry.registerPortraitBusinessCardCreator("BusinessCard");
         registry.registerIvoryBusinessCardCreator("BusinessCard");

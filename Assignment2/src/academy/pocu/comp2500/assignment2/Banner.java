@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class Banner extends Product {
 
-    private static final int GLOSS_TINY_PRICE = 5000;
-    private static final int GLOSS_SMALL_PRICE = 5200;
-    private static final int GLOSS_MEDIUM_PRICE = 5300;
-    private static final int GLOSS_LARGE_PRICE = 6000;
-    private static final int OTHER_TINY_PRICE = 5100;
-    private static final int OTHER_SMALL_PRICE = 5300;
-    private static final int OTHER_MEDIUM_PRICE = 5400;
-    private static final int OTHER_LARGE_PRICE = 6100;
+    private static final int GLOSS_1XHALF_PRICE = 5000;
+    private static final int GLOSS_1X1_PRICE = 5200;
+    private static final int GLOSS_2XHALF_PRICE = 5300;
+    private static final int GLOSS_3X1_PRICE = 6000;
+    private static final int OTHER_1XHALF_PRICE = 5100;
+    private static final int OTHER_1X1_PRICE = 5300;
+    private static final int OTHER_2XHALF_PRICE = 5400;
+    private static final int OTHER_3X1_PRICE = 6100;
 
     private final PrintOrientation orientation;
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
 
-    public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
-        super(getProductType(type), color, size.getSize(), getPrice(type, size));
+    public Banner(ProductType type, ProductSize size, RGB color, PrintOrientation orientation) {
+        super(type, color, size, getPrice(type, size));
         this.orientation = orientation;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Banner extends Product {
         }
     }
 
-    private static ProductType getProductType(BannerType type) {
+    /*private static ProductType getProductType(BannerType type) {
         switch (type) {
             case GLOSS:
                 return ProductType.BANNER_GLOSS;
@@ -69,37 +69,37 @@ public class Banner extends Product {
                 assert (false);
                 return ProductType.DEFAULT;
         }
-    }
+    }*/
 
 
-    private static int getPrice(BannerType type, BannerSize size) {
+    private static int getPrice(ProductType type, ProductSize size) {
         switch (type) {
-            case GLOSS:
+            case BANNER_GLOSS:
                 switch (size) {
-                    case TINY:
-                        return GLOSS_TINY_PRICE;
-                    case SMALL:
-                        return GLOSS_SMALL_PRICE;
-                    case MEDIUM:
-                        return GLOSS_MEDIUM_PRICE;
-                    case LARGE:
-                        return GLOSS_LARGE_PRICE;
+                    case BANNER_1XHALF:
+                        return GLOSS_1XHALF_PRICE;
+                    case BANNER_1X1:
+                        return GLOSS_1X1_PRICE;
+                    case BANNER_2XHALF:
+                        return GLOSS_2XHALF_PRICE;
+                    case BANNER_3X1:
+                        return GLOSS_3X1_PRICE;
                     default:
                         assert (false);
                         return -1;
                 }
-            case SCRIM:
+            case BANNER_SCRIM:
                 // intentional fall through
-            case MESH:
+            case BANNER_MESH:
                 switch (size) {
-                    case TINY:
-                        return OTHER_TINY_PRICE;
-                    case SMALL:
-                        return OTHER_SMALL_PRICE;
-                    case MEDIUM:
-                        return OTHER_MEDIUM_PRICE;
-                    case LARGE:
-                        return OTHER_LARGE_PRICE;
+                    case BANNER_1XHALF:
+                        return OTHER_1XHALF_PRICE;
+                    case BANNER_1X1:
+                        return OTHER_1X1_PRICE;
+                    case BANNER_2XHALF:
+                        return OTHER_2XHALF_PRICE;
+                    case BANNER_3X1:
+                        return OTHER_3X1_PRICE;
                     default:
                         assert (false);
                         return -1;
@@ -110,7 +110,7 @@ public class Banner extends Product {
         }
     }
 
-    private static int getWidth(BannerSize size) {
+    /*private static int getWidth(BannerSize size) {
         int width = 0;
 
         switch (size) {
@@ -152,6 +152,6 @@ public class Banner extends Product {
                 break;
         }
         return height;
-    }
+    }*/
 
 }

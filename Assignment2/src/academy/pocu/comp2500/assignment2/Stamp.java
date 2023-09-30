@@ -23,11 +23,11 @@ public class Stamp extends Product {
 
     private static int getPrice(ProductSize size) {
         switch (size) {
-            case STAMP_4x3:
+            case STAMP_4X3:
                 return PRICE_4X3;
-            case STAMP_5x2:
+            case STAMP_5X2:
                 return PRICE_5X2;
-            case STAMP_7x4:
+            case STAMP_7X4:
                 return PRICE_7X4;
             default:
                 assert (false);
@@ -37,11 +37,11 @@ public class Stamp extends Product {
 
     private static ProductType getProductType(ProductSize size) {
         switch (size) {
-            case STAMP_4x3:
+            case STAMP_4X3:
                 return ProductType.STAMP_4X3;
-            case STAMP_5x2:
+            case STAMP_5X2:
                 return ProductType.STAMP_5X2;
-            case STAMP_7x4:
+            case STAMP_7X4:
                 return ProductType.STAMP_7X4;
             default:
                 assert (false);

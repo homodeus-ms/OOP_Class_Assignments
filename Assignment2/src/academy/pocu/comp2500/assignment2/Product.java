@@ -28,7 +28,9 @@ public class Product {
         this.price = price;
         this.text = text;
     }*/
-
+    public ProductSize getProductSize() {
+        return this.size;
+    }
     public ProductType getProductType() {
         return this.productType;
     }
