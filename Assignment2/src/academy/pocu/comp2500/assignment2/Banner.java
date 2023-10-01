@@ -17,9 +17,47 @@ public class Banner extends Product {
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
+    public enum BannerType {
+        GLOSS(ProductType.BANNER_GLOSS),
+        SCRIM(ProductType.BANNER_SCRIM),
+        MESH(ProductType.BANNER_MESH);
 
-    public Banner(ProductType type, ProductSize size, RGB color, PrintOrientation orientation) {
-        super(type, color, size, getPrice(type, size));
+        private final ProductType productType;
+
+        BannerType(ProductType type) {
+            this.productType = type;
+        }
+        public ProductType getType() {
+            return this.productType;
+        }
+    }
+
+    public enum BannerSize {
+        TINY(1000, 500),
+        SMALL(1000, 1000),
+        MEDIUM(2000, 500),
+        LARGE(3000, 1000);
+
+        private final int width;
+        private final int height;
+
+        BannerSize(int width, int height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+    }
+
+
+    public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
+        super(type.getType(), color, size.getWidth(), size.getHeight(), getPrice(type, size));
         this.orientation = orientation;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
@@ -72,33 +110,33 @@ public class Banner extends Product {
     }*/
 
 
-    private static int getPrice(ProductType type, ProductSize size) {
+    private static int getPrice(BannerType type, BannerSize size) {
         switch (type) {
-            case BANNER_GLOSS:
+            case GLOSS:
                 switch (size) {
-                    case BANNER_1XHALF:
+                    case TINY:
                         return GLOSS_1XHALF_PRICE;
-                    case BANNER_1X1:
+                    case SMALL:
                         return GLOSS_1X1_PRICE;
-                    case BANNER_2XHALF:
+                    case MEDIUM:
                         return GLOSS_2XHALF_PRICE;
-                    case BANNER_3X1:
+                    case LARGE:
                         return GLOSS_3X1_PRICE;
                     default:
                         assert (false);
                         return -1;
                 }
-            case BANNER_SCRIM:
+            case SCRIM:
                 // intentional fall through
-            case BANNER_MESH:
+            case MESH:
                 switch (size) {
-                    case BANNER_1XHALF:
+                    case TINY:
                         return OTHER_1XHALF_PRICE;
-                    case BANNER_1X1:
+                    case SMALL:
                         return OTHER_1X1_PRICE;
-                    case BANNER_2XHALF:
+                    case MEDIUM:
                         return OTHER_2XHALF_PRICE;
-                    case BANNER_3X1:
+                    case LARGE:
                         return OTHER_3X1_PRICE;
                     default:
                         assert (false);

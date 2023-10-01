@@ -20,9 +20,43 @@ public class BusinessCard extends Product {
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, RGB color,
+    public enum BusinessCardType {
+        LINEN_BUSINESS_CARD(ProductType.BUSINESS_CARD_LINEN),
+        LAID_BUSINESS_CARD(ProductType.BUSINESS_CARD_LAID),
+        SMOOTH_BUSINESS_CARD(ProductType.BUSINESS_CARD_SMOOTH);
+
+        private final ProductType productType;
+
+        BusinessCardType(ProductType type) {
+            this.productType = type;
+        }
+        public ProductType getType() {
+            return this.productType;
+        }
+    }
+    public enum BusinessCardColor {
+        GRAY(RGB.GRAY),
+        IVORY(RGB.IVORY),
+        WHITE(RGB.WHITE);
+
+        private final RGB color;
+
+        BusinessCardColor(RGB color) {
+            this.color = color;
+        }
+        public RGB getColor() {
+            return this.color;
+        }
+    }
+    public enum BusinessCardSides {
+        SINGLE_SIDED_CARD,
+        DOUBLE_SIDED_CARD
+    }
+
+
+    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
                         PrintOrientation orientation, TextAperture textAperture) {
-        super(getProductType(cardType), color, ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
+        super(cardType.getType(), color.getColor(), WIDTH_IN_MILLI, HEIGHT_IN_MILLI, getPrice(cardType, sides));
         this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);

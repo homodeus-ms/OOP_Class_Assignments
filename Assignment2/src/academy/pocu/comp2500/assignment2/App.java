@@ -20,9 +20,9 @@ public class App {
         registry.registerIvoryBusinessCardCreator("BusinessCard");
         registry.registerGrayBusinessCardCreator("BusinessCard");
         registry.registerWhiteBusinessCardCreator("BusinessCard");
-        registry.registerLaidBusinessCardCreator("LaidBusinessCard");
-        registry.registerLinenBusinessCardCreator("LinenBusinessCard");
-        registry.registerSmoothBusinessCardCreator("SmoothBusinessCard");
+        registry.registerLaidBusinessCardCreator("BusinessCard");
+        registry.registerLinenBusinessCardCreator("BusinessCard");
+        registry.registerSmoothBusinessCardCreator("BusinessCard");
         registry.registerSingleSidedBusinessCardCreator("BusinessCard");
         registry.registerDoubleSidedBusinessCardCreator("BusinessCard");
         registry.registerCartCreator("Cart");

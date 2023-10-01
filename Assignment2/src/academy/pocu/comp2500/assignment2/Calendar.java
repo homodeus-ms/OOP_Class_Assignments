@@ -14,10 +14,38 @@ public class Calendar extends Product {
     private static final int DESK_CALENDAR_PRICE = 1000;
     private static final int MAGNET_CALENDAR_PRICE = 1500;
 
+    public enum CalendarType {
+        WALL_CALENDAR(WALL_CALENDAR_WIDTH, WALL_CALENDAR_HEIGHT, WALL_CALENDAR_PRICE),
+        DESK_CALENDAR(DESK_CALENDAR_WIDTH, DESK_CALENDAR_HEIGHT, DESK_CALENDAR_PRICE),
+        MAGNET_CALENDAR(MAGNET_CALENDAR_WIDTH, MAGNET_CALENDAR_HEIGHT, MAGNET_CALENDAR_PRICE);
+
+        private final int width;
+        private final int height;
+        private final int price;
+
+        CalendarType(int width, int height, int price) {
+            this.width = width;
+            this.height = height;
+            this.price = price;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+    }
+
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(getProductType(type), CALENDAR_COLOR, getSize(type), getPrice(type));
+        super(getProductType(type), CALENDAR_COLOR, type.getWidth(), type.getHeight(), type.getPrice());
         this.calendarType = type;
     }
 
@@ -53,7 +81,7 @@ public class Calendar extends Product {
         }
     }
 
-    private static ProductSize getSize(CalendarType type) {
+    /*private static ProductSize getSize(CalendarType type) {
         switch (type) {
             case WALL_CALENDAR:
                 return ProductSize.WALL_CALENDAR;
@@ -65,10 +93,10 @@ public class Calendar extends Product {
                 assert (false);
                 return ProductSize.WALL_CALENDAR;
         }
-    }
+    }*/
 
 
-    private static int getPrice(CalendarType type) {
+    /*private static int getPrice(CalendarType type) {
         switch (type) {
             case WALL_CALENDAR:
                 return WALL_CALENDAR_PRICE;
@@ -80,5 +108,5 @@ public class Calendar extends Product {
                 assert (false);
                 return -1;
         }
-    }
+    }*/
 }
