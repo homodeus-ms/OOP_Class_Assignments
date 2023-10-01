@@ -26,26 +26,20 @@ public class Stamp extends Product {
     }
 
     public enum StampSize {
-        STAMP_4X3(400, 300, 2300),
-        STAMP_5X2(500, 200, 2300),
-        STAMP_7X4(700, 400, 2600);
+        STAMP_4X3(ProductSize.STAMP_4X3, 2300),
+        STAMP_5X2(ProductSize.STAMP_5X2, 2300),
+        STAMP_7X4(ProductSize.STAMP_7X4, 2600);
 
-        final int widthInMilli;
-        final int heightInMilli;
-        final int price;
+        private final ProductSize size;
+        private final int price;
 
-        StampSize(int width, int height, int price) {
-            this.widthInMilli = width;
-            this.heightInMilli = height;
+        StampSize(ProductSize size, int price) {
+            this.size = size;
             this.price = price;
         }
 
-        public int getWidthInMilli() {
-            return widthInMilli;
-        }
-
-        public int getHeightInMilli() {
-            return heightInMilli;
+        public ProductSize getSize() {
+            return size;
         }
 
         public int getPrice() {
@@ -58,16 +52,15 @@ public class Stamp extends Product {
 
 
     public Stamp(StampSize size, StampColor color, String text) {
-        super(getProductType(size), color.getColor(), size.getWidthInMilli(), size.getHeightInMilli(), getPrice(size));
+        super(getProductType(size), color.getColor(), size.getSize(), getPrice(size));
 
         this.text = text;
         this.size = size;
-
     }
     public String getText() {
         return this.text;
     }
-    public StampSize getSize() {
+    public StampSize getStampSize() {
         return size;
     }
 

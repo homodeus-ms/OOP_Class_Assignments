@@ -16,6 +16,8 @@ public class Banner extends Product {
     private final PrintOrientation orientation;
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
+    private final BannerType bannerType;
+    private final BannerSize bannerSize;
 
     public enum BannerType {
         GLOSS(ProductType.BANNER_GLOSS),
@@ -33,34 +35,35 @@ public class Banner extends Product {
     }
 
     public enum BannerSize {
-        TINY(1000, 500),
-        SMALL(1000, 1000),
-        MEDIUM(2000, 500),
-        LARGE(3000, 1000);
+        TINY(ProductSize.BANNER_1XHALF),
+        SMALL(ProductSize.BANNER_1X1),
+        MEDIUM(ProductSize.BANNER_2XHALF),
+        LARGE(ProductSize.BANNER_3X1);
 
-        private final int width;
-        private final int height;
+        private final ProductSize size;
 
-        BannerSize(int width, int height) {
-            this.width = width;
-            this.height = height;
+        BannerSize(ProductSize size) {
+            this.size = size;
         }
 
-        public int getWidth() {
-            return width;
-        }
-
-        public int getHeight() {
-            return height;
+        public ProductSize getSize() {
+            return this.size;
         }
     }
 
-
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
-        super(type.getType(), color, size.getWidth(), size.getHeight(), getPrice(type, size));
+        super(type.getType(), color, size.getSize(), getPrice(type, size));
         this.orientation = orientation;
+        this.bannerType = type;
+        this.bannerSize = size;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
+    }
+    public BannerType getBannerType() {
+        return bannerType;
+    }
+    public BannerSize getBannerSize() {
+        return bannerSize;
     }
 
     public PrintOrientation getOrientation() {

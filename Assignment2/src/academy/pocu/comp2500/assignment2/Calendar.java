@@ -15,26 +15,20 @@ public class Calendar extends Product {
     private static final int MAGNET_CALENDAR_PRICE = 1500;
 
     public enum CalendarType {
-        WALL_CALENDAR(WALL_CALENDAR_WIDTH, WALL_CALENDAR_HEIGHT, WALL_CALENDAR_PRICE),
-        DESK_CALENDAR(DESK_CALENDAR_WIDTH, DESK_CALENDAR_HEIGHT, DESK_CALENDAR_PRICE),
-        MAGNET_CALENDAR(MAGNET_CALENDAR_WIDTH, MAGNET_CALENDAR_HEIGHT, MAGNET_CALENDAR_PRICE);
+        WALL_CALENDAR(ProductSize.WALL_CALENDAR, WALL_CALENDAR_PRICE),
+        DESK_CALENDAR(ProductSize.DESK_CALENDAR, DESK_CALENDAR_PRICE),
+        MAGNET_CALENDAR(ProductSize.MAGNET_CALENDAR, MAGNET_CALENDAR_PRICE);
 
-        private final int width;
-        private final int height;
+        private final ProductSize size;
         private final int price;
 
-        CalendarType(int width, int height, int price) {
-            this.width = width;
-            this.height = height;
+        CalendarType(ProductSize size, int price) {
+            this.size = size;
             this.price = price;
         }
 
-        public int getWidth() {
-            return width;
-        }
-
-        public int getHeight() {
-            return height;
+        public ProductSize getSize() {
+            return this.size;
         }
 
         public int getPrice() {
@@ -45,7 +39,7 @@ public class Calendar extends Product {
     private final CalendarType calendarType;
 
     public Calendar(CalendarType type) {
-        super(getProductType(type), CALENDAR_COLOR, type.getWidth(), type.getHeight(), type.getPrice());
+        super(getProductType(type), CALENDAR_COLOR, type.getSize(), type.getPrice());
         this.calendarType = type;
     }
 
