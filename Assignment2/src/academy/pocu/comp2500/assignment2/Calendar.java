@@ -63,7 +63,7 @@ public class Calendar extends Product {
                 return ProductSize.MAGNET_CALENDAR;
             default:
                 assert (false);
-                return ProductSize.DEFAULT;
+                return ProductSize.WALL_CALENDAR;
         }
     }
 

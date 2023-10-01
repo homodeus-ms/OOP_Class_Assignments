@@ -11,8 +11,8 @@ public enum ProductSize {
     BANNER_1X1(1000, 1000),
     BANNER_2XHALF(2000, 500),
     BANNER_3X1(3000, 1000),
-    BUSINESS_CARD(90, 50),
-    DEFAULT(0, 0);
+    BUSINESS_CARD(90, 50);
+    //DEFAULT(0, 0);
 
     private final int widthInMilli;
     private final int heightInMilli;
