@@ -55,14 +55,14 @@ public class BusinessCard extends Product {
 
 
     public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
-                        PrintOrientation orientation, ArrayList<TextAperture> textApertures,
-                        ArrayList<ImageAperture> imageApertures) {
+                        PrintOrientation orientation, ArrayList<TextAperture> textAperture,
+                        ArrayList<ImageAperture> imageAperture) {
         super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
         this.sides = sides;
         this.printOrientation = orientation;
         this.paperType = getPaperType(cardType);
-        this.textApertures = textApertures;
-        this.imageApertures = imageApertures;
+        this.textApertures = textAperture;
+        this.imageApertures = imageAperture;
 
     }
     public BusinessCardSides getSides() {
