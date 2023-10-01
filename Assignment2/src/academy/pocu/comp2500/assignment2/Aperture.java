@@ -6,7 +6,7 @@ public class Aperture {
     private final int apertureWidth;
     private final int apertureHeight;
 
-    public Aperture(int x, int y, int width, int height) {
+    protected Aperture(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.apertureWidth = width;
@@ -33,8 +33,8 @@ public class Aperture {
 
         assert (this.apertureWidth > 0 && this.apertureHeight > 0);
 
-        int productWidth = product.getWidth();
-        int productHeight = product.getHeight();
+        int productWidth = product.getProductSize().getWidthInMilli();
+        int productHeight = product.getProductSize().getHeightInMilli();
         int landscapeSize = x + apertureWidth;
         int horizontalSize = y + apertureHeight;
 
