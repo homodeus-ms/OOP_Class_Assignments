@@ -6,15 +6,30 @@ public class Stamp extends Product {
     private static final int PRICE_5X2 = 2300;
     private static final int PRICE_7X4 = 2600;
 
-    protected static final RGB RED = RGB.RED;
-    protected static final RGB GREEN = RGB.GREEN;
-    protected static final RGB BLUE = RGB.BLUE;
+    /*public static final RGB RED = RGB.RED;
+    public static final RGB GREEN = RGB.GREEN;
+    public static final RGB BLUE = RGB.BLUE;*/
+
+    public enum StampColor {
+        RED(RGB.RED),
+        GREEN(RGB.GREEN),
+        BLUE(RGB.BLUE);
+
+        private final RGB color;
+
+        StampColor(RGB color) {
+            this.color = color;
+        }
+        public RGB getColor() {
+            return this.color;
+        }
+    }
 
     private final String text;
 
 
-    protected Stamp(ProductSize size, RGB color, String text) {
-        super(getProductType(size), color, size, getPrice(size));
+    public Stamp(ProductSize size, StampColor color, String text) {
+        super(getProductType(size), color.getColor(), size, getPrice(size));
 
         this.text = text;
 
