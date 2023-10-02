@@ -16,10 +16,10 @@ public class Knight extends Gladiator {
         }
         // 혹시 모를 언더플로우를 대비해서..
         int damage;
-        if (this.getAttack() + this.pet.getAttack() < other.getDefense() + 1) {
+        if (this.attack + this.pet.getAttack() < other.defense + 1) {
             damage = 1;
         } else {
-            damage = (int) ((this.getAttack() + this.pet.getAttack() - other.getDefense()) / 2.0);
+            damage = (int) ((this.attack + this.pet.getAttack() - other.defense) / 2.0);
         }
 
         if (damage >= other.hp) {

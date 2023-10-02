@@ -43,11 +43,11 @@ public class Gladiator extends Barbarian {
                 break;
             }
         }
-        if (move == null || move.getCurrMoveCount() == 0) {
+        if (move == null || move.getCurrMoveCount() < 1) {
             return;
         }
 
-        int damage = (int) (this.getAttack() / (double) (other.getDefense()) * move.getMovePower() / 2.0);
+        int damage = (int) (this.attack / (double) (other.defense) * move.getMovePower() / 2.0);
         damage = damage < 1 ? 1 : damage;
 
         if (damage >= other.hp) {
@@ -62,7 +62,8 @@ public class Gladiator extends Barbarian {
         if (!this.isAlive) {
             return;
         }
-        this.hp = hp <= this.getMaxHp() - 10 ? hp + 10 : this.getMaxHp();
+        this.hp += 10;
+        hp = hp > maxHp ? maxHp : hp;
         for (Move m : moves) {
             m.recoverMoveCount();
         }
