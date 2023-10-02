@@ -11,7 +11,7 @@ public class Knight extends Gladiator {
         this.pet = petOrNull;
     }
     public void attackTogether(Barbarian other) {
-        if (this.pet == null) {
+        if (this == other || !this.isAlive || !other.isAlive || this.pet == null) {
             return;
         }
         // 혹시 모를 언더플로우를 대비해서..
@@ -19,9 +19,14 @@ public class Knight extends Gladiator {
         if (this.getAttack() + this.pet.getAttack() < other.getDefense() + 1) {
             damage = 1;
         } else {
-            damage = (int)((this.getAttack() + this.pet.getAttack() - other.getDefense()) / 2.0);
+            damage = (int) ((this.getAttack() + this.pet.getAttack() - other.getDefense()) / 2.0);
         }
 
-        calculateHp(other, damage);
+        if (damage >= other.hp) {
+            other.hp = 0;
+            other.isAlive = false;
+        } else {
+            other.hp -= damage;
+        }
     }
 }

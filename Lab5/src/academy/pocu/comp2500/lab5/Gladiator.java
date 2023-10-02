@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Gladiator extends Barbarian {
 
-    ArrayList<Move> moves;
+    protected final ArrayList<Move> moves;
 
     public Gladiator(String name, int hp, int attack, int defense) {
         super(name, hp, attack, defense);
@@ -12,7 +12,7 @@ public class Gladiator extends Barbarian {
     }
 
     public boolean addMove(Move move) {
-        if (this.moves.size() == 4 || hasMove(move.getMoveName())) {
+        if (!this.isAlive() || this.moves.size() == 4 || hasMove(move.getMoveName())) {
             return false;
         }
 
@@ -31,26 +31,38 @@ public class Gladiator extends Barbarian {
     }
 
     public void attack(String moveName, Barbarian other) {
-        if (!hasMove(moveName)) {
+        if (other == this || !other.isAlive() || !this.isAlive()) {
             return;
         }
 
         Move move = null;
+
         for (Move m : moves) {
             if (m.getMoveName().equals(moveName)) {
                 move = m;
                 break;
             }
         }
-        assert (move != null);
-        int damage = (int)(this.getAttack() / (double)(other.getDefense()) * move.getMovePower() / 2.0);
+        if (move == null || move.getCurrMoveCount() == 0) {
+            return;
+        }
+
+        int damage = (int) (this.getAttack() / (double) (other.getDefense()) * move.getMovePower() / 2.0);
         damage = damage < 1 ? 1 : damage;
 
-        calculateHp(other, damage);
+        if (damage >= other.hp) {
+            other.hp = 0;
+            other.isAlive = false;
+        } else {
+            other.hp -= damage;
+        }
     }
 
     public void rest() {
-        this.hp += 10;
+        if (!this.isAlive) {
+            return;
+        }
+        this.hp = hp <= this.getMaxHp() - 10 ? hp + 10 : this.getMaxHp();
         for (Move m : moves) {
             m.recoverMoveCount();
         }
