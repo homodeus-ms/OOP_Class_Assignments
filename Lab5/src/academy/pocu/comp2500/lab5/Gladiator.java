@@ -47,6 +47,8 @@ public class Gladiator extends Barbarian {
             return;
         }
 
+        move.useMoveCount();
+
         int damage = (int) (this.attack / (double) (other.defense) * move.getMovePower() / 2.0);
         damage = damage < 1 ? 1 : damage;
 
