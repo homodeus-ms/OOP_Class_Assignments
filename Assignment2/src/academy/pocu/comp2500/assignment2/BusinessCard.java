@@ -13,9 +13,10 @@ public class BusinessCard extends Product {
     private static final int WIDTH_IN_MILLI = 90;
     private static final int HEIGHT_IN_MILLI = 50;
 
-    private final BusinessCardSides sides;
+    //private final BusinessCardSides sides;
     private final PrintOrientation printOrientation;
     private final BusinessCardType cardType;
+    private final boolean isDoubleCard;
     //private final CardPaperType paperType;
     //private final Aperture aperture;
     //private final int stock;
@@ -51,17 +52,20 @@ public class BusinessCard extends Product {
             return this.color;
         }
     }
-    public enum BusinessCardSides {
-        SINGLE_SIDED_BUSINESS_CARD,
+    public enum StockOption {
         DOUBLE_SIDED_BUSINESS_CARD
     }
+    /*public enum BusinessCardSides {
+        SINGLE_SIDED_BUSINESS_CARD,
+        DOUBLE_SIDED_BUSINESS_CARD
+    }*/
 
 
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
+    public BusinessCard(BusinessCardType cardType, StockOption stockOrNull, BusinessCardColor color,
                         PrintOrientation orientation) {
-        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
-        this.sides = sides;
+        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, stockOrNull));
+        this.isDoubleCard = stockOrNull != null;
         this.printOrientation = orientation;
         this.cardType = cardType;
         this.textApertures = new ArrayList<>();
@@ -72,10 +76,12 @@ public class BusinessCard extends Product {
         //this.imageApertures.add(imageAperture);
 
     }
-    public BusinessCardSides getSides() {
+    /*public BusinessCardSides getSides() {
         return this.sides;
+    }*/
+    public boolean isDoubleCard() {
+        return this.isDoubleCard;
     }
-
     public PrintOrientation getPrintDirection() {
         return printOrientation;
     }
@@ -141,14 +147,14 @@ public class BusinessCard extends Product {
         }
     }*/
 
-    private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
+    private static int getPrice(BusinessCardType cardType, StockOption stockOrNull) {
         switch (cardType) {
             case LINEN_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
+                return stockOrNull == null ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
             case LAID_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+                return stockOrNull == null ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
             case SMOOTH_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
+                return stockOrNull == null ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
             default:
                 assert (false);
                 return -1;
