@@ -50,8 +50,8 @@ public class BusinessCard extends Product {
         }
     }
     public enum BusinessCardSides {
-        SINGLE_SIDED_Business_CARD,
-        DOUBLE_SIDED_Business_CARD
+        SINGLE_SIDED_BUSINESS_CARD,
+        DOUBLE_SIDED_BUSINESS_CARD
     }
 
 
@@ -139,11 +139,11 @@ public class BusinessCard extends Product {
     private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
         switch (cardType) {
             case LINEN_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_Business_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
+                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
             case LAID_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_Business_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
             case SMOOTH_BUSINESS_CARD:
-                return sides == BusinessCardSides.SINGLE_SIDED_Business_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
+                return sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
             default:
                 assert (false);
                 return -1;

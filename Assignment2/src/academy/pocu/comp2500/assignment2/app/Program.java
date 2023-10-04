@@ -15,11 +15,13 @@ public class Program {
         registry.validate();
 
         Product c1 = new BusinessCard(BusinessCard.BusinessCardType.LINEN_BUSINESS_CARD,
-                BusinessCard.BusinessCardSides.SINGLE_SIDED_Business_CARD, BusinessCard.BusinessCardColor.GRAY, PrintOrientation.LANDSCAPE,100);
+                BusinessCard.BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD, BusinessCard.BusinessCardColor.GRAY, PrintOrientation.LANDSCAPE,100);
         assert (c1.getProductType() == ProductType.BUSINESS_CARD_LINEN);
         assert (c1.getWidth() == 90);
         assert (c1.getColor() == RGB.GRAY);
         assert (c1.getPrice() == 11000);
+
+
 
         System.out.println("No Assert!!!");
     }
