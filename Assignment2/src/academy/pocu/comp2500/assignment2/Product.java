@@ -5,8 +5,8 @@ public class Product {
     private final ProductType productType;
     //private String displayName;
     private final RGB color;
-    //private final int widthInMilli;
-    //private final int heightInMilli;
+    private final int widthInMilli;
+    private final int heightInMilli;
     private final ProductSize size;
 
 
@@ -18,8 +18,8 @@ public class Product {
         //this(type, color, width, height, price, "");
         this.productType = type;
         this.color = color;
-        //this.widthInMilli = size.getWidthInMilli();
-        //this.heightInMilli = size.getHeightInMilli();
+        this.widthInMilli = size.getWidthInMilli();
+        this.heightInMilli = size.getHeightInMilli();
         this.size = size;
         this.price = price;
         //this.text = text;
@@ -38,12 +38,12 @@ public class Product {
     public ProductSize getProductSize() {
         return this.size;
     }
-    /*public int getWidth() {
+    public int getWidth() {
         return this.widthInMilli;
     }
     public int getHeight() {
         return this.heightInMilli;
-    }*/
+    }
     public ProductType getProductType() {
         return this.productType;
     }

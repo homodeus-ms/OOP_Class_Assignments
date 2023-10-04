@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public enum ProductSize {
-    STAMP_4X3(400, 300),
-    STAMP_5X2(500, 200),
-    STAMP_7X4(700, 400),
+    STAMP_4X3(40, 30),
+    STAMP_5X2(50, 20),
+    STAMP_7X4(70, 40),
     WALL_CALENDAR(400, 400),
     DESK_CALENDAR(200, 150),
     MAGNET_CALENDAR(100, 200),
