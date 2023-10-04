@@ -19,7 +19,7 @@ public class Banner extends Product {
     private final ArrayList<ImageAperture> imageApertures;
     private final BannerType bannerType;
     private final BannerSize bannerSize;
-    private final RGB bannerColor;
+
     //private final RGB color;
 
     public enum BannerType {
@@ -60,24 +60,19 @@ public class Banner extends Product {
         this.orientation = orientation;
         this.bannerType = type;
         this.bannerSize = size;
-        this.bannerColor = color;
 
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
 
     }
-    public RGB getBannerColor() {
-        return this.bannerColor;
-    }
+
     public BannerType getBannerType() {
         return bannerType;
     }
     public BannerSize getBannerSize() {
         return bannerSize;
     }
-    public RGB getColor() {
-        return this.bannerColor;
-    }
+
 
     public PrintOrientation getOrientation() {
         return orientation;
@@ -111,20 +106,6 @@ public class Banner extends Product {
             price += 5;
         }
     }
-
-    /*private static ProductType getProductType(BannerType type) {
-        switch (type) {
-            case GLOSS:
-                return ProductType.BANNER_GLOSS;
-            case SCRIM:
-                return ProductType.BANNER_SCRIM;
-            case MESH:
-                return ProductType.BANNER_MESH;
-            default:
-                assert (false);
-                return ProductType.DEFAULT;
-        }
-    }*/
 
 
     private static int getPrice(BannerType type, BannerSize size) {
