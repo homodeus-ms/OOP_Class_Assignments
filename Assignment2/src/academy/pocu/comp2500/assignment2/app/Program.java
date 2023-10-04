@@ -14,10 +14,12 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        Product b1 = new Banner(Banner.BannerType.GLOSS, Banner.BannerSize.LARGE, new RGB(10, 20, 30), PrintOrientation.LANDSCAPE);
-        Product b2 = new Banner(Banner.BannerType.SCRIM, Banner.BannerSize.LARGE, new RGB(10, 20, 30), PrintOrientation.LANDSCAPE);
-
-        assert (b1.getColor().equals(b2.getColor()));
+        Product c1 = new BusinessCard(BusinessCard.BusinessCardType.LINEN_BUSINESS_CARD,
+                BusinessCard.BusinessCardSides.SINGLE_SIDED_Business_CARD, BusinessCard.BusinessCardColor.GRAY, PrintOrientation.LANDSCAPE,100);
+        assert (c1.getProductType() == ProductType.BUSINESS_CARD_LINEN);
+        assert (c1.getWidth() == 90);
+        assert (c1.getColor() == RGB.GRAY);
+        assert (c1.getPrice() == 11000);
 
         System.out.println("No Assert!!!");
     }
