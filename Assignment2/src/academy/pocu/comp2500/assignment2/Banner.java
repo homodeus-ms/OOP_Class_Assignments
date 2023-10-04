@@ -14,12 +14,12 @@ public class Banner extends Product {
     private static final int OTHER_3X1_PRICE = 6100;
 
     private final PrintOrientation orientation;
-    private final ArrayList<Aperture> apertures;
-    //private final ArrayList<TextAperture> textApertures;
-    //private final ArrayList<ImageAperture> imageApertures;
+
+    private final ArrayList<TextAperture> textApertures;
+    private final ArrayList<ImageAperture> imageApertures;
     private final BannerType bannerType;
     private final BannerSize bannerSize;
-    private RGB bannerColor;
+    private final RGB bannerColor;
     //private final RGB color;
 
     public enum BannerType {
@@ -61,10 +61,9 @@ public class Banner extends Product {
         this.bannerType = type;
         this.bannerSize = size;
         this.bannerColor = color;
-        //this.color = color;
-        //this.textApertures = new ArrayList<>();
-        //this.imageApertures = new ArrayList<>();
-        this.apertures = new ArrayList<>();
+
+        this.textApertures = new ArrayList<>();
+        this.imageApertures = new ArrayList<>();
 
     }
     public RGB getBannerColor() {
@@ -76,29 +75,20 @@ public class Banner extends Product {
     public BannerSize getBannerSize() {
         return bannerSize;
     }
-    /*public RGB getColor() {
-        return this.color;
-    }*/
+    public RGB getColor() {
+        return this.bannerColor;
+    }
 
     public PrintOrientation getOrientation() {
         return orientation;
     }
 
-    public ArrayList<Aperture> getApertures() {
-        return this.apertures;
-    }
-    /*public void addAperture(Aperture aperture) {
-        if (aperture.isValid(this)) {
-            apertures.add(aperture);
-            price += 5;
-        }
-    }*/
 
-    /*public ArrayList<TextAperture> getTextApertures() {
+    public ArrayList<TextAperture> getTextApertures() {
         return textApertures;
     }
 
-    public void addText(TextAperture aperture) {
+    public void addTextAperture(TextAperture aperture) {
         if (aperture.getText() == null) {
             return;
         }
@@ -112,7 +102,7 @@ public class Banner extends Product {
         return imageApertures;
     }
 
-    public void addImagePath(ImageAperture aperture) {
+    public void addImageAperture(ImageAperture aperture) {
         if (aperture.getImagePath() == null) {
             return;
         }
@@ -120,7 +110,7 @@ public class Banner extends Product {
             imageApertures.add(aperture);
             price += 5;
         }
-    }*/
+    }
 
     /*private static ProductType getProductType(BannerType type) {
         switch (type) {

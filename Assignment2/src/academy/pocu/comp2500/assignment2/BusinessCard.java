@@ -19,9 +19,9 @@ public class BusinessCard extends Product {
     //private final CardPaperType paperType;
     //private final Aperture aperture;
     private final int stock;
-    //private final ArrayList<TextAperture> textApertures;
-    //private final ArrayList<ImageAperture> imageApertures;
-    private final ArrayList<Aperture> apertures;
+    private final ArrayList<TextAperture> textApertures;
+    private final ArrayList<ImageAperture> imageApertures;
+
 
     public enum BusinessCardType {
         LINEN_BUSINESS_CARD(ProductType.BUSINESS_CARD_LINEN),
@@ -64,9 +64,8 @@ public class BusinessCard extends Product {
         this.sides = sides;
         this.printOrientation = orientation;
         this.cardType = cardType;
-        //this.textApertures = new ArrayList<>();
-        //this.imageApertures = new ArrayList<>();
-        this.apertures = new ArrayList<>();
+        this.textApertures = new ArrayList<>();
+        this.imageApertures = new ArrayList<>();
         this.stock = stock;
         //this.aperture = aperture;
         //this.textApertures.add(textAperture);
@@ -89,17 +88,9 @@ public class BusinessCard extends Product {
         return this.stock;
     }
 
-    public ArrayList<Aperture> getApertures() {
-        return apertures;
-    }
-    /*public void addAperture(Aperture aperture) {
-        if (aperture.isValid(this)) {
-            apertures.add(aperture);
-            price += 5 * stock;
-        }
-    }*/
 
-    /*public void addText(TextAperture aperture) {
+
+    public void addTextAperture(TextAperture aperture) {
         if (aperture.getText() == null) {
             return;
         }
@@ -109,7 +100,7 @@ public class BusinessCard extends Product {
         }
     }
 
-    public void addImagePath(ImageAperture aperture) {
+    public void addImageAperture(ImageAperture aperture) {
         if (aperture.getImagePath() == null) {
             return;
         }
@@ -124,7 +115,7 @@ public class BusinessCard extends Product {
     }
     public ArrayList<ImageAperture> getAddedImagePaths() {
         return this.imageApertures;
-    }*/
+    }
 
     private static ProductType getProductType(BusinessCardType type) {
         if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
