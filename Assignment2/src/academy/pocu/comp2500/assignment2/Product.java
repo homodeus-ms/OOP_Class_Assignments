@@ -7,11 +7,9 @@ public class Product {
     private final int widthInMilli;
     private final int heightInMilli;
     private final ProductSize size;
-
-
     protected int price;
-    //protected String text;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
+
 
     protected Product(ProductType type, RGB color, ProductSize size, int price) {
         //this(type, color, width, height, price, "");

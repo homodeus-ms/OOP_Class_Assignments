@@ -14,44 +14,8 @@ public class BusinessCard extends Product {
     private final PrintOrientation printOrientation;
     private final BusinessCardStock stock;
 
-
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
-
-
-    public enum BusinessCardStock {
-        LINEN(ProductType.BUSINESS_CARD_LINEN),
-        LAID(ProductType.BUSINESS_CARD_LAID),
-        SMOOTH(ProductType.BUSINESS_CARD_SMOOTH);
-
-        private final ProductType productType;
-
-        BusinessCardStock(ProductType type) {
-            this.productType = type;
-        }
-        public ProductType getType() {
-            return this.productType;
-        }
-    }
-    public enum BusinessCardColor {
-        GRAY(RGB.GRAY),
-        IVORY(RGB.IVORY),
-        WHITE(RGB.WHITE);
-
-        private final RGB color;
-
-        BusinessCardColor(RGB color) {
-            this.color = color;
-        }
-        public RGB getColor() {
-            return this.color;
-        }
-    }
-
-    public enum BusinessCardSides {
-        SINGLE_SIDED_BUSINESS_CARD,
-        DOUBLE_SIDED_BUSINESS_CARD
-    }
 
     public BusinessCard(BusinessCardStock stock, BusinessCardSides sides, BusinessCardColor color,
                         PrintOrientation orientation) {
@@ -62,10 +26,6 @@ public class BusinessCard extends Product {
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
         this.sides = sides;
-
-        //this.aperture = aperture;
-        //this.textApertures.add(textAperture);
-        //this.imageApertures.add(imageAperture);
 
     }
 
@@ -83,7 +43,7 @@ public class BusinessCard extends Product {
     }
 
     public void addTextAperture(TextAperture aperture) {
-        if (aperture.getElement() == null) {
+        if (aperture.getText() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -93,7 +53,7 @@ public class BusinessCard extends Product {
     }
 
     public void addImageAperture(ImageAperture aperture) {
-        if (aperture.getElement() == null) {
+        if (aperture.getImagePath() == null) {
             return;
         }
         if (aperture.isValid(this)) {

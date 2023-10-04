@@ -20,38 +20,6 @@ public class Banner extends Product {
     private final BannerType bannerType;
     private final BannerSize bannerSize;
 
-    public enum BannerType {
-        GLOSS(ProductType.BANNER_GLOSS),
-        SCRIM(ProductType.BANNER_SCRIM),
-        MESH(ProductType.BANNER_MESH);
-
-        private final ProductType productType;
-
-        BannerType(ProductType type) {
-            this.productType = type;
-        }
-        public ProductType getType() {
-            return this.productType;
-        }
-    }
-
-    public enum BannerSize {
-        TINY(ProductSize.BANNER_1XHALF),
-        SMALL(ProductSize.BANNER_1X1),
-        MEDIUM(ProductSize.BANNER_2XHALF),
-        LARGE(ProductSize.BANNER_3X1);
-
-        private final ProductSize size;
-
-        BannerSize(ProductSize size) {
-            this.size = size;
-        }
-
-        public ProductSize getSize() {
-            return this.size;
-        }
-    }
-
 
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
         super(type.getType(), color, size.getSize(), getPrice(type, size));
@@ -82,7 +50,7 @@ public class Banner extends Product {
     }
 
     public void addTextAperture(TextAperture aperture) {
-        if (aperture.getElement() == null) {
+        if (aperture.getText() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -96,7 +64,7 @@ public class Banner extends Product {
     }
 
     public void addImageAperture(ImageAperture aperture) {
-        if (aperture.getElement() == null) {
+        if (aperture.getImagePath() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -110,13 +78,13 @@ public class Banner extends Product {
         switch (type) {
             case GLOSS:
                 switch (size) {
-                    case TINY:
+                    case TINY_1XHALF:
                         return GLOSS_1XHALF_PRICE;
-                    case SMALL:
+                    case SMALL_1X1:
                         return GLOSS_1X1_PRICE;
-                    case MEDIUM:
+                    case MEDIUM_2XHALF:
                         return GLOSS_2XHALF_PRICE;
-                    case LARGE:
+                    case LARGE_3X1:
                         return GLOSS_3X1_PRICE;
                     default:
                         assert (false);
@@ -126,13 +94,13 @@ public class Banner extends Product {
                 // intentional fall through
             case MESH:
                 switch (size) {
-                    case TINY:
+                    case TINY_1XHALF:
                         return OTHER_1XHALF_PRICE;
-                    case SMALL:
+                    case SMALL_1X1:
                         return OTHER_1X1_PRICE;
-                    case MEDIUM:
+                    case MEDIUM_2XHALF:
                         return OTHER_2XHALF_PRICE;
-                    case LARGE:
+                    case LARGE_3X1:
                         return OTHER_3X1_PRICE;
                     default:
                         assert (false);

@@ -1,40 +1,10 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
-    private static final RGB CALENDAR_COLOR = RGB.WHITE;
-
-    private static final int WALL_CALENDAR_WIDTH = 400;
-    private static final int WALL_CALENDAR_HEIGHT = 400;
-    private static final int DESK_CALENDAR_WIDTH = 200;
-    private static final int DESK_CALENDAR_HEIGHT = 150;
-    private static final int MAGNET_CALENDAR_WIDTH = 100;
-    private static final int MAGNET_CALENDAR_HEIGHT = 200;
-
-    private static final int WALL_CALENDAR_PRICE = 1000;
-    private static final int DESK_CALENDAR_PRICE = 1000;
-    private static final int MAGNET_CALENDAR_PRICE = 1500;
-
-    public enum CalendarType {
-        WALL_CALENDAR(ProductSize.WALL_CALENDAR, WALL_CALENDAR_PRICE),
-        DESK_CALENDAR(ProductSize.DESK_CALENDAR, DESK_CALENDAR_PRICE),
-        MAGNET_CALENDAR(ProductSize.MAGNET_CALENDAR, MAGNET_CALENDAR_PRICE);
-
-        private final ProductSize size;
-        private final int price;
-
-        CalendarType(ProductSize size, int price) {
-            this.size = size;
-            this.price = price;
-        }
-
-        public ProductSize getSize() {
-            return this.size;
-        }
-
-        public int getPrice() {
-            return price;
-        }
-    }
+    public static final RGB CALENDAR_COLOR = RGB.WHITE;
+    public static final int WALL_CALENDAR_PRICE = 1000;
+    public static final int DESK_CALENDAR_PRICE = 1000;
+    public static final int MAGNET_CALENDAR_PRICE = 1500;
 
     private final CalendarType calendarType;
 
