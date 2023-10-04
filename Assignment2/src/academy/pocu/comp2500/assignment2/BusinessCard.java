@@ -10,16 +10,11 @@ public class BusinessCard extends Product {
     private static final int SMOOTH_SINGLE_PRICE = 100;
     private static final int SMOOTH_DOUBLE_PRICE = 130;
 
-    private static final int WIDTH_IN_MILLI = 90;
-    private static final int HEIGHT_IN_MILLI = 50;
-
-    //private final BusinessCardSides sides;
+    private final BusinessCardSides sides;
     private final PrintOrientation printOrientation;
     private final BusinessCardType cardType;
-    private final boolean isDoubleCard;
-    //private final CardPaperType paperType;
-    //private final Aperture aperture;
-    //private final int stock;
+    private final int stock;
+
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
@@ -52,36 +47,35 @@ public class BusinessCard extends Product {
             return this.color;
         }
     }
-    public enum StockOption {
-        DOUBLE_SIDED_BUSINESS_CARD
-    }
-    /*public enum BusinessCardSides {
+
+    public enum BusinessCardSides {
         SINGLE_SIDED_BUSINESS_CARD,
         DOUBLE_SIDED_BUSINESS_CARD
-    }*/
+    }
 
+    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
+                        PrintOrientation orientation, int stock) {
+        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
 
-
-    public BusinessCard(BusinessCardType cardType, StockOption stockOrNull, BusinessCardColor color,
-                        PrintOrientation orientation) {
-        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, stockOrNull));
-        this.isDoubleCard = stockOrNull != null;
         this.printOrientation = orientation;
         this.cardType = cardType;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
-        //this.stock = stock;
+        this.sides = sides;
+        this.stock = stock;
         //this.aperture = aperture;
         //this.textApertures.add(textAperture);
         //this.imageApertures.add(imageAperture);
 
     }
-    /*public BusinessCardSides getSides() {
-        return this.sides;
-    }*/
-    public boolean isDoubleCard() {
-        return this.isDoubleCard;
+
+    public int getStock() {
+        return this.stock;
     }
+    public BusinessCardSides getSides() {
+        return this.sides;
+    }
+
     public PrintOrientation getPrintDirection() {
         return printOrientation;
     }
@@ -89,12 +83,6 @@ public class BusinessCard extends Product {
     public BusinessCardType getCardType() {
         return cardType;
     }
-
-    /*public int getStock() {
-        return this.stock;
-    }*/
-
-
 
     public void addTextAperture(TextAperture aperture) {
         if (aperture.getText() == null) {
@@ -133,32 +121,25 @@ public class BusinessCard extends Product {
         }
     }
 
-    /*private static RGB getColor(BusinessCardColorType color) {
-        switch (color) {
-            case GRAY:
-                return RGB.GRAY;
-            case IVORY:
-                return RGB.IVORY;
-            case WHITE:
-                return RGB.WHITE;
-            default:
-                assert (false);
-                return RGB.CUSTOM;
-        }
-    }*/
+    private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
 
-    private static int getPrice(BusinessCardType cardType, StockOption stockOrNull) {
+        int result;
         switch (cardType) {
             case LINEN_BUSINESS_CARD:
-                return stockOrNull == null ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
+                result = sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
+                break;
             case LAID_BUSINESS_CARD:
-                return stockOrNull == null ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+                result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+                break;
             case SMOOTH_BUSINESS_CARD:
-                return stockOrNull == null ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
+                result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
+                break;
             default:
                 assert (false);
                 return -1;
         }
+
+        return result;
     }
     private static CardPaperType getPaperType(BusinessCardType type) {
         if (type == BusinessCardType.LINEN_BUSINESS_CARD) {

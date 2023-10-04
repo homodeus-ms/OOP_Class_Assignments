@@ -5,10 +5,8 @@ public class Product {
     private final ProductType productType;
     //private String displayName;
     //private final RGB color;
-    private int r;
-    private int g;
-    private int b;
-    private RGB color;
+
+    private final RGB color;
     private final int widthInMilli;
     private final int heightInMilli;
     private final ProductSize size;
