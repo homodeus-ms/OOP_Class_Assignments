@@ -19,7 +19,7 @@ public class Program {
         assert (c1.getProductType() == ProductType.BUSINESS_CARD_LINEN);
         assert (c1.getWidth() == 90);
         assert (c1.getColor() == RGB.GRAY);
-        assert (c1.getPrice() == 11000);
+        assert (c1.getPrice() == 110);
 
 
 

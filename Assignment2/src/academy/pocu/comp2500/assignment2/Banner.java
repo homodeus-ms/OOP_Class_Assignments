@@ -52,6 +52,7 @@ public class Banner extends Product {
         }
     }
 
+
     public Banner(BannerType type, BannerSize size, RGB color, PrintOrientation orientation) {
         super(type.getType(), color, size.getSize(), getPrice(type, size));
         this.orientation = orientation;

@@ -21,9 +21,6 @@ public class Product {
     protected Product(ProductType type, RGB color, ProductSize size, int price) {
         //this(type, color, width, height, price, "");
         this.productType = type;
-        this.r = color.getR();
-        this.g = color.getG();
-        this.b = color.getB();
         this.color = color;
         this.widthInMilli = size.getWidthInMilli();
         this.heightInMilli = size.getHeightInMilli();
@@ -62,7 +59,7 @@ public class Product {
     public RGB getColor() {
         return this.color;
     }
-    public int getR() {
+    /*public int getR() {
         return this.r;
     }
     public int getG() {
@@ -70,7 +67,7 @@ public class Product {
     }
     public int getB() {
         return this.b;
-    }
+    }*/
 
     public int getPrice() {
         return price;
