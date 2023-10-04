@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment2;
 
 import java.util.ArrayList;
 
-public class BusinessCard extends Product {
+public class BusinessCard extends BannerAndCard {
     private static final int LINEN_SINGLE_PRICE = 110;
     private static final int LINEN_DOUBLE_PRICE = 140;
     private static final int LAID_SINGLE_PRICE = 120;
@@ -11,63 +11,36 @@ public class BusinessCard extends Product {
     private static final int SMOOTH_DOUBLE_PRICE = 130;
 
     private final BusinessCardSides sides;
-    private final PrintOrientation printOrientation;
+    //private final PrintOrientation printOrientation;
     private final BusinessCardStock stock;
 
-    private final ArrayList<TextAperture> textApertures;
-    private final ArrayList<ImageAperture> imageApertures;
+    //private final ArrayList<TextAperture> textApertures;
+    //private final ArrayList<ImageAperture> imageApertures;
 
     public BusinessCard(BusinessCardStock stock, BusinessCardSides sides, BusinessCardColor color,
                         PrintOrientation orientation) {
-        super(stock.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(stock, sides));
+        super(stock.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(stock, sides), orientation);
 
-        this.printOrientation = orientation;
+        //this.printOrientation = orientation;
         this.stock = stock;
-        this.textApertures = new ArrayList<>();
-        this.imageApertures = new ArrayList<>();
+        //this.textApertures = new ArrayList<>();
+        //this.imageApertures = new ArrayList<>();
         this.sides = sides;
-
     }
-
 
     public BusinessCardSides getSides() {
         return this.sides;
     }
 
-    public PrintOrientation getPrintDirection() {
+    /*public PrintOrientation getPrintDirection() {
         return printOrientation;
-    }
+    }*/
 
     public BusinessCardStock getCardType() {
         return this.stock;
     }
 
-    public void addTextAperture(TextAperture aperture) {
-        if (aperture.getText() == null) {
-            return;
-        }
-        if (aperture.isValid(this)) {
-            textApertures.add(aperture);
-            price += 5;
-        }
-    }
 
-    public void addImageAperture(ImageAperture aperture) {
-        if (aperture.getImagePath() == null) {
-            return;
-        }
-        if (aperture.isValid(this)) {
-            imageApertures.add(aperture);
-            price += 5;
-        }
-    }
-
-    public ArrayList<TextAperture> getAddedTexts() {
-        return this.textApertures;
-    }
-    public ArrayList<ImageAperture> getAddedImagePaths() {
-        return this.imageApertures;
-    }
 
     private static ProductType getProductType(BusinessCardStock stock) {
         if (stock == BusinessCardStock.LINEN) {
@@ -99,13 +72,5 @@ public class BusinessCard extends Product {
 
         return result;
     }
-    /*private static CardPaperType getPaperType(BusinessCardType type) {
-        if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
-            return CardPaperType.LINEN;
-        } else if (type == BusinessCardType.LAID_BUSINESS_CARD) {
-            return CardPaperType.LAID;
-        } else {
-            return CardPaperType.SMOOTH;
-        }
-    }*/
+
 }

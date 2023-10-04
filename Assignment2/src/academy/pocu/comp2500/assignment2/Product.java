@@ -9,8 +9,6 @@ public class Product {
     private final ProductSize size;
     protected int price;
     private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
-
-
     protected Product(ProductType type, RGB color, ProductSize size, int price) {
         //this(type, color, width, height, price, "");
         this.productType = type;
@@ -19,8 +17,8 @@ public class Product {
         this.heightInMilli = size.getHeightInMilli();
         this.size = size;
         this.price = price;
-        //this.text = text;
     }
+
     /*protected Product(ProductType type, RGB color, int width, int height, int price, String text) {
         this.productType = type;
         this.color = color;
@@ -52,23 +50,11 @@ public class Product {
     public RGB getColor() {
         return this.color;
     }
-    /*public int getR() {
-        return this.r;
-    }
-    public int getG() {
-        return this.g;
-    }
-    public int getB() {
-        return this.b;
-    }*/
 
     public int getPrice() {
         return price;
     }
 
-    /*public String getText() {
-        return this.text;
-    }*/
 
     public ShippingMethod getShippingMethod() {
         return this.shippingMethod;
