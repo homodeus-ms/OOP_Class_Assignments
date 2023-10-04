@@ -73,8 +73,6 @@ public class Product {
         return price;
     }
 
-
-
     /*public String getText() {
         return this.text;
     }*/
