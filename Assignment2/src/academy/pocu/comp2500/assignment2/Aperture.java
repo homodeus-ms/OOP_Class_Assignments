@@ -46,4 +46,18 @@ public class Aperture {
         }
         return false;
     }
+    public void addApertureToBanner(Banner banner) {
+        if (!this.isValid(banner)) {
+            return;
+        }
+        banner.getApertures().add(this);
+        banner.price += 5;
+    }
+    public void addApertureToCard(BusinessCard card) {
+        if (!this.isValid(card)) {
+            return;
+        }
+        card.getApertures().add(this);
+        card.price += 5 * card.getStock();
+    }
 }

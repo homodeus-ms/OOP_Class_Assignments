@@ -14,10 +14,12 @@ public class Banner extends Product {
     private static final int OTHER_3X1_PRICE = 6100;
 
     private final PrintOrientation orientation;
-    private final ArrayList<TextAperture> textApertures;
-    private final ArrayList<ImageAperture> imageApertures;
+    private final ArrayList<Aperture> apertures;
+    //private final ArrayList<TextAperture> textApertures;
+    //private final ArrayList<ImageAperture> imageApertures;
     private final BannerType bannerType;
     private final BannerSize bannerSize;
+    private RGB bannerColor;
     //private final RGB color;
 
     public enum BannerType {
@@ -58,9 +60,15 @@ public class Banner extends Product {
         this.orientation = orientation;
         this.bannerType = type;
         this.bannerSize = size;
+        this.bannerColor = color;
         //this.color = color;
-        this.textApertures = new ArrayList<>();
-        this.imageApertures = new ArrayList<>();
+        //this.textApertures = new ArrayList<>();
+        //this.imageApertures = new ArrayList<>();
+        this.apertures = new ArrayList<>();
+
+    }
+    public RGB getBannerColor() {
+        return this.bannerColor;
     }
     public BannerType getBannerType() {
         return bannerType;
@@ -76,7 +84,17 @@ public class Banner extends Product {
         return orientation;
     }
 
-    public ArrayList<TextAperture> getTextApertures() {
+    public ArrayList<Aperture> getApertures() {
+        return this.apertures;
+    }
+    /*public void addAperture(Aperture aperture) {
+        if (aperture.isValid(this)) {
+            apertures.add(aperture);
+            price += 5;
+        }
+    }*/
+
+    /*public ArrayList<TextAperture> getTextApertures() {
         return textApertures;
     }
 
@@ -102,7 +120,7 @@ public class Banner extends Product {
             imageApertures.add(aperture);
             price += 5;
         }
-    }
+    }*/
 
     /*private static ProductType getProductType(BannerType type) {
         switch (type) {

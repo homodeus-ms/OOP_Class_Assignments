@@ -9,6 +9,7 @@ public class RGB {
     public static final RGB GRAY = new RGB(0xE6E6E6);
     public static final RGB IVORY = new RGB(0xFFFFF0);
 
+
     private final int r;
     private final int g;
     private final int b;
