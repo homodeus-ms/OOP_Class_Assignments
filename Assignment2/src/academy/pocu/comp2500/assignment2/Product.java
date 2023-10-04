@@ -3,9 +3,6 @@ package academy.pocu.comp2500.assignment2;
 public class Product {
 
     private final ProductType productType;
-    //private String displayName;
-    //private final RGB color;
-
     private final RGB color;
     private final int widthInMilli;
     private final int heightInMilli;

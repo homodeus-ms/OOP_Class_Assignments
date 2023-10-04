@@ -20,8 +20,6 @@ public class Banner extends Product {
     private final BannerType bannerType;
     private final BannerSize bannerSize;
 
-    //private final RGB color;
-
     public enum BannerType {
         GLOSS(ProductType.BANNER_GLOSS),
         SCRIM(ProductType.BANNER_SCRIM),
@@ -84,7 +82,7 @@ public class Banner extends Product {
     }
 
     public void addTextAperture(TextAperture aperture) {
-        if (aperture.getText() == null) {
+        if (aperture.getElement() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -98,7 +96,7 @@ public class Banner extends Product {
     }
 
     public void addImageAperture(ImageAperture aperture) {
-        if (aperture.getImagePath() == null) {
+        if (aperture.getElement() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -145,49 +143,4 @@ public class Banner extends Product {
                 return -1;
         }
     }
-
-    /*private static int getWidth(BannerSize size) {
-        int width = 0;
-
-        switch (size) {
-            case TINY:
-                // intentional fall through
-            case SMALL:
-                width = 1000;
-                break;
-            case MEDIUM:
-                width = 2000;
-                break;
-            case LARGE:
-                width = 3000;
-                break;
-            default:
-                assert (false);
-                break;
-        }
-        return width;
-    }
-    private static int getHeight(BannerSize size) {
-        int height = 0;
-
-        switch (size) {
-            case TINY:
-                height = 500;
-                break;
-            case SMALL:
-                height = 1000;
-                break;
-            case MEDIUM:
-                height = 500;
-                break;
-            case LARGE:
-                height = 1000;
-                break;
-            default:
-                assert (false);
-                break;
-        }
-        return height;
-    }*/
-
 }

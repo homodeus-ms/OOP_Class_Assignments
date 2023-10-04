@@ -83,7 +83,7 @@ public class BusinessCard extends Product {
     }
 
     public void addTextAperture(TextAperture aperture) {
-        if (aperture.getText() == null) {
+        if (aperture.getElement() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -93,7 +93,7 @@ public class BusinessCard extends Product {
     }
 
     public void addImageAperture(ImageAperture aperture) {
-        if (aperture.getImagePath() == null) {
+        if (aperture.getElement() == null) {
             return;
         }
         if (aperture.isValid(this)) {
@@ -127,10 +127,10 @@ public class BusinessCard extends Product {
                 result = sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
                 break;
             case LAID:
-                result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
+                result = sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
                 break;
             case SMOOTH:
-                result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
+                result = sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
                 break;
             default:
                 assert (false);

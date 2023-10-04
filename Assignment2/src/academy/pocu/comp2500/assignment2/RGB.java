@@ -25,11 +25,6 @@ public class RGB {
         this.g = g;
         this.b = b;
     }
-    /*public RGB(int color) {
-        this.r = color >> 16 & 0xFF;
-        this.g = color >> 8 & 0xFF;
-        this.b = color & 0xFF;
-    }*/
 
     public int getR() {
         return r;
