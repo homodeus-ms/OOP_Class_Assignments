@@ -15,7 +15,8 @@ public class BusinessCard extends Product {
 
     private final BusinessCardSides sides;
     private final PrintOrientation printOrientation;
-    private final CardPaperType paperType;
+    private final BusinessCardType cardType;
+    //private final CardPaperType paperType;
     //private final Aperture aperture;
     private final int stock;
     private final ArrayList<TextAperture> textApertures;
@@ -58,10 +59,10 @@ public class BusinessCard extends Product {
 
     public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
                         PrintOrientation orientation, int stock) {
-        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
+        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides) * stock);
         this.sides = sides;
         this.printOrientation = orientation;
-        this.paperType = getPaperType(cardType);
+        this.cardType = cardType;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
         this.stock = stock;
@@ -78,8 +79,8 @@ public class BusinessCard extends Product {
         return printOrientation;
     }
 
-    public CardPaperType getPaperType() {
-        return paperType;
+    public BusinessCardType getCardType() {
+        return cardType;
     }
 
     public int getStock() {
