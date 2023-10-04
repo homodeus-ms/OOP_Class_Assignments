@@ -18,6 +18,7 @@ public class Banner extends Product {
     private final ArrayList<ImageAperture> imageApertures;
     private final BannerType bannerType;
     private final BannerSize bannerSize;
+    //private final RGB color;
 
     public enum BannerType {
         GLOSS(ProductType.BANNER_GLOSS),
@@ -56,6 +57,7 @@ public class Banner extends Product {
         this.orientation = orientation;
         this.bannerType = type;
         this.bannerSize = size;
+        //this.color = color;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
     }
@@ -65,6 +67,9 @@ public class Banner extends Product {
     public BannerSize getBannerSize() {
         return bannerSize;
     }
+    /*public RGB getColor() {
+        return this.color;
+    }*/
 
     public PrintOrientation getOrientation() {
         return orientation;

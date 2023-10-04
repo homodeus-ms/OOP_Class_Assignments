@@ -56,7 +56,6 @@ public class Product {
         return this.color;
     }
 
-
     public int getPrice() {
         return price;
     }

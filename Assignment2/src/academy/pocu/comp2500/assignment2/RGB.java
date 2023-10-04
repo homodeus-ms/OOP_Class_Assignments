@@ -39,5 +39,7 @@ public class RGB {
         return b;
     }
 
-
+    public boolean equals(RGB color) {
+        return this.r == color.r && this.g == color.g && this.b == color.b;
+    }
 }
