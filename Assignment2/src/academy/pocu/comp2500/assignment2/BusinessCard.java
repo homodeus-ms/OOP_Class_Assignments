@@ -12,21 +12,21 @@ public class BusinessCard extends Product {
 
     private final BusinessCardSides sides;
     private final PrintOrientation printOrientation;
-    private final BusinessCardType cardType;
-    private final int stock;
+    private final BusinessCardStock stock;
+
 
     private final ArrayList<TextAperture> textApertures;
     private final ArrayList<ImageAperture> imageApertures;
 
 
-    public enum BusinessCardType {
-        LINEN_BUSINESS_CARD(ProductType.BUSINESS_CARD_LINEN),
-        LAID_BUSINESS_CARD(ProductType.BUSINESS_CARD_LAID),
-        SMOOTH_BUSINESS_CARD(ProductType.BUSINESS_CARD_SMOOTH);
+    public enum BusinessCardStock {
+        LINEN(ProductType.BUSINESS_CARD_LINEN),
+        LAID(ProductType.BUSINESS_CARD_LAID),
+        SMOOTH(ProductType.BUSINESS_CARD_SMOOTH);
 
         private final ProductType productType;
 
-        BusinessCardType(ProductType type) {
+        BusinessCardStock(ProductType type) {
             this.productType = type;
         }
         public ProductType getType() {
@@ -53,25 +53,23 @@ public class BusinessCard extends Product {
         DOUBLE_SIDED_BUSINESS_CARD
     }
 
-    public BusinessCard(BusinessCardType cardType, BusinessCardSides sides, BusinessCardColor color,
-                        PrintOrientation orientation, int stock) {
-        super(cardType.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(cardType, sides));
+    public BusinessCard(BusinessCardStock stock, BusinessCardSides sides, BusinessCardColor color,
+                        PrintOrientation orientation) {
+        super(stock.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(stock, sides));
 
         this.printOrientation = orientation;
-        this.cardType = cardType;
+        this.stock = stock;
         this.textApertures = new ArrayList<>();
         this.imageApertures = new ArrayList<>();
         this.sides = sides;
-        this.stock = stock;
+
         //this.aperture = aperture;
         //this.textApertures.add(textAperture);
         //this.imageApertures.add(imageAperture);
 
     }
 
-    public int getStock() {
-        return this.stock;
-    }
+
     public BusinessCardSides getSides() {
         return this.sides;
     }
@@ -80,8 +78,8 @@ public class BusinessCard extends Product {
         return printOrientation;
     }
 
-    public BusinessCardType getCardType() {
-        return cardType;
+    public BusinessCardStock getCardType() {
+        return this.stock;
     }
 
     public void addTextAperture(TextAperture aperture) {
@@ -111,27 +109,27 @@ public class BusinessCard extends Product {
         return this.imageApertures;
     }
 
-    private static ProductType getProductType(BusinessCardType type) {
-        if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
+    private static ProductType getProductType(BusinessCardStock stock) {
+        if (stock == BusinessCardStock.LINEN) {
             return ProductType.BUSINESS_CARD_LINEN;
-        } else if (type == BusinessCardType.LAID_BUSINESS_CARD) {
+        } else if (stock == BusinessCardStock.LAID) {
             return ProductType.BUSINESS_CARD_LAID;
         } else {
             return ProductType.BUSINESS_CARD_SMOOTH;
         }
     }
 
-    private static int getPrice(BusinessCardType cardType, BusinessCardSides sides) {
+    private static int getPrice(BusinessCardStock stock, BusinessCardSides sides) {
 
         int result;
-        switch (cardType) {
-            case LINEN_BUSINESS_CARD:
+        switch (stock) {
+            case LINEN:
                 result = sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LINEN_SINGLE_PRICE : LINEN_DOUBLE_PRICE;
                 break;
-            case LAID_BUSINESS_CARD:
+            case LAID:
                 result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? LAID_SINGLE_PRICE : LAID_DOUBLE_PRICE;
                 break;
-            case SMOOTH_BUSINESS_CARD:
+            case SMOOTH:
                 result =  sides == BusinessCardSides.SINGLE_SIDED_BUSINESS_CARD ? SMOOTH_SINGLE_PRICE : SMOOTH_DOUBLE_PRICE;
                 break;
             default:
@@ -141,7 +139,7 @@ public class BusinessCard extends Product {
 
         return result;
     }
-    private static CardPaperType getPaperType(BusinessCardType type) {
+    /*private static CardPaperType getPaperType(BusinessCardType type) {
         if (type == BusinessCardType.LINEN_BUSINESS_CARD) {
             return CardPaperType.LINEN;
         } else if (type == BusinessCardType.LAID_BUSINESS_CARD) {
@@ -149,5 +147,5 @@ public class BusinessCard extends Product {
         } else {
             return CardPaperType.SMOOTH;
         }
-    }
+    }*/
 }
