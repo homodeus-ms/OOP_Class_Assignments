@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class BannerAndCard extends Product {
 
-    private ArrayList<TextAperture> textApertures;
-    private ArrayList<ImageAperture> imageApertures;
+    private final ArrayList<TextAperture> textApertures;
+    private final ArrayList<ImageAperture> imageApertures;
     private final PrintOrientation orientation;
 
     protected BannerAndCard(ProductType type, RGB color, ProductSize size, int price, PrintOrientation orientation) {
         super(type, color, size, price);
         this.orientation = orientation;
+        textApertures = new ArrayList<>();
+        imageApertures = new ArrayList<>();
     }
 
     public PrintOrientation getOrientation() {
