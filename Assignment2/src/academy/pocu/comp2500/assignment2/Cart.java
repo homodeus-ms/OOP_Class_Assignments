@@ -28,7 +28,7 @@ public class Cart {
             cart.remove(index);
         }
     }
-    public void changeShippingMethod(int index, ShippingMethods shippingMethod) {
+    public void changeShippingMethod(int index, Product.ShippingMethods shippingMethod) {
         if (isIndexValid(index)) {
             cart.get(index).setShippingMethod(shippingMethod);
         }

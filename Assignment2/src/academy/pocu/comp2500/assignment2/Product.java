@@ -1,6 +1,12 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Product {
+
+    public enum ShippingMethods {
+        PICKUP,
+        SHIPPING
+    }
+
     private final ProductType productType;
     private final String displayName;
     private final int widthInMilli;
