@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.ArrayList;
-
 public class Banner extends BannerAndCard {
 
     private static final int GLOSS_1XHALF_PRICE = 5000;

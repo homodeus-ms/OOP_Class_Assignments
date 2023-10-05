@@ -29,35 +29,35 @@ public class App {
         registry.registerProductAdder("Cart", "addProduct");
         registry.registerProductRemover("Cart", "removeProduct");
         registry.registerTotalPriceGetter("Cart", "getTotalPrice");
-        registry.registerLandscapeBannerTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerLandscapeBannerImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerPortraitBannerTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerPortraitBannerImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerGlossBannerTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerGlossBannerImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerScrimBannerTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerScrimBannerImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerMeshBannerTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerMeshBannerImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerLandscapeBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerLandscapeBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerPortraitBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerPortraitBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerIvoryBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerIvoryBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerGrayBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerGrayBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerWhiteBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerWhiteBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerLaidBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");
-        registry.registerLaidBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture");
-        registry.registerLinenBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture"); // 린넨커버 인쇄용지에 찍는 명함에 문구를 추가하는 메서드를 등록한다.
-        registry.registerLinenBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture"); // 린넨커버 인쇄용지에 찍는 명함에 사진을 추가하는 메서드를 등록한다.
-        registry.registerSmoothBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture"); // 스노우지 인쇄용지에 찍는 명함에 문구를 추가하는 메서드를 등록한다.
-        registry.registerSmoothBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture"); // 스노우지 인쇄용지에 찍는 명함에 사진을 추가하는 메서드를 등록한다.
-        registry.registerSingleSidedBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");  // 단면 명함에 문구를 추가하는 메서드를 등록한다.
-        registry.registerSingleSidedBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture"); // 단면 명함에 사진을 추가하는 메서드를 등록한다.
-        registry.registerDoubleSidedBusinessCardTextApertureAdder("BannerAndCard", "addTextAperture");  // 양면 명함에 문구를 추가하는 메서드를 등록한다.
-        registry.registerDoubleSidedBusinessCardImageApertureAdder("BannerAndCard", "addImageAperture"); // 양면 명함에 사진을 추가하는 메서드를 등록한다.
+        registry.registerLandscapeBannerTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLandscapeBannerImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerPortraitBannerTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerPortraitBannerImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerGlossBannerTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerGlossBannerImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerScrimBannerTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerScrimBannerImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerMeshBannerTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerMeshBannerImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLandscapeBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLandscapeBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerPortraitBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerPortraitBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerIvoryBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerIvoryBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerGrayBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerGrayBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerWhiteBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerWhiteBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLaidBusinessCardTextApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLaidBusinessCardImageApertureAdder("BannerAndCard", "addAperture");
+        registry.registerLinenBusinessCardTextApertureAdder("BannerAndCard", "addAperture"); // 린넨커버 인쇄용지에 찍는 명함에 문구를 추가하는 메서드를 등록한다.
+        registry.registerLinenBusinessCardImageApertureAdder("BannerAndCard", "addAperture"); // 린넨커버 인쇄용지에 찍는 명함에 사진을 추가하는 메서드를 등록한다.
+        registry.registerSmoothBusinessCardTextApertureAdder("BannerAndCard", "addAperture"); // 스노우지 인쇄용지에 찍는 명함에 문구를 추가하는 메서드를 등록한다.
+        registry.registerSmoothBusinessCardImageApertureAdder("BannerAndCard", "addAperture"); // 스노우지 인쇄용지에 찍는 명함에 사진을 추가하는 메서드를 등록한다.
+        registry.registerSingleSidedBusinessCardTextApertureAdder("BannerAndCard", "addAperture");  // 단면 명함에 문구를 추가하는 메서드를 등록한다.
+        registry.registerSingleSidedBusinessCardImageApertureAdder("BannerAndCard", "addAperture"); // 단면 명함에 사진을 추가하는 메서드를 등록한다.
+        registry.registerDoubleSidedBusinessCardTextApertureAdder("BannerAndCard", "addAperture");  // 양면 명함에 문구를 추가하는 메서드를 등록한다.
+        registry.registerDoubleSidedBusinessCardImageApertureAdder("BannerAndCard", "addAperture"); // 양면 명함에 사진을 추가하는 메서드를 등록한다.
     }
 }

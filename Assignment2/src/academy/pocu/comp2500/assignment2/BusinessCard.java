@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.ArrayList;
-
 public class BusinessCard extends BannerAndCard {
     private static final int LINEN_SINGLE_PRICE = 110;
     private static final int LINEN_DOUBLE_PRICE = 140;
@@ -11,20 +9,13 @@ public class BusinessCard extends BannerAndCard {
     private static final int SMOOTH_DOUBLE_PRICE = 130;
 
     private final BusinessCardSides sides;
-    //private final PrintOrientation printOrientation;
     private final BusinessCardStock stock;
-
-    //private final ArrayList<TextAperture> textApertures;
-    //private final ArrayList<ImageAperture> imageApertures;
 
     public BusinessCard(BusinessCardStock stock, BusinessCardSides sides, BusinessCardColor color,
                         PrintOrientation orientation) {
         super(stock.getType(), color.getColor(), ProductSize.BUSINESS_CARD, getPrice(stock, sides), orientation);
 
-        //this.printOrientation = orientation;
         this.stock = stock;
-        //this.textApertures = new ArrayList<>();
-        //this.imageApertures = new ArrayList<>();
         this.sides = sides;
     }
 
@@ -32,14 +23,9 @@ public class BusinessCard extends BannerAndCard {
         return this.sides;
     }
 
-    /*public PrintOrientation getPrintDirection() {
-        return printOrientation;
-    }*/
-
     public BusinessCardStock getCardType() {
         return this.stock;
     }
-
 
 
     private static ProductType getProductType(BusinessCardStock stock) {
@@ -72,5 +58,4 @@ public class BusinessCard extends BannerAndCard {
 
         return result;
     }
-
 }
