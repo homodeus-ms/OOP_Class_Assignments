@@ -21,15 +21,35 @@ public class Stamp extends Product {
         }
     }
 
-    private final StampSize stampSize;
+    public enum StampColor {
+        RED(Color.RED),
+        GREEN(Color.GREEN),
+        BLUE(Color.BLUE);
 
-    protected Stamp(StampSize size, Color color) {
-        super(size.getProductType(), color, getPrice(size));
+        private final Color color;
+        StampColor(Color color) {
+            this.color = color;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+    }
+
+    private final StampSize stampSize;
+    private final String text;
+
+    public Stamp(StampSize size, StampColor color, String text) {
+        super(size.getProductType(), color.getColor(), getPrice(size));
         this.stampSize = size;
+        this.text = text;
     }
 
     public StampSize getStampSize() {
         return stampSize;
+    }
+    public String getText() {
+        return this.text;
     }
 
     private static int getPrice(StampSize size) {

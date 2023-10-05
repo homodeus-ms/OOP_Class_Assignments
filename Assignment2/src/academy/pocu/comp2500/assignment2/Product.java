@@ -2,6 +2,7 @@ package academy.pocu.comp2500.assignment2;
 
 public class Product {
     private final ProductType productType;
+    private final String displayName;
     private final int widthInMilli;
     private final int heightInMilli;
     private final Color color;
@@ -14,10 +15,14 @@ public class Product {
         this.heightInMilli = type.getHeightInMilli();
         this.color = color;
         this.price = price;
+        displayName = type.name();
     }
 
     public ProductType getProductType() {
         return productType;
+    }
+    public String getDisplayName() {
+        return displayName;
     }
 
     public int getWidthInMilli() {

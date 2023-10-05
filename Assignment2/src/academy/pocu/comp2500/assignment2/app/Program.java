@@ -14,6 +14,8 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
+
+
         System.out.println("No Assert!!!");
     }
 
