@@ -6,19 +6,17 @@ public class Aperture {
     private final int apertureWidth;
     private final int apertureHeight;
 
-    protected Aperture(int x, int y, int width, int height) {
+    public Aperture(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.apertureWidth = width;
         this.apertureHeight = height;
     }
-
-    public boolean isValid(Product product) {
-
+    public boolean isApertureValid(Product product) {
         assert (this.apertureWidth > 0 && this.apertureHeight > 0);
 
-        int productWidth = product.getProductSize().getWidthInMilli();
-        int productHeight = product.getProductSize().getHeightInMilli();
+        int productWidth = product.getWidthInMilli();
+        int productHeight = product.getHeightInMilli();
         int landscapeSize = x + apertureWidth;
         int horizontalSize = y + apertureHeight;
 

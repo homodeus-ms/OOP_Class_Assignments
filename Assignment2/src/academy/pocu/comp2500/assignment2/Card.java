@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class BusinessCard extends BannerAndCard {
+public class Card extends BannerAndCard {
 
     private static final int LINEN_SINGLE_CARD_PRICE = 110;
     private static final int LINEN_DOUBLE_CARD_PRICE = 140;
@@ -23,17 +23,19 @@ public class BusinessCard extends BannerAndCard {
             return productType;
         }
     }
+
     public enum SideType {
-        SINGLE,
-        DOUBLE,
+        SINGLE_SIDED,
+        DOUBLE_SIDED
     }
-    public enum CardColor {
+
+    public enum BusinessCardColor {
         GRAY(Color.GRAY),
         WHITE(Color.WHITE),
         IVORY(Color.IVORY);
 
         private final Color color;
-        CardColor(Color color) {
+        BusinessCardColor(Color color) {
             this.color = color;
         }
 
@@ -45,9 +47,10 @@ public class BusinessCard extends BannerAndCard {
     private final StockType stockType;
     private final SideType side;
 
-    public BusinessCard(StockType type, SideType sides, CardColor color, PrintOrientation orientation) {
-        super(type.getProductType(), color.getColor(), getPrice(type, sides), orientation);
-        this.stockType = type;
+
+    public Card(StockType stockType, SideType sides, BusinessCardColor color, PrintOrientation orientation) {
+        super(stockType.getProductType(), color.getColor(), getPrice(stockType, sides), orientation);
+        this.stockType = stockType;
         this.side = sides;
     }
 
@@ -59,14 +62,14 @@ public class BusinessCard extends BannerAndCard {
         return side;
     }
 
-    private static int getPrice(StockType type, SideType sides) {
-        switch (type) {
+    private static int getPrice(StockType stockType, SideType sides) {
+        switch (stockType) {
             case LINEN:
-                return sides == SideType.SINGLE ? LINEN_SINGLE_CARD_PRICE : LINEN_DOUBLE_CARD_PRICE;
+                return sides == SideType.SINGLE_SIDED ? LINEN_SINGLE_CARD_PRICE : LINEN_DOUBLE_CARD_PRICE;
             case LAID:
-                return sides == SideType.SINGLE ? LAID_SINGLE_CARD_PRICE : LAID_DOUBLE_CARD_PRICE;
+                return sides == SideType.SINGLE_SIDED ? LAID_SINGLE_CARD_PRICE : LAID_DOUBLE_CARD_PRICE;
             case SMOOTH:
-                return sides == SideType.SINGLE ? SMOOTH_SINGLE_CARD_PRICE : SMOOTH_DOUBLE_CARD_PRICE;
+                return sides == SideType.SINGLE_SIDED ? SMOOTH_SINGLE_CARD_PRICE : SMOOTH_DOUBLE_CARD_PRICE;
             default:
                 assert (false);
                 return -1;

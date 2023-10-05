@@ -14,15 +14,8 @@ public class Program {
         App app = new App(registry);
         registry.validate();
 
-        RGB c1 = new RGB(0xFF, 0x44, 0x80);
-
-
         System.out.println("No Assert!!!");
     }
 
 
-
-    public static void testPrice(Stamp stamp, int price) {
-        assert (stamp.getPrice() == price);
-    }
 }

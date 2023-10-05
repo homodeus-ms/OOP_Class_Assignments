@@ -1,66 +1,45 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Product {
-
     private final ProductType productType;
-    private final RGB color;
     private final int widthInMilli;
     private final int heightInMilli;
-    private final ProductSize size;
+    private final Color color;
     protected int price;
-    private ShippingMethod shippingMethod = ShippingMethod.SHIPPING;
-    protected Product(ProductType type, RGB color, ProductSize size, int price) {
-        //this(type, color, width, height, price, "");
+    private ShippingMethods shippingMethod = ShippingMethods.SHIPPING;
+
+    protected Product(ProductType type, Color color, int price) {
         this.productType = type;
+        this.widthInMilli = type.getWidthInMilli();
+        this.heightInMilli = type.getHeightInMilli();
         this.color = color;
-        this.widthInMilli = size.getWidthInMilli();
-        this.heightInMilli = size.getHeightInMilli();
-        this.size = size;
         this.price = price;
     }
 
-    /*protected Product(ProductType type, RGB color, int width, int height, int price, String text) {
-        this.productType = type;
-        this.color = color;
-        this.widthInMilli = width;
-        this.heightInMilli = height;
-        this.price = price;
-        this.text = text;
-    }*/
-    /*public ProductSize getSize() {
-        return this.size;
-    }*/
-    public ProductSize getProductSize() {
-        return this.size;
-    }
-    public int getWidth() {
-        return this.widthInMilli;
-    }
-    public int getHeight() {
-        return this.heightInMilli;
-    }
     public ProductType getProductType() {
-        return this.productType;
-    }
-    public String getDisplayName() {
-        return this.productType.getName();
+        return productType;
     }
 
+    public int getWidthInMilli() {
+        return widthInMilli;
+    }
 
-    public RGB getColor() {
-        return this.color;
+    public int getHeightInMilli() {
+        return heightInMilli;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public int getPrice() {
         return price;
     }
 
-
-    public ShippingMethod getShippingMethod() {
-        return this.shippingMethod;
+    public ShippingMethods getShippingMethod() {
+        return shippingMethod;
     }
-
-    public void setShippingMethod(ShippingMethod shippingMethod) {
+    public void setShippingMethod(ShippingMethods shippingMethod) {
         this.shippingMethod = shippingMethod;
     }
 }
