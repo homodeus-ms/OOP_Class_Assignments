@@ -3,16 +3,16 @@ package academy.pocu.comp2500.lab5;
 import java.util.ArrayList;
 
 public class Gladiator extends Barbarian {
-
+    private final int MAX_MOVE_COUNT = 4;
     protected final ArrayList<Move> moves;
 
     public Gladiator(String name, int hp, int attack, int defense) {
         super(name, hp, attack, defense);
-        moves = new ArrayList<>();
+        moves = new ArrayList<>(MAX_MOVE_COUNT);
     }
 
     public boolean addMove(Move move) {
-        if (!this.isAlive() || this.moves.size() == 4 || hasMove(move.getMoveName())) {
+        if (!this.isAlive() || this.moves.size() == MAX_MOVE_COUNT || hasMove(move.getMoveName())) {
             return false;
         }
 
@@ -43,11 +43,11 @@ public class Gladiator extends Barbarian {
                 break;
             }
         }
-        if (move == null || move.getCurrMoveCount() < 1) {
+        if (move == null || move.getCurrRemainMoveCount() < 1) {
             return;
         }
 
-        move.useMoveCount();
+        move.decreaseCurrRemainMoveCount();
 
         int damage = (int) (this.attack / (double) (other.defense) * move.getMovePower() / 2.0);
         damage = damage < 1 ? 1 : damage;

@@ -18,21 +18,10 @@ public class Barbarian {
         this.defense = defense;
         isAlive = true;
     }
-    /*public int getMaxHp() {
-        return this.maxHp;
-    }*/
+
     public int getHp() {
         return this.hp;
     }
-    /*public String getName() {
-        return this.name;
-    }*/
-    /*public int getAttack() {
-        return this.attack;
-    }
-    public int getDefense() {
-        return this.defense;
-    }*/
 
     public void attack(Barbarian other) {
 
