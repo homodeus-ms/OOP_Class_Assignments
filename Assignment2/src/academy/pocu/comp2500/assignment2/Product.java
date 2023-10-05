@@ -15,7 +15,7 @@ public class Product {
         this.heightInMilli = type.getHeightInMilli();
         this.color = color;
         this.price = price;
-        displayName = type.name();
+        displayName = type.getDisplayName();
     }
 
     public ProductType getProductType() {
