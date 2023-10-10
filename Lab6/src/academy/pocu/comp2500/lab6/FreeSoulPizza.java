@@ -8,7 +8,7 @@ public class FreeSoulPizza extends Pizza {
         super(PizzaType.FREE_SOUL_PIZZA, new ArrayList<>());
     }
 
-    public boolean addTopping(Topping topping) {
+    /*public boolean addTopping(Topping topping) {
         ToppingType toppingType = getToppingType(topping);
 
         if ((toppingType == ToppingType.MEAT && meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT)
@@ -17,9 +17,9 @@ public class FreeSoulPizza extends Pizza {
             return false;
         }
         return addToppingToPizza(topping);
-    }
-    public boolean removeTopping(Topping topping) {
+    }*/
+    /*public boolean removeTopping(Topping topping) {
         return removeToppingFromPizza(topping);
-    }
+    }*/
 
 }
