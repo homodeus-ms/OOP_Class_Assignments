@@ -4,47 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pizza extends Menu {
-    /*private static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
+    private static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
     private static final int VEGGIE_PIZZA_MAX_CHEESE_COUNT = 2;
     private static final int MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT = 1;
     protected static final int FREE_SOUL_PIZZA_MAX_MEAT_COUNT = 2;
     protected static final int FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT = 2;
-    protected static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;*/
-    public enum PizzaType {
-        HOUSE_PIZZA(2, 0, 0),
-        MEAT_LOVER_PIZZA(0, 1, 0),
-        VEGGIE_PIZZA(0, 0, 2),
-        FREE_SOUL_PIZZA(2, 2, 1);
-
-        private final int maxMeatCount;
-        private final int maxVeggieCount;
-        private final int maxCheeseCount;
-
-        private PizzaType(int maxMeatCount, int maxVeggieCount, int maxCheeseCount) {
-            this.maxMeatCount = maxMeatCount;
-            this.maxVeggieCount = maxVeggieCount;
-            this.maxCheeseCount = maxCheeseCount;
-        }
-/*
-        public int getMaxMeatCount() {
-            return maxMeatCount;
-        }
-
-        public int getMaxVeggieCount() {
-            return maxVeggieCount;
-        }
-
-        public int getMaxCheeseCount() {
-            return maxCheeseCount;
-        }*/
-    }
+    protected static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;
 
     private final ArrayList<Topping> toppings;
     private final PizzaType pizzaType;
     private int meatCount;
     private int veggieCount;
     private int cheeseCount;
-
 
     protected Pizza(PizzaType pizzaType, ArrayList<Topping> toppings) {
         super(getPrice(pizzaType));
@@ -64,9 +35,9 @@ public class Pizza extends Menu {
         ToppingType toppingType = getToppingType(topping);
 
         if (this.pizzaType == PizzaType.FREE_SOUL_PIZZA) {
-            if ((toppingType == ToppingType.MEAT && meatCount >= pizzaType.maxMeatCount)
-                    || (toppingType == ToppingType.VEGGIE && veggieCount >= pizzaType.maxVeggieCount)
-                    || (toppingType == ToppingType.CHEESE && cheeseCount >= pizzaType.maxCheeseCount)) {
+            if ((toppingType == ToppingType.MEAT && meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT)
+                    || (toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT)
+                    || (toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT)) {
                 return false;
             }
         }
@@ -163,24 +134,21 @@ public class Pizza extends Menu {
 
     public boolean isValid() {
 
-        return meatCount == pizzaType.maxMeatCount && veggieCount == pizzaType.maxVeggieCount &&
-                cheeseCount == pizzaType.maxCheeseCount;
-
-        /*switch (pizzaType) {
+        switch (pizzaType) {
             case HOUSE_PIZZA:
-                return meatCount == pizzaType.maxMeatCount && veggieCount == 0 && cheeseCount == 0;
+                return meatCount == HOUSE_PIZZA_MAX_MEAT_COUNT;
             case MEAT_LOVER_PIZZA:
-                return veggieCount == PizzaType.MEAT_LOVER_PIZZA.maxVeggieCount;
+                return veggieCount == MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT;
             case VEGGIE_PIZZA:
-                return cheeseCount == PizzaType.VEGGIE_PIZZA.maxCheeseCount;
+                return cheeseCount == VEGGIE_PIZZA_MAX_CHEESE_COUNT;
             case FREE_SOUL_PIZZA:
-                return meatCount == PizzaType.FREE_SOUL_PIZZA.maxMeatCount &&
-                        veggieCount == PizzaType.FREE_SOUL_PIZZA.maxVeggieCount
-                        && cheeseCount == PizzaType.FREE_SOUL_PIZZA.maxCheeseCount;
+                return meatCount == FREE_SOUL_PIZZA_MAX_MEAT_COUNT &&
+                        veggieCount == FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT
+                        && cheeseCount == FREE_SOUL_PIZZA_MAX_CHEESE_COUNT;
             default:
                 assert (false);
                 return false;
-        }*/
+        }
     }
     private ToppingType getToppingType(Topping topping) {
         if (topping == Topping.BACON || topping == Topping.CHICKEN || topping == Topping.SAUSAGES ||
