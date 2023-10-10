@@ -16,11 +16,10 @@ public class Combo extends Menu {
     public ArrayList<Appetizer> getAppetizers() {
         return this.appetizers;
     }
-    public MainCourse getMainCourseOrNull() {
+    public MainCourse getMainCourse() {
         return this.mainCourse;
     }
     public ArrayList<Dessert> getDesserts() {
         return this.desserts;
     }
-
 }

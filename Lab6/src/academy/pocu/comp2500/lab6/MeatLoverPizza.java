@@ -11,22 +11,22 @@ public class MeatLoverPizza extends Pizza {
     }
 
     public boolean addBlackOlives() {
-        return addToppingToPizza(Topping.BLACK_OLIVES, ToppingType.VEGGIE);
+        return addToppingToPizza(Topping.BLACK_OLIVES);
     }
     public boolean removeBlackOlives() {
-        return removeToppingFromPizza(Topping.BLACK_OLIVES, ToppingType.VEGGIE);
+        return removeToppingFromPizza(Topping.BLACK_OLIVES);
     }
     public boolean addRedOnions() {
-        return addToppingToPizza(Topping.RED_ONIONS, ToppingType.VEGGIE);
+        return addToppingToPizza(Topping.RED_ONIONS);
     }
     public boolean removeRedOnions() {
-        return removeToppingFromPizza(Topping.RED_ONIONS, ToppingType.VEGGIE);
+        return removeToppingFromPizza(Topping.RED_ONIONS);
     }
     public boolean addGreenPeppers() {
-        return addToppingToPizza(Topping.GREEN_PEPPERS, ToppingType.VEGGIE);
+        return addToppingToPizza(Topping.GREEN_PEPPERS);
     }
     public boolean removeGreenPeppers() {
-        return removeToppingFromPizza(Topping.GREEN_PEPPERS, ToppingType.VEGGIE);
+        return removeToppingFromPizza(Topping.GREEN_PEPPERS);
     }
 
 }

@@ -11,21 +11,21 @@ public class HousePizza extends Pizza {
     }
 
     public boolean addBacon() {
-        return addToppingToPizza(Topping.BACON, ToppingType.MEAT);
+        return addToppingToPizza(Topping.BACON);
     }
     public boolean removeBacon() {
-        return removeToppingFromPizza(Topping.BACON, ToppingType.MEAT);
+        return removeToppingFromPizza(Topping.BACON);
     }
     public boolean addPeperoni() {
-        return addToppingToPizza(Topping.PEPERONI, ToppingType.MEAT);
+        return addToppingToPizza(Topping.PEPERONI);
     }
     public boolean removePeperoni() {
-        return removeToppingFromPizza(Topping.PEPERONI, ToppingType.MEAT);
+        return removeToppingFromPizza(Topping.PEPERONI);
     }
     public boolean addSausages() {
-        return addToppingToPizza(Topping.SAUSAGES, ToppingType.MEAT);
+        return addToppingToPizza(Topping.SAUSAGES);
     }
     public boolean removeSausages() {
-        return removeToppingFromPizza(Topping.SAUSAGES, ToppingType.MEAT);
+        return removeToppingFromPizza(Topping.SAUSAGES);
     }
 }

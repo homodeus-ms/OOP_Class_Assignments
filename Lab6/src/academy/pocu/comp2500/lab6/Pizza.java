@@ -17,21 +17,9 @@ public class Pizza extends Menu {
     protected int veggieCount;
     protected int cheeseCount;
 
-    public enum PizzaType {
-        HOUSE_PIZZA(HOUSE_PIZZA_PRICE),
-        MEAT_LOVER_PIZZA(MEAT_LOVER_PIZZA_PRICE),
-        VEGGIE_PIZZA(VEGGIE_PIZZA_PRICE),
-        FREE_SOUL_PIZZA(FREE_SOUL_PIZZA_PRICE);
-
-        private final int price;
-
-        PizzaType(int price) {
-            this.price = price;
-        }
-    }
 
     protected Pizza(PizzaType pizzaType, ArrayList<Topping> toppings) {
-        super(pizzaType.price);
+        super(getPrice(pizzaType));
         this.pizzaType = pizzaType;
         this.toppings = toppings;
     }
@@ -40,16 +28,14 @@ public class Pizza extends Menu {
         return toppings;
     }
 
-    protected boolean addToppingToPizza(Topping topping, ToppingType toppingtype) {
+    protected boolean addToppingToPizza(Topping topping) {
         if (isValid()) {
             return false;
         }
 
-        this.toppings.add(topping);
-
         toppings.add(topping);
 
-        switch (toppingtype) {
+        switch (getToppingType(topping)) {
             case MEAT:
                 ++meatCount;
                 break;
@@ -65,11 +51,11 @@ public class Pizza extends Menu {
         }
         return true;
     }
-    protected boolean removeToppingFromPizza(Topping topping, ToppingType toppingType) {
+    protected boolean removeToppingFromPizza(Topping topping) {
         boolean isRemoved = toppings.remove(topping);
 
         if (isRemoved) {
-            switch (topping.getToppingType()) {
+            switch (getToppingType(topping)) {
                 case MEAT:
                     --meatCount;
                     break;
@@ -152,5 +138,30 @@ public class Pizza extends Menu {
                 return false;
         }
     }
-
+    protected ToppingType getToppingType(Topping topping) {
+        if (topping == Topping.BACON || topping == Topping.CHICKEN || topping == Topping.SAUSAGES ||
+                topping == Topping.HAM || topping == Topping.PEPERONI) {
+            return ToppingType.MEAT;
+        } else if (topping == Topping.BLACK_OLIVES || topping == Topping.GREEN_PEPPERS ||
+                topping == Topping.RED_ONIONS) {
+            return ToppingType.VEGGIE;
+        } else {
+            return ToppingType.CHEESE;
+        }
+    }
+    private static int getPrice(PizzaType type) {
+        switch(type) {
+            case HOUSE_PIZZA:
+                return HOUSE_PIZZA_PRICE;
+            case MEAT_LOVER_PIZZA:
+                return MEAT_LOVER_PIZZA_PRICE;
+            case VEGGIE_PIZZA:
+                return VEGGIE_PIZZA_PRICE;
+            case FREE_SOUL_PIZZA:
+                return FREE_SOUL_PIZZA_PRICE;
+            default:
+                assert (false);
+                return -1;
+        }
+    }
 }

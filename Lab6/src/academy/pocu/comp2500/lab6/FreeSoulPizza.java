@@ -9,17 +9,17 @@ public class FreeSoulPizza extends Pizza {
     }
 
     public boolean addTopping(Topping topping) {
-        ToppingType toppingType = topping.getToppingType();
+        ToppingType toppingType = getToppingType(topping);
 
-        if (toppingType == ToppingType.MEAT && this.meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT
-                || toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT
-                || toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT) {
+        if ((toppingType == ToppingType.MEAT && meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT)
+                || (toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT)
+                || (toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT)) {
             return false;
         }
-        return addToppingToPizza(topping, toppingType);
+        return addToppingToPizza(topping);
     }
     public boolean removeTopping(Topping topping) {
-        return removeToppingFromPizza(topping, topping.getToppingType());
+        return removeToppingFromPizza(topping);
     }
 
 }
