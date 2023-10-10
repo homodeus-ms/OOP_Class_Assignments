@@ -20,7 +20,7 @@ public class Pizza extends Menu {
         private final int maxVeggieCount;
         private final int maxCheeseCount;
 
-        PizzaType(int maxMeatCount, int maxVeggieCount, int maxCheeseCount) {
+        private PizzaType(int maxMeatCount, int maxVeggieCount, int maxCheeseCount) {
             this.maxMeatCount = maxMeatCount;
             this.maxVeggieCount = maxVeggieCount;
             this.maxCheeseCount = maxCheeseCount;
@@ -56,13 +56,8 @@ public class Pizza extends Menu {
         return toppings;
     }
 
-    public boolean addTopping(Topping topping) {
-        // 여기 두개의 if 문으로 이 함수를 이용해서 엉뚱한 피자에 엉뚱한 토핑을 추가하려 하는 것을 막아줌
-        // 이게 과연 옳은 방식인지는 모르겠음..
+    protected boolean addTopping(Topping topping) {
         if (isValid()) {
-            return false;
-        }
-        if (this.pizzaType != PizzaType.FREE_SOUL_PIZZA && topping == Topping.CHICKEN) {
             return false;
         }
 
@@ -95,7 +90,7 @@ public class Pizza extends Menu {
         return true;
     }
 
-    public boolean removeTopping(Topping topping) {
+    protected boolean removeTopping(Topping topping) {
         boolean isRemoved = toppings.remove(topping);
 
         if (isRemoved) {
