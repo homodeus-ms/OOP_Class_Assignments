@@ -6,8 +6,8 @@ public class FreeSoulPizza extends Pizza {
         super(PizzaType.FREE_SOUL_PIZZA);
     }
 
-    public boolean addTopping(Topping topping) {
-
+    /*public boolean addTopping(Topping topping) {
+        super.addTopping(topping)
         ToppingType toppingType = topping.getToppingType();
 
         if (toppingType == ToppingType.MEAT && this.meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT
@@ -27,8 +27,8 @@ public class FreeSoulPizza extends Pizza {
                 assert (false);
                 return false;
         }
-    }
-    public boolean removeTopping(Topping topping) {
+    }*/
+    /*public boolean removeTopping(Topping topping) {
         switch (topping.getToppingType()) {
             case MEAT:
                 return removeMeat(topping);
@@ -40,5 +40,5 @@ public class FreeSoulPizza extends Pizza {
                 assert (false);
                 return false;
         }
-    }
+    }*/
 }

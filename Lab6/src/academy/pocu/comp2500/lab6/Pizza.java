@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pizza extends Menu {
-    protected static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
+    /*protected static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
     protected static final int VEGGIE_PIZZA_MAX_CHEESE_COUNT = 2;
     protected static final int MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT = 1;
     protected static final int FREE_SOUL_PIZZA_MAX_MEAT_COUNT = 2;
     protected static final int FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT = 2;
-    protected static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;
+    protected static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;*/
 
     protected final ArrayList<Topping> toppings;
     protected final PizzaType pizzaType;
@@ -18,20 +18,39 @@ public class Pizza extends Menu {
     protected int cheeseCount;
 
     public enum PizzaType {
-        HOUSE_PIZZA(HOUSE_PIZZA_PRICE),
-        MEAT_LOVER_PIZZA(MEAT_LOVER_PIZZA_PRICE),
-        VEGGIE_PIZZA(VEGGIE_PIZZA_PRICE),
-        FREE_SOUL_PIZZA(FREE_SOUL_PIZZA_PRICE);
+        HOUSE_PIZZA(2, 0, 0, HOUSE_PIZZA_PRICE),
+        MEAT_LOVER_PIZZA(0, 1, 0, MEAT_LOVER_PIZZA_PRICE),
+        VEGGIE_PIZZA(0, 0, 2, VEGGIE_PIZZA_PRICE),
+        FREE_SOUL_PIZZA(2, 2, 1, FREE_SOUL_PIZZA_PRICE);
 
+        private final int maxMeatCount;
+        private final int maxVeggieCount;
+        private final int maxCheeseCount;
         private final int price;
 
-        PizzaType(int price) {
+        PizzaType(int maxMeatCount, int maxVeggieCount, int maxCheeseCount, int price) {
+            this.maxMeatCount = maxMeatCount;
+            this.maxVeggieCount = maxVeggieCount;
+            this.maxCheeseCount = maxCheeseCount;
             this.price = price;
         }
+
+        public int getMaxMeatCount() {
+            return maxMeatCount;
+        }
+
+        public int getMaxVeggieCount() {
+            return maxVeggieCount;
+        }
+
+        public int getMaxCheeseCount() {
+            return maxCheeseCount;
+        }
+
         public int getPrice() {
             return this.price;
         }
-        }
+    }
 
     protected Pizza(PizzaType pizzaType) {
         super(pizzaType.getPrice());
@@ -43,7 +62,66 @@ public class Pizza extends Menu {
         return toppings;
     }
 
-    protected boolean addMeat(Topping topping) {
+
+    public boolean addTopping(Topping topping) {
+
+        ToppingType toppingType = topping.getToppingType();
+
+        if (toppingType == ToppingType.MEAT && this.meatCount >= this.pizzaType.maxMeatCount
+                || toppingType == ToppingType.VEGGIE && this.veggieCount >= this.pizzaType.maxVeggieCount
+                || toppingType == ToppingType.CHEESE && this.cheeseCount >= this.pizzaType.maxCheeseCount) {
+            return false;
+        }
+
+        toppings.add(topping);
+
+        switch (toppingType) {
+            case MEAT:
+                ++meatCount;
+                break;
+            case VEGGIE:
+                ++veggieCount;
+                break;
+            case CHEESE:
+                ++cheeseCount;
+                break;
+            default:
+                assert (false);
+                break;
+        }
+        return true;
+    }
+    public boolean removeTopping(Topping topping) {
+        boolean isRemoved = toppings.remove(topping);
+
+        if (isRemoved) {
+            switch (topping.getToppingType()) {
+                case MEAT:
+                    --meatCount;
+                    break;
+                case VEGGIE:
+                    --veggieCount;
+                    break;
+                case CHEESE:
+                    --cheeseCount;
+                    break;
+                default:
+                    assert (false);
+                    break;
+            }
+        }
+        return isRemoved;
+    }
+
+
+
+
+
+
+
+
+
+    /*protected boolean addMeat(Topping topping) {
         if (isValid()) {
             return false;
         }
@@ -89,24 +167,11 @@ public class Pizza extends Menu {
             --cheeseCount;
         }
         return isRemoved;
-    }
+    }*/
 
     public boolean isValid() {
-        switch (pizzaType) {
-            case HOUSE_PIZZA:
-                return meatCount == HOUSE_PIZZA_MAX_MEAT_COUNT;
-            case MEAT_LOVER_PIZZA:
-                return veggieCount == MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT;
-            case VEGGIE_PIZZA:
-                return cheeseCount == VEGGIE_PIZZA_MAX_CHEESE_COUNT;
-            case FREE_SOUL_PIZZA:
-                return meatCount == FREE_SOUL_PIZZA_MAX_MEAT_COUNT &&
-                        veggieCount == FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT &&
-                        cheeseCount == FREE_SOUL_PIZZA_MAX_CHEESE_COUNT;
-            default:
-                assert (false);
-                return false;
-        }
+        return meatCount == pizzaType.maxMeatCount && veggieCount == pizzaType.maxVeggieCount &&
+                cheeseCount == pizzaType.maxCheeseCount;
     }
     private static ArrayList<Topping> setPizza(PizzaType pizzaType) {
         switch (pizzaType) {
