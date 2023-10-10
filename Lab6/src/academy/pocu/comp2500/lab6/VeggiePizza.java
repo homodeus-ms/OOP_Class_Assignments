@@ -11,7 +11,7 @@ public class VeggiePizza extends Pizza {
                 Topping.GREEN_PEPPERS)), VEGGIE_PIZZA_PRICE);
     }
     public boolean isValid() {
-        return super.isValid(ToppingType.CHEESE, MAX_CHEESE_COUNT);
+        return super.isPizzaValid(ToppingType.CHEESE, MAX_CHEESE_COUNT);
     }
     public boolean addMozzarellaCheese() {
         return addCheese(Topping.MOZZARELLA_CHEESE, MAX_CHEESE_COUNT);

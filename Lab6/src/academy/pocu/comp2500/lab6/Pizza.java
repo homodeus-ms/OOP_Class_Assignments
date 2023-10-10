@@ -18,7 +18,7 @@ public class Pizza extends Menu {
     }
 
     protected boolean addMeat(Topping topping, int maxCount) {
-        if (isValid(ToppingType.MEAT, maxCount)) {
+        if (isPizzaValid(ToppingType.MEAT, maxCount)) {
             return false;
         }
         this.toppings.add(topping);
@@ -34,7 +34,7 @@ public class Pizza extends Menu {
     }
 
     protected boolean addVeggie(Topping topping, int maxCount) {
-        if (isValid(ToppingType.VEGGIE, maxCount)) {
+        if (isPizzaValid(ToppingType.VEGGIE, maxCount)) {
             return false;
         }
         this.toppings.add(topping);
@@ -50,7 +50,7 @@ public class Pizza extends Menu {
     }
 
     protected boolean addCheese(Topping topping, int maxCount) {
-        if (isValid(ToppingType.CHEESE, maxCount)) {
+        if (isPizzaValid(ToppingType.CHEESE, maxCount)) {
             return false;
         }
         this.toppings.add(topping);
@@ -65,7 +65,7 @@ public class Pizza extends Menu {
         return isRemoved;
     }
 
-    protected boolean isValid(ToppingType toppingType, int maxCount) {
+    protected boolean isPizzaValid(ToppingType toppingType, int maxCount) {
         switch (toppingType) {
             case MEAT:
                 return meatCount == maxCount;

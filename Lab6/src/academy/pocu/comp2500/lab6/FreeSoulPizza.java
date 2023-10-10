@@ -12,9 +12,9 @@ public class FreeSoulPizza extends Pizza {
         super(new ArrayList<>(), FREE_SOUL_PIZZA_PRICE);
     }
     public boolean isValid() {
-        return super.isValid(ToppingType.MEAT, MAX_MEAT_COUNT)
-                && super.isValid(ToppingType.VEGGIE, MAX_VEGGIE_COUNT)
-                && super.isValid(ToppingType.CHEESE, MAX_CHEESE_COUNT);
+        return super.isPizzaValid(ToppingType.MEAT, MAX_MEAT_COUNT)
+                && super.isPizzaValid(ToppingType.VEGGIE, MAX_VEGGIE_COUNT)
+                && super.isPizzaValid(ToppingType.CHEESE, MAX_CHEESE_COUNT);
     }
     public boolean addTopping(Topping topping) {
         switch (topping.getToppingType()) {

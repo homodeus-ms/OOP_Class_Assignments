@@ -12,7 +12,7 @@ public class HousePizza extends Pizza {
     }
 
     public boolean isValid() {
-        return super.isValid(ToppingType.MEAT, MAX_MEAT_COUNT);
+        return super.isPizzaValid(ToppingType.MEAT, MAX_MEAT_COUNT);
     }
 
     public boolean addBacon() {

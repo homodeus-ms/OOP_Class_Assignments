@@ -11,7 +11,7 @@ public class MeatLoverPizza extends Pizza {
                 Topping.SAUSAGES, Topping.CHEDDAR_CHEESE)), MEAT_LOVER_PIZZA_PRICE);
     }
     public boolean isValid() {
-        return super.isValid(ToppingType.VEGGIE, MAX_VEGGIE_COUNT);
+        return super.isPizzaValid(ToppingType.VEGGIE, MAX_VEGGIE_COUNT);
     }
     public boolean addBlackOlives() {
         return addVeggie(Topping.BLACK_OLIVES, MAX_VEGGIE_COUNT);
