@@ -18,20 +18,14 @@ public class Pizza extends Menu {
     protected int cheeseCount;
 
     public enum PizzaType {
-        HOUSE_PIZZA(2, 0, 0, HOUSE_PIZZA_PRICE),
-        MEAT_LOVER_PIZZA(0, 1, 0, MEAT_LOVER_PIZZA_PRICE),
-        VEGGIE_PIZZA(0, 0, 2, VEGGIE_PIZZA_PRICE),
-        FREE_SOUL_PIZZA(2, 2, 1, FREE_SOUL_PIZZA_PRICE);
+        HOUSE_PIZZA(HOUSE_PIZZA_PRICE),
+        MEAT_LOVER_PIZZA(MEAT_LOVER_PIZZA_PRICE),
+        VEGGIE_PIZZA(VEGGIE_PIZZA_PRICE),
+        FREE_SOUL_PIZZA(FREE_SOUL_PIZZA_PRICE);
 
-        private final int maxMeatCount;
-        private final int maxVeggieCount;
-        private final int maxCheeseCount;
         private final int price;
 
-        PizzaType(int maxMeatCount, int maxVeggieCount, int maxCheeseCount, int price) {
-            this.maxMeatCount = maxMeatCount;
-            this.maxVeggieCount = maxVeggieCount;
-            this.maxCheeseCount = maxCheeseCount;
+        PizzaType(int price) {
             this.price = price;
         }
     }
@@ -143,8 +137,20 @@ public class Pizza extends Menu {
     }*/
 
     public boolean isValid() {
-        return meatCount == pizzaType.maxMeatCount && veggieCount == pizzaType.maxVeggieCount &&
-                cheeseCount == pizzaType.maxCheeseCount;
+        switch (pizzaType) {
+            case HOUSE_PIZZA:
+                return meatCount == HOUSE_PIZZA_MAX_MEAT_COUNT;
+            case MEAT_LOVER_PIZZA:
+                return veggieCount == MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT;
+            case VEGGIE_PIZZA:
+                return cheeseCount == VEGGIE_PIZZA_MAX_CHEESE_COUNT;
+            case FREE_SOUL_PIZZA:
+                return meatCount == FREE_SOUL_PIZZA_MAX_MEAT_COUNT && veggieCount == FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT
+                        && cheeseCount == FREE_SOUL_PIZZA_MAX_CHEESE_COUNT;
+            default:
+                assert (false);
+                return false;
+        }
     }
 
 }
