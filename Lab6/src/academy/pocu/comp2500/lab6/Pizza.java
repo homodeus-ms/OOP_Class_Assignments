@@ -11,30 +11,23 @@ public class Pizza extends Menu {
     private static final int FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT = 2;
     private static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;
 
-    private final ArrayList<Topping> toppings;
-    private final PizzaType pizzaType;
+
     private int meatCount;
     private int veggieCount;
     private int cheeseCount;
 
     protected Pizza(PizzaType pizzaType, ArrayList<Topping> toppings) {
-        super(getPrice(pizzaType));
-        this.pizzaType = pizzaType;
-        this.toppings = toppings;
+        super(pizzaType, toppings, getPrice(pizzaType));
     }
 
-    public ArrayList<Topping> getToppings() {
-        return toppings;
-    }
-
-    protected boolean addTopping(Topping topping) {
+    protected boolean addToppingToPizza(Topping topping) {
         if (isValid()) {
             return false;
         }
 
         ToppingType toppingType = getToppingType(topping);
 
-        if (this.pizzaType == PizzaType.FREE_SOUL_PIZZA) {
+        if (pizzaType == PizzaType.FREE_SOUL_PIZZA) {
             if ((toppingType == ToppingType.MEAT && meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT)
                     || (toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT)
                     || (toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT)) {
@@ -61,7 +54,7 @@ public class Pizza extends Menu {
         return true;
     }
 
-    protected boolean removeTopping(Topping topping) {
+    protected boolean removeToppingFromPizza(Topping topping) {
         boolean isRemoved = toppings.remove(topping);
 
         if (isRemoved) {

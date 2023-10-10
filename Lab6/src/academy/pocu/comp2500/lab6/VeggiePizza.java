@@ -11,22 +11,22 @@ public class VeggiePizza extends Pizza {
     }
 
     public boolean addMozzarellaCheese() {
-        return addTopping(Topping.MOZZARELLA_CHEESE);
+        return addToppingToPizza(Topping.MOZZARELLA_CHEESE);
     }
     public boolean removeMozzarellaCheese() {
-        return removeTopping(Topping.MOZZARELLA_CHEESE);
+        return removeToppingFromPizza(Topping.MOZZARELLA_CHEESE);
     }
     public boolean addCheddarCheese() {
-        return addTopping(Topping.CHEDDAR_CHEESE);
+        return addToppingToPizza(Topping.CHEDDAR_CHEESE);
     }
     public boolean removeCheddarCheese() {
-        return removeTopping(Topping.CHEDDAR_CHEESE);
+        return removeToppingFromPizza(Topping.CHEDDAR_CHEESE);
     }
     public boolean addFetaCheese() {
-        return addTopping(Topping.FETA_CHEESE);
+        return addToppingToPizza(Topping.FETA_CHEESE);
     }
     public boolean removeFetaCheese() {
-        return removeTopping(Topping.FETA_CHEESE);
+        return removeToppingFromPizza(Topping.FETA_CHEESE);
     }
 
 }
