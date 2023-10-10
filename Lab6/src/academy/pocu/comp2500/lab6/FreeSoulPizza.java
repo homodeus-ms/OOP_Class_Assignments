@@ -6,6 +6,12 @@ public class FreeSoulPizza extends Pizza {
         super(PizzaType.FREE_SOUL_PIZZA);
     }
 
+    public boolean addTopping(Topping topping) {
+        return super.addToppingToPizza(topping);
+    }
+    public boolean removeTopping(Topping topping) {
+        return super.removeToppingFromPizza(topping);
+    }
     /*public boolean addTopping(Topping topping) {
         super.addTopping(topping)
         ToppingType toppingType = topping.getToppingType();

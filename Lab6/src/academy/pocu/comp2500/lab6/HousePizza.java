@@ -5,6 +5,4 @@ public class HousePizza extends Pizza {
     public HousePizza() {
         super(PizzaType.HOUSE_PIZZA);
     }
-
-
 }

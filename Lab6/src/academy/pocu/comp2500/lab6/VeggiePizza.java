@@ -6,5 +6,4 @@ public class VeggiePizza extends Pizza {
         super(PizzaType.VEGGIE_PIZZA);
     }
 
-
 }

@@ -47,7 +47,7 @@ public class Pizza extends Menu {
     }
 
 
-    public boolean addTopping(Topping topping) {
+    protected boolean addToppingToPizza(Topping topping) {
 
         ToppingType toppingType = topping.getToppingType();
 
@@ -75,7 +75,7 @@ public class Pizza extends Menu {
         }
         return true;
     }
-    public boolean removeTopping(Topping topping) {
+    protected boolean removeToppingFromPizza(Topping topping) {
         boolean isRemoved = toppings.remove(topping);
 
         if (isRemoved) {
@@ -100,60 +100,60 @@ public class Pizza extends Menu {
 
 
     public boolean addBacon() {
-        return addTopping(Topping.BACON);
+        return addToppingToPizza(Topping.BACON);
     }
     public boolean removeBacon() {
-        return removeTopping(Topping.BACON);
+        return removeToppingFromPizza(Topping.BACON);
     }
     public boolean addPeperoni() {
-        return addTopping(Topping.PEPERONI);
+        return addToppingToPizza(Topping.PEPERONI);
     }
     public boolean removePeperoni() {
-        return removeTopping(Topping.PEPERONI);
+        return removeToppingFromPizza(Topping.PEPERONI);
     }
     public boolean addSausages() {
-        return addTopping(Topping.SAUSAGES);
+        return addToppingToPizza(Topping.SAUSAGES);
     }
     public boolean removeSausages() {
-        return removeTopping(Topping.SAUSAGES);
+        return removeToppingFromPizza(Topping.SAUSAGES);
     }
 
     public boolean addBlackOlives() {
-        return addTopping(Topping.BLACK_OLIVES);
+        return addToppingToPizza(Topping.BLACK_OLIVES);
     }
     public boolean removeBlackOlives() {
-        return removeTopping(Topping.BLACK_OLIVES);
+        return removeToppingFromPizza(Topping.BLACK_OLIVES);
     }
     public boolean addRedOnions() {
-        return addTopping(Topping.RED_ONIONS);
+        return addToppingToPizza(Topping.RED_ONIONS);
     }
     public boolean removeRedOnions() {
-        return removeTopping(Topping.RED_ONIONS);
+        return removeToppingFromPizza(Topping.RED_ONIONS);
     }
     public boolean addGreenPeppers() {
-        return addTopping(Topping.GREEN_PEPPERS);
+        return addToppingToPizza(Topping.GREEN_PEPPERS);
     }
     public boolean removeGreenPeppers() {
-        return removeTopping(Topping.GREEN_PEPPERS);
+        return removeToppingFromPizza(Topping.GREEN_PEPPERS);
     }
 
     public boolean addMozzarellaCheese() {
-        return addTopping(Topping.MOZZARELLA_CHEESE);
+        return addToppingToPizza(Topping.MOZZARELLA_CHEESE);
     }
     public boolean removeMozzarellaCheese() {
-        return removeTopping(Topping.MOZZARELLA_CHEESE);
+        return removeToppingFromPizza(Topping.MOZZARELLA_CHEESE);
     }
     public boolean addCheddarCheese() {
-        return addTopping(Topping.CHEDDAR_CHEESE);
+        return addToppingToPizza(Topping.CHEDDAR_CHEESE);
     }
     public boolean removeCheddarCheese() {
-        return removeTopping(Topping.CHEDDAR_CHEESE);
+        return removeToppingFromPizza(Topping.CHEDDAR_CHEESE);
     }
     public boolean addFetaCheese() {
-        return addTopping(Topping.FETA_CHEESE);
+        return addToppingToPizza(Topping.FETA_CHEESE);
     }
     public boolean removeFetaCheese() {
-        return removeTopping(Topping.FETA_CHEESE);
+        return removeToppingFromPizza(Topping.FETA_CHEESE);
     }
 
 
