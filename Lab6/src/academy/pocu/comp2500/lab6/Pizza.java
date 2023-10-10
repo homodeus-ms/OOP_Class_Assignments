@@ -11,13 +11,18 @@ public class Pizza extends Menu {
     private static final int FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT = 2;
     private static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;
 
-
+    protected ArrayList<Topping> toppings;
     private int meatCount;
     private int veggieCount;
     private int cheeseCount;
 
-    protected Pizza(PizzaType pizzaType, ArrayList<Topping> toppings) {
-        super(pizzaType, toppings, getPrice(pizzaType));
+    protected Pizza(FoodType foodType, ArrayList<Topping> toppings) {
+        super(foodType);
+        this.toppings = toppings;
+    }
+
+    public ArrayList<Topping> getToppings() {
+        return toppings;
     }
 
     protected boolean addToppingToPizza(Topping topping) {
@@ -27,7 +32,7 @@ public class Pizza extends Menu {
 
         ToppingType toppingType = getToppingType(topping);
 
-        if (pizzaType == PizzaType.FREE_SOUL_PIZZA) {
+        if (foodType == FoodType.FREE_SOUL_PIZZA) {
             if ((toppingType == ToppingType.MEAT && meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT)
                     || (toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT)
                     || (toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT)) {
@@ -127,7 +132,7 @@ public class Pizza extends Menu {
 
     public boolean isValid() {
 
-        switch (pizzaType) {
+        switch (foodType) {
             case HOUSE_PIZZA:
                 return meatCount == HOUSE_PIZZA_MAX_MEAT_COUNT;
             case MEAT_LOVER_PIZZA:
@@ -154,7 +159,7 @@ public class Pizza extends Menu {
             return ToppingType.CHEESE;
         }
     }
-    private static int getPrice(PizzaType type) {
+    /*private static int getPrice(PizzaType type) {
         switch (type) {
             case HOUSE_PIZZA:
                 return HOUSE_PIZZA_PRICE;
@@ -168,5 +173,5 @@ public class Pizza extends Menu {
                 assert (false);
                 return -1;
         }
-    }
+    }*/
 }

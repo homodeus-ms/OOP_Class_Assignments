@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class HousePizza extends Pizza {
 
     public HousePizza() {
-        super(PizzaType.HOUSE_PIZZA, new ArrayList<>(Arrays.asList(Topping.BLACK_OLIVES, Topping.RED_ONIONS,
+        super(FoodType.HOUSE_PIZZA, new ArrayList<>(Arrays.asList(Topping.BLACK_OLIVES, Topping.RED_ONIONS,
                 Topping.GREEN_PEPPERS, Topping.MOZZARELLA_CHEESE)));
     }
 

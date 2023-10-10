@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class FreeSoulPizza extends Pizza {
 
     public FreeSoulPizza() {
-        super(PizzaType.FREE_SOUL_PIZZA, new ArrayList<>());
+        super(FoodType.FREE_SOUL_PIZZA, new ArrayList<>());
     }
 
     public boolean addTopping(Topping topping) {
