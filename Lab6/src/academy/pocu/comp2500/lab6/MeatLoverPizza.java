@@ -7,22 +7,5 @@ public class MeatLoverPizza extends Pizza {
     }
 
 
-    public boolean addBlackOlives() {
-        return addTopping(Topping.BLACK_OLIVES);
-    }
-    public boolean removeBlackOlives() {
-        return removeTopping(Topping.BLACK_OLIVES);
-    }
-    public boolean addRedOnions() {
-        return addTopping(Topping.RED_ONIONS);
-    }
-    public boolean removeRedOnions() {
-        return removeTopping(Topping.RED_ONIONS);
-    }
-    public boolean addGreenPeppers() {
-        return addTopping(Topping.GREEN_PEPPERS);
-    }
-    public boolean removeGreenPeppers() {
-        return removeTopping(Topping.GREEN_PEPPERS);
-    }
+
 }
