@@ -1,29 +1,28 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class FreeSoulPizza extends Pizza {
-    private static final int MAX_MEAT_COUNT = 2;
-    private static final int MAX_VEGGIE_COUNT = 2;
-    private static final int MAX_CHEESE_COUNT = 1;
 
     public FreeSoulPizza() {
-        super(new ArrayList<>(), FREE_SOUL_PIZZA_PRICE);
+        super(PizzaType.FREE_SOUL_PIZZA);
     }
-    public boolean isValid() {
-        return super.isPizzaValid(ToppingType.MEAT, MAX_MEAT_COUNT)
-                && super.isPizzaValid(ToppingType.VEGGIE, MAX_VEGGIE_COUNT)
-                && super.isPizzaValid(ToppingType.CHEESE, MAX_CHEESE_COUNT);
-    }
+
     public boolean addTopping(Topping topping) {
-        switch (topping.getToppingType()) {
+
+        ToppingType toppingType = topping.getToppingType();
+
+        if (toppingType == ToppingType.MEAT && this.meatCount >= FREE_SOUL_PIZZA_MAX_MEAT_COUNT
+                || toppingType == ToppingType.VEGGIE && veggieCount >= FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT
+                || toppingType == ToppingType.CHEESE && cheeseCount >= FREE_SOUL_PIZZA_MAX_CHEESE_COUNT) {
+            return false;
+        }
+
+        switch (toppingType) {
             case MEAT:
-                return addMeat(topping, MAX_MEAT_COUNT);
+                return addMeat(topping);
             case VEGGIE:
-                return addVeggie(topping, MAX_VEGGIE_COUNT);
+                return addVeggie(topping);
             case CHEESE:
-                return addCheese(topping, MAX_CHEESE_COUNT);
+                return addCheese(topping);
             default:
                 assert (false);
                 return false;
