@@ -11,6 +11,11 @@ public class Menu {
     protected static final int THREE_COURSE_MEAL_PRICE = 25;
     protected static final int DEATH_BY_DESSERTS_PRICE = 20;*/
 
+
+
+
+
+
     public enum FoodType {
         HOUSE_PIZZA(20),
         MEAT_LOVER_PIZZA(21),
@@ -31,10 +36,10 @@ public class Menu {
     }
 
     protected final FoodType foodType;
-
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
     }
+
 
     /*protected FoodType getFoodType() {
         return this.foodType;
@@ -43,4 +48,28 @@ public class Menu {
     public int getPrice() {
         return foodType.price;
     }
+
+    /*public boolean isValid() {
+        switch (foodType) {
+            case NO_HEAVY_MEAL:
+                return appetizers.size() == 2 && desserts.size() == 1;
+            case THREE_COURSE_MEAL:
+                return appetizers.size() == 1 && !mainCourse.isEmpty() && desserts.size() == 1;
+            case DEATH_BY_DESSERTS:
+                return desserts.size() == 4;
+            case HOUSE_PIZZA:
+                return meatCount == 2;
+            case MEAT_LOVER_PIZZA:
+                return veggieCount == 1;
+            case VEGGIE_PIZZA:
+                return cheeseCount == 2;
+            case FREE_SOUL_PIZZA:
+                return meatCount == 2 &&
+                        veggieCount == 2
+                        && cheeseCount == 1;
+            default:
+                assert (false);
+                return false;
+        }
+    }*/
 }

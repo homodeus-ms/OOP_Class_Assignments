@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.lab6;
 
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Combo extends Menu {
     protected static final int MAX_APPETIZER_COUNT = 2;
@@ -10,23 +12,30 @@ public class Combo extends Menu {
     protected final ArrayList<MainCourse> mainCourse = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(MAX_DESSERT_COUNT);
 
+
     protected Combo(FoodType foodType) {
         super(foodType);
     }
 
-    /*protected ArrayList<Appetizer> getCombosAppetizers() {
-        return this.appetizers;
+    public ArrayList<Appetizer> getAppetizersOrNull() {
+        if (foodType == FoodType.DEATH_BY_DESSERTS || !isValid()) {
+            return null;
+        }
+        return appetizers;
     }
-    protected ArrayList<MainCourse> getCombosMainCourse() {
-        return this.mainCourse;
+    public MainCourse getMainCourseOrNull() {
+        if (foodType == FoodType.NO_HEAVY_MEAL || foodType == FoodType.DEATH_BY_DESSERTS ||
+                !isValid()) {
+            return null;
+        }
+        return mainCourse.get(0);
     }
-    protected ArrayList<Dessert> getCombosDesserts() {
-        return this.desserts;
-    }*/
-
-    /*protected void setMainCourse() {
-        this.isMainCourseExist = true;
-    }*/
+    public ArrayList<Dessert> getDessertsOrNull() {
+        if (!isValid()) {
+            return null;
+        }
+        return desserts;
+    }
 
     public boolean isValid() {
         switch (foodType) {

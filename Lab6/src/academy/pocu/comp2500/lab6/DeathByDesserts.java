@@ -8,10 +8,6 @@ public class DeathByDesserts extends Combo {
         super(FoodType.DEATH_BY_DESSERTS);
     }
 
-    public ArrayList<Dessert> getDesserts() {
-        return desserts;
-    }
-
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {
         super.desserts.clear();
         desserts.add(dessert1);

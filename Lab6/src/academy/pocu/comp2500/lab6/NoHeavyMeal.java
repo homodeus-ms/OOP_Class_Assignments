@@ -14,14 +14,7 @@ public class NoHeavyMeal extends Combo {
         appetizers.add(appetizer2);
     }
     public void setDessert(Dessert dessert) {
-        super.desserts.clear();
-        desserts.add(dessert);
+        desserts.set(0, dessert);
     }
-    public ArrayList<Appetizer> getAppetizers() {
-        return appetizers;
-    }
-    public Dessert getDeseert() {
-        assert (isValid()) : "set dessert first";
-        return desserts.get(0);
-    }
+
 }

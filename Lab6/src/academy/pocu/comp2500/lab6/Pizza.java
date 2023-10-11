@@ -24,7 +24,6 @@ public class Pizza extends Menu {
     public ArrayList<Topping> getToppings() {
         return toppings;
     }
-
     protected boolean addToppingToPizza(Topping topping) {
         if (isValid()) {
             return false;
