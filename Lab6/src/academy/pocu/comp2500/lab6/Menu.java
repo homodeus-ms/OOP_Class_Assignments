@@ -51,6 +51,7 @@ public class Menu {
     }
 
     public ArrayList<Appetizer> getAppetizers() {
+        assert(isValid());
         return this.appetizers;
     }
     public MainCourse getMainCourseOrNull() {
@@ -61,6 +62,7 @@ public class Menu {
         return mainCourse.get(0);
     }
     public ArrayList<Dessert> getDesserts() {
+        assert(isValid());
         return this.desserts;
     }
 
