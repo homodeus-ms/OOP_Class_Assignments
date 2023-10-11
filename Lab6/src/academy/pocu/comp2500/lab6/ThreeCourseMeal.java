@@ -8,13 +8,16 @@ public class ThreeCourseMeal extends Combo {
 
     public void setMainCourse(MainCourse mainCourse) {
         super.mainCourse.set(0, mainCourse);
+        mainCourseCount = 1;
     }
 
     public void setAppetizer(Appetizer appetizer) {
         appetizers.set(0, appetizer);
+        appetizerCount = 1;
     }
 
     public void setDessert(Dessert dessert) {
         desserts.set(0, dessert);
+        dessertCount = 1;
     }
 }
