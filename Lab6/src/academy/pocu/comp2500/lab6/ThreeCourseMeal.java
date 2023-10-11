@@ -6,13 +6,14 @@ public class ThreeCourseMeal extends Combo {
         super(FoodType.THREE_COURSE_MEAL);
     }
 
+
+
     public void setAppetizer(Appetizer appetizer) {
         super.appetizers.clear();
         appetizers.add(appetizer);
     }
     public void setMainCourse(MainCourse mainCourse) {
-        super.mainCourses.clear();
-        super.mainCourses.add(mainCourse);
+        this.mainCourse = mainCourse;
     }
     public void setDessert(Dessert dessert) {
         super.desserts.clear();

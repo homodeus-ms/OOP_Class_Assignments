@@ -11,18 +11,36 @@ public class Menu {
     protected static final int THREE_COURSE_MEAL_PRICE = 25;
     protected static final int DEATH_BY_DESSERTS_PRICE = 20;*/
 
+    public enum FoodType {
+        HOUSE_PIZZA(20),
+        MEAT_LOVER_PIZZA(21),
+        VEGGIE_PIZZA(17),
+        FREE_SOUL_PIZZA(25),
+        NO_HEAVY_MEAL(15),
+        THREE_COURSE_MEAL(25),
+        DEATH_BY_DESSERTS(20);
+
+        private final int price;
+
+        FoodType(int price){
+            this.price = price;
+        }
+        /*public int getPrice() {
+            return this.price;
+        }*/
+    }
+
     protected final FoodType foodType;
 
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
     }
 
-    public FoodType getFoodType() {
+    /*protected FoodType getFoodType() {
         return this.foodType;
-    }
-
+    }*/
 
     public int getPrice() {
-        return foodType.getPrice();
+        return foodType.price;
     }
 }
