@@ -14,13 +14,16 @@ public class Combo extends Menu {
         super(foodType);
     }
 
-    public ArrayList<Appetizer> getCombosAppetizers() {
+    public ArrayList<Appetizer> getAppetizers() {
+        assert (isValid()) : "set Appetizers first";
         return this.appetizers;
     }
-    public ArrayList<MainCourse> getMainCourseOrNull() {
+    public ArrayList<MainCourse> getMainCourse() {
+        assert (isValid()) : "set mainCourse first";
         return this.mainCourse;
     }
-    public ArrayList<Dessert> getCombosDesserts() {
+    public ArrayList<Dessert> getDesserts() {
+        assert (isValid()) : "set desserts first";
         return this.desserts;
     }
 
