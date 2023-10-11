@@ -1,5 +1,7 @@
 package academy.pocu.comp2500.lab6;
 
+import java.util.ArrayList;
+
 public class NoHeavyMeal extends Combo {
 
     public NoHeavyMeal() {
@@ -15,4 +17,11 @@ public class NoHeavyMeal extends Combo {
         super.desserts.clear();
         desserts.add(dessert);
     }
+    /*public ArrayList<Appetizer> getAppetizers() {
+        return super.getCombosAppetizers();
+    }
+    public Dessert getDeseert() {
+        assert (isValid()) : "set dessert first";
+        return super.getCombosDesserts().get(0);
+    }*/
 }
