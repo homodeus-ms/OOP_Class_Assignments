@@ -3,6 +3,7 @@ package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Combo extends Menu {
     protected static final int MAX_APPETIZER_COUNT = 2;
@@ -11,31 +12,36 @@ public class Combo extends Menu {
     protected final ArrayList<Appetizer> appetizers = new ArrayList<>(MAX_APPETIZER_COUNT);
     protected final ArrayList<MainCourse> mainCourse = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(MAX_DESSERT_COUNT);
+    protected final ArrayList<Enum> comboMenus = new ArrayList<>();
 
 
     protected Combo(FoodType foodType) {
         super(foodType);
     }
 
-    public ArrayList<Appetizer> getAppetizersOrNull() {
-        if (foodType == FoodType.DEATH_BY_DESSERTS || !isValid()) {
-            return null;
+    public ArrayList<Enum> getComboMenus() {
+        assert (isValid()) : "set menu first";
+        switch (foodType) {
+            case NO_HEAVY_MEAL:
+                comboMenus.add(appetizers.get(0));
+                comboMenus.add(appetizers.get(1));
+                comboMenus.add(desserts.get(0));
+                break;
+            case THREE_COURSE_MEAL:
+                comboMenus.add(appetizers.get(0));
+                comboMenus.add(mainCourse.get(0));
+                comboMenus.add(desserts.get(0));
+                break;
+            case DEATH_BY_DESSERTS:
+                comboMenus.addAll(desserts);
+                break;
+            default:
+                assert (false);
+                break;
         }
-        return appetizers;
+        return comboMenus;
     }
-    public MainCourse getMainCourseOrNull() {
-        if (foodType == FoodType.NO_HEAVY_MEAL || foodType == FoodType.DEATH_BY_DESSERTS ||
-                !isValid()) {
-            return null;
-        }
-        return mainCourse.get(0);
-    }
-    public ArrayList<Dessert> getDessertsOrNull() {
-        if (!isValid()) {
-            return null;
-        }
-        return desserts;
-    }
+
 
     public boolean isValid() {
         switch (foodType) {
