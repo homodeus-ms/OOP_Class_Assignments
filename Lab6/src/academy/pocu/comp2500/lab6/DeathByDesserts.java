@@ -1,9 +1,15 @@
 package academy.pocu.comp2500.lab6;
 
+import java.util.ArrayList;
+
 public class DeathByDesserts extends Combo {
 
     public DeathByDesserts() {
         super(FoodType.DEATH_BY_DESSERTS);
+    }
+
+    public ArrayList<Dessert> getDesserts() {
+        return desserts;
     }
 
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {

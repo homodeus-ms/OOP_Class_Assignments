@@ -17,11 +17,11 @@ public class NoHeavyMeal extends Combo {
         super.desserts.clear();
         desserts.add(dessert);
     }
-    /*public ArrayList<Appetizer> getAppetizers() {
-        return super.getCombosAppetizers();
+    public ArrayList<Appetizer> getAppetizers() {
+        return appetizers;
     }
     public Dessert getDeseert() {
         assert (isValid()) : "set dessert first";
-        return super.getCombosDesserts().get(0);
-    }*/
+        return desserts.get(0);
+    }
 }

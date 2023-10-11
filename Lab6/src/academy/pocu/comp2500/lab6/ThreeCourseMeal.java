@@ -6,10 +6,18 @@ public class ThreeCourseMeal extends Combo {
         super(FoodType.THREE_COURSE_MEAL);
     }
 
-    /*public MainCourse getMainCourse() {
-        assert (mainCourse != null) : "set MainCourse first";
-        return this.mainCourse;
-    }*/
+    public Appetizer getAppetizer() {
+        assert (isValid()) : "set appetizer first";
+        return appetizers.get(0);
+    }
+    public MainCourse getMainCourse() {
+        assert (isValid()) : "set mainCourse first";
+        return mainCourse.get(0);
+    }
+    public Dessert getDessert() {
+        assert (isValid()) : "set dessert first";
+        return desserts.get(0);
+    }
 
     public void setAppetizer(Appetizer appetizer) {
         super.appetizers.clear();

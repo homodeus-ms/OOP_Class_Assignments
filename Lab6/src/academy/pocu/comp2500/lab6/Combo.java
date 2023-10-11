@@ -14,56 +14,15 @@ public class Combo extends Menu {
         super(foodType);
     }
 
-    public ArrayList<Appetizer> getAppetizers() {
-        switch (foodType) {
-            case NO_HEAVY_MEAL:
-                break;
-            case DEATH_BY_DESSERTS:
-                assert (false) : "no appetizer for this comboSet";
-                break;
-            case THREE_COURSE_MEAL:
-                assert (isValid()) : "set appetizer first";
-                break;
-            default:
-                assert (false);
-                break;
-        }
-
+    /*protected ArrayList<Appetizer> getCombosAppetizers() {
         return this.appetizers;
     }
-    public ArrayList<MainCourse> getMainCourse() {
-        switch (foodType) {
-            case NO_HEAVY_MEAL:
-                // intentional fall thorough
-            case DEATH_BY_DESSERTS:
-                assert (false) : "no mainCourse for this Combo";
-                break;
-            case THREE_COURSE_MEAL:
-                assert (isValid()) : "set mainCourse first";
-                break;
-            default:
-                assert (false);
-                break;
-        }
-
+    protected ArrayList<MainCourse> getCombosMainCourse() {
         return this.mainCourse;
     }
-    public ArrayList<Dessert> getDesserts() {
-        switch (foodType) {
-            case NO_HEAVY_MEAL:
-                // intentional fall through
-            case THREE_COURSE_MEAL:
-                assert (isValid()) : "set dessert first";
-                break;
-            case DEATH_BY_DESSERTS:
-                break;
-            default:
-                assert (false) : "foodType is wrong";
-                break;
-        }
-
+    protected ArrayList<Dessert> getCombosDesserts() {
         return this.desserts;
-    }
+    }*/
 
     /*protected void setMainCourse() {
         this.isMainCourseExist = true;
