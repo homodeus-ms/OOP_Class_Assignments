@@ -22,7 +22,7 @@ public class Menu {
 
         private final int price;
 
-        FoodType(int price){
+        FoodType (int price){
             this.price = price;
         }
         /*public int getPrice() {
