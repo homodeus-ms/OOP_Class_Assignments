@@ -29,9 +29,9 @@ public class Menu {
 
     protected final FoodType foodType;
 
-    protected int appetizerCount;
+    /*protected int appetizerCount;
     protected int mainCourseCount;
-    protected int dessertCount;
+    protected int dessertCount;*/
 
     protected int meatCount;
     protected int veggieCount;
@@ -50,24 +50,28 @@ public class Menu {
         return foodType.price;
     }
 
-    public ArrayList<Object> getComboMenus() {
-        ArrayList<Object> comboMenus = new ArrayList<>();
-
-        comboMenus.addAll(appetizers);
-        comboMenus.addAll(mainCourse);
-        comboMenus.addAll(desserts);
-        
-        return comboMenus;
+    public ArrayList<Appetizer> getAppetizers() {
+        return this.appetizers;
+    }
+    public MainCourse getMainCourseOrNull() {
+        if (foodType != FoodType.THREE_COURSE_MEAL) {
+            return null;
+        }
+        assert (isValid()) : "set mainCourse first";
+        return mainCourse.get(0);
+    }
+    public ArrayList<Dessert> getDesserts() {
+        return this.desserts;
     }
 
     public boolean isValid() {
         switch (foodType) {
             case NO_HEAVY_MEAL:
-                return appetizerCount == 2 && dessertCount == 1;
+                return appetizers.size() == 2 && desserts.size() == 1;
             case THREE_COURSE_MEAL:
-                return appetizerCount == 1 && mainCourseCount == 1 && dessertCount == 1;
+                return appetizers.size() == 1 && mainCourse.size() == 1 && desserts.size() == 1;
             case DEATH_BY_DESSERTS:
-                return dessertCount == 4;
+                return desserts.size() == 4;
             case HOUSE_PIZZA:
                 return meatCount == 2;
             case MEAT_LOVER_PIZZA:

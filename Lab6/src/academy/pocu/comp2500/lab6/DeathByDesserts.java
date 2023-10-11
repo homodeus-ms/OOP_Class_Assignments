@@ -14,6 +14,6 @@ public class DeathByDesserts extends Combo {
         desserts.add(dessert2);
         desserts.add(dessert3);
         desserts.add(dessert4);
-        dessertCount = 4;
+        //dessertCount = 4;
     }
 }
