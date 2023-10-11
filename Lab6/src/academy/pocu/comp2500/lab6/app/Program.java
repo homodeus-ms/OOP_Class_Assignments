@@ -11,10 +11,25 @@ import academy.pocu.comp2500.lab6.NoHeavyMeal;
 import academy.pocu.comp2500.lab6.ThreeCourseMeal;
 import academy.pocu.comp2500.lab6.Topping;
 import academy.pocu.comp2500.lab6.VeggiePizza;
+import academy.pocu.comp2500.lab6.Menu;
+
+import java.util.ArrayList;
 
 public class Program {
 
     public static void main(String[] args) {
+        {
+            NoHeavyMeal m1 = new NoHeavyMeal();
+            m1.setAppetizers(Appetizer.CALAMARI, Appetizer.GYOZA);
+            m1.setDessert(Dessert.APPLE_PIE);
+            ArrayList<Appetizer> zers =  m1.getAppetizers();
+
+            for (Appetizer a : zers) {
+                System.out.println(a);
+            }
+
+            
+        }
 
 
             HousePizza housePizza = new HousePizza();

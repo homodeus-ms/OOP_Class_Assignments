@@ -19,7 +19,7 @@ public class Combo extends Menu {
         return this.appetizers;
     }
     public ArrayList<MainCourse> getMainCourse() {
-        assert (isValid()) : "set mainCourse first";
+        assert (this.foodType == FoodType.THREE_COURSE_MEAL && isValid()) : "set mainCourse first";
         return this.mainCourse;
     }
     public ArrayList<Dessert> getDesserts() {
