@@ -3,17 +3,6 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class Pizza extends Menu {
-    /*private static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
-    private static final int VEGGIE_PIZZA_MAX_CHEESE_COUNT = 2;
-    private static final int MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT = 1;
-    private static final int FREE_SOUL_PIZZA_MAX_MEAT_COUNT = 2;
-    private static final int FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT = 2;
-    private static final int FREE_SOUL_PIZZA_MAX_CHEESE_COUNT = 1;
-
-    protected ArrayList<Topping> toppings;
-    private int meatCount;
-    private int veggieCount;
-    private int cheeseCount;*/
 
     protected ArrayList<Topping> toppings;
 

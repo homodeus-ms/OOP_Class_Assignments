@@ -1,10 +1,6 @@
 package academy.pocu.comp2500.lab6;
 
 public class NoHeavyMeal extends Combo {
-
-    public static final int MAX_APPETIZER_COUNT = 2;
-    public static final int MAX_DESSERT_COUNT = 1;
-
     public NoHeavyMeal() {
         super(FoodType.NO_HEAVY_MEAL);
     }
