@@ -7,7 +7,8 @@ public class ThreeCourseMeal extends Combo {
     }
 
     public void setMainCourse(MainCourse mainCourse) {
-        super.mainCourse = mainCourse;
+        mainCourses.clear();
+        super.mainCourses.add(mainCourse);
     }
 
     public void setAppetizer(Appetizer appetizer) {

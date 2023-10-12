@@ -37,7 +37,7 @@ public class Menu {
     protected int cheeseCount;
 
     protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
-    protected MainCourse mainCourse;
+    protected final ArrayList<MainCourse> mainCourses = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
 
     protected Menu(FoodType foodType) {
@@ -58,7 +58,7 @@ public class Menu {
             case NO_HEAVY_MEAL:
                 return appetizers.size() == 2 && desserts.size() == 1;
             case THREE_COURSE_MEAL:
-                return appetizers.size() == 1 && mainCourse != null && desserts.size() == 1;
+                return appetizers.size() == 1 && !mainCourses.isEmpty() && desserts.size() == 1;
             case DEATH_BY_DESSERTS:
                 return desserts.size() == 4;
             case HOUSE_PIZZA:

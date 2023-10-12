@@ -19,11 +19,11 @@ public class Combo extends Menu {
         }
         return desserts;
     }
-    public MainCourse getMainCourse() {
+    public ArrayList<MainCourse> getMainCourses() {
         if (foodType != FoodType.THREE_COURSE_MEAL || !isValid()) {
             assert (false);
         }
-        return super.mainCourse;
+        return mainCourses;
     }
 
 }
