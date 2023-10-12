@@ -20,4 +20,13 @@ public class ThreeCourseMeal extends Combo {
         desserts.set(0, dessert);
         //dessertCount = 1;
     }
+    public Appetizer getAppetizerOrNull() {
+        return isValid() ? appetizers.get(0) : null;
+    }
+    public MainCourse getMainCourseOrNull() {
+        return isValid() ? mainCourse.get(0) : null;
+    }
+    public Dessert getDessertOrNull() {
+        return isValid() ? desserts.get(0) : null;
+    }
 }

@@ -52,7 +52,7 @@ public class Menu {
     // noHeavyMeal : getAppetizer는 언제나 됨, Dessert는? (널체크를 함)
     // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
     // deathByDessert : 널체크를 안함
-    public ArrayList<Appetizer> getAppetizersOrNull() {
+    /*public ArrayList<Appetizer> getAppetizersOrNull() {
         return this.appetizers.isEmpty() ? null : appetizers;
     }
     public ArrayList<MainCourse> getMainCourseOrNull() {
@@ -60,7 +60,7 @@ public class Menu {
     }
     public ArrayList<Dessert> getDessertsOrNull() {
         return this.desserts.isEmpty() ? null : desserts;
-    }
+    }*/
 
 
     public boolean isValid() {
