@@ -53,21 +53,15 @@ public class Menu {
     // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
     // deathByDessert : 널체크를 안함
     public ArrayList<Appetizer> getAppetizers() {
-        if (foodType == FoodType.THREE_COURSE_MEAL) {
-            assert (!appetizers.isEmpty()) : "Call isValid() first!";
-        }
+        assert (isValid());
         return appetizers;
     }
     public ArrayList<MainCourse> getMainCourse() {
-        if (foodType == FoodType.THREE_COURSE_MEAL) {
-            assert (!mainCourse.isEmpty()) : "Call isValid() first!";
-        }
+        assert (isValid());
         return mainCourse;
     }
     public ArrayList<Dessert> getDesserts() {
-        if (foodType == FoodType.NO_HEAVY_MEAL || foodType == FoodType.THREE_COURSE_MEAL) {
-            assert (!desserts.isEmpty()) : "Call isValid() first!";
-        }
+        assert (isValid());
         return desserts;
     }
 
