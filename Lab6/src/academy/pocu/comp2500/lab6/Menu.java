@@ -52,21 +52,6 @@ public class Menu {
     // noHeavyMeal : getAppetizer는 언제나 됨, Dessert는? (널체크를 함)
     // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
     // deathByDessert : 널체크를 안함
-    public ArrayList<Appetizer> getAppetizers() {
-        assert (isValid());
-        return appetizers;
-    }
-    public ArrayList<MainCourse> getMainCourse() {
-        assert (isValid());
-        return mainCourse;
-    }
-    public ArrayList<Dessert> getDesserts() {
-        assert (isValid());
-        return desserts;
-    }
-
-
-
 
     public boolean isValid() {
         switch (foodType) {
