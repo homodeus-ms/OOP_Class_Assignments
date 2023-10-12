@@ -18,4 +18,5 @@ public class NoHeavyMeal extends Combo {
         desserts.set(0, dessert);
         //dessertCount = 1;
     }
+
 }

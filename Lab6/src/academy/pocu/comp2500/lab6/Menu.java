@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Menu {
     /*protected static final int HOUSE_PIZZA_PRICE = 20;
@@ -41,9 +40,6 @@ public class Menu {
     protected final ArrayList<MainCourse> mainCourse = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
 
-
-
-
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
     }
@@ -56,28 +52,16 @@ public class Menu {
     // noHeavyMeal : getAppetizer는 언제나 됨, Dessert는? (널체크를 함)
     // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
     // deathByDessert : 널체크를 안함
-
-    public ArrayList<Enum<?>> getComboMenus() {
-        ArrayList<Enum<?>> comboMenus = new ArrayList<>();
-        switch (foodType) {
-            case NO_HEAVY_MEAL:
-                comboMenus.addAll(appetizers);
-                comboMenus.add(desserts.get(0));
-                break;
-            case THREE_COURSE_MEAL:
-                comboMenus.add(appetizers.get(0));
-                comboMenus.add(mainCourse.get(0));
-                comboMenus.add(desserts.get(0));
-                break;
-            case DEATH_BY_DESSERTS:
-                comboMenus.addAll(desserts);
-                break;
-            default:
-                assert (false) : "this is getter for combo menus";
-                break;
-        }
-        return comboMenus;
+    public ArrayList<Appetizer> getAppetizersOrNull() {
+        return this.appetizers.isEmpty() ? null : appetizers;
     }
+    public ArrayList<MainCourse> getMainCourseOrNull() {
+        return this.mainCourse.isEmpty() ? null : mainCourse;
+    }
+    public ArrayList<Dessert> getDessertsOrNull() {
+        return this.desserts.isEmpty() ? null : desserts;
+    }
+
 
     public boolean isValid() {
         switch (foodType) {
