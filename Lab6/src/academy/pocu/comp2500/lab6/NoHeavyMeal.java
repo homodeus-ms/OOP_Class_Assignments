@@ -15,7 +15,8 @@ public class NoHeavyMeal extends Combo {
         //appetizerCount = 2;
     }
     public void setDessert(Dessert dessert) {
-        desserts.set(0, dessert);
+        desserts.clear();
+        desserts.add(dessert);
         //dessertCount = 1;
     }
     /*public ArrayList<Appetizer> getAppetizers() {

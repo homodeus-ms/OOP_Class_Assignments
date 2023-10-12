@@ -11,12 +11,14 @@ public class ThreeCourseMeal extends Combo {
     }
 
     public void setAppetizer(Appetizer appetizer) {
-        appetizers.set(0, appetizer);
+        appetizers.clear();
+        appetizers.add(appetizer);
         //appetizerCount = 1;
     }
 
     public void setDessert(Dessert dessert) {
-        desserts.set(0, dessert);
+        desserts.clear();
+        desserts.add(dessert);
         //dessertCount = 1;
     }
 

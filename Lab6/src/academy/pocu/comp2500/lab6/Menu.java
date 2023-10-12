@@ -36,9 +36,9 @@ public class Menu {
     protected int veggieCount;
     protected int cheeseCount;
 
-    protected final ArrayList<Appetizer> appetizers = new ArrayList<>();
+    protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
     protected MainCourse mainCourse;
-    protected final ArrayList<Dessert> desserts = new ArrayList<>();
+    protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
 
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
