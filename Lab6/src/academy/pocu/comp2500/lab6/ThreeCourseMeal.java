@@ -22,10 +22,7 @@ public class ThreeCourseMeal extends Combo {
         //dessertCount = 1;
     }
 
-    public MainCourse getMainCourse() {
-        assert (isValid());
-        return super.mainCourse;
-    }
+
     /*public Appetizer getAppetizerOrNull() {
         return isValid() ? appetizers.get(0) : null;
     }

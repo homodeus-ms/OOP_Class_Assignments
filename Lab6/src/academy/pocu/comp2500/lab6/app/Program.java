@@ -19,17 +19,7 @@ public class Program {
 
     public static void main(String[] args) {
         {
-            NoHeavyMeal n1 = new NoHeavyMeal();
-            System.out.println(n1.getPrice());
-            n1.setAppetizers(Appetizer.CALAMARI, Appetizer.CALAMARI);
-            n1.setDessert(Dessert.APPLE_PIE);
-            System.out.println(n1.isValid());
 
-            ThreeCourseMeal t1 = new ThreeCourseMeal();
-            System.out.println(t1.getPrice());
-
-            DeathByDesserts d1 = new DeathByDesserts();
-            System.out.println(d1.getPrice());
         }
 
 
