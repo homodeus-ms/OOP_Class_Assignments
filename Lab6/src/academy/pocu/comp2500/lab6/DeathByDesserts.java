@@ -16,7 +16,7 @@ public class DeathByDesserts extends Combo {
         desserts.add(dessert4);
         //dessertCount = 4;
     }
-    public ArrayList<Dessert> getDesserts() {
+    /*public ArrayList<Dessert> getDesserts() {
         return desserts;
-    }
+    }*/
 }

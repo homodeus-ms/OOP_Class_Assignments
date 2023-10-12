@@ -18,11 +18,11 @@ public class NoHeavyMeal extends Combo {
         desserts.set(0, dessert);
         //dessertCount = 1;
     }
-    public ArrayList<Appetizer> getAppetizers() {
+    /*public ArrayList<Appetizer> getAppetizers() {
         return appetizers;
     }
     public Dessert getDessertOrNull() {
         return isValid() ? desserts.get(0) : null;
-    }
+    }*/
 
 }
