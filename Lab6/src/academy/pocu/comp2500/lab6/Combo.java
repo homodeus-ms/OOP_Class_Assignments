@@ -25,5 +25,4 @@ public class Combo extends Menu {
         }
         return mainCourses;
     }
-
 }

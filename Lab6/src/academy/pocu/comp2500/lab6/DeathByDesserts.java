@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-
 public class DeathByDesserts extends Combo {
 
     public DeathByDesserts() {
@@ -14,7 +12,6 @@ public class DeathByDesserts extends Combo {
         desserts.add(dessert2);
         desserts.add(dessert3);
         desserts.add(dessert4);
-        //dessertCount = 4;
     }
 
 }

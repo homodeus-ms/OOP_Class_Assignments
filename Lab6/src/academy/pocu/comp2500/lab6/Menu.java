@@ -3,13 +3,7 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class Menu {
-    /*protected static final int HOUSE_PIZZA_PRICE = 20;
-    protected static final int MEAT_LOVER_PIZZA_PRICE = 21;
-    protected static final int VEGGIE_PIZZA_PRICE = 17;
-    protected static final int FREE_SOUL_PIZZA_PRICE = 25;
-    protected static final int NO_HEAVY_MEAL_PRICE = 15;
-    protected static final int THREE_COURSE_MEAL_PRICE = 25;
-    protected static final int DEATH_BY_DESSERTS_PRICE = 20;*/
+
     public enum FoodType {
         HOUSE_PIZZA(20),
         MEAT_LOVER_PIZZA(21),
@@ -27,16 +21,11 @@ public class Menu {
     }
 
     protected final FoodType foodType;
-
-    /*protected int appetizerCount;
-    protected int mainCourseCount;
-    protected int dessertCount;*/
-
     protected int meatCount;
     protected int veggieCount;
     protected int cheeseCount;
 
-    protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
+    protected final ArrayList<Appetizer> appetizers = new ArrayList<>(NoHeavyMeal.MAX_APPETIZER_COUNT);
     protected final ArrayList<MainCourse> mainCourses = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
 
@@ -44,19 +33,15 @@ public class Menu {
         this.foodType = foodType;
     }
 
-
     public int getPrice() {
         return foodType.price;
     }
 
-    // noHeavyMeal : getAppetizer는 언제나 됨, Dessert는? (널체크를 함)
-    // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
-    // deathByDessert : 널체크를 안함
-
     public boolean isValid() {
         switch (foodType) {
             case NO_HEAVY_MEAL:
-                return appetizers.size() == 2 && desserts.size() == 1;
+                return appetizers.size() == NoHeavyMeal.MAX_APPETIZER_COUNT &&
+                        desserts.size() == NoHeavyMeal.MAX_DESSERT_COUNT;
             case THREE_COURSE_MEAL:
                 return appetizers.size() == 1 && !mainCourses.isEmpty() && desserts.size() == 1;
             case DEATH_BY_DESSERTS:

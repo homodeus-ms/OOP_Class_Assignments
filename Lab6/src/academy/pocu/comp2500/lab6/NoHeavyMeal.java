@@ -1,8 +1,9 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-
 public class NoHeavyMeal extends Combo {
+
+    public static final int MAX_APPETIZER_COUNT = 2;
+    public static final int MAX_DESSERT_COUNT = 1;
 
     public NoHeavyMeal() {
         super(FoodType.NO_HEAVY_MEAL);
@@ -12,18 +13,9 @@ public class NoHeavyMeal extends Combo {
         super.appetizers.clear();
         appetizers.add(appetizer1);
         appetizers.add(appetizer2);
-        //appetizerCount = 2;
     }
     public void setDessert(Dessert dessert) {
         desserts.clear();
         desserts.add(dessert);
-        //dessertCount = 1;
     }
-    /*public ArrayList<Appetizer> getAppetizers() {
-        return appetizers;
-    }
-    public Dessert getDessertOrNull() {
-        return isValid() ? desserts.get(0) : null;
-    }*/
-
 }

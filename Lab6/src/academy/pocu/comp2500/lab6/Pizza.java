@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.lab6;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Pizza extends Menu {
     /*private static final int HOUSE_PIZZA_MAX_MEAT_COUNT = 2;
@@ -93,88 +92,4 @@ public class Pizza extends Menu {
             return ToppingType.CHEESE;
         }
     }
-
-
-    /*protected boolean addMeat(Topping topping) {
-        if (isValid()) {
-            return false;
-        }
-        this.toppings.add(topping);
-        ++meatCount;
-        return true;
-    }
-    protected boolean removeMeat(Topping topping) {
-        boolean isRemoved = this.toppings.remove(topping);
-        if (isRemoved) {
-            --meatCount;
-        }
-        return isRemoved;
-    }
-
-    protected boolean addVeggie(Topping topping) {
-        if (isValid()) {
-            return false;
-        }
-        this.toppings.add(topping);
-        ++veggieCount;
-        return true;
-    }
-    protected boolean removeVeggie(Topping topping) {
-        boolean isRemoved = this.toppings.remove(topping);
-        if (isRemoved) {
-            --veggieCount;
-        }
-        return isRemoved;
-    }
-
-    protected boolean addCheese(Topping topping) {
-        if (isValid()) {
-            return false;
-        }
-        this.toppings.add(topping);
-        ++cheeseCount;
-        return true;
-    }
-    protected boolean removeCheese(Topping topping) {
-        boolean isRemoved = this.toppings.remove(topping);
-        if (isRemoved) {
-            --cheeseCount;
-        }
-        return isRemoved;
-    }*/
-
-    /*public boolean isValid() {
-
-        switch (foodType) {
-            case HOUSE_PIZZA:
-                return meatCount == HOUSE_PIZZA_MAX_MEAT_COUNT;
-            case MEAT_LOVER_PIZZA:
-                return veggieCount == MEAT_LOVER_PIZZA_MAX_VEGGIE_COUNT;
-            case VEGGIE_PIZZA:
-                return cheeseCount == VEGGIE_PIZZA_MAX_CHEESE_COUNT;
-            case FREE_SOUL_PIZZA:
-                return meatCount == FREE_SOUL_PIZZA_MAX_MEAT_COUNT &&
-                        veggieCount == FREE_SOUL_PIZZA_MAX_VEGGIE_COUNT
-                        && cheeseCount == FREE_SOUL_PIZZA_MAX_CHEESE_COUNT;
-            default:
-                assert (false);
-                return false;
-        }
-    }*/
-
-    /*private static int getPrice(PizzaType type) {
-        switch (type) {
-            case HOUSE_PIZZA:
-                return HOUSE_PIZZA_PRICE;
-            case MEAT_LOVER_PIZZA:
-                return MEAT_LOVER_PIZZA_PRICE;
-            case VEGGIE_PIZZA:
-                return VEGGIE_PIZZA_PRICE;
-            case FREE_SOUL_PIZZA:
-                return FREE_SOUL_PIZZA_PRICE;
-            default:
-                assert (false);
-                return -1;
-        }
-    }*/
 }
