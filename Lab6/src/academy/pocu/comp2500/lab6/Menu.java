@@ -40,9 +40,13 @@ public class Menu {
     protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
     protected final ArrayList<MainCourse> mainCourse = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
+    protected final ArrayList<ArrayList<? extends Enum<?>>> comboMenus = new ArrayList<>(3);
 
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
+        this.comboMenus.add(appetizers);
+        this.comboMenus.add(mainCourse);
+        this.comboMenus.add(desserts);
     }
 
 
@@ -50,20 +54,8 @@ public class Menu {
         return foodType.price;
     }
 
-    public ArrayList<Appetizer> getAppetizers() {
-        assert(isValid());
-        return this.appetizers;
-    }
-    public MainCourse getMainCourseOrNull() {
-        if (foodType != FoodType.THREE_COURSE_MEAL) {
-            return null;
-        }
-        assert (isValid()) : "set mainCourse first";
-        return mainCourse.get(0);
-    }
-    public ArrayList<Dessert> getDesserts() {
-        assert(isValid());
-        return this.desserts;
+    public ArrayList<ArrayList<? extends Enum<?>>> getComboMenus() {
+        return this.comboMenus;
     }
 
     public boolean isValid() {
