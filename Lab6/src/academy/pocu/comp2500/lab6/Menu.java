@@ -36,9 +36,9 @@ public class Menu {
     protected int veggieCount;
     protected int cheeseCount;
 
-    protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
-    protected MainCourse mainCourse;
-    protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
+    protected final ArrayList<Appetizer> appetizers = new ArrayList<>();
+    protected final ArrayList<MainCourse> mainCourse = new ArrayList<>();
+    protected final ArrayList<Dessert> desserts = new ArrayList<>();
 
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
@@ -53,35 +53,15 @@ public class Menu {
     // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
     // deathByDessert : 널체크를 안함
     public ArrayList<Appetizer> getAppetizersOrNull() {
-        if (foodType == FoodType.NO_HEAVY_MEAL) {
-            return appetizers;
-        }
-        return null;
+        return isValid() ? appetizers : null;
     }
-    public MainCourse getMainCourseOrNull() {
-        if (foodType == FoodType.THREE_COURSE_MEAL) {
-            return mainCourse;
-        }
-        return null;
+    public ArrayList<MainCourse> getMainCourseOrNull() {
+        return isValid() ? mainCourse : null;
     }
     public ArrayList<Dessert> getDessertsOrNull() {
-        if (foodType == FoodType.DEATH_BY_DESSERTS) {
-            return desserts;
-        }
-        return null;
+        return isValid() ? desserts : null;
     }
-    public Appetizer getAppetizerOrNull() {
-        if (foodType == FoodType.THREE_COURSE_MEAL) {
-            return appetizers.get(0);
-        }
-        return null;
-    }
-    public Dessert getDessertOrNull() {
-        if (foodType == FoodType.NO_HEAVY_MEAL) {
-            return desserts.get(0);
-        }
-        return null;
-    }
+
 
 
 
@@ -90,7 +70,7 @@ public class Menu {
             case NO_HEAVY_MEAL:
                 return appetizers.size() == 2 && desserts.size() == 1;
             case THREE_COURSE_MEAL:
-                return appetizers.size() == 1 && mainCourse != null && desserts.size() == 1;
+                return appetizers.size() == 1 && !mainCourse.isEmpty() && desserts.size() == 1;
             case DEATH_BY_DESSERTS:
                 return desserts.size() == 4;
             case HOUSE_PIZZA:
