@@ -40,13 +40,12 @@ public class Menu {
     protected final ArrayList<Appetizer> appetizers = new ArrayList<>(2);
     protected final ArrayList<MainCourse> mainCourse = new ArrayList<>(1);
     protected final ArrayList<Dessert> desserts = new ArrayList<>(4);
-    protected final ArrayList<ArrayList<? extends Enum<?>>> comboMenus = new ArrayList<>(3);
+
+
+
 
     protected Menu(FoodType foodType) {
         this.foodType = foodType;
-        this.comboMenus.add(appetizers);
-        this.comboMenus.add(mainCourse);
-        this.comboMenus.add(desserts);
     }
 
 
@@ -54,8 +53,30 @@ public class Menu {
         return foodType.price;
     }
 
-    public ArrayList<ArrayList<? extends Enum<?>>> getComboMenus() {
-        return this.comboMenus;
+    // noHeavyMeal : getAppetizer는 언제나 됨, Dessert는? (널체크를 함)
+    // ThreeCourse : ArrayList를 안쓰기때문에 다 널체크를 함
+    // deathByDessert : 널체크를 안함
+
+    public ArrayList<Enum<?>> getComboMenus() {
+        ArrayList<Enum<?>> comboMenus = new ArrayList<>();
+        switch (foodType) {
+            case NO_HEAVY_MEAL:
+                comboMenus.addAll(appetizers);
+                comboMenus.add(desserts.get(0));
+                break;
+            case THREE_COURSE_MEAL:
+                comboMenus.add(appetizers.get(0));
+                comboMenus.add(mainCourse.get(0));
+                comboMenus.add(desserts.get(0));
+                break;
+            case DEATH_BY_DESSERTS:
+                comboMenus.addAll(desserts);
+                break;
+            default:
+                assert (false) : "this is getter for combo menus";
+                break;
+        }
+        return comboMenus;
     }
 
     public boolean isValid() {
