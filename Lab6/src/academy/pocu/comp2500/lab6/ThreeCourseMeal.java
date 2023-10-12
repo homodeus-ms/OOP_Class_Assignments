@@ -7,7 +7,7 @@ public class ThreeCourseMeal extends Combo {
     }
 
     public void setMainCourse(MainCourse mainCourse) {
-        super.mainCourse.add(mainCourse);
+        super.mainCourse = mainCourse;
     }
 
     public void setAppetizer(Appetizer appetizer) {
@@ -18,6 +18,11 @@ public class ThreeCourseMeal extends Combo {
     public void setDessert(Dessert dessert) {
         desserts.set(0, dessert);
         //dessertCount = 1;
+    }
+
+    public MainCourse getMainCourse() {
+        assert (isValid());
+        return super.mainCourse;
     }
     /*public Appetizer getAppetizerOrNull() {
         return isValid() ? appetizers.get(0) : null;

@@ -15,10 +15,7 @@ public class Combo extends Menu {
         assert (isValid());
         return appetizers;
     }
-    public ArrayList<MainCourse> getMainCourse() {
-        assert (isValid());
-        return mainCourse;
-    }
+
     public ArrayList<Dessert> getDesserts() {
         assert (isValid());
         return desserts;
