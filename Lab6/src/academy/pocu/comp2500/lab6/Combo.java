@@ -7,21 +7,21 @@ public class Combo extends Menu {
         super(foodType);
     }
 
-    public ArrayList<Appetizer> getAppetizersOrNull() {
+    public ArrayList<Appetizer> getAppetizers() {
         if (foodType == FoodType.DEATH_BY_DESSERTS || (foodType == FoodType.THREE_COURSE_MEAL && !isValid())) {
-            return null;
+            assert (false);
         }
         return appetizers;
     }
-    public ArrayList<Dessert> getDessertsOrNull() {
+    public ArrayList<Dessert> getDesserts() {
         if (foodType != FoodType.DEATH_BY_DESSERTS && !isValid()) {
-            return null;
+            assert (false);
         }
         return desserts;
     }
-    public MainCourse getMainCourseOrNull() {
+    public MainCourse getMainCourse() {
         if (foodType != FoodType.THREE_COURSE_MEAL || !isValid()) {
-            return null;
+            assert (false);
         }
         return super.mainCourse;
     }
