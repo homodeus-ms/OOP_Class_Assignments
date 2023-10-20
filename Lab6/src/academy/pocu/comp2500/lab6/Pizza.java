@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 public class Pizza extends Menu {
 
-    protected ArrayList<Topping> toppings;
+    protected enum ToppingType {
+        MEAT,
+        VEGGIE,
+        CHEESE
+    }
 
-    protected Pizza(FoodType foodType, ArrayList<Topping> toppings) {
-        super(foodType);
+    private final ArrayList<Topping> toppings;
+
+    protected Pizza(MenuType menu, ArrayList<Topping> toppings) {
+        super(menu);
         this.toppings = toppings;
     }
 
@@ -15,67 +21,62 @@ public class Pizza extends Menu {
         return toppings;
     }
     protected boolean addToppingToPizza(Topping topping) {
-        if (isValid()) {
-            return false;
-        }
 
-        ToppingType toppingType = getToppingType(topping);
 
-        if (foodType == FoodType.FREE_SOUL_PIZZA) {
-            if ((toppingType == ToppingType.MEAT && meatCount >= 2)
-                    || (toppingType == ToppingType.VEGGIE && veggieCount >= 2)
-                    || (toppingType == ToppingType.CHEESE && cheeseCount >= 1)) {
-                return false;
-            }
-        }
+        if (!isValid()) {
+            ToppingType toppingType = getToppingType(topping);
 
-        toppings.add(topping);
-
-        switch (toppingType) {
-            case MEAT:
-                ++meatCount;
-                break;
-            case VEGGIE:
-                ++veggieCount;
-                break;
-            case CHEESE:
-                ++cheeseCount;
-                break;
-            default:
-                assert (false);
-                break;
-        }
-        return true;
-    }
-
-    protected boolean removeToppingFromPizza(Topping topping) {
-        boolean isRemoved = toppings.remove(topping);
-
-        if (isRemoved) {
-            switch (getToppingType(topping)) {
+            switch (toppingType) {
                 case MEAT:
-                    --meatCount;
+                    ++addedMeatCount;
                     break;
                 case VEGGIE:
-                    --veggieCount;
+                    ++addedVeggieCount;
                     break;
                 case CHEESE:
-                    --cheeseCount;
+                    ++addedCheeseCount;
                     break;
                 default:
                     assert (false);
                     break;
             }
-        }
-        return isRemoved;
-    }
 
-    private ToppingType getToppingType(Topping topping) {
-        if (topping == Topping.BACON || topping == Topping.CHICKEN || topping == Topping.SAUSAGES ||
-                topping == Topping.HAM || topping == Topping.PEPERONI) {
+            toppings.add(topping);
+
+            return true;
+        }
+        return false;
+    }
+    protected boolean removeToppingFromPizza(Topping topping) {
+        boolean isRemoved = toppings.remove(topping);
+        if (isRemoved) {
+            ToppingType toppingType = getToppingType(topping);
+
+            switch (toppingType) {
+                case MEAT:
+                    --addedMeatCount;
+                    break;
+                case VEGGIE:
+                    --addedVeggieCount;
+                    break;
+                case CHEESE:
+                    --addedCheeseCount;
+                    break;
+                default:
+                    assert (false);
+                    break;
+            }
+            return true;
+        }
+        return false;
+    }
+    protected ToppingType getToppingType(Topping topping) {
+        if (topping == Topping.BACON || topping == Topping.PEPERONI ||
+                topping == Topping.SAUSAGES || topping == Topping.CHICKEN ||
+                topping == Topping.HAM) {
             return ToppingType.MEAT;
-        } else if (topping == Topping.BLACK_OLIVES || topping == Topping.GREEN_PEPPERS ||
-                topping == Topping.RED_ONIONS) {
+        } else if (topping == Topping.BLACK_OLIVES || topping == Topping.RED_ONIONS ||
+                topping == Topping.GREEN_PEPPERS) {
             return ToppingType.VEGGIE;
         } else {
             return ToppingType.CHEESE;

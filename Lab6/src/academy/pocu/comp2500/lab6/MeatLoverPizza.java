@@ -6,10 +6,9 @@ import java.util.Arrays;
 public class MeatLoverPizza extends Pizza {
 
     public MeatLoverPizza() {
-        super(FoodType.MEAT_LOVER_PIZZA, new ArrayList<>(Arrays.asList(Topping.BACON, Topping.PEPERONI, Topping.HAM,
-                Topping.SAUSAGES, Topping.CHEDDAR_CHEESE)));
+        super(MenuType.MEAT_LOVER_PIZZA, new ArrayList<>(Arrays.asList(Topping.BACON,
+                Topping.PEPERONI, Topping.HAM, Topping.SAUSAGES, Topping.CHEDDAR_CHEESE)));
     }
-
     public boolean addBlackOlives() {
         return addToppingToPizza(Topping.BLACK_OLIVES);
     }
@@ -28,5 +27,4 @@ public class MeatLoverPizza extends Pizza {
     public boolean removeGreenPeppers() {
         return removeToppingFromPizza(Topping.GREEN_PEPPERS);
     }
-
 }

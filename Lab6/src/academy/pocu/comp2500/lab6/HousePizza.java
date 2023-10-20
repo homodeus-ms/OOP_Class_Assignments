@@ -6,10 +6,9 @@ import java.util.Arrays;
 public class HousePizza extends Pizza {
 
     public HousePizza() {
-        super(FoodType.HOUSE_PIZZA, new ArrayList<>(Arrays.asList(Topping.BLACK_OLIVES, Topping.RED_ONIONS,
-                Topping.GREEN_PEPPERS, Topping.MOZZARELLA_CHEESE)));
+        super(MenuType.HOUSE_PIZZA, new ArrayList<>(Arrays.asList(Topping.BLACK_OLIVES,
+                Topping.RED_ONIONS, Topping.GREEN_PEPPERS, Topping.MOZZARELLA_CHEESE)));
     }
-
     public boolean addBacon() {
         return addToppingToPizza(Topping.BACON);
     }

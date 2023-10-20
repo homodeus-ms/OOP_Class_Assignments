@@ -5,14 +5,20 @@ import java.util.ArrayList;
 public class FreeSoulPizza extends Pizza {
 
     public FreeSoulPizza() {
-        super(FoodType.FREE_SOUL_PIZZA, new ArrayList<>());
+        super(MenuType.FREE_SOUL_PIZZA, new ArrayList<>(5));
     }
-
     public boolean addTopping(Topping topping) {
-        return super.addToppingToPizza(topping);
+        ToppingType toppingType = getToppingType(topping);
+
+        if ((toppingType == ToppingType.MEAT && addedMeatCount >= FREE_PIZZA_MAX_MEAT_COUNT) ||
+                (toppingType == ToppingType.VEGGIE && addedVeggieCount >= FREE_PIZZA_MAX_VEGGIE_COUNT)
+                || (toppingType == ToppingType.CHEESE && addedCheeseCount >= FREE_PIZZA_MAX_CHEESE_COUNT)) {
+            return false;
+        }
+
+        return addToppingToPizza(topping);
     }
     public boolean removeTopping(Topping topping) {
-        return super.removeToppingFromPizza(topping);
+        return removeToppingFromPizza(topping);
     }
-
 }
