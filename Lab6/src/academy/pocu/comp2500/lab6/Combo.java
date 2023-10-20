@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Combo extends Menu {
 
-    public Combo(MenuType menu) {
+    protected Combo(MenuType menu) {
         super(menu);
     }
 

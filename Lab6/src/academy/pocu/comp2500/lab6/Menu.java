@@ -36,9 +36,9 @@ public class Menu {
     public int getPrice() {
         return price;
     }
-    public MenuType getMenu() {
+    /*public MenuType getMenu() {
         return menu;
-    }
+    }*/
 
     public boolean isValid() {
         switch (menu) {
@@ -55,7 +55,7 @@ public class Menu {
             case NO_HEAVY_MEAL:
                 return appetizers.size() == 2 && desserts.size() == 1;
             case THREE_COURSE_MEAL:
-                return appetizers.size() == 1 && mainCourses.size() == 1 && desserts.size() ==1;
+                return appetizers.size() == 1 && mainCourses.size() == 1 && desserts.size() == 1;
             case DEATH_BY_DESSERTS:
                 return desserts.size() == 4;
             default:
