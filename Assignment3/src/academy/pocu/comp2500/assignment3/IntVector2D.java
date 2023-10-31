@@ -1,0 +1,46 @@
+package academy.pocu.comp2500.assignment3;
+
+public class IntVector2D {
+
+    public static final int X_MAX = 0xF;
+    public static final int Y_MAX = 0x7;
+
+    private int x;
+    private int y;
+
+    public IntVector2D(int x, int y) {
+        this.x = Math.max(0, Math.min(X_MAX, x));
+        this.y = Math.max(0, Math.min(Y_MAX, y));
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public void setX(int x) {
+        this.x = Math.max(0, Math.min(X_MAX, x));
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public void setY(int y) {
+        this.y = Math.max(0, Math.min(Y_MAX, y));
+    }
+
+    public double getDistance(IntVector2D obj) {
+        return Math.sqrt(Math.pow((this.x - obj.x), 2) + Math.pow((this.y - obj.y), 2));
+    }
+
+    public int getManhattanDistance(IntVector2D obj) {
+        return Math.abs(this.x - obj.x) + Math.abs(this.y - obj.y);
+    }
+
+    public boolean equals(IntVector2D other) {
+        return (this.x == other.x) && (this.y == other.y);
+    }
+
+
+
+}
