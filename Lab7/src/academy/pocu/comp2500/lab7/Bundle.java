@@ -7,7 +7,7 @@ public final class Bundle {
     private final Book[] books = new Book[4];
     private int bookCount;
 
-    public Bundle (String name) {
+    public Bundle(String name) {
         this.name = name;
     }
 

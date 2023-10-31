@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab7;
 
-import java.util.Objects;
-
 public final class Book {
     private final String title;
     private final Author author;
