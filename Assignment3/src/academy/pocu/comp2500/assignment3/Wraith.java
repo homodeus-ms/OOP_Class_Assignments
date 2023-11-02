@@ -57,7 +57,10 @@ public class Wraith extends ThinkableUnit implements IMovable {
 
     @Override
     public void goNextTurn() {
-        hasShieldUsedAll = true;
+        if (hasAttacked) {
+            hasShieldUsedAll = true;
+        }
+
         hasActed = false;
     }
 

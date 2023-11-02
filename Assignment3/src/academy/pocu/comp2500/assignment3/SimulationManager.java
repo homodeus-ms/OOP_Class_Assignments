@@ -30,8 +30,8 @@ public final class SimulationManager {
         this.units.add(unit);
     }
 
-    // 이걸 이렇게 해야 하는건가?
 
+    // 이걸 이렇게 해야 하는건가?
 
     public void registerThinkable(ThinkableUnit unit) {
 
@@ -51,6 +51,8 @@ public final class SimulationManager {
             return;
         }
 
+        // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악하고
+        // 최우선으로 행동할 vector2D를 찾음
         for (Unit u : units) {
             u.setEnemiesInAttackRangeAndSightRange();
 
@@ -63,6 +65,8 @@ public final class SimulationManager {
             }
         }
 
+        // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
+        // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
         for (Unit u : units) {
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 u.passThisTurn();
@@ -96,20 +100,20 @@ public final class SimulationManager {
         }
 
         // 모든 행위가 끝나고 죽은 유닛들을 제거함
+        // goNextTurn() : 위에서 turn을 넘기는 행동이나 이동을 했던 유닛들의 불리언 변수가 true로
+        // 체크 되는데 그것들을 다음 턴을 위해 다시 false로 바꿔줌
         for (int i = 0; i < units.size(); ++i) {
 
             Unit unit = units.get(i);
 
             assert (unit.hasActed);
 
-            unit.goNextTurn();
-
             if (unit.getHp() <= 0) {
                 units.remove(unit);
                 --i;
 
-            } else if (unit.getUnitType() == UnitType.AIR && ((Wraith) unit).getHasAttacked()) {
-                ((Wraith) unit).goNextTurn();
+            } else {
+                unit.goNextTurn();;
             }
         }
     }
