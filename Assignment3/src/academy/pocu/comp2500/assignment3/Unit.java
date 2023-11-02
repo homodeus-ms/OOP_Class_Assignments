@@ -6,8 +6,12 @@ import java.util.Comparator;
 
 public abstract class Unit {
 
+    protected final double EPSILON = 0.00000001;
     private IntVector2D currPos;
-    private int hp;
+    protected IntVector2D targetPosOrNull = new IntVector2D(-1, -1);
+    protected boolean hasActed;
+
+    protected int hp;
     private final UnitType unitType;
     private final int sight;
 
@@ -15,12 +19,12 @@ public abstract class Unit {
     private final int ap;
     private AttackIntent attackIntent;
 
-    private ArrayList<Unit> enemiesInSight = new ArrayList<>();
-    private ArrayList<Unit> enemiesInAttackRange = new ArrayList<>();
-    private ArrayList<Unit> priorities = new ArrayList<>();
+    protected ArrayList<Unit> enemiesInSight = new ArrayList<>();
+    protected ArrayList<Unit> enemiesInAttackRange = new ArrayList<>();
+    protected ArrayList<Unit> enemyPriorities = new ArrayList<>();
 
-    protected Unit(IntVector2D currPos, int hp, UnitType unitType, int sight,
-                   int aoe, int ap) {
+    protected Unit(IntVector2D currPos, final int hp, final UnitType unitType,
+                   final int sight, final int aoe, final int ap) {
         this.currPos = currPos;
         this.hp = hp;
         this.unitType = unitType;
@@ -53,112 +57,113 @@ public abstract class Unit {
         return hp;
     }
 
+    public boolean hasActed() {
+        return hasActed;
+    }
+
+    public IntVector2D getTargetPosOrNull() {
+        return targetPosOrNull;
+    }
+
     public ArrayList<Unit> getEnemiesInSight() {
         return enemiesInSight;
     }
+    public ArrayList<Unit> getEnemiesInAttackRange() {
+        return enemiesInAttackRange;
+    }
 
-
-    public AttackIntent attack() {
+    public AttackIntent getAttackIntent() {
         return attackIntent;
     }
 
+    public ArrayList<Unit> getEnemyPriorities() {
+        return enemyPriorities;
+    }
+
+    // 디폴트를 마린과 레이스의 경우로
+    public AttackIntent attack() {
+
+        makeAttackIntent();
+
+        IntVector2D targetPos = attackIntent.getAttackPos();
+        for (Unit u : SimulationManager.getInstance().getUnits()) {
+            if (this != u && targetPos.equals(u.currPos)) {
+                u.onAttacked(attackIntent.getDamage());
+            }
+        }
+        return attackIntent;
+    }
+
+    // 적이 있는 쪽으로 이동. default는 move인데 움직이지 않음(?)
+    public void moveToTarget(IntVector2D targetPos) {
+    }
+    // 시야 안에 적이 없을 때 각자의 행동을 하고 턴을 넘김.
+    public void passThisTurn() {
+
+    }
+
+    // 탱크나 지뢰의 경우 지상유닛인지 체크해야 하니까 오버라이딩을 해야 함
     public void onAttacked(int damage) {
         hp -= damage;
+        //hp = Math.max(0, hp);
     }
 
     public void onSpawn() {
 
     }
 
+    // 이것도 역시 디폴트는 머린과 레이스, 나머지 유닛들은 각 클래스에서 오버라이드
+    public boolean isVisible(Unit other) {
+        return other.getUnitType() != UnitType.BURROWED;
+    }
+
     public abstract char getSymbol();
 
+    public void setEnemiesInAttackRangeAndSightRange() {
+        enemiesInSight.clear();
+        enemiesInAttackRange.clear();
 
-
-
-    protected void findMinHpEnemies() {
-        ArrayList<Unit> spawnedUnits = SimulationManager.getInstance().getUnits();
-        if (spawnedUnits.isEmpty()) {
-            return;
-        }
-
-        int minHp = 0;
-
-        for (Unit u : spawnedUnits) {
-            if (isAttackable(u)) {
-                if (enemiesInAttackRange.isEmpty() || u.getHp() < minHp) {
-                    minHp = u.getHp();
-                    enemiesInAttackRange.clear();
+        ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
+        for (Unit u : spawnedUnit) {
+            if (this != u && isVisible(u)) {
+                if (isAttackable(u)) {
                     enemiesInAttackRange.add(u);
-                } else if (u.getHp() == minHp) {
-                    enemiesInAttackRange.add(u);
-                }
-            }
-        }
-
-        if (enemiesInAttackRange.size() > 1) {
-            IntVector2D = findPriorityDirection(enemiesInAttackRange, getMaxDirectionCount)
-            return;
-        }
-
-        minHp = 0;
-
-        for (Unit u : spawnedUnits) {
-            if (isEnemyInSight(u)) {
-                if (enemiesInSight.isEmpty() || u.getHp() < minHp) {
-                    minHp = u.getHp();
-                    enemiesInSight.clear();
-                    enemiesInSight.add(u);
-                } else if (u.getHp() == minHp) {
+                } else if (isEnemyInSight(u)) {
                     enemiesInSight.add(u);
                 }
             }
         }
-
-        assert (!enemiesInAttackRange.isEmpty() || enemiesInSight.isEmpty());
     }
 
+    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
+                                            ArrayList<Unit> priorities) {
 
-
-    private IntVector2D findPriorityDirection(ArrayList<Unit> enemies, int maxDirectionCount) {
-        IntVector2D pos = new IntVector2D(this.currPos.getX(), this.currPos.getY());
-
-        int size = enemies.size();
-        int searchCount = 0;    // 0:samePos, 1:north... 4:west, 4 is Max in case of Marine
-
-        for (int i = 0; i <= maxDirectionCount; ++ i) {
-            pos = getNextPos(i, pos);
-            for (int j = 0; j < size; ++j) {
-                if (enemies.get(j).currPos == pos) {
-                    return pos;
-                }
-            }
-        }
-
-        assert (false) : "It should be returned in previous loop";
-        return null;
     }
 
+    public void goNextTurn() {
+        hasActed = false;
+    }
 
-    protected abstract IntVector2D getNextPos(int searchCount, IntVector2D pos);
+    //protected abstract IntVector2D getNextPos(int searchCount, IntVector2D pos);
 
     protected boolean isEnemyInSight(Unit enemy) {
-        double distance = getDistance(enemy);
-        return distance <= Math.sqrt(2 * sight * sight);
+        int enemyX = enemy.getPosition().getX();
+        int enemyY = enemy.getPosition().getY();
+
+        return Math.abs(enemyX - currPos.getX()) <= this.sight &&
+                Math.abs(enemyY-currPos.getY()) <= this.sight;
     }
 
     // Marine과 Wraith의 경우 override없이 이것을 default로 사용
     protected boolean isAttackable(Unit target) {
-        return this.currPos.getDistance(target.currPos) <= 1.0;
+        return this.currPos.getDistance(target.currPos) <= 1.0 + EPSILON;
     }
 
-    private double getDistance(Unit other) {
-        return Math.sqrt(Math.pow((this.currPos.getX() - other.currPos.getX()), 2) +
-                Math.pow((this.currPos.getY() - other.currPos.getY()), 2));
+    protected void makeAttackIntent() {
+        if (this.attackIntent == null) {
+            attackIntent = new AttackIntent(targetPosOrNull, ap, this);
+        } else {
+            attackIntent.setAttackIntent(targetPosOrNull, ap, this);
+        }
     }
-    private int getManhattanDistance(Unit other) {
-        return Math.abs(this.currPos.getX() - other.currPos.getX()) +
-                Math.abs(this.currPos.getY() - other.currPos.getY());
-    }
-
-
 }

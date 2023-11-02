@@ -4,6 +4,7 @@ public class IntVector2D {
 
     public static final int X_MAX = 0xF;
     public static final int Y_MAX = 0x7;
+    public static final IntVector2D DEFAULT_VECTOR = new IntVector2D(-1, -1);
 
     private int x;
     private int y;
@@ -37,10 +38,16 @@ public class IntVector2D {
         return Math.abs(this.x - obj.x) + Math.abs(this.y - obj.y);
     }
 
+
     public boolean equals(IntVector2D other) {
+        if (this == other) {
+            return true;
+        }
+
         return (this.x == other.x) && (this.y == other.y);
     }
-
-
-
+    public void makeDeepCopy(IntVector2D other) {
+        this.x = other.x;
+        this.y = other.y;
+    }
 }
