@@ -6,9 +6,6 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
-    private final ArrayList<Unit> thinkableUnit = new ArrayList<>();
-    private final ArrayList<Unit> movableUnit = new ArrayList<>();
-    private final ArrayList<Unit> collisionEventListeners = new ArrayList<>();
 
     private SimulationManager(ArrayList<Unit> units) {
         this.units = units;
@@ -34,28 +31,18 @@ public final class SimulationManager {
     }
 
     // 이걸 이렇게 해야 하는건가?
-    public ArrayList<Unit> getThinkableUnit() {
-        return thinkableUnit;
-    }
 
-    public ArrayList<Unit> getMovableUnit() {
-        return movableUnit;
-    }
-
-    public ArrayList<Unit> getCollisionEventListeners() {
-        return collisionEventListeners;
-    }
 
     public void registerThinkable(ThinkableUnit unit) {
-        thinkableUnit.add(unit);
+
     }
 
     public void registerMovable(IMovable unit) {
-        movableUnit.add(((Unit) unit));
+
     }
 
     public void registerCollisionEventListener(Mine mine) {
-        collisionEventListeners.add(mine);
+
     }
 
     public void update() {

@@ -55,7 +55,7 @@ public class Turret extends ThinkableUnit {
 
     @Override
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                            ArrayList<Unit> priorities) {
+                                     ArrayList<Unit> priorities) {
 
         if (sourceUnits.isEmpty()) {
             return;

@@ -13,7 +13,7 @@ public abstract class ThinkableUnit extends Unit {
     // 여기에 구현되어 있는 디폴트는 머린
 
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                            ArrayList<Unit> priorities) {
+                                     ArrayList<Unit> priorities) {
 
         if (sourceUnits.isEmpty()) {
             return;

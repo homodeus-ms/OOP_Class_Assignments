@@ -136,7 +136,7 @@ public abstract class Unit {
     }
 
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                            ArrayList<Unit> priorities) {
+                                     ArrayList<Unit> priorities) {
 
     }
 
@@ -151,7 +151,7 @@ public abstract class Unit {
         int enemyY = enemy.getPosition().getY();
 
         return Math.abs(enemyX - currPos.getX()) <= this.sight &&
-                Math.abs(enemyY-currPos.getY()) <= this.sight;
+                Math.abs(enemyY - currPos.getY()) <= this.sight;
     }
 
     // Marine과 Wraith의 경우 override없이 이것을 default로 사용

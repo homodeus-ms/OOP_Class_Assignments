@@ -7,7 +7,7 @@ public class Mine extends Unit {
     protected int triggerCountDown;
 
     public Mine(IntVector2D currPos, int maxTriggerCount) {
-        this(currPos, UnitData.MINE.getHp(), UnitData.MINE.getUnitType() ,
+        this(currPos, UnitData.MINE.getHp(), UnitData.MINE.getUnitType(),
                 UnitData.MINE.getSight(), UnitData.MINE.getAoe(), UnitData.MINE.getAp(),
                 maxTriggerCount);
     }

@@ -68,7 +68,7 @@ public class Wraith extends ThinkableUnit implements IMovable {
 
     @Override
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                            ArrayList<Unit> priorities) {
+                                     ArrayList<Unit> priorities) {
 
         if (sourceUnits.isEmpty()) {
             return;
