@@ -52,7 +52,7 @@ public final class SimulationManager {
     }
 
     public void update() {
-        // spwaned Unit이 없는 경우 바로 리턴
+        /*// spwaned Unit이 없는 경우 바로 리턴
         if (units.isEmpty()) {
             return;
         }
@@ -77,7 +77,7 @@ public final class SimulationManager {
         // 최우선으로 행동할 vector2D를 찾음
 
 
-        /*for (Unit u : units) {
+        *//*for (Unit u : units) {
             u.setEnemiesInAttackRangeAndSightRange();
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
@@ -87,7 +87,7 @@ public final class SimulationManager {
             } else {
                 u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
             }
-        }*/
+        }*//*
 
 
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
@@ -148,6 +148,6 @@ public final class SimulationManager {
             } else {
                 unit.goNextTurn();;
             }
-        }
+        }*/
     }
 }
