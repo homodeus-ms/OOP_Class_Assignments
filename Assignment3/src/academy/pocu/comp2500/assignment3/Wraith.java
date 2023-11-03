@@ -136,7 +136,7 @@ public class Wraith extends ThinkableUnit implements IMovable {
         if (y == targetY) {
             if (x < targetX) {
                 getPosition().setX(x + 1);
-            } else {
+            } else if (x > targetX) {
                 getPosition().setX(x - 1);
             }
         } else if (y < targetY) {
@@ -148,7 +148,9 @@ public class Wraith extends ThinkableUnit implements IMovable {
 
     @Override
     public void passThisTurn() {
-        moveToTarget(startPos);
+        if (getPosition() != startPos) {
+            moveToTarget(startPos);
+        }
     }
 
     private void getAirEnemies(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {

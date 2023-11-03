@@ -42,8 +42,8 @@ public class Mine extends Unit {
 
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
         for (Unit u : sourceUnits) {
-            if (u.getPosition().equals(this.getPosition()) &&
-                    u.getUnitType() == UnitType.GROUND) {
+            if (this != u && u.getPosition().equals(this.getPosition()) &&
+                    u.getUnitType() != UnitType.AIR) {
                 --triggerCountDown;
 
                 targets.add(u);

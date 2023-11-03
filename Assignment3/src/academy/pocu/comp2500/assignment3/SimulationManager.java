@@ -6,9 +6,9 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
-    public final ArrayList<ThinkableUnit> thinkableUnits;
+    public final ArrayList<Unit> thinkableUnits;
     public final ArrayList<Unit> movableUnits;
-    public final ArrayList<Mine> collisionEventListeners;
+    public final ArrayList<Unit> collisionEventListeners;
 
     private SimulationManager() {
         units = new ArrayList<>();
@@ -39,15 +39,15 @@ public final class SimulationManager {
 
     // 이걸 이렇게 해야 하는건가?
 
-    public void registerThinkable(ThinkableUnit unit) {
-        thinkableUnits.add(unit);
+    public void registerThinkable(Unit thinkableUnit) {
+        thinkableUnits.add(thinkableUnit);
     }
 
     public void registerMovable(Unit movableUnit) {
         movableUnits.add(movableUnit);
     }
 
-    public void registerCollisionEventListener(Mine unit) {
+    public void registerCollisionEventListener(Unit unit) {
         collisionEventListeners.add(unit);
     }
 
@@ -59,18 +59,16 @@ public final class SimulationManager {
 
         // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악
         // 최우선으로 행동할 vector2D를 찾음
-        for (ThinkableUnit u : thinkableUnits) {
-            if (u.getHp() <= 0) {
-                continue;
-            }
+        for (Unit u : thinkableUnits) {
+
             u.setEnemiesInAttackRangeAndSightRange();
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 continue;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {
-                u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
+                ((ThinkableUnit) u).getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
             } else {
-                u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+                ((ThinkableUnit) u).getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
             }
         }
 
@@ -79,9 +77,6 @@ public final class SimulationManager {
         for (Unit u : movableUnits) {
             //Unit u = (Unit) movableUnit;
             IMovable movableUnit = (IMovable) u;
-            if (u.getHp() <= 0) {
-                continue;
-            }
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 movableUnit.passThisTurn();
@@ -93,23 +88,15 @@ public final class SimulationManager {
         }
 
         // 충돌관련? 지뢰
-        for (Mine u : collisionEventListeners) {
+        for (Unit u : collisionEventListeners) {
 
-            if (u.getHp() <= 0) {
-                continue;
-            }
+            ((Mine) u).checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
 
-            if (u.getUnitType() == UnitType.BURROWED) {
-                u.checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
-            }
         }
 
         // 공격할 적이 있는 unit들이 공격행위를 함
-        for (ThinkableUnit u : thinkableUnits) {
+        for (Unit u : thinkableUnits) {
 
-            if (u.getHp() <= 0) {
-                continue;
-            }
             if (!u.hasActed) {
                 u.attack();
                 u.hasActed = true;
@@ -123,10 +110,13 @@ public final class SimulationManager {
 
             Unit unit = units.get(i);
 
-            //assert (unit.hasActed);
-
             if (unit.getHp() <= 0) {
-                units.remove(i);
+
+                units.remove(unit);
+                thinkableUnits.remove(unit);
+                movableUnits.remove(unit);
+                collisionEventListeners.remove(unit);
+
                 --i;
 
             } else {
