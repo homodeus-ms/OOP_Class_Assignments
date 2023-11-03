@@ -65,13 +65,13 @@ public final class SimulationManager {
             }
             u.setEnemiesInAttackRangeAndSightRange();
 
-            /*if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
+            if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 continue;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {
                 u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
             } else {
                 u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
-            }*/
+            }
         }
 
         // 최우선으로 행동할 vector2D를 찾음

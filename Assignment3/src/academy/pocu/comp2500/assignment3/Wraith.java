@@ -120,7 +120,8 @@ public class Wraith extends ThinkableUnit implements IMovable {
             targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
             return;
         } else {
-            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
+            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
+            //targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
             return;
         }
     }
