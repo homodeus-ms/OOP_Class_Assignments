@@ -22,6 +22,8 @@ public class Program {
 
         SimulationManager simulationManager = SimulationManager.getInstance();
 
+        ArrayList<Unit> units = new ArrayList<>();
+
         Unit u0 = new Mine(new IntVector2D(12, 1), 2);
         Unit u1 = new Marine(new IntVector2D(0, 5));
         Unit u2 = new Turret(new IntVector2D(5, 6));
@@ -29,7 +31,7 @@ public class Program {
         Unit u4 = new Marine(new IntVector2D(2, 4));
         Unit u5 = new Wraith(new IntVector2D(2, 7));
 
-        ArrayList<Unit> units = new ArrayList<>();
+
 
         units.add(u0);
         units.add(u1);
