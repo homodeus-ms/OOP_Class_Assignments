@@ -95,7 +95,7 @@ public final class SimulationManager {
             }
         }
 
-        // 충돌관련? 지뢰
+        /*// 충돌관련? 지뢰
         for (Mine u : collisionEventListeners) {
 
             if (u.getHp() <= 0) {
@@ -133,8 +133,8 @@ public final class SimulationManager {
                 --i;
 
             } else {
-                unit.goNextTurn();;
+                unit.goNextTurn();
             }
-        }
+        }*/
     }
 }
