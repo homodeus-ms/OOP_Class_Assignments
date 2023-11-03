@@ -47,6 +47,10 @@ public class IntVector2D {
         return (this.x == other.x) && (this.y == other.y);
     }
     public void makeDeepCopy(IntVector2D other) {
+        if (other == null) {
+            this.x = 0;
+            this.y = 0;
+        }
         this.x = other.x;
         this.y = other.y;
     }
