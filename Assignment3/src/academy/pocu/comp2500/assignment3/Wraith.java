@@ -73,13 +73,13 @@ public class Wraith extends ThinkableUnit implements IMovable {
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
-        if (sourceUnits.isEmpty()) {
+        /*if (sourceUnits.isEmpty()) {
             return;
-        }
+        }*/
 
         priorities.clear();
 
-        // 공중 유닛을 우선 후보로 선정
+        // 공중 유닛을 우선 후보로 선정, priorities에 들어감
         getAirEnemies(sourceUnits, priorities);
 
         if (priorities.size() == 1) {
@@ -120,8 +120,7 @@ public class Wraith extends ThinkableUnit implements IMovable {
             targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
             return;
         } else {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-            //targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
+            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
             return;
         }
     }

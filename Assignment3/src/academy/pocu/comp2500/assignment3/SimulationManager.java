@@ -74,9 +74,6 @@ public final class SimulationManager {
             }
         }
 
-        // 최우선으로 행동할 vector2D를 찾음
-
-/*
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
         // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
         for (Unit u : movableUnits) {
@@ -135,6 +132,6 @@ public final class SimulationManager {
             } else {
                 unit.goNextTurn();
             }
-        }*/
+        }
     }
 }

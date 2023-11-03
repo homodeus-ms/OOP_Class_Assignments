@@ -57,9 +57,9 @@ public class Turret extends ThinkableUnit {
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
-        if (sourceUnits.isEmpty()) {
+        /*if (sourceUnits.isEmpty()) {
             return;
-        }
+        }*/
 
         // sourceUnit은 enemiesInAttackRange임.
         // 터렛이 공격할 수 있는 공중 유닛만 들어있음
@@ -72,13 +72,12 @@ public class Turret extends ThinkableUnit {
             targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
             return;
         } else {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-            //targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
+            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
             return;
         }
     }
 
-    protected void getNextPos(int searchCount, IntVector2D pos) {
+    protected void getNextAttackPos(int searchCount, IntVector2D pos) {
         switch (searchCount) {
             case 0:    // north (0, -1)
                 pos.setY(pos.getY() - 1);

@@ -35,9 +35,9 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
             return getAttackIntent();
         }
 
-        // 기본 데미지
         IntVector2D targetPos = getAttackIntent().getAttackPos();
         ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
+        
 
         for (Unit enemy : spawnedUnit) {
             if (this != enemy && this.isVisible(enemy)) {
@@ -72,7 +72,28 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     }
 
     @Override
-    protected void getNextPos(final int searchCount, IntVector2D pos) {
+    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
+                                     ArrayList<Unit> priorities) {
+
+        priorities.clear();
+
+        if (getEnemiesInAttackRange().isEmpty()) {
+            return;
+        } else {
+            getMinHpTarget(sourceUnits, priorities);
+        }
+
+        if (priorities.size() == 1) {
+            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
+            return;
+        } else {
+            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
+            return;
+        }
+    }
+
+    @Override
+    protected void getNextAttackPos(final int searchCount, IntVector2D pos) {
         switch (searchCount) {
             // start from (0, 0)
             case 0:    // true north (0, -2)
