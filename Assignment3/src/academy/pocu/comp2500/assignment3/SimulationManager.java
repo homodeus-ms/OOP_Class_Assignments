@@ -10,8 +10,8 @@ public final class SimulationManager {
     public final ArrayList<Unit> movableUnits;
     public final ArrayList<Mine> collisionEventListeners;
 
-    private SimulationManager(ArrayList<Unit> units) {
-        this.units = units;
+    private SimulationManager() {
+        units = new ArrayList<>();
         thinkableUnits = new ArrayList<>();
         movableUnits = new ArrayList<>();
         collisionEventListeners = new ArrayList<>();
@@ -21,7 +21,7 @@ public final class SimulationManager {
         if (instance != null) {
             return instance;
         }
-        instance = new SimulationManager(new ArrayList<>());
+        instance = new SimulationManager();
 
         return instance;
     }
@@ -65,13 +65,13 @@ public final class SimulationManager {
             }
             u.setEnemiesInAttackRangeAndSightRange();
 
-            if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
+            /*if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 continue;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {
                 u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
             } else {
                 u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
-            }
+            }*/
         }
 
         // 최우선으로 행동할 vector2D를 찾음
