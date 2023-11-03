@@ -6,9 +6,9 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
-    private final ArrayList<ThinkableUnit> thinkableUnits;
-    private final ArrayList<IMovable> movableUnits;
-    private final ArrayList<Mine> collisionEventListeners;
+    public final ArrayList<ThinkableUnit> thinkableUnits;
+    public final ArrayList<Unit> movableUnits;
+    public final ArrayList<Mine> collisionEventListeners;
 
     private SimulationManager(ArrayList<Unit> units) {
         this.units = units;
@@ -43,8 +43,8 @@ public final class SimulationManager {
         thinkableUnits.add(unit);
     }
 
-    public void registerMovable(IMovable unit) {
-        movableUnits.add(unit);
+    public void registerMovable(Unit movableUnit) {
+        movableUnits.add(movableUnit);
     }
 
     public void registerCollisionEventListener(Mine unit) {
@@ -52,7 +52,7 @@ public final class SimulationManager {
     }
 
     public void update() {
-        /*// spwaned Unit이 없는 경우 바로 리턴
+        // spwaned Unit이 없는 경우 바로 리턴
         if (units.isEmpty()) {
             return;
         }
@@ -77,24 +77,11 @@ public final class SimulationManager {
         // 최우선으로 행동할 vector2D를 찾음
 
 
-        *//*for (Unit u : units) {
-            u.setEnemiesInAttackRangeAndSightRange();
-
-            if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
-                continue;
-            } else if (u.getEnemiesInAttackRange().isEmpty()) {
-                u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
-            } else {
-                u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
-            }
-        }*//*
-
-
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
         // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
-        for (IMovable movableUnit : movableUnits) {
-            Unit u = (Unit) movableUnit;
-
+        for (Unit u : movableUnits) {
+            //Unit u = (Unit) movableUnit;
+            IMovable movableUnit = (IMovable) u;
             if (u.getHp() <= 0) {
                 continue;
             }
@@ -142,12 +129,12 @@ public final class SimulationManager {
             //assert (unit.hasActed);
 
             if (unit.getHp() <= 0) {
-                units.remove(unit);
+                units.remove(i);
                 --i;
 
             } else {
                 unit.goNextTurn();;
             }
-        }*/
+        }
     }
 }

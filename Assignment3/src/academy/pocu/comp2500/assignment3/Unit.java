@@ -117,7 +117,7 @@ public abstract class Unit {
             SimulationManager.getInstance().registerThinkable((ThinkableUnit) this);
 
             if (symbol != 'U') {
-                SimulationManager.getInstance().registerMovable((IMovable) this);
+                SimulationManager.getInstance().registerMovable(this);
             }
         }
     }
