@@ -6,9 +6,15 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
+    private final ArrayList<ThinkableUnit> thinkableUnits;
+    private final ArrayList<IMovable> movableUnits;
+    private final ArrayList<Mine> collisionEventListeners;
 
     private SimulationManager(ArrayList<Unit> units) {
         this.units = units;
+        thinkableUnits = new ArrayList<>();
+        movableUnits = new ArrayList<>();
+        collisionEventListeners = new ArrayList<>();
     }
 
     public static SimulationManager getInstance() {
@@ -34,15 +40,15 @@ public final class SimulationManager {
     // 이걸 이렇게 해야 하는건가?
 
     public void registerThinkable(ThinkableUnit unit) {
-
+        thinkableUnits.add(unit);
     }
 
     public void registerMovable(IMovable unit) {
-
+        movableUnits.add(unit);
     }
 
-    public void registerCollisionEventListener(Mine mine) {
-
+    public void registerCollisionEventListener(Mine unit) {
+        collisionEventListeners.add(unit);
     }
 
     public void update() {
@@ -51,9 +57,12 @@ public final class SimulationManager {
             return;
         }
 
-        // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악하고
+        // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악
         // 최우선으로 행동할 vector2D를 찾음
-        for (Unit u : units) {
+        for (ThinkableUnit u : thinkableUnits) {
+            if (u.getHp() <= 0) {
+                continue;
+            }
             u.setEnemiesInAttackRangeAndSightRange();
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
@@ -65,38 +74,62 @@ public final class SimulationManager {
             }
         }
 
+        // 최우선으로 행동할 vector2D를 찾음
+
+
+        /*for (Unit u : units) {
+            u.setEnemiesInAttackRangeAndSightRange();
+
+            if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
+                continue;
+            } else if (u.getEnemiesInAttackRange().isEmpty()) {
+                u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
+            } else {
+                u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+            }
+        }*/
+
+
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
         // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
-        for (Unit u : units) {
+        for (IMovable movableUnit : movableUnits) {
+            Unit u = (Unit) movableUnit;
+
+            if (u.getHp() <= 0) {
+                continue;
+            }
+
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
-                u.passThisTurn();
+                movableUnit.passThisTurn();
                 u.hasActed = true;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {    // 공격할 적이 없음
-                u.moveToTarget(u.getTargetPosOrNull());
+                movableUnit.moveToTarget(u.getTargetPosOrNull());
                 u.hasActed = true;
             }
         }
 
         // 충돌관련? 지뢰
-        for (Unit u : units) {
+        for (Mine u : collisionEventListeners) {
+
+            if (u.getHp() <= 0) {
+                continue;
+            }
+
             if (u.getUnitType() == UnitType.BURROWED) {
-                ((Mine) u).checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
+                u.checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
             }
         }
 
         // 공격할 적이 있는 unit들이 공격행위를 함
-        for (Unit u : units) {
+        for (ThinkableUnit u : thinkableUnits) {
 
-            if (u.getUnitType() == UnitType.BURROWED || u.hasActed()) {
-                continue;
-            } else if (u.getSymbol() == 'D') {
-                u.attack();
+            if (u.getHp() <= 0) {
                 continue;
             }
-
-            u.attack();
-            u.hasActed = true;
-
+            if (!u.hasActed) {
+                u.attack();
+                u.hasActed = true;
+            }
         }
 
         // 모든 행위가 끝나고 죽은 유닛들을 제거함
@@ -106,7 +139,7 @@ public final class SimulationManager {
 
             Unit unit = units.get(i);
 
-            assert (unit.hasActed);
+            //assert (unit.hasActed);
 
             if (unit.getHp() <= 0) {
                 units.remove(unit);

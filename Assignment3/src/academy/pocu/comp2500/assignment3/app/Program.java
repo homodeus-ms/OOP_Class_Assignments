@@ -20,11 +20,7 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Registry registry = new Registry();
-        App app = new App(registry);
-        registry.validate();
-
-        /*SimulationManager simulationManager = SimulationManager.getInstance();
+        SimulationManager simulationManager = SimulationManager.getInstance();
 
         Unit u0 = new Mine(new IntVector2D(12, 1), 2);
         Unit u1 = new Marine(new IntVector2D(0, 5));
@@ -74,6 +70,6 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+
     }
 }

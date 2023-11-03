@@ -95,12 +95,12 @@ public abstract class Unit {
     }
 
     // 적이 있는 쪽으로 이동. default는 move인데 움직이지 않음(?)
-    public void moveToTarget(IntVector2D targetPos) {
-    }
+    /*public void moveToTarget(IntVector2D targetPos) {
+    }*/
     // 시야 안에 적이 없을 때 각자의 행동을 하고 턴을 넘김.
-    public void passThisTurn() {
+    /*public void passThisTurn() {
 
-    }
+    }*/
 
     // 탱크나 지뢰의 경우 지상유닛인지 체크해야 하니까 오버라이딩을 해야 함
     public void onAttacked(int damage) {
@@ -109,7 +109,17 @@ public abstract class Unit {
     }
 
     public void onSpawn() {
+        char symbol = this.getSymbol();
 
+        if (symbol == 'N' || symbol == 'A') {
+            SimulationManager.getInstance().registerCollisionEventListener((Mine) this);
+        } else {
+            SimulationManager.getInstance().registerThinkable((ThinkableUnit) this);
+
+            if (symbol != 'U') {
+                SimulationManager.getInstance().registerMovable((IMovable) this);
+            }
+        }
     }
 
     // 이것도 역시 디폴트는 머린과 레이스, 나머지 유닛들은 각 클래스에서 오버라이드
@@ -135,10 +145,10 @@ public abstract class Unit {
         }
     }
 
-    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
+    /*public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
-    }
+    }*/
 
     public void goNextTurn() {
         hasActed = false;

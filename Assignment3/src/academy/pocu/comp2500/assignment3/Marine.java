@@ -34,4 +34,9 @@ public class Marine extends ThinkableUnit implements IMovable {
             getPosition().setY(y - 1);
         }
     }
+
+    @Override
+    public void passThisTurn() {
+
+    }
 }
