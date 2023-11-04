@@ -114,10 +114,10 @@ public abstract class Unit {
         if (symbol == 'N' || symbol == 'A') {
             SimulationManager.getInstance().registerCollisionEventListener(this);
         } else {
-            SimulationManager.getInstance().registerThinkable(this);
+            SimulationManager.getInstance().registerThinkable((ThinkableUnit) this);
 
             if (symbol != 'U' && symbol != 'D') {
-                SimulationManager.getInstance().registerMovable(this);
+                SimulationManager.getInstance().registerMovable((IMovable) this);
             }
         }
     }

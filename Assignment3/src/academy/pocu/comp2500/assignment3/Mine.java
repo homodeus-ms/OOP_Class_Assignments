@@ -41,6 +41,8 @@ public class Mine extends Unit {
     }
 
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
+        targets.clear();
+
         for (Unit u : sourceUnits) {
             if (this != u && u.getPosition().equals(this.getPosition()) &&
                     u.getUnitType() != UnitType.AIR) {

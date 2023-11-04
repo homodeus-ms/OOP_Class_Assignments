@@ -11,7 +11,7 @@ public class Wraith extends ThinkableUnit implements IMovable {
     public Wraith(IntVector2D currPos) {
         super(currPos, UnitData.WRAITH.getHp(), UnitData.WRAITH.getUnitType(),
                 UnitData.WRAITH.getSight(), UnitData.WRAITH.getAoe(), UnitData.WRAITH.getAp());
-        startPos = currPos;
+        startPos = new IntVector2D(currPos.getX(), currPos.getY());
     }
 
     public IntVector2D getStartPos() {

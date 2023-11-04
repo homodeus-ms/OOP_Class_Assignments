@@ -6,8 +6,8 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
-    public final ArrayList<Unit> thinkableUnits;
-    public final ArrayList<Unit> movableUnits;
+    public final ArrayList<ThinkableUnit> thinkableUnits;
+    public final ArrayList<IMovable> movableUnits;
     public final ArrayList<Unit> collisionEventListeners;
 
     private SimulationManager() {
@@ -44,11 +44,11 @@ public final class SimulationManager {
 
     // 이걸 이렇게 해야 하는건가?
 
-    public void registerThinkable(Unit thinkableUnit) {
+    public void registerThinkable(ThinkableUnit thinkableUnit) {
         thinkableUnits.add(thinkableUnit);
     }
 
-    public void registerMovable(Unit movableUnit) {
+    public void registerMovable(IMovable movableUnit) {
         movableUnits.add(movableUnit);
     }
 
@@ -64,24 +64,24 @@ public final class SimulationManager {
 
         // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악
         // 최우선으로 행동할 vector2D를 찾음
-        for (Unit u : thinkableUnits) {
+        for (ThinkableUnit u : thinkableUnits) {
 
             u.setEnemiesInAttackRangeAndSightRange();
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 continue;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {
-                ((ThinkableUnit) u).getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
+                u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
             } else {
-                ((ThinkableUnit) u).getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+                u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
             }
         }
 
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
         // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
-        for (Unit u : movableUnits) {
-            //Unit u = (Unit) movableUnit;
-            IMovable movableUnit = (IMovable) u;
+        for (IMovable movableUnit : movableUnits) {
+            Unit u = (Unit) movableUnit;
+            //IMovable movableUnit = (IMovable) u;
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 movableUnit.passThisTurn();
@@ -118,9 +118,19 @@ public final class SimulationManager {
             if (unit.getHp() <= 0) {
 
                 units.remove(unit);
-                thinkableUnits.remove(unit);
+
+                if (unit.getSymbol() == 'N' || unit.getSymbol() == 'A') {
+                    collisionEventListeners.remove(unit);
+                } else if (unit.getSymbol() == 'U' || unit.getSymbol() == 'D') {
+                    thinkableUnits.remove((ThinkableUnit) unit);
+                } else {
+                    thinkableUnits.remove((ThinkableUnit) unit);
+                    movableUnits.remove((IMovable) unit);
+                }
+
+                /*thinkableUnits.remove(unit);
                 movableUnits.remove(unit);
-                collisionEventListeners.remove(unit);
+                collisionEventListeners.remove(unit);*/
 
                 --i;
 
