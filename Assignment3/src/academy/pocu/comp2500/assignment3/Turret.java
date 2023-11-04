@@ -51,6 +51,9 @@ public class Turret extends ThinkableUnit {
                 }
             }
         }
+        if (enemiesInAttackRange.isEmpty()) {
+            hasActed = true;
+        }
     }
 
     @Override

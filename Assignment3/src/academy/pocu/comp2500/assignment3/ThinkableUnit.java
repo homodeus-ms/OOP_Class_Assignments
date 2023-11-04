@@ -102,19 +102,21 @@ public abstract class ThinkableUnit extends Unit {
         int thisY = pos.getY();
 
         for (Unit u : priorities) {
-            if (u.getPosition().getY() < thisY) {
+            if (u.getPosition().getY() + 1 < thisY) {
                 pos.setY(thisY - 1);
                 return pos;
             }
         }
         for (Unit u : priorities) {
-            if (u.getPosition().getX() > thisX) {
+            IntVector2D enemyPos = u.getPosition();
+            if (enemyPos.getX() > thisX && Math.abs(enemyPos.getY() - thisY) <= 1) {
                 pos.setX(thisX + 1);
                 return pos;
             }
         }
+
         for (Unit u : priorities) {
-            if (u.getPosition().getY() > thisY) {
+            if (u.getPosition().getY() - 1 > thisY) {
                 pos.setY(thisY + 1);
                 return pos;
             }

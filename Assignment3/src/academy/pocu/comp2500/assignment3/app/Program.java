@@ -17,22 +17,22 @@ public class Program {
         ArrayList<Unit> units = new ArrayList<>();
 
 
-        Unit u0 = new Tank(new IntVector2D(0x6, 5));
-        Unit u1 = new Tank(new IntVector2D(0xB, 4));
-        Unit u2 = new Tank(new IntVector2D(0x2, 2));
-        Unit u3 = new Tank(new IntVector2D(0xA, 3));
-        Unit u4 = new Tank(new IntVector2D(0x8, 4));
-        Unit u5 = new Tank(new IntVector2D(0xA, 0));
-        Unit u6 = new Tank(new IntVector2D(0xB, 6));
-        Unit u7 = new Tank(new IntVector2D(0x0, 7));
-        Unit u8 = new Tank(new IntVector2D(0xB, 1));
-        Unit u9 = new Tank(new IntVector2D(0x5, 5));
-        Unit uA = new Tank(new IntVector2D(0xB, 4));
-        Unit uB = new Tank(new IntVector2D(0xE, 6));
-        Unit uC = new Tank(new IntVector2D(0xB, 2));
-        Unit uD = new Tank(new IntVector2D(0xF, 3));
-        Unit uE = new Tank(new IntVector2D(0xB, 7));
-        Unit uF = new Tank(new IntVector2D(0x4, 7));
+        Unit u0 = new Turret(new IntVector2D(0x6, 0));
+        Unit u1 = new Wraith(new IntVector2D(0x5, 2));
+        Unit u2 = new Wraith(new IntVector2D(0x0, 0));
+        Unit u3 = new Marine(new IntVector2D(0x3, 3));
+        Unit u4 = new Tank(new IntVector2D(0x6, 0));
+        Unit u5 = new SmartMine(new IntVector2D(0x5, 0), 4, 1);
+        Unit u6 = new Tank(new IntVector2D(0x1, 0));
+        Unit u7 = new Marine(new IntVector2D(0x1, 2));
+        Unit u8 = new Marine(new IntVector2D(0x4, 3));
+        Unit u9 = new SmartMine(new IntVector2D(0x5, 0), 1, 3);
+        Unit uA = new Tank(new IntVector2D(0x1, 1));
+        Unit uB = new Marine(new IntVector2D(0x3, 0));
+        Unit uC = new Mine(new IntVector2D(0x3, 3), 3);
+        Unit uD = new Wraith(new IntVector2D(0x3, 0));
+        Unit uE = new Wraith(new IntVector2D(0x1, 0));
+        Unit uF = new SmartMine(new IntVector2D(0x0, 2), 2, 2);
 
 
         units.add(u0);
@@ -52,7 +52,7 @@ public class Program {
         units.add(uE);
         units.add(uF);
 
-        int stop = 10;
+        int stop = 19;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
@@ -62,7 +62,7 @@ public class Program {
 
 
 
-        for (int i = 0; i < 15; ++i) {
+        for (int i = 0; i < 25; ++i) {
             clearConsole();
             visualizer.visualize(i, simulationManager.getUnits());
             simulationManager.update();
