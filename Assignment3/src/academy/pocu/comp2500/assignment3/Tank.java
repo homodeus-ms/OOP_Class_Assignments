@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
 
     private boolean isSeigeMode;
+    private boolean hasChangedMode;
     private boolean wasMovingToLeft;
 
     public Tank(IntVector2D currPos) {
@@ -27,6 +28,11 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     public AttackIntent attack() {
 
         makeAttackIntent();
+
+        if (hasChangedMode) {
+            hasChangedMode = false;
+            return getAttackIntent();
+        }
 
         IntVector2D targetPos = getAttackIntent().getAttackPos();
         ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
@@ -76,8 +82,7 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
 
         if (!isSeigeMode) {
             isSeigeMode = true;
-            hasActed = true;
-            return;
+            hasChangedMode = true;
         }
 
         if (getEnemiesInAttackRange().isEmpty()) {

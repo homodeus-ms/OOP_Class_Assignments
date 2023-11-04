@@ -96,8 +96,8 @@ public final class SimulationManager {
         for (Unit u : collisionEventListeners) {
 
             ((Mine) u).checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
-
         }
+
 
         // 공격할 적이 있는 unit들이 공격행위를 함
         for (Unit u : thinkableUnits) {
