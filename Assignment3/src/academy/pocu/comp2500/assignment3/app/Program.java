@@ -1,14 +1,6 @@
 package academy.pocu.comp2500.assignment3.app;
 
-import academy.pocu.comp2500.assignment3.App;
-import academy.pocu.comp2500.assignment3.SimulationManager;
-import academy.pocu.comp2500.assignment3.IntVector2D;
-import academy.pocu.comp2500.assignment3.Marine;
-import academy.pocu.comp2500.assignment3.Mine;
-import academy.pocu.comp2500.assignment3.Tank;
-import academy.pocu.comp2500.assignment3.Turret;
-import academy.pocu.comp2500.assignment3.Unit;
-import academy.pocu.comp2500.assignment3.Wraith;
+import academy.pocu.comp2500.assignment3.*;
 import academy.pocu.comp2500.assignment3.registry.Registry;
 
 import java.io.BufferedReader;
@@ -36,6 +28,7 @@ public class Program {
         Unit u3 = new Tank(new IntVector2D(2, 4));
         Unit u4 = new Marine(new IntVector2D(2, 4));
         Unit u5 = new Wraith(new IntVector2D(2, 7));
+        Unit u6 = new Destroyer(new IntVector2D(5, 5));
 
 
         units.add(u0);
@@ -44,6 +37,7 @@ public class Program {
         units.add(u3);
         units.add(u4);
         units.add(u5);
+        units.add(u6);
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
