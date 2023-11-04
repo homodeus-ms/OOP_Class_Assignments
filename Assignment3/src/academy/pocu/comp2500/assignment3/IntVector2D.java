@@ -10,8 +10,10 @@ public class IntVector2D {
     private int y;
 
     public IntVector2D(int x, int y) {
-        this.x = Math.max(0, Math.min(X_MAX, x));
-        this.y = Math.max(0, Math.min(Y_MAX, y));
+        /*this.x = Math.max(0, Math.min(X_MAX, x));
+        this.y = Math.max(0, Math.min(Y_MAX, y));*/
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {

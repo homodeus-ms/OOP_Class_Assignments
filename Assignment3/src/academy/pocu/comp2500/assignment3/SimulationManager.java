@@ -32,8 +32,13 @@ public final class SimulationManager {
     }
 
     public void spawn(Unit unit) {
-        unit.onSpawn();
-        this.units.add(unit);
+        int xPos = unit.getPosition().getX();
+        int yPos = unit.getPosition().getY();
+
+        if (xPos >= 0 && xPos <= 0xF && yPos >= 0 && yPos <= 0x7) {
+            unit.onSpawn();
+            this.units.add(unit);
+        }
     }
 
 

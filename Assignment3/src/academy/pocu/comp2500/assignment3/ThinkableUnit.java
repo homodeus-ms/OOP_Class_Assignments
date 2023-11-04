@@ -15,10 +15,6 @@ public abstract class ThinkableUnit extends Unit {
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
-        /*if (sourceUnits.isEmpty()) {
-            return;
-        }*/
-
         priorities.clear();
 
         if (getEnemiesInAttackRange().isEmpty()) {
