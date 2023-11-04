@@ -15,9 +15,6 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     public boolean getTankMode() {
         return this.isSeigeMode;
     }
-    public void toggleTankMode() {
-        isSeigeMode = !isSeigeMode;
-    }
 
 
     // 1. Update() 함수 내부에서 attackIntent에 필요한 정보들이 들어가 있음
@@ -169,14 +166,14 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     public void moveToTarget(IntVector2D targetPos) {
 
         if (!isSeigeMode) {
-            toggleTankMode();
+            isSeigeMode = true;
         }
     }
 
     @Override
     public void passThisTurn() {
         if (isSeigeMode) {
-            toggleTankMode();
+            isSeigeMode = false;
             return;
         }
 
