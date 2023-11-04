@@ -25,15 +25,11 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     // 3. target Position에 Ap 데미지가 들어가고, AOE계산을 해서
     //    해당 AOE가 적용되는 position들에 AOE Damage를 주어야 함
 
+
     @Override
     public AttackIntent attack() {
 
         makeAttackIntent();
-
-        if (!isSeigeMode) {
-            toggleTankMode();
-            return getAttackIntent();
-        }
 
         IntVector2D targetPos = getAttackIntent().getAttackPos();
         ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
@@ -80,9 +76,11 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
                                      ArrayList<Unit> priorities) {
 
         priorities.clear();
+
         if (!isSeigeMode) {
             isSeigeMode = true;
             hasActed = true;
+            return;
         }
 
         if (getEnemiesInAttackRange().isEmpty()) {
@@ -169,6 +167,7 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
 
     @Override
     public void moveToTarget(IntVector2D targetPos) {
+
         if (!isSeigeMode) {
             toggleTankMode();
         }
