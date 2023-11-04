@@ -21,7 +21,7 @@ public class IntVector2D {
     }
 
     public void setX(int x) {
-        this.x = Math.max(0, Math.min(X_MAX, x));
+        this.x = x;
     }
 
     public int getY() {
@@ -29,7 +29,7 @@ public class IntVector2D {
     }
 
     public void setY(int y) {
-        this.y = Math.max(0, Math.min(Y_MAX, y));
+        this.y = y;
     }
 
     public double getDistance(IntVector2D obj) {

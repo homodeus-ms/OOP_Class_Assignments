@@ -16,71 +16,23 @@ public class Program {
 
         ArrayList<Unit> units = new ArrayList<>();
 
-        Unit u0 = new SmartMine(new IntVector2D(0x9,4), 3, 2);
-        units.add(u0);
 
-        Unit u1 = new Marine(new IntVector2D(0x6,0));
-        units.add(u1);
-
-        Unit u2 = new SmartMine(new IntVector2D(0xA,0), 4, 1);
-        units.add(u2);
-
-        Unit u3 = new Turret(new IntVector2D(0x4,3));
-        units.add(u3);
-
-        Unit u4 = new Tank(new IntVector2D(0x4,5));
-        units.add(u4);
-
-        Unit u5 = new Turret(new IntVector2D(0x8,0));
-        units.add(u5);
-
-        Unit u6 = new Marine(new IntVector2D(0x1,5));
-        units.add(u6);
-
-        Unit u7 = new Wraith(new IntVector2D(0xB,1));
-        units.add(u7);
-
-        Unit u8 = new Marine(new IntVector2D(0xA,1));
-        units.add(u8);
-
-        Unit u9 = new Marine(new IntVector2D(0xE,3));
-        units.add(u9);
-
-        Unit uA = new SmartMine(new IntVector2D(0xA,7), 1, 3);
-        units.add(uA);
-
-        Unit uB = new Turret(new IntVector2D(0xD,5));
-        units.add(uB);
-
-        Unit uC = new Wraith(new IntVector2D(0x4,4));
-        units.add(uC);
-
-        Unit uD = new Mine(new IntVector2D(0x1,2), 2);
-        units.add(uD);
-
-        Unit uE = new Wraith(new IntVector2D(0x8,6));
-        units.add(uE);
-
-        Unit uF = new SmartMine(new IntVector2D(0xB, 6), 2, 1);
-        units.add(uF);
-
-
-        /*Unit u0 = new Wraith(new IntVector2D(0x6, 5));
-        Unit u1 = new SmartMine(new IntVector2D(0xB, 4), 4, 3);
-        Unit u2 = new Wraith(new IntVector2D(0x2, 2));
-        Unit u3 = new Marine(new IntVector2D(0xA, 3));
+        Unit u0 = new Tank(new IntVector2D(0x6, 5));
+        Unit u1 = new Tank(new IntVector2D(0xB, 4));
+        Unit u2 = new Tank(new IntVector2D(0x2, 2));
+        Unit u3 = new Tank(new IntVector2D(0xA, 3));
         Unit u4 = new Tank(new IntVector2D(0x8, 4));
         Unit u5 = new Tank(new IntVector2D(0xA, 0));
-        Unit u6 = new Wraith(new IntVector2D(0xB, 6));
-        Unit u7 = new Turret(new IntVector2D(0x0, 7));
-        Unit u8 = new Mine(new IntVector2D(0xB, 1), 4);
-        Unit u9 = new Mine(new IntVector2D(0x5, 5), 1);
-        Unit uA = new Marine(new IntVector2D(0xB, 4));
-        Unit uB = new Mine(new IntVector2D(0xE, 6), 4);
-        Unit uC = new Wraith(new IntVector2D(0xB, 2));
-        Unit uD = new Turret(new IntVector2D(0xF, 3));
-        Unit uE = new Marine(new IntVector2D(0xB, 7));
-        Unit uF = new SmartMine(new IntVector2D(0x4, 7), 3, 3);
+        Unit u6 = new Tank(new IntVector2D(0xB, 6));
+        Unit u7 = new Tank(new IntVector2D(0x0, 7));
+        Unit u8 = new Tank(new IntVector2D(0xB, 1));
+        Unit u9 = new Tank(new IntVector2D(0x5, 5));
+        Unit uA = new Tank(new IntVector2D(0xB, 4));
+        Unit uB = new Tank(new IntVector2D(0xE, 6));
+        Unit uC = new Tank(new IntVector2D(0xB, 2));
+        Unit uD = new Tank(new IntVector2D(0xF, 3));
+        Unit uE = new Tank(new IntVector2D(0xB, 7));
+        Unit uF = new Tank(new IntVector2D(0x4, 7));
 
 
         units.add(u0);
@@ -98,9 +50,9 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);*/
+        units.add(uF);
 
-        int stop = 1;
+        int stop = 10;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
