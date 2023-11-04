@@ -80,6 +80,9 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
                                      ArrayList<Unit> priorities) {
 
         priorities.clear();
+        if (!isSeigeMode) {
+            isSeigeMode = true;
+        }
 
         if (getEnemiesInAttackRange().isEmpty()) {
             return;
