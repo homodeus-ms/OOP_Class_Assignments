@@ -39,9 +39,11 @@ public class SmartMine extends Mine implements IAoeAttackable {
     // 터지는 조건인지 검사후 조건이 되면 함수내부에서 터짐
     @Override
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
+        targets.clear();
+
         for (Unit u : sourceUnits) {
             if (u.getPosition().equals(this.getPosition()) &&
-                    u.getUnitType() == UnitType.GROUND) {
+                    u.getUnitType() != UnitType.AIR) {
                 --triggerCountDown;
 
                 targets.add(u);

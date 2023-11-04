@@ -40,16 +40,20 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
         
 
         for (Unit enemy : spawnedUnit) {
-            if (this != enemy && this.isVisible(enemy)) {
-                IntVector2D enemyPos = enemy.getPosition();
 
-                if (targetPos.equals(enemyPos)) {
-                    enemy.onAttacked(getAp());
-                } else if (targetPos.getDistance(enemyPos) < 2.0 - EPSILON) {
-                    enemy.onAttacked(calculateAoeDamage(enemyPos));
+            IntVector2D enemyPos = enemy.getPosition();
+
+            if (this != enemy) {
+                if (this.isVisible(enemy)) {
+                    if (targetPos.equals(enemyPos)) {
+                        enemy.onAttacked(getAp());
+                        continue;
+                    }
+                }
+                if (targetPos.getDistance(enemyPos) < 2.0 - EPSILON) {
+                    enemy.onAttacked((calculateAoeDamage(enemyPos)));
                 }
             }
-
         }
 
         return getAttackIntent();
