@@ -24,9 +24,10 @@ public class SmartMine extends Mine implements IAoeAttackable {
             IntVector2D myPos = getPosition();
             IntVector2D enemyPos = u.getPosition();
 
-            if (u.getUnitType() == UnitType.GROUND) {
+            if (this != u && u.getUnitType() != UnitType.AIR) {
                 if (myPos.equals(u.getPosition())) {
                     u.onAttacked(getAp());
+                    continue;
                 } else if (myPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     u.onAttacked(calculateAoeDamage(enemyPos));
                 }
