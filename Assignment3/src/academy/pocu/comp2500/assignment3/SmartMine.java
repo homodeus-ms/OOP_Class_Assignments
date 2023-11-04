@@ -43,7 +43,7 @@ public class SmartMine extends Mine implements IAoeAttackable {
         targets.clear();
 
         for (Unit u : sourceUnits) {
-            if (u.getPosition().equals(this.getPosition()) &&
+            if (this != u && u.getPosition().equals(this.getPosition()) &&
                     u.getUnitType() != UnitType.AIR) {
                 --triggerCountDown;
 
@@ -58,7 +58,7 @@ public class SmartMine extends Mine implements IAoeAttackable {
         targets.clear();
 
         for (Unit u : sourceUnits) {
-            if (u.getUnitType() == UnitType.GROUND && isEnemyInSight(u)) {
+            if (this != u && u.getUnitType() == UnitType.GROUND && isEnemyInSight(u)) {
                 targets.add(u);
             }
         }

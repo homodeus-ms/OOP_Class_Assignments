@@ -16,7 +16,14 @@ public class Program {
 
         ArrayList<Unit> units = new ArrayList<>();
 
-        Unit u0 = new Wraith(new IntVector2D(0x6, 5));
+        Unit u0 = new SmartMine(new IntVector2D(8, 0), 2, 2);
+        Unit u1 = new Tank(new IntVector2D(8, 0));
+        Unit u2 = new Wraith(new IntVector2D(0xA, 0));
+        units.add(u0);
+        units.add(u1);
+        units.add(u2);
+
+        /*Unit u0 = new Wraith(new IntVector2D(0x6, 5));
         Unit u1 = new SmartMine(new IntVector2D(0xB, 4), 4, 3);
         Unit u2 = new Wraith(new IntVector2D(0x2, 2));
         Unit u3 = new Marine(new IntVector2D(0xA, 3));
@@ -49,7 +56,7 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);
+        units.add(uF);*/
 
         int stop = 1;
 
