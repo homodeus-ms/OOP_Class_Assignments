@@ -85,7 +85,7 @@ public abstract class Unit {
 
         IntVector2D targetPos = attackIntent.getAttackPos();
         for (Unit u : SimulationManager.getInstance().getUnits()) {
-            if (this != u && this.isVisible(u) && targetPos.equals(u.currPos)) {
+            if (this != u && targetPos.equals(u.currPos)) {
                 u.onAttacked(attackIntent.getDamage());
             }
         }

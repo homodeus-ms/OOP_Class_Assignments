@@ -36,12 +36,12 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
             IntVector2D enemyPos = enemy.getPosition();
 
             if (this != enemy && enemy.getUnitType() != UnitType.AIR) {
-                if (this.isVisible(enemy)) {
-                    if (targetPos.equals(enemyPos)) {
-                        enemy.onAttacked(getAp());
-                        continue;
-                    }
+
+                if (targetPos.equals(enemyPos)) {
+                    enemy.onAttacked(getAp());
+                    continue;
                 }
+
 
                 if (targetPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     enemy.onAttacked((calculateAoeDamage(enemyPos)));

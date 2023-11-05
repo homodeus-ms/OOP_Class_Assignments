@@ -120,14 +120,14 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         int thisY = pos.getY();
 
         for (Unit u : priorities) {
-            if (u.getPosition().getY() + 1 < thisY) {
+            if (u.getPosition().getY() < thisY) {
                 pos.setY(thisY - 1);
                 return pos;
             }
         }
         for (Unit u : priorities) {
             IntVector2D enemyPos = u.getPosition();
-            if (enemyPos.getX() > thisX && Math.abs(enemyPos.getY() - thisY) <= 1) {
+            if (enemyPos.getX() > thisX) {
                 pos.setX(thisX + 1);
                 return pos;
             }

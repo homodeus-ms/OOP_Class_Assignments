@@ -20,8 +20,11 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
     public boolean getHasAttacked() {
         return hasAttacked;
     }
+    public boolean getHasShieldUsedAll() {
+        return hasShieldUsedAll;
+    }
 
-    @Override
+    /*@Override
     public AttackIntent attack() {
 
         makeAttackIntent();
@@ -43,7 +46,7 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
         }
 
         return getAttackIntent();
-    }
+    }*/
     @Override
     public void onAttacked(int damage) {
         hasAttacked = true;
