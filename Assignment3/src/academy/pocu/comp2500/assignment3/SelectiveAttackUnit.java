@@ -126,31 +126,43 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         int thisX = pos.getX();
         int thisY = pos.getY();
 
-        for (Unit u : priorities) {
-            if (u.getPosition().getY() < thisY) {
-                return u.getPosition();
-            }
-        }
-        for (Unit u : priorities) {
-            IntVector2D enemyPos = u.getPosition();
-            if (enemyPos.getX() > thisX) {
-                return u.getPosition();
+        IntVector2D res = null;
+        int minY = Integer.MAX_VALUE;
+        int maxY = Integer.MIN_VALUE;
+
+        // 만약 타겟의 x값이 0이상이면 y값이 가장 작은 게 타겟임
+        for (Unit target : priorities) {
+            int targetXDiff = target.getPosition().getX() - thisX;
+            int targetYDiff = target.getPosition().getY() - thisY;
+            if (targetXDiff >= 0) {
+                if (targetYDiff < minY) {
+                    minY = targetYDiff;
+                    res = target.getPosition();
+                }
             }
         }
 
-        for (Unit u : priorities) {
-            if (u.getPosition().getY() > thisY) {
-                return u.getPosition();
+        if (res != null) {
+            return res;
+        }
+
+        // 위에서 만약 x값이 0 이상인게 없어서 여기까지 왔으면 y값이 가장 큰게 타겟임
+        for (Unit target : priorities) {
+            int targetXDiff = target.getPosition().getX() - thisX;
+            int targetYDiff = target.getPosition().getY() - thisY;
+            if (targetXDiff < 0) {
+                if (targetYDiff > maxY) {
+                    maxY = targetYDiff;
+                    res = target.getPosition();
+                }
             }
         }
 
-        for (Unit u : priorities) {
-            if (u.getPosition().getX() < thisX) {
-                return u.getPosition();
-            }
-        }
+        // 여기까지 왔는데 null인 경우는 없다
+        assert (res != null);
 
-        return this.getPosition();
+        return res;
+
     }
 
     // 처음 북쪽, 이후 시계방향으로 훑는 것, default는 마린과 레이스

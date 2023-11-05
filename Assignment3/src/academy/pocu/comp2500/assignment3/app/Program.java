@@ -127,22 +127,22 @@ public class Program {
         units.add(uF);*/
 
         //k02 테스트중 하나
-        Unit u0 = new Turret(new IntVector2D(0x6, 0));
-        Unit u1 = new Wraith(new IntVector2D(0x5, 2));
-        Unit u2 = new Wraith(new IntVector2D(0x0, 0));
-        Unit u3 = new Marine(new IntVector2D(0x3, 3));
-        Unit u4 = new Tank(new IntVector2D(0x6, 0));
-        Unit u5 = new SmartMine(new IntVector2D(0x5, 0), 4, 1);
-        Unit u6 = new Tank(new IntVector2D(0x1, 0));
-        Unit u7 = new Marine(new IntVector2D(0x1, 2));
-        Unit u8 = new Marine(new IntVector2D(0x4, 3));
-        Unit u9 = new SmartMine(new IntVector2D(0x5, 0), 1, 3);
-        Unit uA = new Tank(new IntVector2D(0x1, 1));
-        Unit uB = new Marine(new IntVector2D(0x3, 0));
-        Unit uC = new Mine(new IntVector2D(0x3, 3), 3);
-        Unit uD = new Wraith(new IntVector2D(0x3, 0));
-        Unit uE = new Wraith(new IntVector2D(0x1, 0));
-        Unit uF = new SmartMine(new IntVector2D(0x0, 2), 2, 2);
+        Unit u0 = new SmartMine(new IntVector2D(0x8, 4), 2, 3);
+        Unit u1 = new Wraith(new IntVector2D(0x2, 4));
+        Unit u2 = new Marine(new IntVector2D(0x4, 0));
+        Unit u3 = new SmartMine(new IntVector2D(0x8, 4), 2, 3);
+        Unit u4 = new Mine(new IntVector2D(0x7, 4), 3);
+        Unit u5 = new SmartMine(new IntVector2D(0x2, 3), 3, 3);
+        Unit u6 = new Marine(new IntVector2D(0x0, 0));
+        Unit u7 = new Mine(new IntVector2D(0xB, 1), 3);
+        Unit u8 = new Tank(new IntVector2D(0x5, 2));
+        Unit u9 = new Mine(new IntVector2D(0xE, 2), 3);
+        Unit uA = new Marine(new IntVector2D(0x1, 1));
+        Unit uB = new SmartMine(new IntVector2D(0x3, 2), 1, 2);
+        Unit uC = new Wraith(new IntVector2D(0x7, 4));
+        Unit uD = new Wraith(new IntVector2D(0x8, 6));
+        Unit uE = new Tank(new IntVector2D(0xD, 3));
+        Unit uF = new Wraith(new IntVector2D(0xE, 5));
 
 
         units.add(u0);
@@ -162,7 +162,7 @@ public class Program {
         units.add(uE);
         units.add(uF);
 
-        int stop = 20;
+        int stop = 4;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
