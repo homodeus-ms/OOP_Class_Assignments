@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
+public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackable {
 
     private boolean isSeigeMode;
     private boolean wasMovingToLeft;
@@ -21,7 +21,6 @@ public class Tank extends ThinkableUnit implements IMovable, IAoeAttackable {
     // 2. 탱크는 공격전 모드 확인을 해야함
     // 3. target Position에 Ap 데미지가 들어가고, AOE계산을 해서
     //    해당 AOE가 적용되는 position들에 AOE Damage를 주어야 함
-
 
     @Override
     public AttackIntent attack() {

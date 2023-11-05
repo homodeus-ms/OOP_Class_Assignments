@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public abstract class Unit {
 
@@ -111,14 +109,14 @@ public abstract class Unit {
     public void onSpawn() {
         char symbol = this.getSymbol();
 
-        if (symbol == 'N' || symbol == 'A') {
-            SimulationManager.getInstance().registerCollisionEventListener(this);
-        } else {
-            SimulationManager.getInstance().registerThinkable((ThinkableUnit) this);
+        if (symbol != 'N') {
+            SimulationManager.getInstance().registerThinkable((IThinkable) this);
+        }
 
-            if (symbol != 'U' && symbol != 'D') {
-                SimulationManager.getInstance().registerMovable((IMovable) this);
-            }
+        if (symbol == 'M' || symbol == 'W' || symbol == 'T') {
+            SimulationManager.getInstance().registerMovable((IMovable) this);
+        } else if (symbol == 'N' || symbol == 'A') {
+            SimulationManager.getInstance().registerCollisionEventListener(this);
         }
     }
 
@@ -144,11 +142,6 @@ public abstract class Unit {
             }
         }
     }
-
-    /*public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
-
-    }*/
 
     public void goNextTurn() {
         hasActed = false;

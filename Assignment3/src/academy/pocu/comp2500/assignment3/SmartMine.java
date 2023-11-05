@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class SmartMine extends Mine implements IAoeAttackable {
+public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
 
     private final int maxEnemies;
 
@@ -15,6 +15,28 @@ public class SmartMine extends Mine implements IAoeAttackable {
 
     public int getMaxEnemies() {
         return maxEnemies;
+    }
+
+    @Override
+    public void findEnemiesInAttackRangeAndSightRange() {
+        enemiesInSight.clear();
+        enemiesInAttackRange.clear();
+
+        ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
+        for (Unit u : spawnedUnit) {
+            if (this != u && u.getUnitType() == UnitType.GROUND && isEnemyInSight(u)) {
+                enemiesInSight.add(u);
+            }
+        }
+    }
+
+    @Override
+    public AttackIntent attack() {
+
+        if (this.getHp() > 0 && getEnemiesInSight().size() >= maxEnemies) {
+            explode(SimulationManager.getInstance().getUnits());
+        }
+        return null;
     }
 
     @Override
@@ -35,11 +57,19 @@ public class SmartMine extends Mine implements IAoeAttackable {
         }
 
         this.hp = 0;
+
     }
 
     // 터지는 조건인지 검사후 조건이 되면 함수내부에서 터짐
-    @Override
+    /*@Override
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
+
+        if (enemiesInSight.size() >= maxEnemies) {
+            explode(SimulationManager.getInstance().getUnits());
+        } else {
+            enemiesInSight.clear();
+        }
+
         targets.clear();
 
         for (Unit u : sourceUnits) {
@@ -54,19 +84,7 @@ public class SmartMine extends Mine implements IAoeAttackable {
             // Aoe도 계산을 해야하니까 그냥 전체 유닛목록을 보냄
             explode(SimulationManager.getInstance().getUnits());
         }
-
-        targets.clear();
-
-        for (Unit u : sourceUnits) {
-            if (this != u && u.getUnitType() == UnitType.GROUND && isEnemyInSight(u)) {
-                targets.add(u);
-            }
-        }
-
-        if (targets.size() >= maxEnemies) {
-            explode(SimulationManager.getInstance().getUnits());
-        }
-    }
+    }*/
 
     @Override
     public char getSymbol() {

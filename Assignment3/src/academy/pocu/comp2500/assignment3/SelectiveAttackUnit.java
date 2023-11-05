@@ -2,15 +2,32 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public abstract class ThinkableUnit extends Unit {
+public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
 
-    protected ThinkableUnit(IntVector2D currPos, int hp, final UnitType unitType,
-                            final int sightRange, final int aoe, final int ap) {
+    protected SelectiveAttackUnit(IntVector2D currPos, int hp, final UnitType unitType,
+                                  final int sightRange, final int aoe, final int ap) {
         super(currPos, hp, unitType, sightRange, aoe, ap);
     }
 
     // 밑의 함수들은 ThinkableUnit을 상속받는 머린, 탱크, 레이스, 터렛이 오버라이드할 것임
     // 여기에 구현되어 있는 디폴트는 머린
+
+    @Override
+    public void findEnemiesInAttackRangeAndSightRange() {
+        enemiesInSight.clear();
+        enemiesInAttackRange.clear();
+
+        ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
+        for (Unit u : spawnedUnit) {
+            if (this != u && isVisible(u)) {
+                if (isAttackable(u)) {
+                    enemiesInAttackRange.add(u);
+                } else if (isEnemyInSight(u)) {
+                    enemiesInSight.add(u);
+                }
+            }
+        }
+    }
 
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
@@ -116,7 +133,7 @@ public abstract class ThinkableUnit extends Unit {
         }
 
         for (Unit u : priorities) {
-            if (u.getPosition().getY() - 1 > thisY) {
+            if (u.getPosition().getY() > thisY) {
                 pos.setY(thisY + 1);
                 return pos;
             }

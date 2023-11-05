@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Wraith extends ThinkableUnit implements IMovable {
+public class Wraith extends SelectiveAttackUnit implements IMovable {
 
     private boolean hasShieldUsedAll;
     private boolean hasAttacked;
@@ -20,11 +20,6 @@ public class Wraith extends ThinkableUnit implements IMovable {
     public boolean getHasAttacked() {
         return hasAttacked;
     }
-
-    // 1. Update() 함수 내부에서 attackIntent에 필요한 정보들이 들어가 있음
-    // 2. 탱크는 공격전 모드 확인을 해야함
-    // 3. target Position에 Ap 데미지가 들어가고, AOE계산을 해서
-    //    해당 AOE가 적용되는 position들에 AOE Damage를 주어야 함
 
     @Override
     public AttackIntent attack() {

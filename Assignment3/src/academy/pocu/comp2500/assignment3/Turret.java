@@ -2,13 +2,14 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Turret extends ThinkableUnit {
+public class Turret extends SelectiveAttackUnit {
 
     public Turret(IntVector2D currPos) {
         super(currPos, UnitData.TURRET.getHp(), UnitData.TURRET.getUnitType(),
                 UnitData.TURRET.getSight(), UnitData.TURRET.getAoe(), UnitData.TURRET.getAp());
 
     }
+
 
     @Override
     public AttackIntent attack() {

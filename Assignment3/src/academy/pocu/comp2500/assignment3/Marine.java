@@ -2,13 +2,15 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Marine extends ThinkableUnit implements IMovable {
+public class Marine extends SelectiveAttackUnit implements IMovable {
 
 
     public Marine(IntVector2D currPos) {
         super(currPos, UnitData.MARINE.getHp(), UnitData.MARINE.getUnitType(),
                 UnitData.MARINE.getSight(), UnitData.MARINE.getAoe(), UnitData.MARINE.getAp());
     }
+
+
 
     @Override
     public char getSymbol() {

@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
-
-public class Destroyer extends ThinkableUnit {
+public class Destroyer extends SelectiveAttackUnit {
 
     public Destroyer(IntVector2D currPos) {
         super(currPos, Integer.MAX_VALUE, UnitType.GROUND, 0x100, 0x10000, 0x10000);

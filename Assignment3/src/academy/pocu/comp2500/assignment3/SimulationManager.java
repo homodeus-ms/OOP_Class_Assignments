@@ -6,9 +6,10 @@ public final class SimulationManager {
 
     private static SimulationManager instance;
     private final ArrayList<Unit> units;
-    public final ArrayList<ThinkableUnit> thinkableUnits;
+    public final ArrayList<IThinkable> thinkableUnits;
     public final ArrayList<IMovable> movableUnits;
     public final ArrayList<Unit> collisionEventListeners;
+    //public final ArrayList<Unit> selectiveAtttackUnits = new ArrayList<>();
 
     private SimulationManager() {
         units = new ArrayList<>();
@@ -44,7 +45,7 @@ public final class SimulationManager {
 
     // 이걸 이렇게 해야 하는건가?
 
-    public void registerThinkable(ThinkableUnit thinkableUnit) {
+    public void registerThinkable(IThinkable thinkableUnit) {
         thinkableUnits.add(thinkableUnit);
     }
 
@@ -64,17 +65,23 @@ public final class SimulationManager {
 
         // 이 for문에서 각 유닛들은 공격할 수 있는 적들과, 시야에 있는 적들을 파악
         // 최우선으로 행동할 vector2D를 찾음
-        for (ThinkableUnit u : thinkableUnits) {
+        for (IThinkable unit : thinkableUnits) {
 
-            u.setEnemiesInAttackRangeAndSightRange();
+            unit.findEnemiesInAttackRangeAndSightRange();
 
-            if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
-                continue;
-            } else if (u.getEnemiesInAttackRange().isEmpty()) {
-                u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
-            } else {
-                u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+            if (((Unit) unit).getSymbol() != 'A') {
+
+                SelectiveAttackUnit u = (SelectiveAttackUnit) unit;
+
+                if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
+                    continue;
+                } else if (u.getEnemiesInAttackRange().isEmpty()) {
+                    u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
+                } else {
+                    u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+                }
             }
+
         }
 
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
@@ -100,7 +107,9 @@ public final class SimulationManager {
 
 
         // 공격할 적이 있는 unit들이 공격행위를 함
-        for (Unit u : thinkableUnits) {
+        for (IThinkable unit : thinkableUnits) {
+
+            Unit u = (Unit) unit;
 
             if (!u.hasActed) {
                 u.attack();
@@ -117,20 +126,19 @@ public final class SimulationManager {
 
             if (unit.getHp() <= 0) {
 
+                char symbol = unit.getSymbol();
+
                 units.remove(unit);
 
-                if (unit.getSymbol() == 'N' || unit.getSymbol() == 'A') {
-                    collisionEventListeners.remove(unit);
-                } else if (unit.getSymbol() == 'U' || unit.getSymbol() == 'D') {
-                    thinkableUnits.remove((ThinkableUnit) unit);
-                } else {
-                    thinkableUnits.remove((ThinkableUnit) unit);
-                    movableUnits.remove((IMovable) unit);
+                if (symbol != 'N') {
+                    thinkableUnits.remove((IThinkable) unit);
                 }
 
-                /*thinkableUnits.remove(unit);
-                movableUnits.remove(unit);
-                collisionEventListeners.remove(unit);*/
+                if (symbol == 'M' || symbol == 'T' || symbol == 'W') {
+                    movableUnits.remove((IMovable) unit);
+                } else if (symbol == 'N' || symbol == 'A') {
+                    collisionEventListeners.remove(unit);
+                }
 
                 --i;
 
