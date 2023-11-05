@@ -6,6 +6,7 @@ import academy.pocu.comp2500.assignment3.registry.Registry;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class Program {
@@ -16,8 +17,19 @@ public class Program {
 
         ArrayList<Unit> units = new ArrayList<>();
 
+        Unit u0 = new Turret(new IntVector2D(0x6, 0));
+        Unit u1 = new Tank(new IntVector2D(0x6, 0));
+        Unit u2 = new SmartMine(new IntVector2D(0x5, 0), 4, 1);
+        Unit u3 = new SmartMine(new IntVector2D(0x5, 0), 1, 3);
+        Unit u4 = new Marine(new IntVector2D(3, 0));
+        units.add(u0);
+        units.add(u1);
+        units.add(u2);
+        units.add(u3);
+        units.add(u4);
 
-        Unit u0 = new Mine(new IntVector2D(0xE, 4), 1);
+
+        /*Unit u0 = new Mine(new IntVector2D(0xE, 4), 1);
         Unit u1 = new Marine(new IntVector2D(0x9, 7));
         Unit u2 = new SmartMine(new IntVector2D(0x5, 2), 4, 2);
         Unit u3 = new Marine(new IntVector2D(0x1, 5));
@@ -51,8 +63,8 @@ public class Program {
         units.add(uD);
         units.add(uE);
         units.add(uF);
-
-        int stop = 4;
+*/
+        int stop = 1;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);

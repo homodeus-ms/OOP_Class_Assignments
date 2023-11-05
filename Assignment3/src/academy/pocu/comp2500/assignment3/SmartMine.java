@@ -48,7 +48,9 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
 
             if (this != u && u.getUnitType() != UnitType.AIR) {
                 if (myPos.equals(u.getPosition())) {
-                    u.onAttacked(getAp());
+                    if (u.getUnitType() == UnitType.GROUND) {
+                        u.onAttacked(getAp());
+                    }
                     continue;
                 } else if (myPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     u.onAttacked(calculateAoeDamage(enemyPos));
@@ -61,14 +63,8 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
     }
 
     // 터지는 조건인지 검사후 조건이 되면 함수내부에서 터짐
-    /*@Override
+    @Override
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
-
-        if (enemiesInSight.size() >= maxEnemies) {
-            explode(SimulationManager.getInstance().getUnits());
-        } else {
-            enemiesInSight.clear();
-        }
 
         targets.clear();
 
@@ -84,7 +80,7 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
             // Aoe도 계산을 해야하니까 그냥 전체 유닛목록을 보냄
             explode(SimulationManager.getInstance().getUnits());
         }
-    }*/
+    }
 
     @Override
     public char getSymbol() {
