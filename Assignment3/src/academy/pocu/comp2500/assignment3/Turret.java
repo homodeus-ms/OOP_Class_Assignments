@@ -61,9 +61,9 @@ public class Turret extends SelectiveAttackUnit {
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
-        /*if (sourceUnits.isEmpty()) {
+        if (enemiesInAttackRange.isEmpty()) {
             return;
-        }*/
+        }
 
         // sourceUnit은 enemiesInAttackRange임.
         // 터렛이 공격할 수 있는 공중 유닛만 들어있음

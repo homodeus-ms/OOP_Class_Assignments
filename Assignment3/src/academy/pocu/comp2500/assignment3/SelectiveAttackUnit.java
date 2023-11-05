@@ -116,32 +116,41 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         return null;
     }
     protected IntVector2D getMovePos(IntVector2D pos, ArrayList<Unit> priorities) {
+
+        for (Unit target : priorities) {
+            if (this.targetPosOrNull.equals(target.getPosition())) {
+                return this.targetPosOrNull;
+            }
+        }
+
         int thisX = pos.getX();
         int thisY = pos.getY();
 
         for (Unit u : priorities) {
             if (u.getPosition().getY() < thisY) {
-                pos.setY(thisY - 1);
-                return pos;
+                return u.getPosition();
             }
         }
         for (Unit u : priorities) {
             IntVector2D enemyPos = u.getPosition();
             if (enemyPos.getX() > thisX) {
-                pos.setX(thisX + 1);
-                return pos;
+                return u.getPosition();
             }
         }
 
         for (Unit u : priorities) {
             if (u.getPosition().getY() > thisY) {
-                pos.setY(thisY + 1);
-                return pos;
+                return u.getPosition();
             }
         }
 
-        pos.setX(thisX - 1);
-        return pos;
+        for (Unit u : priorities) {
+            if (u.getPosition().getX() < thisX) {
+                return u.getPosition();
+            }
+        }
+
+        return this.getPosition();
     }
 
     // 처음 북쪽, 이후 시계방향으로 훑는 것, default는 마린과 레이스
