@@ -17,8 +17,44 @@ public class Program {
 
         ArrayList<Unit> units = new ArrayList<>();
 
+        // k00 테스트 중 하나
+        /*Unit u0 = new Turret(new IntVector2D(0xF, 1));
+        Unit u1 = new SmartMine(new IntVector2D(0x1, 0), 4, 3);
+        Unit u2 = new Marine(new IntVector2D(0x0, 1));
+        Unit u3 = new Wraith(new IntVector2D(0x9, 5));
+        Unit u4 = new SmartMine(new IntVector2D(0x7, 4), 1, 1);
+        Unit u5 = new Turret(new IntVector2D(0x9, 1));
+        Unit u6 = new Wraith(new IntVector2D(0x7, 2));
+        Unit u7 = new Mine(new IntVector2D(0xF, 4), 1);
+        Unit u8 = new Wraith(new IntVector2D(0xB, 2));
+        Unit u9 = new Marine(new IntVector2D(0xD, 1));
+        Unit uA = new Mine(new IntVector2D(0x1, 1), 1);
+        Unit uB = new Turret(new IntVector2D(0x4, 0));
+        Unit uC = new Wraith(new IntVector2D(0x7, 2));
+        Unit uD = new SmartMine(new IntVector2D(0xC, 6), 2, 3);
+        Unit uE = new Marine(new IntVector2D(0x9, 6));
+        Unit uF = new Turret(new IntVector2D(0x6, 5));
+
+
+        units.add(u0);
+        units.add(u1);
+        units.add(u2);
+        units.add(u3);
+        units.add(u4);
+        units.add(u5);
+        units.add(u6);
+        units.add(u7);
+        units.add(u8);
+        units.add(u9);
+        units.add(uA);
+        units.add(uB);
+        units.add(uC);
+        units.add(uD);
+        units.add(uE);
+        units.add(uF);*/
+
         //k00 테스트중 하나
-        Unit u0 = new Marine(new IntVector2D(0xC, 6));
+        /*Unit u0 = new Marine(new IntVector2D(0xC, 6));
         Unit u1 = new Turret(new IntVector2D(0x7, 4));
         Unit u2 = new SmartMine(new IntVector2D(0x2, 5), 2, 2);
         Unit u3 = new Mine(new IntVector2D(0x7, 3), 2);
@@ -51,7 +87,7 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);
+        units.add(uF);*/
 
 
         // k02 테스트에 왼쪽, 윗쪽에 몰려있는 테스트
@@ -90,7 +126,43 @@ public class Program {
         units.add(uE);
         units.add(uF);*/
 
-        int stop = 13;
+        //k02 테스트중 하나
+        Unit u0 = new Turret(new IntVector2D(0x6, 0));
+        Unit u1 = new Wraith(new IntVector2D(0x5, 2));
+        Unit u2 = new Wraith(new IntVector2D(0x0, 0));
+        Unit u3 = new Marine(new IntVector2D(0x3, 3));
+        Unit u4 = new Tank(new IntVector2D(0x6, 0));
+        Unit u5 = new SmartMine(new IntVector2D(0x5, 0), 4, 1);
+        Unit u6 = new Tank(new IntVector2D(0x1, 0));
+        Unit u7 = new Marine(new IntVector2D(0x1, 2));
+        Unit u8 = new Marine(new IntVector2D(0x4, 3));
+        Unit u9 = new SmartMine(new IntVector2D(0x5, 0), 1, 3);
+        Unit uA = new Tank(new IntVector2D(0x1, 1));
+        Unit uB = new Marine(new IntVector2D(0x3, 0));
+        Unit uC = new Mine(new IntVector2D(0x3, 3), 3);
+        Unit uD = new Wraith(new IntVector2D(0x3, 0));
+        Unit uE = new Wraith(new IntVector2D(0x1, 0));
+        Unit uF = new SmartMine(new IntVector2D(0x0, 2), 2, 2);
+
+
+        units.add(u0);
+        units.add(u1);
+        units.add(u2);
+        units.add(u3);
+        units.add(u4);
+        units.add(u5);
+        units.add(u6);
+        units.add(u7);
+        units.add(u8);
+        units.add(u9);
+        units.add(uA);
+        units.add(uB);
+        units.add(uC);
+        units.add(uD);
+        units.add(uE);
+        units.add(uF);
+
+        int stop = 20;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
@@ -105,6 +177,9 @@ public class Program {
             visualizer.visualize(i, simulationManager.getUnits());
             simulationManager.update();
             if (i >= stop - 1) {
+
+
+
                 continueOnEnter();
             }
         }

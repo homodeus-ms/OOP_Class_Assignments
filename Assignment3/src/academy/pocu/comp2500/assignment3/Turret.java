@@ -37,7 +37,7 @@ public class Turret extends SelectiveAttackUnit {
         return UnitData.TURRET.getMark();
     }
 
-    @Override
+    /*@Override
     public void setEnemiesInAttackRangeAndSightRange() {
 
         enemiesInSight.clear();
@@ -55,13 +55,14 @@ public class Turret extends SelectiveAttackUnit {
         if (enemiesInAttackRange.isEmpty()) {
             hasActed = true;
         }
-    }
+    }*/
 
     @Override
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
 
         if (enemiesInAttackRange.isEmpty()) {
+            hasActed = true;
             return;
         }
 
@@ -122,6 +123,6 @@ public class Turret extends SelectiveAttackUnit {
     }
     @Override
     public boolean isAttackable(Unit target) {
-        return this.getPosition().getDistance(target.getPosition()) < 2.0 - EPSILON;
+        return this.getPosition().getDistance(target.getPosition()) < 1.5 - EPSILON;
     }
 }
