@@ -116,7 +116,7 @@ public abstract class Unit {
         if (symbol == 'M' || symbol == 'W' || symbol == 'T') {
             SimulationManager.getInstance().registerMovable((IMovable) this);
         } else if (symbol == 'N' || symbol == 'A') {
-            SimulationManager.getInstance().registerCollisionEventListener(this);
+            SimulationManager.getInstance().registerCollisionEventListener((ICollisionEventListener) this);
         }
     }
 

@@ -8,7 +8,7 @@ public final class SimulationManager {
     private final ArrayList<Unit> units;
     public final ArrayList<IThinkable> thinkableUnits;
     public final ArrayList<IMovable> movableUnits;
-    public final ArrayList<Unit> collisionEventListeners;
+    public final ArrayList<ICollisionEventListener> collisionEventListeners;
     //public final ArrayList<Unit> selectiveAtttackUnits = new ArrayList<>();
 
     private SimulationManager() {
@@ -53,8 +53,8 @@ public final class SimulationManager {
         movableUnits.add(movableUnit);
     }
 
-    public void registerCollisionEventListener(Unit unit) {
-        collisionEventListeners.add(unit);
+    public void registerCollisionEventListener(ICollisionEventListener collisionEventListener) {
+        collisionEventListeners.add(collisionEventListener);
     }
 
     public void update() {
@@ -100,9 +100,14 @@ public final class SimulationManager {
         }
 
         // 충돌관련? 지뢰
-        for (Unit u : collisionEventListeners) {
-
-            ((Mine) u).checkTriggerAndExplodeOrNot(units, u.getEnemiesInAttackRange());
+        for (ICollisionEventListener u : collisionEventListeners) {
+            u.checkTriggerAndExplodeOrNot(units, ((Unit) u).getEnemiesInAttackRange());
+        }
+        for (ICollisionEventListener u : collisionEventListeners) {
+            Unit unit = (Unit) u;
+            if (unit.getHp() <= 0) {
+                unit.hasActed = true;
+            }
         }
 
 

@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Mine extends Unit {
+public class Mine extends Unit implements ICollisionEventListener {
 
     protected int triggerCountDown;
 
@@ -39,12 +39,8 @@ public class Mine extends Unit {
         }
         this.hp = 0;
     }
-    @Override
-    public void onAttacked(int damage) {
-        hp -= damage;
-        //hp = Math.max(0, hp);
-    }
 
+    @Override
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
         targets.clear();
 
@@ -58,7 +54,6 @@ public class Mine extends Unit {
         }
         if (triggerCountDown <= 0) {
             explode(targets);
-            hasActed = true;
         }
     }
 

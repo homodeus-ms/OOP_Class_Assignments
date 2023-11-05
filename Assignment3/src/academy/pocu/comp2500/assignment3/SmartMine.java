@@ -17,6 +17,7 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
         return maxEnemies;
     }
 
+
     @Override
     public void findEnemiesInAttackRangeAndSightRange() {
         enemiesInSight.clear();
@@ -48,10 +49,7 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
 
             if (this != u && u.getUnitType() != UnitType.AIR) {
                 if (myPos.equals(enemyPos)) {
-                    if (u.getUnitType() == UnitType.GROUND) {
-                        u.onAttacked(getAp());
-                    }
-                    continue;
+                    u.onAttacked(getAp());
                 } else if (myPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     u.onAttacked(calculateAoeDamage(enemyPos));
                 }
@@ -79,7 +77,6 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
         if (triggerCountDown <= 0) {
             // Aoe도 계산을 해야하니까 그냥 전체 유닛목록을 보냄
             explode(SimulationManager.getInstance().getUnits());
-            hasActed = true;
         }
     }
 
