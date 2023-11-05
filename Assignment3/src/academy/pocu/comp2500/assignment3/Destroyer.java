@@ -1,5 +1,7 @@
 package academy.pocu.comp2500.assignment3;
 
+import java.util.ArrayList;
+
 public class Destroyer extends SelectiveAttackUnit {
 
     public Destroyer(IntVector2D currPos) {
@@ -27,12 +29,17 @@ public class Destroyer extends SelectiveAttackUnit {
     }
 
     @Override
-    public void setEnemiesInAttackRangeAndSightRange() {
+    public void findEnemiesInAttackRangeAndSightRange() {
         enemiesInSight.clear();
         enemiesInAttackRange.clear();
 
         enemiesInAttackRange.addAll(SimulationManager.getInstance().getUnits());
     }
+    @Override
+    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
+                                     ArrayList<Unit> priorities) {
+    }
+
     @Override
     public boolean isVisible(Unit enemy) {
         return true;
