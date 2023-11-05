@@ -30,12 +30,15 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
         ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
 
         for (Unit enemy : spawnedUnit) {
-            if (this != enemy && this.isVisible(enemy)) {
+            if (this != enemy && this.isAttackable(enemy)) {
                 IntVector2D enemyPos = enemy.getPosition();
 
                 if (targetPos.equals(enemyPos)) {
                     enemy.onAttacked(getAp());
                 }
+
+
+
             }
         }
 

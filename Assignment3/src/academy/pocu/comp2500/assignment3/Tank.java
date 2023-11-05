@@ -42,6 +42,7 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
                         continue;
                     }
                 }
+
                 if (targetPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     enemy.onAttacked((calculateAoeDamage(enemyPos)));
                 }
@@ -201,4 +202,5 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
         return (manhattanDistance == 2 && (xDiff == 0 || yDiff == 0)) ||
                 (manhattanDistance == 3 && (xDiff == 1 || yDiff == 1));
     }
+
 }

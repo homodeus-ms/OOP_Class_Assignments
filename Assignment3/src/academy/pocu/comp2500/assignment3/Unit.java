@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Unit {
 
-    protected final double EPSILON = 0.00000001;
+    protected final double EPSILON = 0.0001;
     private IntVector2D currPos;
     protected IntVector2D targetPosOrNull = new IntVector2D(-1, -1);
     protected boolean hasActed;
@@ -85,7 +85,7 @@ public abstract class Unit {
 
         IntVector2D targetPos = attackIntent.getAttackPos();
         for (Unit u : SimulationManager.getInstance().getUnits()) {
-            if (this != u && targetPos.equals(u.currPos)) {
+            if (this != u && this.isVisible(u) && targetPos.equals(u.currPos)) {
                 u.onAttacked(attackIntent.getDamage());
             }
         }

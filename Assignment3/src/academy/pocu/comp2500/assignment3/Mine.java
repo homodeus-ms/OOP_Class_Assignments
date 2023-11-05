@@ -39,6 +39,11 @@ public class Mine extends Unit {
         }
         this.hp = 0;
     }
+    @Override
+    public void onAttacked(int damage) {
+        hp -= damage;
+        //hp = Math.max(0, hp);
+    }
 
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
         targets.clear();
@@ -53,6 +58,7 @@ public class Mine extends Unit {
         }
         if (triggerCountDown <= 0) {
             explode(targets);
+            hasActed = true;
         }
     }
 

@@ -18,6 +18,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         enemiesInAttackRange.clear();
 
         ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
+
         for (Unit u : spawnedUnit) {
             if (this != u && isVisible(u)) {
                 if (isAttackable(u)) {
