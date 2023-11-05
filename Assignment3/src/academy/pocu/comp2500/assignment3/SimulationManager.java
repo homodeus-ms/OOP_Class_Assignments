@@ -103,12 +103,12 @@ public final class SimulationManager {
         for (ICollisionEventListener u : collisionEventListeners) {
             u.checkTriggerAndExplodeOrNot(units, ((Unit) u).getEnemiesInAttackRange());
         }
-        for (ICollisionEventListener u : collisionEventListeners) {
+        /*for (ICollisionEventListener u : collisionEventListeners) {
             Unit unit = (Unit) u;
             if (unit.getHp() <= 0) {
                 unit.hasActed = true;
             }
-        }
+        }*/
 
 
         // 공격할 적이 있는 unit들이 공격행위를 함

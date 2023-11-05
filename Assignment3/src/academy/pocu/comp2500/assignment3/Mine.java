@@ -38,6 +38,7 @@ public class Mine extends Unit implements ICollisionEventListener {
             u.onAttacked(getAp());
         }
         this.hp = 0;
+        hasActed = true;
     }
 
     @Override
