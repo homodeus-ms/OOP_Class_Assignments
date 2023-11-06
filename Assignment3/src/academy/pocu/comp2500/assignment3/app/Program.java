@@ -32,7 +32,7 @@ public class Program {
         units.add(u4);*/
 
         // k00 테스트 중 하나
-        Unit u0 = new Wraith(new IntVector2D(0xF, 0));
+        /*Unit u0 = new Wraith(new IntVector2D(0xF, 0));
         Unit u1 = new Marine(new IntVector2D(0x4, 3));
         Unit u2 = new Marine(new IntVector2D(0xA, 5));
         Unit u3 = new Turret(new IntVector2D(0x3, 4));
@@ -65,7 +65,7 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);
+        units.add(uF);*/
 
         //k00 테스트중 하나
         /*Unit u0 = new Marine(new IntVector2D(0xC, 6));
@@ -142,7 +142,7 @@ public class Program {
 
         //k02 테스트중 하나
 
-        /*Unit u0 = new Wraith(new IntVector2D(2, 2));
+        Unit u0 = new Wraith(new IntVector2D(2, 2));
         units.add(u0);
         Unit u1 = new Wraith(new IntVector2D(14, 2));
         units.add(u1);
@@ -167,11 +167,11 @@ public class Program {
         Unit uB = new Wraith(new IntVector2D(12, 6));
         units.add(uB);
         Unit uC = new Wraith(new IntVector2D(9, 1));
-        units.add(uC);*/
+        units.add(uC);
 
 
 
-        int stop = 13;
+        int stop = 25;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);

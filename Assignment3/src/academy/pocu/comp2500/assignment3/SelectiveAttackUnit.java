@@ -117,11 +117,11 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
     }
     protected IntVector2D getMovePos(IntVector2D pos, ArrayList<Unit> priorities) {
 
-        for (Unit target : priorities) {
+        /*for (Unit target : priorities) {
             if (this.targetPosOrNull.equals(target.getPosition())) {
                 return this.targetPosOrNull;
             }
-        }
+        }*/
 
         int thisX = pos.getX();
         int thisY = pos.getY();
