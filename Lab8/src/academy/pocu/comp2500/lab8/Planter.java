@@ -8,7 +8,7 @@ public class Planter {
     private final int ADD_AMOUNT_IN_A_TICK = 15;
     private final int REMOVE_AMOUNT_IN_A_TICK = 7;
     private int currWaterAmount;
-    private boolean isTickPassed;
+
     private final ArrayList<SmartDevice> devices;
     /*private final ArrayList<SmartDevice> sprinklers;
     private final ArrayList<SmartDevice> drainers;*/
@@ -40,29 +40,27 @@ public class Planter {
     }
 
     public void tick() {
-
-        isTickPassed = false;
-
         for (SmartDevice s : devices) {
+
+            if (s.getDeviceType() == DeviceType.DRAINER) {
+                s.detect(currWaterAmount);
+            }
+
             s.onTick();
         }
+
+        currWaterAmount -= USE_AMOUNT_IN_A_TICK;
+
+
         for (SmartDevice s : devices) {
 
             if (s.isOn()) {
                 s.spray(this);
                 s.drain(this);
             }
-
-            if (!isTickPassed) {
-                currWaterAmount = Math.max(0, currWaterAmount - USE_AMOUNT_IN_A_TICK);
-                isTickPassed = true;
-            }
         }
 
-        for (SmartDevice s: devices) {
-            if (s.getDeviceType() == DeviceType.DRAINER) {
-                s.detect(currWaterAmount);
-            }
-        }
+        currWaterAmount = Math.max(0, currWaterAmount);
+
     }
 }

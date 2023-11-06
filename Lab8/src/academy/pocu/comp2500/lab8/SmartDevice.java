@@ -27,13 +27,8 @@ public abstract class SmartDevice {
     public abstract void drain(Planter planter);
     public abstract void detect(int waterLever);
 
-    public void onTick() {
-        ++currTick;
-        ++updatedTick;
+    public abstract void onTick();
 
-        updatedTick = toggled ? 0 : updatedTick;
-        toggled = false;
-    }
 
     public int getTicksSinceLastUpdate() {
         return updatedTick;

@@ -8,15 +8,50 @@ import academy.pocu.comp2500.lab8.Sprinkler;
 public class Program {
 
     public static void main(String[] args) {
-        Test1();
+        /*Test1();
         Test2();
         Test3();
         Test4();
         Test5();
         Test6();
         Test7();
-        Test8();
-        //Test9();
+        Test8();*/
+
+        /*Planter planter = new Planter(96);
+        Drainer drainer = new Drainer(76);
+        Sprinkler sprinkler = new Sprinkler();
+        Schedule s0 = new Schedule(12, 6);
+        Schedule s1 = new Schedule(19, 10);
+        Schedule s2 = new Schedule(36, 10);
+        Schedule s3 = new Schedule(51, 2);
+        Schedule s4 = new Schedule(64, 7);
+        Schedule s5 = new Schedule(86, 10);
+        Schedule s6 = new Schedule(103, 2);
+        sprinkler.addSchedule(s0);
+        sprinkler.addSchedule(s1);
+        sprinkler.addSchedule(s2);
+        sprinkler.addSchedule(s3);
+        sprinkler.addSchedule(s4);
+        sprinkler.addSchedule(s5);
+        sprinkler.addSchedule(s6);
+
+        planter.installSmartDevice(drainer);
+        planter.installSmartDevice(sprinkler);
+
+        planter.tick();
+        System.out.println(planter.getWaterAmount());*/
+
+        Planter planter = new Planter(50);
+        Drainer d0 = new Drainer(52);
+        Drainer d1 = new Drainer(48);
+        Drainer d2 = new Drainer(49);
+
+        planter.installSmartDevice(d0);
+        planter.installSmartDevice(d1);
+        planter.installSmartDevice(d2);
+
+        planter.tick();
+        System.out.println(planter.getWaterAmount());
 
         System.out.println("No Assert");
     }

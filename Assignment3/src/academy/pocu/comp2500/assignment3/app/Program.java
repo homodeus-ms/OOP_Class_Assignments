@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.spi.TimeZoneNameProvider;
 
 public class Program {
 
@@ -31,22 +32,22 @@ public class Program {
         units.add(u4);*/
 
         // k00 테스트 중 하나
-        /*Unit u0 = new Turret(new IntVector2D(0xF, 1));
-        Unit u1 = new SmartMine(new IntVector2D(0x1, 0), 4, 3);
-        Unit u2 = new Marine(new IntVector2D(0x0, 1));
-        Unit u3 = new Wraith(new IntVector2D(0x9, 5));
-        Unit u4 = new SmartMine(new IntVector2D(0x7, 4), 1, 1);
-        Unit u5 = new Turret(new IntVector2D(0x9, 1));
-        Unit u6 = new Wraith(new IntVector2D(0x7, 2));
-        Unit u7 = new Mine(new IntVector2D(0xF, 4), 1);
-        Unit u8 = new Wraith(new IntVector2D(0xB, 2));
-        Unit u9 = new Marine(new IntVector2D(0xD, 1));
-        Unit uA = new Mine(new IntVector2D(0x1, 1), 1);
-        Unit uB = new Turret(new IntVector2D(0x4, 0));
-        Unit uC = new Wraith(new IntVector2D(0x7, 2));
-        Unit uD = new SmartMine(new IntVector2D(0xC, 6), 2, 3);
-        Unit uE = new Marine(new IntVector2D(0x9, 6));
-        Unit uF = new Turret(new IntVector2D(0x6, 5));
+        Unit u0 = new Wraith(new IntVector2D(0xF, 0));
+        Unit u1 = new Marine(new IntVector2D(0x4, 3));
+        Unit u2 = new Marine(new IntVector2D(0xA, 5));
+        Unit u3 = new Turret(new IntVector2D(0x3, 4));
+        Unit u4 = new Wraith(new IntVector2D(0xE, 7));
+        Unit u5 = new Mine(new IntVector2D(0xE, 6), 3);
+        Unit u6 = new Mine(new IntVector2D(0x5, 0), 3);
+        Unit u7 = new SmartMine(new IntVector2D(0x8, 0), 2, 2);
+        Unit u8 = new Mine(new IntVector2D(0x4, 2), 3);
+        Unit u9 = new Tank(new IntVector2D(0x9, 6));
+        Unit uA = new Turret(new IntVector2D(0x3, 7));
+        Unit uB = new SmartMine(new IntVector2D(0xE, 3), 3, 1);
+        Unit uC = new Tank(new IntVector2D(0x8, 0));
+        Unit uD = new SmartMine(new IntVector2D(0x2, 4), 4, 1);
+        Unit uE = new Wraith(new IntVector2D(0xA, 0));
+        Unit uF = new Wraith(new IntVector2D(0x4, 5));
 
 
         units.add(u0);
@@ -64,7 +65,7 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);*/
+        units.add(uF);
 
         //k00 테스트중 하나
         /*Unit u0 = new Marine(new IntVector2D(0xC, 6));
@@ -141,7 +142,7 @@ public class Program {
 
         //k02 테스트중 하나
 
-        Unit u0 = new Wraith(new IntVector2D(2, 2));
+        /*Unit u0 = new Wraith(new IntVector2D(2, 2));
         units.add(u0);
         Unit u1 = new Wraith(new IntVector2D(14, 2));
         units.add(u1);
@@ -166,10 +167,11 @@ public class Program {
         Unit uB = new Wraith(new IntVector2D(12, 6));
         units.add(uB);
         Unit uC = new Wraith(new IntVector2D(9, 1));
-        units.add(uC);
+        units.add(uC);*/
 
 
-        int stop = 1;
+
+        int stop = 13;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);

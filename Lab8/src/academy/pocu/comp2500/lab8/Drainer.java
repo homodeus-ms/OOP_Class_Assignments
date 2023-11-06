@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.lab8;
 
-public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable {
+public class Drainer extends SmartDevice implements IDrainable {
 
     private final int REMOVE_AMOUNT_IN_A_TICK = 7;
     private final int limitWaterAmount;
@@ -20,7 +20,6 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
             toggled = true;
         }
         isOn = waterLevel >= limitWaterAmount;
-
     }
 
     @Override
@@ -30,5 +29,14 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
     @Override
     public void spray(Planter planter) {
 
+    }
+
+    @Override
+    public void onTick() {
+        ++currTick;
+        ++updatedTick;
+
+        updatedTick = toggled ? 0 : updatedTick;
+        toggled = false;
     }
 }
