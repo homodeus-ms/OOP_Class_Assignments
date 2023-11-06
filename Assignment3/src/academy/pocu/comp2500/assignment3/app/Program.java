@@ -104,7 +104,7 @@ public class Program {
 
 
         // k02 테스트에 왼쪽, 윗쪽에 몰려있는 테스트
-        Unit u0 = new SmartMine(new IntVector2D(0x5, 0), 3, 1);
+        /*Unit u0 = new SmartMine(new IntVector2D(0x5, 0), 3, 1);
         Unit u1 = new Mine(new IntVector2D(0x0, 2), 3);
         Unit u2 = new Marine(new IntVector2D(0x3, 0));
         Unit u3 = new SmartMine(new IntVector2D(0x3, 2), 2, 2);
@@ -137,9 +137,36 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);
+        units.add(uF);*/
 
         //k02 테스트중 하나
+
+        Unit u0 = new Wraith(new IntVector2D(2, 2));
+        units.add(u0);
+        Unit u1 = new Wraith(new IntVector2D(14, 2));
+        units.add(u1);
+        Unit u2 = new Wraith(new IntVector2D(8, 1));
+        units.add(u2);
+        Unit u3 = new Wraith(new IntVector2D(14, 4));
+        units.add(u3);
+        Unit u4 = new Wraith(new IntVector2D(9, 3));
+        units.add(u4);
+        Unit u5 = new Wraith(new IntVector2D(4, 5));
+        units.add(u5);
+        Unit u6 = new Wraith(new IntVector2D(6, 0));
+        units.add(u6);
+        Unit u7 = new Wraith(new IntVector2D(0, 6));
+        units.add(u7);
+        Unit u8 = new Wraith(new IntVector2D(13, 1));
+        units.add(u8);
+        Unit u9 = new Wraith(new IntVector2D(2, 5));
+        units.add(u9);
+        Unit uA = new Wraith(new IntVector2D(13, 3));
+        units.add(uA);
+        Unit uB = new Wraith(new IntVector2D(12, 6));
+        units.add(uB);
+        Unit uC = new Wraith(new IntVector2D(9, 1));
+        units.add(uC);
 
 
         int stop = 1;
