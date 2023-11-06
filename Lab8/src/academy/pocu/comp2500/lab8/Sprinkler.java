@@ -65,12 +65,12 @@ public class Sprinkler extends SmartDevice implements ISprayable {
     }
 
 
-    @Override
+    /*@Override
     public void drain(Planter planter) {
 
     }
     @Override
     public void detect(int waterLever) {
 
-    }
+    }*/
 }

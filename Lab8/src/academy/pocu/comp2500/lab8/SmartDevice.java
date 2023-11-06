@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab8;
 
-import java.util.ArrayList;
-
 public abstract class SmartDevice {
 
     protected final DeviceType deviceType;
@@ -23,9 +21,15 @@ public abstract class SmartDevice {
         return isOn;
     }
 
-    public abstract void spray(Planter planter);
-    public abstract void drain(Planter planter);
-    public abstract void detect(int waterLever);
+    public void spray(Planter planter) {
+
+    }
+    public void drain(Planter planter) {
+
+    }
+    public void detect(int waterLever) {
+
+    }
 
     public abstract void onTick();
 
