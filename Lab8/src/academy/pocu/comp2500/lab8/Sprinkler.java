@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class Sprinkler extends SmartDevice implements ISprayable {
 
-    private static final int ADD_AMOUNT_IN_A_TICK = 15;
     private final ArrayList<Schedule> schedules;
     private int currScheduleIndex;
 
     public Sprinkler() {
-        super(DeviceType.SPRINKLER);
         schedules = new ArrayList<>();
     }
 
@@ -26,11 +24,19 @@ public class Sprinkler extends SmartDevice implements ISprayable {
         ++currTick;
         ++updatedTick;
 
-        if (currTick == 0) {
-            return;
-        }
+        checkSchedule();
+
+        updatedTick = toggled ? 0 : updatedTick;
+        toggled = false;
+    }
+
+    private void checkSchedule() {
 
         int size = schedules.size();
+
+        if (currTick == 0 || currScheduleIndex >= size) {
+            return;
+        }
 
         // 유효한 스케쥴을 가리키게 한다
         for (int i = currScheduleIndex; i < size; ++i) {
@@ -48,29 +54,13 @@ public class Sprinkler extends SmartDevice implements ISprayable {
             return;
         }
 
-        int startTick = schedules.get(currScheduleIndex).getStartTick();
-        int endTick = schedules.get(currScheduleIndex).getEndTick();
-
-        if (currTick == startTick) {
+        if (currTick == schedules.get(currScheduleIndex).getStartTick()) {
             toggled = !isOn;
             isOn = true;
-        } else if (currTick == endTick) {
+        } else if (currTick == schedules.get(currScheduleIndex).getEndTick()) {
             toggled = isOn;
             isOn = false;
             ++currScheduleIndex;
         }
-
-        updatedTick = toggled ? 0 : updatedTick;
-        toggled = false;
     }
-
-
-    /*@Override
-    public void drain(Planter planter) {
-
-    }
-    @Override
-    public void detect(int waterLever) {
-
-    }*/
 }

@@ -2,19 +2,13 @@ package academy.pocu.comp2500.lab8;
 
 public abstract class SmartDevice {
 
-    protected final DeviceType deviceType;
     protected int currTick;
     protected int updatedTick;
     protected boolean isOn;
     protected boolean toggled;
 
 
-    protected SmartDevice(final DeviceType deviceType) {
-        this.deviceType = deviceType;
-
-    }
-    public DeviceType getDeviceType() {
-        return this.deviceType;
+    protected SmartDevice() {
     }
 
     public boolean isOn() {
@@ -22,17 +16,13 @@ public abstract class SmartDevice {
     }
 
     public void spray(Planter planter) {
-
     }
     public void drain(Planter planter) {
-
     }
     public void detect(int waterLever) {
-
     }
 
     public abstract void onTick();
-
 
     public int getTicksSinceLastUpdate() {
         return updatedTick;

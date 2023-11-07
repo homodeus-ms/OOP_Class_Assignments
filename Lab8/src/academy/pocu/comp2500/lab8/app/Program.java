@@ -17,6 +17,8 @@ public class Program {
         Test7();
         Test8();*/
 
+        Test14();
+
         /*Planter planter = new Planter(96);
         Drainer drainer = new Drainer(76);
         Sprinkler sprinkler = new Sprinkler();
@@ -41,7 +43,7 @@ public class Program {
         planter.tick();
         System.out.println(planter.getWaterAmount());*/
 
-        Planter planter = new Planter(50);
+        /*Planter planter = new Planter(50);
         Drainer d0 = new Drainer(52);
         Drainer d1 = new Drainer(48);
         Drainer d2 = new Drainer(49);
@@ -51,10 +53,27 @@ public class Program {
         planter.installSmartDevice(d2);
 
         planter.tick();
-        System.out.println(planter.getWaterAmount());
+        System.out.println(planter.getWaterAmount());*/
 
         System.out.println("No Assert");
     }
+
+    public static void Test14() {
+        Planter planter = new Planter(50);
+        Drainer d0 = new Drainer(52);
+        Drainer d1 = new Drainer(48);
+        Drainer d2 = new Drainer(50);
+
+        planter.installSmartDevice(d0);
+        planter.installSmartDevice(d1);
+        planter.installSmartDevice(d2);
+
+        planter.tick();
+
+        assert (planter.getWaterAmount() == 34);
+    }
+
+
 
     public static void Test1() {
         Sprinkler sprinkler = new Sprinkler();
