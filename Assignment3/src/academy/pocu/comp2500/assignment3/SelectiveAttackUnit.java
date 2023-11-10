@@ -29,15 +29,14 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
 
     // 머린과 레이스가 공통으로 쓸 수 있는 함수들이 좀 있기 때문에
     // 추상메서드로 만들지 않고 구현까지 함. 필요하면 밑의 클래스에서 오버라이드로
-    public void getPriorityPos(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
+    public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
         priorities.clear();
 
         if (getEnemiesInAttackRange().isEmpty()) {
-            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
-        } else {
             targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
+        } else {
+            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
         }
     }
 

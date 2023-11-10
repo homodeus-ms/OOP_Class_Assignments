@@ -14,53 +14,8 @@ public class Program {
 
     public static void main(String[] args) {
 
-        ArrayList<Unit> units = new ArrayList<>();
 
-        double currDegree = (Math.toDegrees(Math.atan2(9 - 3, 3 - 3)) + 450) % 360;
-        System.out.println(currDegree);
-
-        /*Unit u0 = new Marine(new IntVector2D(12, 6));
-        Unit u1 = new Turret(new IntVector2D(7, 4));
-        Unit u2 = new SmartMine(new IntVector2D(2, 5), 2, 2);
-        Unit u3 = new Mine(new IntVector2D(7, 3), 2);
-        Unit u4 = new Mine(new IntVector2D(7, 7), 4);
-        Unit u5 = new Turret(new IntVector2D(1, 6));
-        Unit u6 = new Mine(new IntVector2D(11, 0), 4);
-        Unit u7 = new SmartMine(new IntVector2D(3, 0), 2, 1);
-        Unit u8 = new Turret(new IntVector2D(10, 0));
-        Unit u9 = new Turret(new IntVector2D(13, 3));
-        Unit uA = new Turret(new IntVector2D(14, 2));
-        Unit uB = new Tank(new IntVector2D(14, 6));
-        Unit uC = new SmartMine(new IntVector2D(10, 0), 1, 3);
-        Unit uD = new Marine(new IntVector2D(12, 6));
-        Unit uE = new Wraith(new IntVector2D(8, 7));
-        Unit uF = new Wraith(new IntVector2D(15, 7));
-
-        units.add(u0);
-        units.add(u1);
-        units.add(u2);
-        units.add(u3);
-        units.add(u4);
-        units.add(u5);
-        units.add(u6);
-        units.add(u7);
-        units.add(u8);
-        units.add(u9);
-        units.add(uA);
-        units.add(uB);
-        units.add(uC);
-        units.add(uD);
-        units.add(uE);
-        units.add(uF);
-*/
-
-
-
-
-
-
-
-        /*SimulationManager simulationManager = SimulationManager.getInstance();
+        SimulationManager simulationManager = SimulationManager.getInstance();
 
         ArrayList<Unit> units = new ArrayList<>();
 
@@ -96,11 +51,10 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);*/
+        units.add(uF);
 
-        /*int stop = 10;
 
-        SimulationManager simulationManager = SimulationManager.getInstance();
+        int stop = 1;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
@@ -114,11 +68,11 @@ public class Program {
             clearConsole();
             visualizer.visualize(i, simulationManager.getUnits());
             simulationManager.update();
-            if (i > stop) {
+            if (i >= stop) {
                 continueOnEnter();
             }
 
-        }*/
+        }
     }
     public void simmulateUntil(int stop, SimulationManager simulationManager,
                                SimulationVisualizer visualizer) {
