@@ -7,10 +7,6 @@ public abstract class SmartDevice {
     protected boolean isOn;
     protected boolean toggled;
 
-
-    protected SmartDevice() {
-    }
-
     public boolean isOn() {
         return isOn;
     }

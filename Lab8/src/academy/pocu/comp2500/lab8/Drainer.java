@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.lab8;
 
-public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable {
+public final class Drainer extends SmartDevice implements IDrainable, IWaterDetectable {
 
     private final int limitWaterAmount;
 
-    public Drainer(int waterAmount) {
+    public Drainer(final int waterAmount) {
         this.limitWaterAmount = waterAmount;
     }
 
@@ -13,7 +13,7 @@ public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable
     }
 
     @Override
-    public void detect(int waterLevel) {
+    public void detect(final int waterLevel) {
         if (isOn != waterLevel >= limitWaterAmount) {
             toggled = true;
         }

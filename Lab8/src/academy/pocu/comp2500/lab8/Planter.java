@@ -2,18 +2,17 @@ package academy.pocu.comp2500.lab8;
 
 import java.util.ArrayList;
 
-public class Planter {
-    // tick마다 2L 소비
+public final class Planter {
+
     private final int USE_AMOUNT_IN_A_TICK = 2;
     private final int ADD_AMOUNT_IN_A_TICK = 15;
     private final int REMOVE_AMOUNT_IN_A_TICK = 7;
     
     private int currWaterAmount;
-
     private final ArrayList<SmartDevice> devices;
 
 
-    public Planter(int remainWater) {
+    public Planter(final int remainWater) {
         currWaterAmount = remainWater;
         devices = new ArrayList<>();
     }
