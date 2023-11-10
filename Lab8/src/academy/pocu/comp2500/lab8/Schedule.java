@@ -18,8 +18,4 @@ public class Schedule {
     public int getEndTick() {
         return endTick;
     }
-
-    /*public int getDuration() {
-        return duration;
-    }*/
 }

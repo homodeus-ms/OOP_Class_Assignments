@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.lab8;
 
-public class Drainer extends SmartDevice implements IDrainable, IWaterDetectable {
+public class Drainer extends SmartDevice {
 
     private final int limitWaterAmount;
 

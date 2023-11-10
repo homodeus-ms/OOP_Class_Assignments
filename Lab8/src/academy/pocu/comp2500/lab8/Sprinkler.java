@@ -2,7 +2,7 @@ package academy.pocu.comp2500.lab8;
 
 import java.util.ArrayList;
 
-public class Sprinkler extends SmartDevice implements ISprayable {
+public class Sprinkler extends SmartDevice {
 
     private final ArrayList<Schedule> schedules;
     private int currScheduleIndex;

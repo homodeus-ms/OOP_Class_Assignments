@@ -17,7 +17,7 @@ public class Program {
         Test7();
         Test8();*/
 
-        Test14();
+        //Test14();
 
         /*Planter planter = new Planter(96);
         Drainer drainer = new Drainer(76);
@@ -54,6 +54,16 @@ public class Program {
 
         planter.tick();
         System.out.println(planter.getWaterAmount());*/
+        Planter planter = new Planter(50);
+        Sprinkler s0 = new Sprinkler();
+        s0.addSchedule(new Schedule(1, 4));
+        s0.addSchedule(new Schedule(6, 3));
+        planter.installSmartDevice(s0);
+
+        for (int i = 0; i < 10; ++i) {
+            System.out.printf("%d : %s, amount: %d%s", i, s0.isOn(), planter.getWaterAmount(), System.lineSeparator());
+            planter.tick();
+        }
 
         System.out.println("No Assert");
     }
