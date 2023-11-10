@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
 
-public class Wraith extends SelectiveAttackUnit implements IMovable {
+public final class Wraith extends AdjacentUnit {
 
     private boolean hasShieldUsedAll;
     private boolean hasAttacked;
@@ -24,35 +24,11 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
         return hasShieldUsedAll;
     }
 
-    /*@Override
-    public AttackIntent attack() {
-
-        makeAttackIntent();
-
-        IntVector2D targetPos = getAttackIntent().getAttackPos();
-        ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
-
-        for (Unit enemy : spawnedUnit) {
-            if (this != enemy && this.isAttackable(enemy)) {
-                IntVector2D enemyPos = enemy.getPosition();
-
-                if (targetPos.equals(enemyPos)) {
-                    enemy.onAttacked(getAp());
-                }
-
-
-
-            }
-        }
-
-        return getAttackIntent();
-    }*/
     @Override
     public void onAttacked(int damage) {
         hasAttacked = true;
         if (hasShieldUsedAll) {
             hp -= damage;
-            //hp = Math.max(0, hp);
         }
     }
 
@@ -61,7 +37,6 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
         if (hasAttacked) {
             hasShieldUsedAll = true;
         }
-
         hasActed = false;
     }
 
@@ -71,20 +46,15 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
     }
 
     @Override
-    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
-
-        /*if (sourceUnits.isEmpty()) {
-            return;
-        }*/
+    public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
         priorities.clear();
 
-        // 공중 유닛을 우선 후보로 선정, priorities에 들어감
+        // 공중 유닛을 먼저 물색함. priorities에 들어감
         getAirEnemies(sourceUnits, priorities);
 
         if (priorities.size() == 1) {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
+            targetPosOrNull = new IntVector2D(priorities.get(0).getPosition());
             return;
         } else if (priorities.size() > 1) {
             sourceUnits.clear();
@@ -92,52 +62,11 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
             priorities.clear();
         }
 
-        // 만약 공격사항이 아니라면 가까이 있는 것이 priority, 공격상황이라면 minHp가 priority
-        // getEnemiesInAttackRange가 비어있다는 것은 공격상황이 아니라는 것
+        // super Class에 있는 함수를 호출
         if (getEnemiesInAttackRange().isEmpty()) {
-            getClosestTarget(sourceUnits, priorities);
-
-            if (priorities.size() == 1) {
-                targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-                return;
-
-                // 가까운 거리의 적들을 추렸는데도 여러개가 있을 경우
-            } else if (priorities.size() > 1) {
-
-                sourceUnits.clear();
-
-                sourceUnits.addAll(priorities);
-
-                getEnemyPriorities().clear();
-
-                getMinHpTarget(sourceUnits, priorities);
-            }
-            // 공격 상황인 경우, 바로 minHp enemy를 찾으러감
+            targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
         } else {
-            getMinHpTarget(sourceUnits, priorities);
-        }
-
-        targetPosOrNull = findPriorityPosByDirection(priorities);
-    }
-
-
-    @Override
-    public void moveToTarget(IntVector2D targetPos) {
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        int targetX = targetPos.getX();
-        int targetY = targetPos.getY();
-
-        if (y == targetY) {
-            if (x < targetX) {
-                getPosition().setX(x + 1);
-            } else if (x > targetX) {
-                getPosition().setX(x - 1);
-            }
-        } else if (y < targetY) {
-            getPosition().setY(y + 1);
-        } else {
-            getPosition().setY(y - 1);
+            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
         }
     }
 
@@ -155,5 +84,4 @@ public class Wraith extends SelectiveAttackUnit implements IMovable {
             }
         }
     }
-
 }

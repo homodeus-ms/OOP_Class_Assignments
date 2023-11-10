@@ -36,8 +36,7 @@ public class Destroyer extends SelectiveAttackUnit {
         enemiesInAttackRange.addAll(SimulationManager.getInstance().getUnits());
     }
     @Override
-    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
+    public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
     }
 
     @Override

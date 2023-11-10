@@ -69,8 +69,7 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
     }
 
     @Override
-    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
+    public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
         priorities.clear();
 
@@ -89,59 +88,7 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
         targetPosOrNull = findPriorityPosByDirection(priorities);
     }
 
-    @Override
-    protected void getNextAttackPos(final int searchCount, IntVector2D pos) {
-        switch (searchCount) {
-            // start from (0, 0)
-            case 0:    // true north (0, -2)
-                pos.setY(pos.getY() - 2);
-                break;
-            case 1:    // (1, -2)
-                pos.setX(pos.getX() + 1);
-                break;
-            case 2:    // (2, -1)
-                pos.setX(pos.getX() + 1);
-                pos.setY(pos.getY() + 1);
-                break;
-            case 3:    // true east (2, 0)
-                pos.setY(pos.getY() + 1);
-                break;
-            case 4:    // (2, 1)
-                pos.setY(pos.getY() + 1);
-                break;
-            case 5:    // (1, 2)
-                pos.setX(pos.getX() - 1);
-                pos.setY(pos.getY() + 1);
-                break;
-            case 6:    // true south (0, 2)
-                pos.setX(pos.getX() - 1);
-                break;
-            case 7:    // (-1, 2)
-                pos.setX(pos.getX() - 1);
-                break;
-            case 8:    // (-2, 1)
-                pos.setX(pos.getX() - 1);
-                pos.setY(pos.getY() - 1);
-                break;
-            case 9:    // true west (-2, 0)
-                pos.setY(pos.getY() - 1);
-                break;
-            case 10:    // (-2, -1)
-                pos.setY(pos.getY() - 1);
-                break;
-            case 11:    // (-1, -2)
-                pos.setX(pos.getX() + 1);
-                pos.setY(pos.getY() - 1);
-                break;
-            case 12:    // back to original position (0, 0)
-                pos.setX(pos.getX() + 1);
-                pos.setY(pos.getY() + 2);
-                break;
-            default:
-                assert (false);
-                break;
-        }
-    }
+
 
     @Override
     public int calculateAoeDamage(IntVector2D targetPos) {

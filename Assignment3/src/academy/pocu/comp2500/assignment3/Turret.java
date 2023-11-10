@@ -10,7 +10,6 @@ public class Turret extends SelectiveAttackUnit {
 
     }
 
-
     @Override
     public AttackIntent attack() {
 
@@ -38,8 +37,7 @@ public class Turret extends SelectiveAttackUnit {
     }
 
     @Override
-    public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
-                                     ArrayList<Unit> priorities) {
+    public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
         if (enemiesInAttackRange.isEmpty()) {
             hasActed = true;
@@ -56,41 +54,6 @@ public class Turret extends SelectiveAttackUnit {
         targetPosOrNull = findPriorityPosByDirection(priorities);
     }
 
-    protected void getNextAttackPos(int searchCount, IntVector2D pos) {
-        switch (searchCount) {
-            case 0:    // north (0, -1)
-                pos.setY(pos.getY() - 1);
-                break;
-            case 1:    // (1, -1)
-                pos.setX(pos.getX() + 1);
-                break;
-            case 2:    // east (1, 0)
-                pos.setY(pos.getY() + 1);
-                break;
-            case 3:    // (1, 1)
-                pos.setY(pos.getY() + 1);
-                break;
-            case 4:    // south (0, 1)
-                pos.setX(pos.getX() - 1);
-                break;
-            case 5:    // (-1, 1)
-                pos.setX(pos.getX() - 1);
-                break;
-            case 6:    // west (-1, 0)
-                pos.setY(pos.getY() - 1);
-                break;
-            case 7:    // (-1, -1)
-                pos.setY(pos.getY() - 1);
-                break;
-            case 8:    // back to original pos (0, 0)
-                pos.setX(pos.getX() + 1);
-                pos.setY(pos.getY() + 1);
-                break;
-            default:
-                assert (false);
-                break;
-        }
-    }
     @Override
     public boolean isVisible(Unit other) {
         return other.getUnitType() == UnitType.AIR;

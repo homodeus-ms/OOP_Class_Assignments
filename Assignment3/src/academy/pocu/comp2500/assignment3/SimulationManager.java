@@ -42,9 +42,6 @@ public final class SimulationManager {
         }
     }
 
-
-    // 이걸 이렇게 해야 하는건가?
-
     public void registerThinkable(IThinkable thinkableUnit) {
         thinkableUnits.add(thinkableUnit);
     }
@@ -76,9 +73,9 @@ public final class SimulationManager {
                 if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                     continue;
                 } else if (u.getEnemiesInAttackRange().isEmpty()) {
-                    u.getPriorityPosOrNull(u.getEnemiesInSight(), u.getEnemyPriorities());
+                    u.getPriorityPos(u.getEnemiesInSight(), u.getEnemyPriorities());
                 } else {
-                    u.getPriorityPosOrNull(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
+                    u.getPriorityPos(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
                 }
             }
 
