@@ -14,28 +14,47 @@ public class Program {
 
     public static void main(String[] args) {
 
-
-        IntVector2D v0 = new IntVector2D(2, 2);
-        IntVector2D same = new IntVector2D(2, 2);
-        IntVector2D north = new IntVector2D(2, 1);
-        IntVector2D east = new IntVector2D(3, 2);
-        IntVector2D south = new IntVector2D(2, 3);
-        IntVector2D west = new IntVector2D(1, 2);
-
-
-        SelectiveAttackUnit u0 = new Marine(v0);
-        SelectiveAttackUnit u1 = new Marine(north);
-        SelectiveAttackUnit u2 = new Marine(east);
-        SelectiveAttackUnit u3 = new Marine(south);
-        SelectiveAttackUnit u4 = new Marine(west);
-        SelectiveAttackUnit u5 = new Marine(new IntVector2D(2, 2));
         ArrayList<Unit> units = new ArrayList<>();
+
+        double currDegree = (Math.toDegrees(Math.atan2(9 - 3, 3 - 3)) + 450) % 360;
+        System.out.println(currDegree);
+
+        /*Unit u0 = new Marine(new IntVector2D(12, 6));
+        Unit u1 = new Turret(new IntVector2D(7, 4));
+        Unit u2 = new SmartMine(new IntVector2D(2, 5), 2, 2);
+        Unit u3 = new Mine(new IntVector2D(7, 3), 2);
+        Unit u4 = new Mine(new IntVector2D(7, 7), 4);
+        Unit u5 = new Turret(new IntVector2D(1, 6));
+        Unit u6 = new Mine(new IntVector2D(11, 0), 4);
+        Unit u7 = new SmartMine(new IntVector2D(3, 0), 2, 1);
+        Unit u8 = new Turret(new IntVector2D(10, 0));
+        Unit u9 = new Turret(new IntVector2D(13, 3));
+        Unit uA = new Turret(new IntVector2D(14, 2));
+        Unit uB = new Tank(new IntVector2D(14, 6));
+        Unit uC = new SmartMine(new IntVector2D(10, 0), 1, 3);
+        Unit uD = new Marine(new IntVector2D(12, 6));
+        Unit uE = new Wraith(new IntVector2D(8, 7));
+        Unit uF = new Wraith(new IntVector2D(15, 7));
+
+        units.add(u0);
         units.add(u1);
         units.add(u2);
         units.add(u3);
         units.add(u4);
         units.add(u5);
-        u0.getPriorityPosByDirection(v0, units);
+        units.add(u6);
+        units.add(u7);
+        units.add(u8);
+        units.add(u9);
+        units.add(uA);
+        units.add(uB);
+        units.add(uC);
+        units.add(uD);
+        units.add(uE);
+        units.add(uF);
+*/
+
+
 
 
 
@@ -77,9 +96,11 @@ public class Program {
         units.add(uC);
         units.add(uD);
         units.add(uE);
-        units.add(uF);
+        units.add(uF);*/
 
-        //int stop = 1;
+        /*int stop = 10;
+
+        SimulationManager simulationManager = SimulationManager.getInstance();
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
@@ -93,8 +114,9 @@ public class Program {
             clearConsole();
             visualizer.visualize(i, simulationManager.getUnits());
             simulationManager.update();
-            
-            continueOnEnter();
+            if (i > stop) {
+                continueOnEnter();
+            }
 
         }*/
     }

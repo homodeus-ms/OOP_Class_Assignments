@@ -95,7 +95,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
             if (currPos.equals(pos)) {
                 return new IntVector2D(pos);
             }
-            currDegree = (Math.toDegrees(Math.atan2(pos.getY() - currPos.getY(), pos.getX() - currPos.getX())) + 90) % 360;
+            currDegree = (Math.toDegrees(Math.atan2(pos.getY() - currPos.getY(), pos.getX() - currPos.getX())) + 450) % 360;
             if (minDegree > currDegree) {
                 minDegree = currDegree;
                 priority = u;
