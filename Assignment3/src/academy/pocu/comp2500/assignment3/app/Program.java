@@ -14,7 +14,34 @@ public class Program {
 
     public static void main(String[] args) {
 
-        SimulationManager simulationManager = SimulationManager.getInstance();
+
+        IntVector2D v0 = new IntVector2D(2, 2);
+        IntVector2D same = new IntVector2D(2, 2);
+        IntVector2D north = new IntVector2D(2, 1);
+        IntVector2D east = new IntVector2D(3, 2);
+        IntVector2D south = new IntVector2D(2, 3);
+        IntVector2D west = new IntVector2D(1, 2);
+
+
+        SelectiveAttackUnit u0 = new Marine(v0);
+        SelectiveAttackUnit u1 = new Marine(north);
+        SelectiveAttackUnit u2 = new Marine(east);
+        SelectiveAttackUnit u3 = new Marine(south);
+        SelectiveAttackUnit u4 = new Marine(west);
+        SelectiveAttackUnit u5 = new Marine(new IntVector2D(2, 2));
+        ArrayList<Unit> units = new ArrayList<>();
+        units.add(u1);
+        units.add(u2);
+        units.add(u3);
+        units.add(u4);
+        units.add(u5);
+        u0.getPriorityPosByDirection(v0, units);
+
+
+
+
+
+        /*SimulationManager simulationManager = SimulationManager.getInstance();
 
         ArrayList<Unit> units = new ArrayList<>();
 
@@ -52,14 +79,6 @@ public class Program {
         units.add(uE);
         units.add(uF);
 
-
-
-
-
-
-
-
-
         //int stop = 1;
 
         for (Unit unit : units) {
@@ -77,7 +96,7 @@ public class Program {
             
             continueOnEnter();
 
-        }
+        }*/
     }
     public void simmulateUntil(int stop, SimulationManager simulationManager,
                                SimulationVisualizer visualizer) {

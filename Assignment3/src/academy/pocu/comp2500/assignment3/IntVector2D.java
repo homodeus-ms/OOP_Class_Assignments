@@ -15,6 +15,9 @@ public class IntVector2D {
         this.x = x;
         this.y = y;
     }
+    public IntVector2D(IntVector2D other) {
+        this(other.x, other.y);
+    }
 
     public int getX() {
         return this.x;

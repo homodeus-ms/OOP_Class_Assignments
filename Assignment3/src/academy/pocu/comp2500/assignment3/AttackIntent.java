@@ -28,16 +28,4 @@ public final class AttackIntent {
         this.damage = damage;
         this.attacker = attacker;
     }
-
-    /*public void setTargetPos(IntVector2D targetPos) {
-        this.targetPos = targetPos;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public void setAttacker(Unit attacker) {
-        this.attacker = attacker;
-    }*/
 }

@@ -86,13 +86,7 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
             getMinHpTarget(sourceUnits, priorities);
         }
 
-        if (priorities.size() == 1) {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-            return;
-        } else {
-            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
-            return;
-        }
+        targetPosOrNull = findPriorityPosByDirection(priorities);
     }
 
     @Override

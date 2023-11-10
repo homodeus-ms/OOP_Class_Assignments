@@ -51,13 +51,8 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
             getMinHpTarget(sourceUnits, priorities);
         }
 
-        if (priorities.size() == 1) {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-            return;
-        } else {
-            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
-            return;
-        }
+        targetPosOrNull = findPriorityPosByDirection(priorities);
+
     }
 
     public void getClosestTarget(ArrayList<Unit> sourceUnit, ArrayList<Unit> priorities) {
@@ -90,12 +85,35 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
 
     protected IntVector2D findPriorityPosByDirection(ArrayList<Unit> priorities) {
 
-        boolean isSearchingAttackPos = this.isAttackable(priorities.get(0));
+        Unit priority = null;
+        double minDegree = 360;
+        double currDegree = 360;
+        IntVector2D currPos = this.getPosition();
+
+        for (Unit u : priorities) {
+            IntVector2D pos = u.getPosition();
+            if (currPos.equals(pos)) {
+                return new IntVector2D(pos);
+            }
+            currDegree = (Math.toDegrees(Math.atan2(pos.getY() - currPos.getY(), pos.getX() - currPos.getX())) + 90) % 360;
+            if (minDegree > currDegree) {
+                minDegree = currDegree;
+                priority = u;
+            }
+        }
+
+        return new IntVector2D(priority.getPosition());
+
+        /*boolean isSearchingAttackPos = this.isAttackable(priorities.get(0));
 
         IntVector2D pos = new IntVector2D(getPosition().getX(), getPosition().getY());
 
-        // 지금 찾고 있는 것이 attack target인 경우
+
         if (isSearchingAttackPos) {
+
+            // 순서 적포지션-내포지션: (0, 0) > (0, -1) > (1, 0) > (0, 1) > (-1, 0)
+            // 만약 내가 (2,3)이다 (2,3) > (2,2) > (3,3) > (2,4) > (1,3)
+
             int searchCount = 0;    // 0:samePos, 1:north... 4:west, 4 is Max in case of Marine
 
             do {
@@ -113,15 +131,32 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
 
 
         assert (false) : "It should be returned in previous loop";
-        return null;
+        return null;*/
     }
-    protected IntVector2D getMovePos(IntVector2D pos, ArrayList<Unit> priorities) {
 
-        /*for (Unit target : priorities) {
-            if (this.targetPosOrNull.equals(target.getPosition())) {
-                return this.targetPosOrNull;
+    // Degree를 구하고 90도씩 더한 다음에 %360을 하면 북쪽이 0도 동쪽이 90도, 즉 숫자가 작을수록 우선순위
+    // 우선순위 같은위치 > 북쪽 0도 > 동쪽 90도 > 남쪽 180도 > 서쪽 270도
+    public IntVector2D getPriorityPosByDirection(IntVector2D currPos, ArrayList<Unit> enemies) {
+        Unit priority = null;
+        double minDegree = 360;
+        double currDegree = 360;
+        for (Unit u : enemies) {
+            IntVector2D pos = u.getPosition();
+            if (currPos.equals(pos)) {
+                return new IntVector2D(pos);
             }
-        }*/
+            currDegree = (Math.toDegrees(Math.atan2(pos.getY() - currPos.getY(), pos.getX() - currPos.getX())) + 90) % 360;
+            if (minDegree > currDegree) {
+                minDegree = currDegree;
+                priority = u;
+            }
+        }
+
+        return new IntVector2D(priority.getPosition());
+    }
+
+
+    protected IntVector2D getMovePos(IntVector2D pos, ArrayList<Unit> priorities) {
 
         int thisX = pos.getX();
         int thisY = pos.getY();
@@ -146,7 +181,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
             return res;
         }
 
-        // 위에서 만약 x값이 0 이상인게 없어서 여기까지 왔으면 y값이 가장 큰게 타겟임
+        // 위에서 만약 x값이 0 이상인게 없어서 여기까지 왔으면(x가 0미만이면) y값이 가장 큰게 타겟임
         for (Unit target : priorities) {
             int targetXDiff = target.getPosition().getX() - thisX;
             int targetYDiff = target.getPosition().getY() - thisY;

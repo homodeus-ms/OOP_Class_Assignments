@@ -37,26 +37,6 @@ public class Turret extends SelectiveAttackUnit {
         return UnitData.TURRET.getMark();
     }
 
-    /*@Override
-    public void setEnemiesInAttackRangeAndSightRange() {
-
-        enemiesInSight.clear();
-        enemiesInAttackRange.clear();
-
-        ArrayList<Unit> spawnedUnit = SimulationManager.getInstance().getUnits();
-
-        for (Unit u : spawnedUnit) {
-            if (this != u && isVisible(u)) {
-                if (isAttackable(u)) {
-                    enemiesInAttackRange.add(u);
-                }
-            }
-        }
-        if (enemiesInAttackRange.isEmpty()) {
-            hasActed = true;
-        }
-    }*/
-
     @Override
     public void getPriorityPosOrNull(ArrayList<Unit> sourceUnits,
                                      ArrayList<Unit> priorities) {
@@ -73,13 +53,7 @@ public class Turret extends SelectiveAttackUnit {
 
         getMinHpTarget(sourceUnits, priorities);
 
-        if (priorities.size() == 1) {
-            targetPosOrNull.makeDeepCopy(priorities.get(0).getPosition());
-            return;
-        } else {
-            targetPosOrNull.makeDeepCopy(findPriorityPosByDirection(priorities));
-            return;
-        }
+        targetPosOrNull = findPriorityPosByDirection(priorities);
     }
 
     protected void getNextAttackPos(int searchCount, IntVector2D pos) {
