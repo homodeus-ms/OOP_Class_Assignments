@@ -62,7 +62,6 @@ public class Mine extends Unit implements ICollisionEventListener {
     public void setEnemiesInAttackRangeAndSightRange() {
         getEnemiesInAttackRange().clear();
         getEnemiesInSight().clear();
-        return;
     }
 
     @Override

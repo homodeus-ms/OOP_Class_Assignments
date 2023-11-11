@@ -58,7 +58,7 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
 
     }
 
-    // 터지는 조건인지 검사후 조건이 되면 함수내부에서 터짐
+    // 터지는 조건인지 검사후 조건이 되면 함수 내부에서 explode()를 호출함
     @Override
     public void checkTriggerAndExplodeOrNot(ArrayList<Unit> sourceUnits, ArrayList<Unit> targets) {
 
