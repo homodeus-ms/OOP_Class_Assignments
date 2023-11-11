@@ -28,7 +28,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
     }
 
     // 머린과 레이스가 공통으로 쓸 수 있는 함수들이 좀 있기 때문에
-    // 추상메서드로 만들지 않고 구현까지 함. 필요하면 밑의 클래스에서 오버라이드로
+    // 추상메서드로 만들지 않고 구현까지 함. 필요하면 서브 클래스에서 오버라이드
     public void getPriorityPos(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
         priorities.clear();
@@ -36,13 +36,13 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         if (getEnemiesInAttackRange().isEmpty()) {
             targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
         } else {
-            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
+            targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
         }
     }
 
     public IntVector2D getPriorityPosInAttack(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
         getMinHpTarget(sourceUnits, priorities);
-        return new IntVector2D(findPriorityPosByDirection(priorities));
+        return findPriorityPosByDirection(priorities);
     }
     public IntVector2D getPriorityPosInSight(ArrayList<Unit> sourceUnits, ArrayList<Unit> priorities) {
 
@@ -56,7 +56,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
             getMinHpTarget(sourceUnits, priorities);
         }
 
-        return new IntVector2D(findPriorityPosByDirection(priorities));
+        return findPriorityPosByDirection(priorities);
     }
 
     public void getClosestTarget(ArrayList<Unit> sourceUnit, ArrayList<Unit> priorities) {
@@ -86,6 +86,7 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         }
     }
 
+    // 여기서 딥 카피로 내보냄
     protected IntVector2D findPriorityPosByDirection(ArrayList<Unit> priorities) {
 
         assert (!priorities.isEmpty()) : "List should not empty";

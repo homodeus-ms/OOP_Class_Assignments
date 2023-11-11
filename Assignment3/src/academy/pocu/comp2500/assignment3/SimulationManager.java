@@ -9,7 +9,6 @@ public final class SimulationManager {
     public final ArrayList<IThinkable> thinkableUnits;
     public final ArrayList<IMovable> movableUnits;
     public final ArrayList<ICollisionEventListener> collisionEventListeners;
-    //public final ArrayList<Unit> selectiveAtttackUnits = new ArrayList<>();
 
     private SimulationManager() {
         units = new ArrayList<>();
@@ -85,7 +84,6 @@ public final class SimulationManager {
         // 2. 공격할 적이 없고 시야에 적이 있는 유닛들이 이동을 함
         for (IMovable movableUnit : movableUnits) {
             Unit u = (Unit) movableUnit;
-            //IMovable movableUnit = (IMovable) u;
 
             if (u.getEnemiesInAttackRange().isEmpty() && u.getEnemiesInSight().isEmpty()) {
                 movableUnit.passThisTurn();
@@ -96,17 +94,10 @@ public final class SimulationManager {
             }
         }
 
-        // 충돌관련? 지뢰
+        // 지뢰들이 할 일을 함
         for (ICollisionEventListener u : collisionEventListeners) {
             u.checkTriggerAndExplodeOrNot(units, ((Unit) u).getEnemiesInAttackRange());
         }
-        /*for (ICollisionEventListener u : collisionEventListeners) {
-            Unit unit = (Unit) u;
-            if (unit.getHp() <= 0) {
-                unit.hasActed = true;
-            }
-        }*/
-
 
         // 공격할 적이 있는 unit들이 공격행위를 함
         for (IThinkable unit : thinkableUnits) {
@@ -120,7 +111,7 @@ public final class SimulationManager {
         }
 
         // 모든 행위가 끝나고 죽은 유닛들을 제거함
-        // goNextTurn() : 위에서 turn을 넘기는 행동이나 이동을 했던 유닛들의 불리언 변수가 true로
+        // goNextTurn()함수는 위에서 turn을 넘기는 행동이나 이동을 했던 유닛들의 불리언 변수가 true로
         // 체크 되는데 그것들을 다음 턴을 위해 다시 false로 바꿔줌
         for (int i = 0; i < units.size(); ++i) {
 
@@ -129,7 +120,6 @@ public final class SimulationManager {
             if (unit.getHp() <= 0) {
 
                 char symbol = unit.getSymbol();
-
                 units.remove(unit);
 
                 if (symbol != 'N') {

@@ -44,14 +44,9 @@ public class Turret extends SelectiveAttackUnit {
             return;
         }
 
-        // sourceUnit은 enemiesInAttackRange임.
-        // 터렛이 공격할 수 있는 공중 유닛만 들어있음
-
         priorities.clear();
 
-        getMinHpTarget(sourceUnits, priorities);
-
-        targetPosOrNull = findPriorityPosByDirection(priorities);
+        targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
     }
 
     @Override
@@ -60,6 +55,6 @@ public class Turret extends SelectiveAttackUnit {
     }
     @Override
     public boolean isAttackable(Unit target) {
-        return this.getPosition().getDistance(target.getPosition()) < 1.5 - EPSILON;
+        return this.getPosition().getDistance(target.getPosition()) < 1.415 + EPSILON;
     }
 }

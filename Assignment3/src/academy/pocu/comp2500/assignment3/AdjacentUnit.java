@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 public abstract class AdjacentUnit extends SelectiveAttackUnit implements IMovable {
 
-    // 머린과 레이스 같은 공격 범위를 가진 유닛
+    // 머린과 레이스처럼 인접한 타일만을 공격할 수 있는 유닛
     protected AdjacentUnit(IntVector2D currPos, int hp, final UnitType unitType,
                            final int sightRange, final int aoe, final int ap) {
         super(currPos, hp, unitType, sightRange, aoe, ap);

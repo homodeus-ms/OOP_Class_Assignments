@@ -42,7 +42,6 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
                     continue;
                 }
 
-
                 if (targetPos.getDistance(enemyPos) < 2.0 - EPSILON) {
                     enemy.onAttacked((calculateAoeDamage(enemyPos)));
                 }
@@ -54,7 +53,6 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
     @Override
     public void onAttacked(int damage) {
         hp -= isSeigeMode ? damage * 2 : damage;
-        //hp = Math.max(0, hp);
     }
 
     @Override
@@ -81,19 +79,14 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
 
         if (getEnemiesInAttackRange().isEmpty()) {
             return;
-        } else {
-            getMinHpTarget(sourceUnits, priorities);
         }
-
-        targetPosOrNull = findPriorityPosByDirection(priorities);
+        targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
     }
 
 
 
     @Override
     public int calculateAoeDamage(IntVector2D targetPos) {
-        /*assert (this.getPosition().getManhattanDistance(targetPos) >= 1 &&
-                this.getPosition().getDistance(targetPos) < 2.0 - EPSILON);*/
 
         int damage;
         final int DISTANCE = 1;

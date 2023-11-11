@@ -10,11 +10,10 @@ public class IntVector2D {
     private int y;
 
     public IntVector2D(int x, int y) {
-        /*this.x = Math.max(0, Math.min(X_MAX, x));
-        this.y = Math.max(0, Math.min(Y_MAX, y));*/
         this.x = x;
         this.y = y;
     }
+
     public IntVector2D(IntVector2D other) {
         this(other.x, other.y);
     }
@@ -50,13 +49,5 @@ public class IntVector2D {
         }
 
         return (this.x == other.x) && (this.y == other.y);
-    }
-    public void makeDeepCopy(IntVector2D other) {
-        if (other == null) {
-            this.x = 0;
-            this.y = 0;
-        }
-        this.x = other.x;
-        this.y = other.y;
     }
 }

@@ -127,6 +127,7 @@ public abstract class Unit {
 
     public abstract char getSymbol();
 
+    // thinkable 유닛들의 기본 동작임. mine만 따로 오버라이딩
     public void setEnemiesInAttackRangeAndSightRange() {
         enemiesInSight.clear();
         enemiesInAttackRange.clear();
@@ -146,8 +147,6 @@ public abstract class Unit {
     public void goNextTurn() {
         hasActed = false;
     }
-
-    //protected abstract IntVector2D getNextPos(int searchCount, IntVector2D pos);
 
     protected boolean isEnemyInSight(Unit enemy) {
         int enemyX = enemy.getPosition().getX();

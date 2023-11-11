@@ -62,7 +62,7 @@ public final class Wraith extends AdjacentUnit {
             priorities.clear();
         }
 
-        // super Class에 있는 함수를 호출
+        // AdjacentUnit에 있는 함수를 호출
         if (getEnemiesInAttackRange().isEmpty()) {
             targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
         } else {
