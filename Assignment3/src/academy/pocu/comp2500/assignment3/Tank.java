@@ -80,7 +80,7 @@ public class Tank extends SelectiveAttackUnit implements IMovable, IAoeAttackabl
         if (getEnemiesInAttackRange().isEmpty()) {
             return;
         }
-        targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
+        targetPos = getPriorityPosInAttack(sourceUnits, priorities);
     }
 
 

@@ -54,7 +54,7 @@ public final class Wraith extends AdjacentUnit {
         getAirEnemies(sourceUnits, priorities);
 
         if (priorities.size() == 1) {
-            targetPosOrNull = new IntVector2D(priorities.get(0).getPosition());
+            targetPos = new IntVector2D(priorities.get(0).getPosition());
             return;
         } else if (priorities.size() > 1) {
             sourceUnits.clear();
@@ -64,9 +64,9 @@ public final class Wraith extends AdjacentUnit {
 
         // AdjacentUnit에 있는 함수를 호출
         if (getEnemiesInAttackRange().isEmpty()) {
-            targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
+            targetPos = getPriorityPosInSight(sourceUnits, priorities);
         } else {
-            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
+            targetPos = getPriorityPosInAttack(sourceUnits, priorities);
         }
     }
 

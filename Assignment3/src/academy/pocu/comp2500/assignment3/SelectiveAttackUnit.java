@@ -34,9 +34,9 @@ public abstract class SelectiveAttackUnit extends Unit implements IThinkable {
         priorities.clear();
 
         if (getEnemiesInAttackRange().isEmpty()) {
-            targetPosOrNull = getPriorityPosInSight(sourceUnits, priorities);
+            targetPos = getPriorityPosInSight(sourceUnits, priorities);
         } else {
-            targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
+            targetPos = getPriorityPosInAttack(sourceUnits, priorities);
         }
     }
 

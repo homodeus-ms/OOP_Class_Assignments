@@ -77,7 +77,6 @@ public final class SimulationManager {
                     u.getPriorityPos(u.getEnemiesInAttackRange(), u.getEnemyPriorities());
                 }
             }
-
         }
 
         // 1. 공격할 적이나 시야에 적이 없는 유닛들이 자신의 행동을 함
@@ -89,7 +88,7 @@ public final class SimulationManager {
                 movableUnit.passThisTurn();
                 u.hasActed = true;
             } else if (u.getEnemiesInAttackRange().isEmpty()) {    // 공격할 적이 없음
-                movableUnit.moveToTarget(u.getTargetPosOrNull());
+                movableUnit.moveToTarget(u.getTargetPos());
                 u.hasActed = true;
             }
         }

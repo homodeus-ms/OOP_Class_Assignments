@@ -46,7 +46,7 @@ public class Turret extends SelectiveAttackUnit {
 
         priorities.clear();
 
-        targetPosOrNull = getPriorityPosInAttack(sourceUnits, priorities);
+        targetPos = getPriorityPosInAttack(sourceUnits, priorities);
     }
 
     @Override

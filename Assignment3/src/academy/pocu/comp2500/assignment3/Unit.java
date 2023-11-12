@@ -6,7 +6,7 @@ public abstract class Unit {
 
     protected final double EPSILON = 0.0001;
     private IntVector2D currPos;
-    protected IntVector2D targetPosOrNull;
+    protected IntVector2D targetPos = new IntVector2D(-1, -1);
     protected boolean hasActed;
 
     protected int hp;
@@ -59,8 +59,8 @@ public abstract class Unit {
         return hasActed;
     }
 
-    public IntVector2D getTargetPosOrNull() {
-        return targetPosOrNull;
+    public IntVector2D getTargetPos() {
+        return targetPos;
     }
 
     public ArrayList<Unit> getEnemiesInSight() {
@@ -163,9 +163,9 @@ public abstract class Unit {
 
     protected void makeAttackIntent() {
         if (this.attackIntent == null) {
-            attackIntent = new AttackIntent(targetPosOrNull, ap, this);
+            attackIntent = new AttackIntent(targetPos, ap, this);
         } else {
-            attackIntent.setAttackIntent(targetPosOrNull, ap, this);
+            attackIntent.setAttackIntent(targetPos, ap, this);
         }
     }
 }
