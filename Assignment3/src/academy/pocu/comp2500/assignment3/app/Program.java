@@ -19,22 +19,13 @@ public class Program {
 
         ArrayList<Unit> units = new ArrayList<>();
 
-        Unit u0 = new Wraith(new IntVector2D(6, 5));
-        Unit u1 = new SmartMine(new IntVector2D(11, 4), 4, 3);
-        Unit u2 = new Wraith(new IntVector2D(2, 2));
-        Unit u3 = new Marine(new IntVector2D(10, 3));
-        Unit u4 = new Tank(new IntVector2D(8, 4));
-        Unit u5 = new Tank(new IntVector2D(10, 0));
-        Unit u6 = new Wraith(new IntVector2D(11, 6));
-        Unit u7 = new Turret(new IntVector2D(0, 7));
-        Unit u8 = new Mine(new IntVector2D(11, 1), 4);
-        Unit u9 = new Mine(new IntVector2D(5, 5), 1);
-        Unit uA = new Marine(new IntVector2D(11, 4));
-        Unit uB = new Mine(new IntVector2D(14, 6), 4);
-        Unit uC = new Wraith(new IntVector2D(11, 2));
-        Unit uD = new Turret(new IntVector2D(15, 3));
-        Unit uE = new Marine(new IntVector2D(11, 7));
-        Unit uF = new SmartMine(new IntVector2D(4, 7), 3, 3);
+        Unit u0 = new Marine(new IntVector2D(3, 3));
+        Unit u1 = new Marine(new IntVector2D(4, 1));
+        Unit u2 = new Marine(new IntVector2D(6, 3));
+        Unit u3 = new Marine(new IntVector2D(4, 5));
+        Unit u4 = new Marine(new IntVector2D(2, 5));
+        Unit u5 = new Marine(new IntVector2D(2, 1));
+
 
         units.add(u0);
         units.add(u1);
@@ -42,19 +33,9 @@ public class Program {
         units.add(u3);
         units.add(u4);
         units.add(u5);
-        units.add(u6);
-        units.add(u7);
-        units.add(u8);
-        units.add(u9);
-        units.add(uA);
-        units.add(uB);
-        units.add(uC);
-        units.add(uD);
-        units.add(uE);
-        units.add(uF);
 
 
-        int stop = 1;
+        int stop = 0;
 
         for (Unit unit : units) {
             simulationManager.spawn(unit);
@@ -71,7 +52,6 @@ public class Program {
             if (i >= stop) {
                 continueOnEnter();
             }
-
         }
     }
     public void simmulateUntil(int stop, SimulationManager simulationManager,

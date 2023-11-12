@@ -31,11 +31,6 @@ public class SmartMine extends Mine implements IThinkable, IAoeAttackable {
         }
     }
 
-    @Override
-    public AttackIntent attack() {
-
-        return null;
-    }
 
     @Override
     public void explode(ArrayList<Unit> targets) {

@@ -6,7 +6,7 @@ public abstract class Unit {
 
     protected final double EPSILON = 0.0001;
     private IntVector2D currPos;
-    protected IntVector2D targetPosOrNull = new IntVector2D(-1, -1);
+    protected IntVector2D targetPosOrNull;
     protected boolean hasActed;
 
     protected int hp;
