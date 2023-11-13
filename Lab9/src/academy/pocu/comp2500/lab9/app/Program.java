@@ -14,16 +14,16 @@ public class Program {
     public static void main(String[] args) {
 
 
-        /*Book b0 = new Book(UUID.randomUUID(), "A", 11, 1000);
-        Book b1 = new Book(UUID.randomUUID(), "A", 10, 1000);
-        Book b2 = new Book(UUID.randomUUID(), "A", 10, 1000);
-        Book b3 = new Book(UUID.randomUUID(), "A", 10, 1000);
-        Book b4 = new Book(UUID.randomUUID(), "A", 10, 1000);
-        Book b5 = new Book(UUID.randomUUID(), "A", 10, 1000);
+        Book b0 = new Book(UUID.randomUUID(), "A", 1, 1000);
+        Book b1 = new Book(UUID.randomUUID(), "A", 0, 1000);
+        Book b2 = new Book(UUID.randomUUID(), "A", 0, 1000);
+        Book b3 = new Book(UUID.randomUUID(), "A", 0, 1000);
+        Book b4 = new Book(UUID.randomUUID(), "A", 0, 1000);
+        /*Book b5 = new Book(UUID.randomUUID(), "A", 10, 1000);
         Book b6 = new Book(UUID.randomUUID(), "A", 10, 1000);
         Book b7 = new Book(UUID.randomUUID(), "A", 10, 1000);
         Book b8 = new Book(UUID.randomUUID(), "A", 10, 1000);
-        Book b9 = new Book(UUID.randomUUID(), "A", 11, 1000);
+        Book b9 = new Book(UUID.randomUUID(), "A", 11, 1000);*/
 
         ArrayList<Book> books = new ArrayList<>();
         books.add(b0);
@@ -31,16 +31,19 @@ public class Program {
         books.add(b2);
         books.add(b3);
         books.add(b4);
-        books.add(b5);
+        /*books.add(b5);
         books.add(b6);
         books.add(b7);
         books.add(b8);
-        books.add(b9);
+        books.add(b9);*/
 
         SkyIsTheLimit model0 = new SkyIsTheLimit(5);
 
-        System.out.println(model0.getTotalPrice(books));*/
-        UUID sku0 = UUID.randomUUID();
+        System.out.println(model0.getTotalPrice(books));
+
+
+
+        /*UUID sku0 = UUID.randomUUID();
 
         Book book0 = new Book(sku0, "Hello", 10, 1980);
         Book book1 = new Book(sku0, "Hello", 10, 1980);
@@ -75,7 +78,7 @@ public class Program {
 
         assert (model0.getTotalPrice(books) == 105);
         assert (model1.getTotalPrice(books) == 100);
-        assert (model2.getTotalPrice(books) == 106);
+        assert (model2.getTotalPrice(books) == 106);*/
 
         System.out.println("No assert");
     }

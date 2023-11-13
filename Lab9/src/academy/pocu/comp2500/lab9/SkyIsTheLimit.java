@@ -31,13 +31,12 @@ public class SkyIsTheLimit extends PricingModels {
             return (int) sum;
         }
 
-        ArrayList<Book> booksList = (ArrayList<Book>) books;
+        ArrayList<Book> booksList = new ArrayList<>(books);
 
         int size = booksList.size();
 
         int mostExpensivePrice = 0;
         int secondExpensivePrice = 0;
-
 
         for (int i = 0; i < size; ++i) {
 
@@ -47,14 +46,23 @@ public class SkyIsTheLimit extends PricingModels {
                 int temp = mostExpensivePrice;
                 mostExpensivePrice = price;
                 price = temp;
-            }
+            } 
             if (secondExpensivePrice < price) {
                 secondExpensivePrice = price;
             }
-        }
 
-        System.out.println(mostExpensivePrice);
-        System.out.println(secondExpensivePrice);
+            /*if (mostExpensivePrice < price) {
+                int temp = mostExpensivePrice;
+
+                mostExpensivePrice = price;
+
+                price = temp;
+
+            }
+            if (secondExpensivePrice < price) {
+                secondExpensivePrice = price;
+            }*/
+        }
 
         sum -= mostExpensivePrice;
         sum -= secondExpensivePrice;
