@@ -16,7 +16,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
         //int mostExpensivePrice = 0;
         //int secondExpensivePrice = 0;
 
-        int sum = 0;
+        double sum = 0;
 
         if (books.isEmpty()) {
             return 0;
@@ -27,7 +27,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
         }
 
         if (sum < limitPrice || books.size() < LIMIT_COUNT) {
-            return sum;
+            return (int) sum;
         }
 
         ArrayList<Book> booksList = (ArrayList<Book>) books;
@@ -52,7 +52,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
 
         sum -= mostExpensivePrice;
         sum -= secondExpensivePrice;
-        sum += (int) (mostExpensivePrice * 0.5 + secondExpensivePrice * 0.5);
+        sum += mostExpensivePrice * 0.5 + secondExpensivePrice * 0.5;
         //sum += (int) (mostExpensivePrice * 0.5);
         //sum += (int) (secondExpensivePrice * 0.5);
         /*
@@ -60,6 +60,6 @@ public class SkyIsTheLimit implements IPriceCalculatable {
             sum -= (mostExpensivePrice / 2.0 + secondExpensivePrice / 2.0);
         }*/
 
-        return sum;
+        return (int) sum;
     }
 }
