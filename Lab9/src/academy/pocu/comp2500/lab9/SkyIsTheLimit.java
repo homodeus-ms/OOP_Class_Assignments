@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class SkyIsTheLimit implements IPriceCalculatable {
     private static final int LIMIT_COUNT = 5;
-    private int limitPrice;
+    private final int limitPrice;
     public SkyIsTheLimit(int price) {
         this.limitPrice = price;
     }
@@ -22,6 +22,14 @@ public class SkyIsTheLimit implements IPriceCalculatable {
             return 0;
         }
 
+        for (Book b : books) {
+            sum += b.getPrice();
+        }
+
+        if (sum < limitPrice || books.size() < LIMIT_COUNT) {
+            return (int) sum;
+        }
+
         ArrayList<Book> booksList = (ArrayList<Book>) books;
 
         int size = booksList.size();
@@ -35,12 +43,14 @@ public class SkyIsTheLimit implements IPriceCalculatable {
                 secondExpensivePrice = price;
                 //secondExpensiveBookIndex = i;
             }
-            sum += price;
         }
 
+        sum -= mostExpensivePrice / 2.0;
+        sum -= secondExpensivePrice / 2.0;
+        /*
         if (sum >= limitPrice && books.size() >= LIMIT_COUNT) {
             sum -= (mostExpensivePrice / 2.0 + secondExpensivePrice / 2.0);
-        }
+        }*/
 
         return (int) sum;
     }
