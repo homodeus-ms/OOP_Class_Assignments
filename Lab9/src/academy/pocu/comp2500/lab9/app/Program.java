@@ -27,13 +27,8 @@ public class Program {
 
         ArrayList<Book> books = new ArrayList<>();
 
-        /*books.add(book5);
         books.add(book0);
-        books.add(book6);
-        books.add(book7);
-        books.add(book8);*/
-
-        /*books.add(book1);
+        books.add(book1);
         books.add(book2);
         books.add(book3);
         books.add(book4);
@@ -41,23 +36,19 @@ public class Program {
         books.add(book6);
         books.add(book7);
         books.add(book8);
-        books.add(book9);*/
+        books.add(book9);
 
         HashSet<UUID> skus = new HashSet<>();
         skus.add(sku0);
 
-        /*
         BuyOneGetOneFree model0 = new BuyOneGetOneFree(skus);
         DecadeMadness model1 = new DecadeMadness();
         SkyIsTheLimit model2 = new SkyIsTheLimit(100);
 
         assert (model0.getTotalPrice(books) == 105);
         assert (model1.getTotalPrice(books) == 100);
-        assert (model2.getTotalPrice(books) == 106);*/
-        BuyOneGetOneFree model0 = new BuyOneGetOneFree(skus);
-        SkyIsTheLimit model1 = new SkyIsTheLimit(100);
-        System.out.println(model1.getTotalPrice(books));
+        assert (model2.getTotalPrice(books) == 106);
 
-        System.out.println("No Assert!");
+        System.out.println("No assert");
     }
 }

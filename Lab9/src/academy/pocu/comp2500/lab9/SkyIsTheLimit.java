@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SkyIsTheLimit implements IPriceCalculatable {
+    private static final int LIMIT_COUNT = 5;
     private int limitPrice;
     public SkyIsTheLimit(int price) {
         this.limitPrice = price;
@@ -36,7 +37,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
             sum += price;
         }
 
-        if (sum >= limitPrice) {
+        if (sum >= limitPrice && books.size() >= LIMIT_COUNT) {
             sum -= (mostExpensivePrice / 2.0 + secondExpensivePrice / 2.0);
         }
 
