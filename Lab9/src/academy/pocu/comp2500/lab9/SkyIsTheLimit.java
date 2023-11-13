@@ -13,8 +13,8 @@ public class SkyIsTheLimit implements IPriceCalculatable {
     public int getTotalPrice(Collection<Book> books) {
         //int mostExpensiveBookIndex = 0;
         //int secondExpensiveBookIndex = 0;
-        int mostExpensivePrice = 0;
-        int secondExpensivePrice = 0;
+        //int mostExpensivePrice = 0;
+        //int secondExpensivePrice = 0;
 
         double sum = 0;
 
@@ -34,14 +34,19 @@ public class SkyIsTheLimit implements IPriceCalculatable {
 
         int size = booksList.size();
 
+        int mostExpensivePrice = 0;
+        int secondExpensivePrice = 0;
+
+
         for (int i = 0; i < size; ++i) {
             int price = booksList.get(i).getPrice();
-            if (price > mostExpensivePrice) {
-                secondExpensivePrice = secondExpensivePrice == 0 ? 0 : mostExpensivePrice;
+            if (mostExpensivePrice < price) {
+                int temp = mostExpensivePrice;
                 mostExpensivePrice = price;
-            } else if (price > secondExpensivePrice) {
+                price = temp;
+            }
+            if (secondExpensivePrice < price) {
                 secondExpensivePrice = price;
-                //secondExpensiveBookIndex = i;
             }
         }
 
