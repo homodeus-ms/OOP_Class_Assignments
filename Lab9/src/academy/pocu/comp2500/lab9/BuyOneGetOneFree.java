@@ -1,6 +1,10 @@
 package academy.pocu.comp2500.lab9;
 
-import java.util.*;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.UUID;
 
 public class BuyOneGetOneFree implements IPriceCalculatable {
 
@@ -11,15 +15,18 @@ public class BuyOneGetOneFree implements IPriceCalculatable {
 
 
     public BuyOneGetOneFree(HashSet<UUID> skus) {
-        //this.skus = skus;
+        this.skus = skus;
         //isBargainBook = new boolean[skus.size()];
-        for (UUID sku : skus) {
-            skuDuplicates.put(sku, 0);
-        }
+
     }
     @Override
     public int getTotalPrice(Collection<Book> books) {
         int sum = 0;
+
+        skuDuplicates.clear();
+        for (UUID sku : skus) {
+            skuDuplicates.put(sku, 0);
+        }
 
         for (Book b : books) {
 

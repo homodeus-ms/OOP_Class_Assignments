@@ -17,6 +17,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
         int secondExpensivePrice = 0;
 
         double sum = 0;
+
         if (books.isEmpty()) {
             return 0;
         }
@@ -28,8 +29,8 @@ public class SkyIsTheLimit implements IPriceCalculatable {
         for (int i = 0; i < size; ++i) {
             int price = booksList.get(i).getPrice();
             if (price > mostExpensivePrice) {
+                secondExpensivePrice = mostExpensivePrice;
                 mostExpensivePrice = price;
-                //mostExpensiveBookIndex = i;
             } else if (price > secondExpensivePrice) {
                 secondExpensivePrice = price;
                 //secondExpensiveBookIndex = i;
