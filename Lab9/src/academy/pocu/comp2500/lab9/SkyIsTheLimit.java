@@ -2,6 +2,7 @@ package academy.pocu.comp2500.lab9;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 public class SkyIsTheLimit extends PricingModels {
     private static final int LIMIT_COUNT = 5;
@@ -36,10 +37,21 @@ public class SkyIsTheLimit extends PricingModels {
 
         int mostExpensivePrice = 0;
         int secondExpensivePrice = 0;
-
+        double priceGet;
 
         for (int i = 0; i < size; ++i) {
-            int price = booksList.get(i).getPrice();
+            Book book = booksList.get(i);
+            priceGet = book.getPrice();
+            if (decadeMap != null) {
+                UUID id = book.getSku();
+
+                if (decadeMap.get(id) > 1) {
+                    priceGet *= 0.8;
+                }
+            }
+
+            int price = (int) priceGet;
+
             if (mostExpensivePrice < price) {
                 int temp = mostExpensivePrice;
                 mostExpensivePrice = price;
