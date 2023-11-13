@@ -9,8 +9,6 @@ import java.util.UUID;
 public class BuyOneGetOneFree extends PricingModels {
 
     private HashSet<UUID> skus;
-    private boolean[] isBargainBook;
-
     private HashMap<UUID, Integer> skuDuplicates = new HashMap<>();
 
 
@@ -48,7 +46,7 @@ public class BuyOneGetOneFree extends PricingModels {
             if (checkedCount > 1) {
                 price = getPriceBySku(sku, books);
                 duplicatedCount = checkedCount / 2;
-                duplicatedBookCount += duplicatedCount;
+                //duplicatedBookCount += duplicatedCount;
                 sum -= price * duplicatedCount;
             }
         }

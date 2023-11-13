@@ -6,27 +6,27 @@ import java.util.UUID;
 
 public abstract class PricingModels {
 
-    protected int bookCount;
+    /*protected int bookCount;
     protected int duplicatedBookCount;
     protected int sum;
-    protected HashMap<Integer, Integer> decadeMap;
+    protected HashMap<Integer, Integer> decadeMap;*/
 
     // default simple pricing
     public int getTotalPrice(Collection<Book> books) {
         int sum = 0;
         for (Book book : books) {
-            ++bookCount;
+
             sum += book.getPrice();
         }
 
         return sum;
     }
 
-    public int getBookCount() {
+    /*public int getBookCount() {
         return this.bookCount;
-    }
+    }*/
 
-    protected void findDuplicatedDecadeBooks(Collection<Book> books) {
+    /*protected void findDuplicatedDecadeBooks(Collection<Book> books) {
         for (Book book : books) {
             int decadeValue = getDecadeValue(book.getPublishedYear());
 
@@ -40,5 +40,5 @@ public abstract class PricingModels {
     }
     protected int getDecadeValue(int year) {
         return year / 10 * 10;
-    }
+    }*/
 }

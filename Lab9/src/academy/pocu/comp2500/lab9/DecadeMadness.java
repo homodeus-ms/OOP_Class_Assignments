@@ -6,24 +6,26 @@ import java.util.HashSet;
 
 public class DecadeMadness extends PricingModels {
 
-    //private HashMap<Integer, Integer> decadeMap = new HashMap<>();
+    private HashMap<Integer, Integer> decadeMap = new HashMap<>();
     public DecadeMadness() {
 
     }
     @Override
     public int getTotalPrice(Collection<Book> books) {
 
-        if (decadeMap == null) {
+        /*if (decadeMap == null) {
             decadeMap = new HashMap<>();
         } else {
             decadeMap.clear();
-        }
+        }*/
+
+        decadeMap.clear();
 
         double sum = 0;
 
-        findDuplicatedDecadeBooks(books);
+        //findDuplicatedDecadeBooks(books);
 
-        /*for (Book book : books) {
+        for (Book book : books) {
             int decadeValue = getDecadeValue(book.getPublishedYear());
 
             if (decadeMap.containsKey(decadeValue)) {
@@ -32,7 +34,7 @@ public class DecadeMadness extends PricingModels {
             } else {
                 decadeMap.put(decadeValue, 1);
             }
-        }*/
+        }
 
         for (Book book : books) {
             if (decadeMap.get(getDecadeValue(book.getPublishedYear())) == 1) {
@@ -45,7 +47,7 @@ public class DecadeMadness extends PricingModels {
         return (int) sum;
     }
 
-    /*private int getDecadeValue(int year) {
+    private int getDecadeValue(int year) {
         return year / 10 * 10;
-    }*/
+    }
 }
