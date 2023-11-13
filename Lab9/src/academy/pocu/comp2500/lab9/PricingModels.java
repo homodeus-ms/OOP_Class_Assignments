@@ -6,6 +6,7 @@ public abstract class PricingModels {
 
     protected int bookCount;
     protected int duplicatedBookCount;
+    protected int sum;
 
     // default simple pricing
     public int getTotalPrice(Collection<Book> books) {

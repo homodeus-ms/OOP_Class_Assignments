@@ -12,37 +12,24 @@ import java.util.UUID;
 public class Program {
 
     public static void main(String[] args) {
-        UUID sku0 = UUID.randomUUID();
-        UUID sku1 = UUID.randomUUID();
-        Book b0 = new Book(sku0, "a", 10, 1000);
-        Book b1 = new Book(sku0, "a", 10, 1000);
-        Book b2 = new Book(sku0, "a", 10, 1000);
-        Book b3 = new Book(sku1, "a", 20, 1000);
-        Book b4 = new Book(sku1, "a", 20, 1000);
+        Book b0 = new Book(UUID.randomUUID(), "A", 7, 1000);
+        Book b1 = new Book(UUID.randomUUID(), "A", 1, 1000);
+        Book b2 = new Book(UUID.randomUUID(), "A", 1, 1000);
+        Book b3 = new Book(UUID.randomUUID(), "A", 1, 1000);
+        Book b4 = new Book(UUID.randomUUID(), "A", 100, 1000);
 
         ArrayList<Book> books = new ArrayList<>();
-
         books.add(b0);
         books.add(b1);
         books.add(b2);
         books.add(b3);
         books.add(b4);
 
+        SkyIsTheLimit model0 = new SkyIsTheLimit(100);
 
-        HashSet<UUID> skus = new HashSet<>();
-        skus.add(sku0);
-        skus.add(sku1);
-
-        BuyOneGetOneFree model0 = new BuyOneGetOneFree(skus);
         System.out.println(model0.getTotalPrice(books));
-
-        skus.clear();
-        skus.add(sku0);
-        System.out.println(model0.getTotalPrice(books));
-
-        skus.clear();
-        skus.add(sku1);
-        System.out.println(model0.getTotalPrice(books));
+        SkyIsTheLimit model1 = new SkyIsTheLimit(110);
+        System.out.println(model1.getTotalPrice(books));
 
         System.out.println("No assert");
     }
