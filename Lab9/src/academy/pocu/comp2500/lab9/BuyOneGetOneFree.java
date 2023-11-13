@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
 
-public class BuyOneGetOneFree implements IPriceCalculatable {
+public class BuyOneGetOneFree extends PricingModels {
 
     private HashSet<UUID> skus;
     private boolean[] isBargainBook;
@@ -48,6 +48,7 @@ public class BuyOneGetOneFree implements IPriceCalculatable {
             if (checkedCount > 1) {
                 price = getPriceBySku(sku, books);
                 duplicatedCount = checkedCount / 2;
+                duplicatedBookCount += duplicatedCount;
                 sum -= price * duplicatedCount;
             }
         }

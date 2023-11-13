@@ -47,7 +47,7 @@ public final class Cart {
         return sum;
     }*/
 
-    public int getTotalPrice(IPriceCalculatable model) {
+    public int getTotalPrice(PricingModels model) {
         return model.getTotalPrice(books);
     }
 }

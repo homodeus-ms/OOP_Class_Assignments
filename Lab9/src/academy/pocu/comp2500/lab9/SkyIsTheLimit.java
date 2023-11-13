@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab9;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SkyIsTheLimit implements IPriceCalculatable {
+public class SkyIsTheLimit extends PricingModels {
     private static final int LIMIT_COUNT = 5;
     private final int limitPrice;
     public SkyIsTheLimit(int price) {
@@ -26,7 +26,7 @@ public class SkyIsTheLimit implements IPriceCalculatable {
             sum += b.getPrice();
         }
 
-        if (sum < limitPrice || books.size() < LIMIT_COUNT) {
+        if (sum < limitPrice || books.size() < LIMIT_COUNT + duplicatedBookCount) {
             return (int) sum;
         }
 
