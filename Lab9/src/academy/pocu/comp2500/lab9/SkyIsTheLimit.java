@@ -16,6 +16,9 @@ public class SkyIsTheLimit implements IPriceCalculatable {
         int secondExpensivePrice = 0;
 
         double sum = 0;
+        if (books.isEmpty()) {
+            return 0;
+        }
 
         ArrayList<Book> booksList = (ArrayList<Book>) books;
 

@@ -8,7 +8,6 @@ import java.util.UUID;
 public class BuyOneGetOneFree implements IPriceCalculatable {
 
     private HashSet<UUID> skus;
-    private int duplicateCount;
     private boolean[] isBargainBook;
 
 
@@ -20,6 +19,9 @@ public class BuyOneGetOneFree implements IPriceCalculatable {
     public int getTotalPrice(Collection<Book> books) {
         int sum = 0;
         Object[] skusArr = skus.toArray();
+        for (boolean b : isBargainBook) {
+            b = false;
+        }
         int skusSize = skusArr.length;
 
         nextBook:
