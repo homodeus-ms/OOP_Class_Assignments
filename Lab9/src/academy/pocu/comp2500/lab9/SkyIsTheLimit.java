@@ -49,10 +49,8 @@ public class SkyIsTheLimit extends PricingModels {
                 secondExpensivePrice = price;
             }
         }
-
-        sum -= mostExpensivePrice;
-        sum -= secondExpensivePrice;
-        sum += mostExpensivePrice * 0.5 + secondExpensivePrice * 0.5;
+        sum -= (int) (mostExpensivePrice * 0.5);
+        sum -= (int) (secondExpensivePrice * 0.5);
         //sum += (int) (mostExpensivePrice * 0.5);
         //sum += (int) (secondExpensivePrice * 0.5);
         /*
