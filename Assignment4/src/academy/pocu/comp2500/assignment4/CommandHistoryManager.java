@@ -17,8 +17,10 @@ public class CommandHistoryManager {
         boolean isExecuted = command.execute(canvas);
         if (isExecuted) {
             commands.add(command);
-            undos.clear();
+
         }
+        undos.clear();
+
         return isExecuted;
     }
     public boolean canUndo() {
