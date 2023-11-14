@@ -5,46 +5,42 @@ import java.util.ArrayList;
 public class CommandHistoryManager {
 
     private final Canvas canvas;
-    private final ArrayList<ICommand> commands;
-    private final ArrayList<ICommand> undos;
+    private ICommand recentCommand;
+    private ICommand recentUndo;
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
-        commands = new ArrayList<>();
-        undos = new ArrayList<>();
+
     }
     public boolean execute(ICommand command) {
         boolean isExecuted = command.execute(canvas);
         if (isExecuted) {
-            commands.add(command);
-
+            recentCommand = command;
         }
-        undos.clear();
+        recentUndo = null;
 
         return isExecuted;
     }
     public boolean canUndo() {
-        return !commands.isEmpty();
+        return recentCommand != null;
     }
     public boolean canRedo() {
-        return !undos.isEmpty();
+        return recentUndo != null;
     }
     public boolean undo() {
         if (canUndo()) {
-            int lastIndex = commands.size() - 1;
-            undos.add(commands.get(lastIndex));
-            commands.get(lastIndex).undo();
-            commands.remove(lastIndex);
+            recentCommand.undo();
+            recentUndo = recentCommand;
+            recentCommand = null;
             return true;
         }
         return false;
     }
     public boolean redo() {
         if (canRedo()) {
-            int lastIndex = undos.size() - 1;
-            commands.add(undos.get(lastIndex));
-            undos.get(lastIndex).redo();
-            undos.remove(lastIndex);
+            recentUndo.redo();
+            recentCommand = recentUndo;
+            recentUndo = null;
             return true;
         }
         return false;
