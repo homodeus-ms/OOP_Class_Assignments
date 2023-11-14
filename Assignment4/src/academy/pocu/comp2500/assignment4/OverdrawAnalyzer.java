@@ -1,16 +1,20 @@
 package academy.pocu.comp2500.assignment4;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class OverdrawAnalyzer extends Canvas {
 
-    private final LinkedList[][] histories;
+    private final ArrayList<LinkedList<Character>> histories;
 
     public OverdrawAnalyzer(int width, int height) {
         super(width, height);
-        histories = new LinkedList[height][width];
-
+        histories = new ArrayList<>(width * height);
+        int size = width * height;
+        for (int i = 0; i < size; ++i) {
+            histories.add(new LinkedList<>());
+        }
     }
     @Override
     public void drawPixel(int x, int y, char letter) {
@@ -43,22 +47,18 @@ public class OverdrawAnalyzer extends Canvas {
         update(x, y, getPixel(x, y));
     }
     public LinkedList<Character> getPixelHistory(int x, int y) {
-        return histories[y][x] == null ? new LinkedList<>() : histories[y][x];
+        return histories.get(getIndex(x, y));
     }
     public int getOverdrawCount(int x, int y) {
-        return histories[y][x] == null ? 0 : histories[y][x].size();
+        return histories.get(getIndex(x, y)).size();
     }
     public int getOverdrawCount() {
-        int count = 0;
-        int width = getWidth();
-        int height = getHeight();
 
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                if (histories[i][j] != null) {
-                    count += histories[i][j].size();
-                }
-            }
+        int count = 0;
+        int size = histories.size();
+
+        for (int i = 0; i < size; ++i) {
+            count += histories.get(i).size();
         }
 
         return count;
@@ -74,10 +74,11 @@ public class OverdrawAnalyzer extends Canvas {
         super.clear();
     }*/
     private void update(int x, int y, char newChar) {
-        if (histories[y][x] == null) {
-            histories[y][x] = new LinkedList<Character>();
-        }
-        histories[y][x].add(newChar);
+        int index = getIndex(x, y);
+        histories.get(index).add(newChar);
+    }
+    private int getIndex(int x, int y) {
+        return getWidth() * y + x;
     }
 
 }

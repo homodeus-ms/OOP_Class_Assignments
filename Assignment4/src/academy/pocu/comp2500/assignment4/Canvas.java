@@ -8,7 +8,6 @@ public class Canvas {
     private final int LETTER_MAX = 126;
     private final int width;
     private final int height;
-    //private final Vector2D vectorKey = new Vector2D(-1, -1);
     private char[][] canvas;
     private StringBuilder builder;
 
@@ -121,90 +120,5 @@ public class Canvas {
         return letter >= LETTER_MIN && letter <= LETTER_MAX;
     }
 
-    // 해쉬맵으로 받는 것 일단 뮤트해놓음. 어레이로 받아도 되는지 일단 시험
-    /*private HashMap<Vector2D, Character> letterMap = new HashMap<>();
-
-    public Canvas(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-    public void drawPixel(int x, int y, char letter) {
-        if (isValidPos(x, y) && isValidLetter(letter)) {
-            Vector2D v = new Vector2D(x, y);
-            letterMap.put(v, letter);
-        }
-    }
-    public char getPixel(int x, int y) {
-        vectorKey.setVector(x, y);
-        return letterMap.get(vectorKey);
-    }
-    public boolean increasePixel(int x, int y) {
-        vectorKey.setVector(x, y);
-        if (letterMap.containsKey(vectorKey)) {
-            char c = letterMap.get(vectorKey);
-            if (c == 126) {
-                return false;
-            } else {
-                letterMap.put(vectorKey, ++c);
-                return true;
-            }
-        }
-        return false;
-    }
-    public boolean decreasePixel(int x, int y) {
-        vectorKey.setVector(x, y);
-        if (letterMap.containsKey(vectorKey)) {
-            char c = letterMap.get(vectorKey);
-            if (c == 32) {
-                return false;
-            } else {
-                letterMap.put(vectorKey, --c);
-                return true;
-            }
-        }
-        return false;
-    }
-    public void toUpper(int x, int y) {
-        vectorKey.setVector(x, y);
-        if (letterMap.containsKey(vectorKey)) {
-            char c = letterMap.get(vectorKey);
-            if (c >= 'a' && c <= 'z') {
-                c ^= 0x20;
-                letterMap.put(vectorKey, c);
-            }
-        }
-    }
-    public void toLower(int x, int y) {
-        vectorKey.setVector(x, y);
-        if (letterMap.containsKey(vectorKey)) {
-            char c = letterMap.get(vectorKey);
-            if (c >= 'A' && c <= 'Z') {
-                c |= 0x20;
-                letterMap.put(vectorKey, c);
-            }
-        }
-    }
-    public void fillHorizontalLine(int y, char letter) {
-        if (isValidPos(0, y) && isValidLetter(letter) ) {
-            for (int i = 0; i < width; ++i) {
-                vectorKey.setVector(i, y);
-                letterMap.put(vectorKey, letter);
-            }
-        }
-    }
-    public void fillVerticalLine(int x, char letter) {
-        if (isValidPos(x, 0) && isValidLetter(letter) ) {
-            for (int i = 0; i < height; ++i) {
-                vectorKey.setVector(x, i);
-                letterMap.put(vectorKey, letter);
-            }
-        }
-    }
-    public void clear() {
-        letterMap.clear();
-    }
-    public void getDrawing() {
-
-    }*/
-
+    
 }

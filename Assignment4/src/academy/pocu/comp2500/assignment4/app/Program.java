@@ -3,13 +3,52 @@ package academy.pocu.comp2500.assignment4.app;
 import academy.pocu.comp2500.assignment4.*;
 import academy.pocu.comp2500.assignment4.registry.Registry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Program {
 
     public static void main(String[] args) {
-        OverdrawAnalyzer overdrawAnalyzer1 = new OverdrawAnalyzer(5, 5);
+
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.redo();
+        manager.redo();
+        manager.execute(new ToUpper(21, 8));
+        manager.execute(new DrawOnePixel(14, 10, 'v'));
+        manager.redo();
+        manager.undo();
+        manager.redo();
+        manager.execute(new DecreaseCharByOne(23, 17));
+        manager.undo();
+
+        /*manager.execute(new FillHorizontalByOne(4, '|'));
+        manager.execute(new FillVerticalByOne(3, '4'));
+        manager.execute(new Clear());
+        manager.execute(new ToLower(15, 3));
+        manager.execute(new FillHorizontalByOne(14, ')'));
+        manager.redo();
+        manager.execute(new ToLower(20, 3));
+        manager.execute(new Clear());
+        manager.execute(new FillHorizontalByOne(19, 'm'));
+        manager.execute(new DecreaseCharByOne(18, 2));
+        manager.execute(new ToUpper(13, 6));
+        manager.execute(new FillVerticalByOne(26, 'I'));
+        manager.execute(new IncreaseCharByOne(2, 7));
+        manager.execute(new Clear());
+        manager.execute(new IncreaseCharByOne(7, 18));
+        manager.execute(new ToLower(27, 24));
+        manager.execute(new FillVerticalByOne(1, '7'));
+        manager.execute(new IncreaseCharByOne(18, 18));
+        manager.execute(new DecreaseCharByOne(10, 12));
+        manager.undo();*/
+
+        System.out.println(analyzer.getDrawing());
+
+
+        /*OverdrawAnalyzer overdrawAnalyzer1 = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager commandHistoryManager = new CommandHistoryManager(overdrawAnalyzer1);
         commandHistoryManager.execute(new ToUpper(2, 0));
         commandHistoryManager.execute(new ToUpper(0, 1));
@@ -36,7 +75,7 @@ public class Program {
 
         print(overdrawAnalyzer1, 0, 0);
 
-        assert (overdrawAnalyzer1.getOverdrawCount() == 19);
+        assert (overdrawAnalyzer1.getOverdrawCount() == 19);*/
 
 
 

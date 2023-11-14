@@ -14,9 +14,12 @@ public class CommandHistoryManager {
         undos = new ArrayList<>();
     }
     public boolean execute(ICommand command) {
-        commands.add(command);
-        undos.clear();
-        return command.execute(canvas);
+        boolean isExecuted = command.execute(canvas);
+        if (isExecuted) {
+            commands.add(command);
+            undos.clear();
+        }
+        return isExecuted;
     }
     public boolean canUndo() {
         return !commands.isEmpty();
