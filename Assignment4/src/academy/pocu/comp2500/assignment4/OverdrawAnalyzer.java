@@ -1,14 +1,16 @@
 package academy.pocu.comp2500.assignment4;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class OverdrawAnalyzer extends Canvas {
 
-    LinkedList<Character>[][] histories;
+    private final LinkedList[][] histories;
 
     public OverdrawAnalyzer(int width, int height) {
         super(width, height);
         histories = new LinkedList[height][width];
+
     }
     @Override
     public void drawPixel(int x, int y, char letter) {
@@ -51,7 +53,7 @@ public class OverdrawAnalyzer extends Canvas {
         int width = getWidth();
         int height = getHeight();
 
-        for (int i = 0 ; i < height; ++i) {
+        for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
                 if (histories[i][j] != null) {
                     count += histories[i][j].size();
@@ -73,7 +75,7 @@ public class OverdrawAnalyzer extends Canvas {
     }*/
     private void update(int x, int y, char newChar) {
         if (histories[y][x] == null) {
-            histories[y][x] = new LinkedList<>();
+            histories[y][x] = new LinkedList<Character>();
         }
         histories[y][x].add(newChar);
     }

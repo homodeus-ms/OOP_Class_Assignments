@@ -89,6 +89,7 @@ public class Canvas {
         }
     }
     public String getDrawing() {
+        builder.setLength(0);
 
         builder.append('+');
         for (int i = 0; i < width; ++i) {
