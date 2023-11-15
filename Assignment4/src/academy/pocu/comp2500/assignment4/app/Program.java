@@ -11,15 +11,16 @@ public class Program {
 
     public static void main(String[] args) {
 
-        //test9();
-        //test8();
-        //test7();
-        //test6();
-        //test5();
-        //test4();
-        //test3();
-        //test2();
-        //test1();
+        /*test9();  // 21회
+        test8();  // 19회
+        test7();
+        test6();
+        test5();
+        test4();
+        test3();
+        test2();
+        test1();*/
+        //test10();
 
 
 
@@ -205,6 +206,26 @@ public class Program {
 
         System.out.println(analyzer.getDrawing());
         System.out.println(analyzer.getOverdrawCount());
+    }
+    public static void test10() {
+        Canvas canvas = new Canvas(20, 10);
+        CommandHistoryManager chm = new CommandHistoryManager(canvas);
+        DrawOnePixel c1 = new DrawOnePixel(1, 2, '1');
+        DrawOnePixel c2 = new DrawOnePixel(3, 5, '2');
+
+        assert (chm.execute(c1) == true);
+        assert (chm.execute(c2) == true);
+
+        assert (chm.undo() == true);
+        assert (chm.redo() == true);
+
+        assert (chm.undo() == true);
+
+        canvas.drawPixel(1, 2, '5');
+
+        assert (chm.undo() == false);
+        assert (chm.redo() == true);
+
     }
 
 }

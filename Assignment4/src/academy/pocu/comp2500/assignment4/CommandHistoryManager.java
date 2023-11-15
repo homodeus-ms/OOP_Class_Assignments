@@ -11,7 +11,7 @@ public class CommandHistoryManager {
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
-
+        
     }
     public boolean execute(ICommand command) {
         boolean isExecuted = command.execute(canvas);
@@ -44,6 +44,7 @@ public class CommandHistoryManager {
         if (canRedo()) {
             recentUndo.redo();
             // redo를 하면 undo가 리셋 된다고 가정해야할까?
+            commands.clear();
             commands.push(recentUndo);
             recentUndo = null;
             return true;
