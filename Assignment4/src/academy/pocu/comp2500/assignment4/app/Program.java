@@ -11,15 +11,57 @@ public class Program {
 
     public static void main(String[] args) {
 
+
         OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new DecreaseCharByOne(12, 15));
+        manager.execute(new DrawOnePixel(19, 18, 'i'));
+        manager.execute(new ToLower(21, 6));
+        manager.execute(new FillHorizontalByOne(23, '['));
+        manager.execute(new DrawOnePixel(3, 11, 'F'));
+        manager.redo();
+        manager.execute(new ToUpper(0, 27));
+        manager.execute(new FillHorizontalByOne(12, '2'));
+        manager.execute(new Clear());
+        manager.execute(new FillHorizontalByOne(13, '-'));
+        manager.execute(new ToUpper(11, 21));
+        manager.execute(new IncreaseCharByOne(0, 13));
+        manager.execute(new ToUpper(18, 17));
+        manager.undo();
+
+
+
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.undo();
+        manager.undo();
+        manager.execute(new ToLower(3, 14));
+        manager.execute(new DecreaseCharByOne(10, 10));
+        manager.execute(new Clear());
+        manager.execute(new DrawOnePixel(15, 17, '!'));
+        manager.undo();
+        manager.execute(new FillVerticalByOne(25, 'p'));
+        manager.execute(new ToLower(16, 0));
+        manager.redo();
+        manager.execute(new IncreaseCharByOne(24, 22));
+        manager.execute(new IncreaseCharByOne(21, 3));
+        manager.execute(new ToLower(28, 2));
+        manager.execute(new Clear());
+        manager.redo();
+        manager.undo();*/
+
+
+
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
         manager.execute(new FillVerticalByOne(21, '8'));
         manager.execute(new FillHorizontalByOne(10, '#'));
         manager.execute(new ToLower(5, 1));
         manager.redo();
-        manager.undo();
-
+        manager.undo();*/
 
 
         /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
@@ -67,6 +109,7 @@ public class Program {
         manager.undo();*/
 
 
+        // ================================================================
 
 
 

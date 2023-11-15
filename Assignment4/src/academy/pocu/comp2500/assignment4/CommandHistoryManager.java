@@ -39,7 +39,6 @@ public class CommandHistoryManager {
         return false;
     }
     public boolean redo() {
-        commands.clear(); // redo를 하면 성공/실패 상관없이 commands history 리셋됨
 
         if (canRedo()) {
             recentUndo.redo();
