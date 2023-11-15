@@ -37,7 +37,6 @@ public class OverdrawAnalyzer extends Canvas {
     }
     @Override
     public void toUpper(int x, int y) {
-
         super.toUpper(x, y);
         update(x, y, getPixel(x, y));
     }

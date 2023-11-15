@@ -17,6 +17,7 @@ public class ToLower extends Command implements ICommand {
                 canvas.toLower(x, y);
                 newChar = canvas.getPixel(x, y);
             }
+            newChar = oldChar;
             isExecuted = true;
             return true;
         }
@@ -27,7 +28,7 @@ public class ToLower extends Command implements ICommand {
     public boolean undo() {
         if (isExecuted) {
             oldChar = canvas.getPixel(x, y);
-            if (oldChar >= 'a' && oldChar <= 'z') {
+            if (oldChar >= 'a' && oldChar <= 'z' && oldChar != newChar) {
                 canvas.toUpper(x, y);
             }
 

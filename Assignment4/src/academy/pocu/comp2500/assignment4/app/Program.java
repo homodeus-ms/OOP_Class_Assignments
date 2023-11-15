@@ -11,6 +11,7 @@ public class Program {
 
     public static void main(String[] args) {
 
+        test8();
         //test7();
         //test6();
         //test5();
@@ -149,7 +150,32 @@ public class Program {
         System.out.println(analyzer.getDrawing());
     }
     public static void test8() {
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
+        manager.execute(new ToUpper(2, 0));
+        manager.execute(new ToUpper(0, 1));
+        manager.execute(new ToLower(4, 3));
+        manager.execute(new FillHorizontalByOne(0, 'e'));
+        manager.execute(new DecreaseCharByOne(4, 4));
+        manager.execute(new DecreaseCharByOne(0, 1));
+        manager.execute(new ToLower(0, 0));
+        manager.execute(new DrawOnePixel(3, 2, 'Z'));
+        manager.execute(new IncreaseCharByOne(3, 4));
+        manager.execute(new ToUpper(4, 4));
+        manager.execute(new DrawOnePixel(4, 0, '+'));
+        manager.execute(new FillVerticalByOne(4, '^'));
+        manager.execute(new ToLower(0, 3));
+        manager.execute(new ToLower(1, 0));
+        manager.redo();
+        manager.undo();
+        manager.execute(new ToLower(1, 3));
+        manager.execute(new FillVerticalByOne(3, 'I'));
+        manager.execute(new IncreaseCharByOne(4, 4));
+        manager.redo();
+
+        System.out.println(analyzer.getDrawing());
+        System.out.println(analyzer.getOverdrawCount());
     }
 
 }
