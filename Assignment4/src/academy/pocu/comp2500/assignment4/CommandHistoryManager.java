@@ -7,7 +7,7 @@ public class CommandHistoryManager {
 
     private final Canvas canvas;
     private Stack<ICommand> commands = new Stack<>();
-    private ICommand recentUndo;
+    private Stack<ICommand> undos = new Stack();
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
@@ -17,7 +17,7 @@ public class CommandHistoryManager {
         boolean isExecuted = command.execute(canvas);
         if (isExecuted) {
             commands.push(command);
-            recentUndo = null;
+            undos.clear();
         }
         //recentUndo = null;
 
@@ -27,13 +27,13 @@ public class CommandHistoryManager {
         return !commands.isEmpty();
     }
     public boolean canRedo() {
-        return recentUndo != null;
+        return !undos.isEmpty();
     }
     public boolean undo() {
         if (canUndo()) {
             ICommand lastCommand = commands.pop();
             lastCommand.undo();
-            recentUndo = lastCommand;
+            undos.push(lastCommand);
 
             return true;
         }
@@ -42,11 +42,12 @@ public class CommandHistoryManager {
     public boolean redo() {
 
         if (canRedo()) {
-            recentUndo.redo();
+            ICommand lastUndo = undos.pop();
+            lastUndo.redo();
             // redo를 하면 undo가 리셋 된다고 가정해야할까?
-            commands.clear();
-            commands.push(recentUndo);
-            recentUndo = null;
+            //commands.clear();
+            commands.push(lastUndo);
+
             return true;
         }
         return false;
