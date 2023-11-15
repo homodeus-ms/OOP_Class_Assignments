@@ -11,8 +11,65 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillVerticalByOne(21, '8'));
+        manager.execute(new FillHorizontalByOne(10, '#'));
+        manager.execute(new ToLower(5, 1));
+        manager.redo();
+        manager.undo();
+
+
+
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillHorizontalByOne(10, 't'));
+        manager.execute(new FillHorizontalByOne(2, 'K'));
+        manager.execute(new DrawOnePixel(8, 6, 'O'));
+        manager.execute(new Clear());
+        manager.undo();
+        manager.undo();*/
+
+
+
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillHorizontalByOne(10, 't'));
+        manager.execute(new FillHorizontalByOne(2, 'K'));
+        manager.execute(new DrawOnePixel(8, 6, 'O'));
+        manager.execute(new Clear());
+        manager.undo();
+        manager.undo();
+        manager.execute(new Clear());
+        manager.execute(new DrawOnePixel(22, 18, 'K'));
+        manager.execute(new Clear());
+        manager.undo();
+        manager.execute(new FillHorizontalByOne(12, 'B'));
+        manager.execute(new DecreaseCharByOne(27, 7));
+        manager.undo();
+        manager.execute(new DecreaseCharByOne(26, 12));
+        manager.execute(new ToUpper(14, 14));
+        manager.execute(new ToUpper(3, 18));
+        manager.redo();*/
+
+
+
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillVerticalByOne(21, '8'));
+        manager.execute(new FillHorizontalByOne(10, '#'));
+        manager.execute(new ToLower(5, 1));
+        manager.redo();
+        manager.undo();*/
+
+
+
+
+
 
         /*manager.redo();
         manager.redo();
@@ -24,7 +81,7 @@ public class Program {
         manager.execute(new DecreaseCharByOne(23, 17));
         manager.undo();*/
 
-        manager.execute(new FillHorizontalByOne(4, '|'));
+        /*manager.execute(new FillHorizontalByOne(4, '|'));
         manager.execute(new FillVerticalByOne(3, '4'));
         manager.execute(new Clear());
         manager.execute(new ToLower(15, 3));
@@ -43,7 +100,7 @@ public class Program {
         manager.execute(new FillVerticalByOne(1, '7'));
         manager.execute(new IncreaseCharByOne(18, 18));
         manager.execute(new DecreaseCharByOne(10, 12));
-        manager.undo();
+        manager.undo();*/
 
         System.out.println(analyzer.getDrawing());
 
