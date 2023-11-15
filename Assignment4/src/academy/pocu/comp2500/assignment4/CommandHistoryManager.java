@@ -17,8 +17,9 @@ public class CommandHistoryManager {
         boolean isExecuted = command.execute(canvas);
         if (isExecuted) {
             commands.push(command);
+            recentUndo = null;
         }
-        recentUndo = null;
+        //recentUndo = null;
 
         return isExecuted;
     }
