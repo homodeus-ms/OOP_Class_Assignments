@@ -11,12 +11,14 @@ public abstract class Command {
     protected boolean isExecuted;
     protected boolean isValid;
 
+
     protected boolean isValidPos(Canvas canvas, int x, int y) {
         return x >= 0 && x < canvas.getWidth() && y >= 0 && y < canvas.getHeight();
     }
     protected boolean isValidChar(char c) {
         return c >= 32 && c <= 126;
     }
+
 
     /*protected void copyAllPixels(char[][] source, char[][] target, int width, int height) {
         assert (source.length == target.length) : "sourceArr size != targetArr size";

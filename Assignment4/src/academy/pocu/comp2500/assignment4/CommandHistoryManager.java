@@ -7,7 +7,8 @@ public class CommandHistoryManager {
 
     private final Canvas canvas;
     private Stack<ICommand> commands = new Stack<>();
-    private Stack<ICommand> undos = new Stack();
+    private Stack<ICommand> undos = new Stack<>();
+    private String currTable;
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
@@ -15,6 +16,9 @@ public class CommandHistoryManager {
     }
     public boolean execute(ICommand command) {
         boolean isExecuted = command.execute(canvas);
+        if (isExecuted) {
+            currTable = canvas.getDrawing();
+        }
         if (isExecuted) {
             commands.push(command);
             undos.clear();
@@ -24,7 +28,7 @@ public class CommandHistoryManager {
         return isExecuted;
     }
     public boolean canUndo() {
-        return !commands.isEmpty();
+        return !commands.isEmpty() && currTable.equals(canvas.getDrawing());
     }
     public boolean canRedo() {
         return !undos.isEmpty();
