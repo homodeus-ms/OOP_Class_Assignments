@@ -21,9 +21,10 @@ public class FillHorizontalByOne extends Command implements ICommand {
                 oldChars[i] = canvas.getPixel(i, y);
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(i, y, newChar);
-                    isExecuted = true;
+                    //isExecuted = true;
                 }
             }
+            isExecuted = true;
         }
         return isExecuted;
     }

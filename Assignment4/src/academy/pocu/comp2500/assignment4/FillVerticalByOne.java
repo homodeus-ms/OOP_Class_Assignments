@@ -21,9 +21,10 @@ public class FillVerticalByOne extends Command implements ICommand {
                 oldChars[i] = canvas.getPixel(x, i);
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(x, i, newChar);
-                    isExecuted = true;
+                    //isExecuted = true;
                 }
             }
+            isExecuted = true;
         }
         return isExecuted;
     }
