@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment4;
 
 public class FillHorizontalByOne extends Command implements ICommand {
 
-    char[] oldChars;
+    private char[] oldChars;
 
     public FillHorizontalByOne(int y, char c) {
         this.y = y;
@@ -25,8 +25,9 @@ public class FillHorizontalByOne extends Command implements ICommand {
                 }
             }
             isExecuted = true;
+            return true;
         }
-        return isExecuted;
+        return false;
     }
 
     @Override

@@ -15,8 +15,13 @@ public class CommandHistoryManager {
         currCanvas = canvas.getDrawing();
     }
     public boolean execute(ICommand command) {
+        if (!currCanvas.equals(canvas.getDrawing())) {
+            commands.clear();
+        }
+
         boolean isExecuted = command.execute(canvas);
         currCanvas = canvas.getDrawing();
+
         if (isExecuted) {
             commands.push(command);
             undos.clear();

@@ -10,31 +10,35 @@ public class Clear extends Command implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        width = canvas.getWidth();
-        height = canvas.getHeight();
-        this.canvas = canvas;
 
-        oldValues = new char[height][width];
+        if (!isExecuted) {
+            width = canvas.getWidth();
+            height = canvas.getHeight();
+            this.canvas = canvas;
 
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                char c = canvas.getPixel(j, i);
-                if (c != ' ') {
-                    oldValues[i][j] = c;
-                    canvas.drawPixel(j, i, ' ');
-                } else {
-                    oldValues[i][j] = ' ';
+            oldValues = new char[height][width];
+
+            for (int i = 0; i < height; ++i) {
+                for (int j = 0; j < width; ++j) {
+                    char c = canvas.getPixel(j, i);
+                    if (c != ' ') {
+                        oldValues[i][j] = c;
+                        canvas.drawPixel(j, i, ' ');
+                    } else {
+                        oldValues[i][j] = ' ';
+                    }
                 }
             }
+
+            isExecuted = true;
+            return true;
         }
-
-        isExecuted = true;
-
-        return true;
+        return false;
     }
 
     @Override
     public boolean undo() {
+
         if (width == 0 || height == 0 || !isExecuted) {
             return false;
         }

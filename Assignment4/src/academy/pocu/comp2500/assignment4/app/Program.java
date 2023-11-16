@@ -16,16 +16,16 @@ public class Program {
 
         manager.execute(new DrawOnePixel(3, 0, '1'));
         manager.execute(new DrawOnePixel(3, 1, '2'));
+        analyzer.drawPixel(1, 2, '0');
         manager.execute(new DrawOnePixel(3, 2, '3'));
         manager.execute(new DrawOnePixel(3, 3, '4'));
         manager.undo();
         manager.undo();
-        manager.execute(new DrawOnePixel(0, 0, '5'));
-        analyzer.drawPixel(1, 2, '0');
+
         System.out.println(manager.undo());
-        manager.redo();
-        manager.redo();
-        manager.redo();
+        //manager.redo();
+        //manager.redo();
+        //manager.redo();
 
         System.out.println(analyzer.getDrawing());*/
 

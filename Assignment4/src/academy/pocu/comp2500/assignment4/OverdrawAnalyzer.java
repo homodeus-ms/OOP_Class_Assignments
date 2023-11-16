@@ -24,6 +24,9 @@ public class OverdrawAnalyzer extends Canvas {
     @Override
     public boolean increasePixel(int x, int y) {
         char c = getPixel(x, y);
+        if (c >= 126) {
+            return false;
+        }
         update(x, y, ++c);
         super.increasePixel(x, y);
         return true;
@@ -31,6 +34,9 @@ public class OverdrawAnalyzer extends Canvas {
     @Override
     public boolean decreasePixel(int x, int y) {
         char c = getPixel(x, y);
+        if (c <= 32) {
+            return false;
+        }
         update(x, y, --c);
         super.decreasePixel(x, y);
         return true;
