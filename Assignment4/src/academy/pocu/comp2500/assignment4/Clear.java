@@ -58,6 +58,7 @@ public class Clear extends Command implements ICommand {
     @Override
     public boolean redo() {
         if (isExecuted) {
+            isExecuted = false;
             execute(canvas);
             return true;
         }
