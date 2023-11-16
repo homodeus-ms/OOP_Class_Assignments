@@ -29,7 +29,8 @@ public class Program {
 
         System.out.println(analyzer.getDrawing());*/
 
-        /*test9();  // 21회
+        test11();
+        test9();  // 21회
         test8();  // 19회
         test7();
         test6();
@@ -37,8 +38,8 @@ public class Program {
         test4();
         test3();
         test2();
-        test1();*/
-        test10();
+        test1();
+        //test10();
 
 
 
@@ -244,6 +245,32 @@ public class Program {
         assert (chm.undo() == false);
         assert (chm.redo() == true);
 
+    }
+    public static void test11() {
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
+        CommandHistoryManager manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillVerticalByOne(24, 'd'));
+        manager.execute(new IncreaseCharByOne(3, 15));
+        manager.execute(new FillHorizontalByOne(26, ','));
+        manager.execute(new FillHorizontalByOne(5, 'u'));
+        manager.undo();
+        manager.execute(new FillVerticalByOne(22, '2'));
+        manager.execute(new DecreaseCharByOne(22, 14));
+        manager.execute(new FillHorizontalByOne(1, 'M'));
+        manager.execute(new IncreaseCharByOne(22, 22));
+        manager.redo();
+        manager.execute(new FillVerticalByOne(24, '('));
+        manager.redo();
+        manager.execute(new Clear());
+        manager.redo();
+        manager.redo();
+        manager.undo();
+        manager.undo();
+
+
+
+        System.out.println(analyzer.getDrawing());
     }
 
 }
