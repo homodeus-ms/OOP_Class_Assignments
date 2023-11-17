@@ -11,7 +11,7 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
         //manager.execute(new DrawOnePixel(3, 0, (char) 126));
@@ -23,9 +23,9 @@ public class Program {
         System.out.println(manager.redo());
         System.out.println(manager.undo());
 
-        System.out.println(analyzer.getDrawing());
+        System.out.println(analyzer.getDrawing());*/
 
-        /*test12();
+        test12();
         test11();
         test9();  // 21회
         test8();  // 19회
@@ -35,7 +35,7 @@ public class Program {
         test4();
         test3();
         test2();
-        test1();*/
+        test1();
         //test10();
 
 

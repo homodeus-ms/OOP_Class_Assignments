@@ -12,11 +12,11 @@ public class DrawOnePixel extends Command implements ICommand {
         if (!isExecuted && isValidPos(canvas, x, y) && isValidChar(newChar)) {
             this.canvas = canvas;
             oldChar = canvas.getPixel(x, y);
-            if (oldChar != newChar) {
-                canvas.drawPixel(x, y, newChar);
-                isExecuted = true;
-                return true;
-            }
+            //if (oldChar != newChar) {
+            canvas.drawPixel(x, y, newChar);
+            isExecuted = true;
+            return true;
+
         }
         return false;
     }
