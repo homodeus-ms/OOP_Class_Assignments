@@ -18,8 +18,10 @@ public class OverdrawAnalyzer extends Canvas {
     }
     @Override
     public void drawPixel(int x, int y, char letter) {
-        update(x, y, letter);
-        super.drawPixel(x, y, letter);
+        if (getPixel(x, y) != letter) {
+            update(x, y, letter);
+            super.drawPixel(x, y, letter);
+        }
     }
     @Override
     public boolean increasePixel(int x, int y) {
