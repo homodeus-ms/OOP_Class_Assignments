@@ -16,7 +16,7 @@ public class CommandHistoryManager {
     }
     public boolean execute(ICommand command) {
         if (!currCanvas.equals(canvas.getDrawing())) {
-            commands.clear();
+            commands.add(null);
         }
 
         boolean isExecuted = command.execute(canvas);
@@ -31,7 +31,7 @@ public class CommandHistoryManager {
         return isExecuted;
     }
     public boolean canUndo() {
-        return !commands.isEmpty() && currCanvas.equals(canvas.getDrawing());
+        return !commands.isEmpty() && commands.peek() != null;
     }
     public boolean canRedo() {
         return !undos.isEmpty();
@@ -44,6 +44,9 @@ public class CommandHistoryManager {
             undos.push(lastCommand);
 
             return true;
+        } else if (!commands.empty() && commands.peek() == null) {
+            commands.pop();
+            return false;
         }
         return false;
     }
