@@ -32,7 +32,7 @@ public class Canvas {
     }
 
     public void drawPixel(int x, int y, char letter) {
-        if (isValidPos(x, y) && isValidLetter(letter)) {
+        if (isValidPos(x, y) && isValidLetter(letter) && getPixel(x, y) != letter) {
             canvas[y][x] = letter;
         }
     }

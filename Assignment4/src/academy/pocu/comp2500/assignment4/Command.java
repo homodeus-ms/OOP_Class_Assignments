@@ -9,7 +9,8 @@ public abstract class Command {
     protected char newChar;
     protected char oldChar;
     protected boolean isExecuted;
-    protected boolean isValid;
+    /*protected boolean isValid;
+    protected boolean isCanvasUpdated;*/
 
 
     protected boolean isValidPos(Canvas canvas, int x, int y) {
@@ -20,13 +21,4 @@ public abstract class Command {
     }
 
 
-    /*protected void copyAllPixels(char[][] source, char[][] target, int width, int height) {
-        assert (source.length == target.length) : "sourceArr size != targetArr size";
-
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                target[i][j] = source[i][j];
-            }
-        }
-    }*/
 }
