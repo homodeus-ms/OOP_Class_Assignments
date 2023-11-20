@@ -21,10 +21,8 @@ public class CacheMiddleware implements IRequestHandler {
     }
     @Override
     public ResultBase handle(Request request) {
+
         ResultBase result = movies.handle(request);
-        if (result.getCode() != ResultCode.OK) {
-            return result;
-        }
 
         if (caches.containsKey(request)) {
             int count = caches.get(request);
@@ -35,9 +33,11 @@ public class CacheMiddleware implements IRequestHandler {
                 caches.put(request, --count);
                 return new CachedResult(count);
             }
-        } else {
+        } else if (result.getCode() == ResultCode.OK) {
             caches.put(request, expiryCount);
             return result;
         }
+
+        return result;
     }
 }
