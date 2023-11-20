@@ -24,6 +24,10 @@ public class CacheMiddleware implements IRequestHandler {
 
         ResultBase result = movies.handle(request);
 
+        if (expiryCount == 1) {
+            return result;
+        }
+
         if (caches.containsKey(request)) {
             int count = caches.get(request);
             if (count == 1) {
