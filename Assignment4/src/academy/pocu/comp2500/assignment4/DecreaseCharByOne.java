@@ -32,6 +32,7 @@ public class DecreaseCharByOne extends Command implements ICommand {
     public boolean redo() {
         if (isExecuted) {
             canvas.decreasePixel(x, y);
+            return true;
         }
         return false;
     }

@@ -9,9 +9,10 @@ public class DrawOnePixel extends Command implements ICommand {
     }
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isExecuted) {
+        if (!isExecuted && isValidChar (newChar) && isValidPos(canvas, x, y)) {
             this.canvas = canvas;
             oldChar = canvas.getPixel(x, y);
+
             canvas.drawPixel(x, y, newChar);
             isExecuted = true;
             return true;

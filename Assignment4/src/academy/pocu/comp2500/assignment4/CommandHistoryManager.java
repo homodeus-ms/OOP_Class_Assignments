@@ -19,6 +19,7 @@ public class CommandHistoryManager {
             commands.add(null);
             undos.clear();
         }
+        //undos.clear();
 
         boolean isExecuted = command.execute(canvas);
         currCanvas = canvas.getDrawing();

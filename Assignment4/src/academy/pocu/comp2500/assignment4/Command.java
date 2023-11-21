@@ -9,6 +9,8 @@ public abstract class Command {
     protected char newChar;
     protected char oldChar;
     protected boolean isExecuted;
+    public boolean doneUndo;
+
     /*protected boolean isValid;
     protected boolean isCanvasUpdated;*/
 
@@ -20,5 +22,10 @@ public abstract class Command {
         return c >= 32 && c <= 126;
     }
 
-
+    public boolean getDoneUndo() {
+        return this.doneUndo;
+    }
+    public boolean isExecuted() {
+        return this.isExecuted;
+    }
 }

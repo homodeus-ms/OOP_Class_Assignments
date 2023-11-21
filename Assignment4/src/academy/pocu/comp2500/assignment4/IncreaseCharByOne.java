@@ -32,6 +32,7 @@ public class IncreaseCharByOne extends Command implements ICommand {
     public boolean redo() {
         if (isExecuted) {
             canvas.increasePixel(x, y);
+            return true;
         }
         return false;
     }
