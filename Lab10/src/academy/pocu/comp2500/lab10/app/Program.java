@@ -28,6 +28,9 @@ public class Program {
 
         ResultBase a = new UnauthorizedResult();
         ResultValidator validator = new ResultValidator(a);
+        System.out.println(a.getCode());
+        a = new NotFoundResult();
+        System.out.println(a.getCode());
         assert (validator.isValid(ResultCode.UNAUTHORIZED));
 
         System.out.println("No assert!");
