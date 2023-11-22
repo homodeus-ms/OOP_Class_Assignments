@@ -9,14 +9,13 @@ import java.util.ArrayList;
 
 public class MovieStore implements IRequestHandler {
     //private static MovieStore instance;
-    private final ArrayList<Movie> movies = new ArrayList<>();
+    private static final ArrayList<Movie> movies = new ArrayList<>();
 
     /*public MovieStore() {
         if (instance == null) {
             instance = new MovieStore();
         }
     }*/
-
     public void add(Movie movie) {
         movies.add(movie);
     }
@@ -28,7 +27,15 @@ public class MovieStore implements IRequestHandler {
         }
         return false;
     }
+    /*public void createInstance() {
+        if (instance == null) {
+            instance = new MovieStore();
+        }
 
+    }
+    public static MovieStore getInstance() {
+        return instance;
+    }*/
     @Override
     public ResultBase handle(Request request) {
         for (Movie movie : movies) {
