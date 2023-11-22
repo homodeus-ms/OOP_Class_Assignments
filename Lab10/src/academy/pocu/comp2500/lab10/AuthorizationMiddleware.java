@@ -9,6 +9,7 @@ public class AuthorizationMiddleware implements IRequestHandler {
 
     private HashSet<User> users;
     private IRequestHandler next;
+    private ResultBase result;
 
     public AuthorizationMiddleware(IRequestHandler next, HashSet<User> users) {
         this.next = next;

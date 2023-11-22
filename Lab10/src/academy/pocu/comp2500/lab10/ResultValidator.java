@@ -14,7 +14,31 @@ public class ResultValidator {
     }
 
     public boolean isValid(ResultCode code) {
+        //Exception e = new Exception();
+        try {
+            switch (code) {
+                case OK:
+                    resultBase = (OkResult) resultBase;
+                    break;
+                case NOT_FOUND:
+                    resultBase = (NotFoundResult) resultBase;
+                    break;
+                case SERVICE_UNAVAILABLE:
+                    resultBase = (ServiceUnavailableResult) resultBase;
+                    break;
+                case UNAUTHORIZED:
+                    resultBase = (UnauthorizedResult) resultBase;
+                    break;
+                case NOT_MODIFIED:
+                    resultBase = (NotFoundResult) resultBase;
+                    break;
+                default:
+                    return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
 
-        return resultBase != null && resultBase.getCode() == code;
+        return true;
     }
 }

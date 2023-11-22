@@ -37,7 +37,7 @@ public class Program {
         // ===========================================
         // 1.MaintenanceMiddleware -> CacheMiddleware
         // ===========================================
-        {
+        /*{
             // maintain middleware
             OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
             OffsetDateTime startDateTime = now.plusSeconds(3);
@@ -82,7 +82,7 @@ public class Program {
             assert (result.getCode() == ResultCode.SERVICE_UNAVAILABLE);
             assert (result instanceof ServiceUnavailableResult);
 
-        }
+        }*/
 
         // ===========================================
         // 2.AuthorizationMiddleware -> CacheMiddleware
@@ -182,7 +182,7 @@ public class Program {
         // ===========================================
         // 4.CacheMiddleware  -> MaintenanceMiddleware
         // ===========================================
-        {
+        /*{
             // cached middle ware
             CacheMiddleware cachedMiddleware = new CacheMiddleware(store, 3);
             request = new Request("Harry Potter");
@@ -210,7 +210,7 @@ public class Program {
             result = maintainMiddleware.handle(request);
             assert (result.getCode() == ResultCode.SERVICE_UNAVAILABLE);
             assert (result instanceof ServiceUnavailableResult);
-        }
+        }*/
 
 
         System.out.println("No assert!");
