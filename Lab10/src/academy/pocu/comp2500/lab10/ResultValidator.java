@@ -16,31 +16,39 @@ public class ResultValidator {
     }
 
     public boolean isValid(ResultCode code) {
-        boolean result = resultBase != null && resultBase.getCode() == code;
-
-        if (!result) {
-            resultBase = null;
+        if (resultBase == null || resultBase.getCode() != code) {
+            return false;
         }
 
         switch (code) {
             case OK:
+                if (resultBase instanceof OkResult) {
+                    return true;
+                }
                 break;
             case NOT_FOUND:
+                if (resultBase instanceof NotFoundResult) {
+                    return true;
+                }
                 break;
             case SERVICE_UNAVAILABLE:
-                if (((ServiceUnavailableResult) resultBase).getEndDateTime().isBefore(OffsetDateTime.now())) {
-                    return false;
+                if (resultBase instanceof ServiceUnavailableResult) {
+                    return true;
                 }
-                return true;
+                break;
             case UNAUTHORIZED:
+                if (resultBase instanceof UnauthorizedResult) {
+                    return true;
+                }
                 break;
             case NOT_MODIFIED:
+                if (resultBase instanceof CachedResult) {
+                    return true;
+                }
                 break;
             default:
                 return false;
         }
-
-        return result;
-
+        return false;
     }
 }
