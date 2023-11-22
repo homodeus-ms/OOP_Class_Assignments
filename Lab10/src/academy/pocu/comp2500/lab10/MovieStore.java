@@ -6,16 +6,13 @@ import academy.pocu.comp2500.lab10.pocuflix.OkResult;
 import academy.pocu.comp2500.lab10.pocuflix.ResultBase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MovieStore implements IRequestHandler {
-    //private static MovieStore instance;
-    private static final ArrayList<Movie> movies = new ArrayList<>();
 
-    /*public MovieStore() {
-        if (instance == null) {
-            instance = new MovieStore();
-        }
-    }*/
+    private static ArrayList<Movie> movies = new ArrayList<>();
+    //private final HashMap<ResultBase, Request> results = new HashMap<>();
+
     public void add(Movie movie) {
         movies.add(movie);
     }
@@ -27,22 +24,23 @@ public class MovieStore implements IRequestHandler {
         }
         return false;
     }
-    /*public void createInstance() {
-        if (instance == null) {
-            instance = new MovieStore();
-        }
-
-    }
-    public static MovieStore getInstance() {
-        return instance;
-    }*/
     @Override
     public ResultBase handle(Request request) {
+
+        HashMap<ResultBase, Request> map = HandlerManager.getInstance().getRequests();
+        ResultBase result;
+
         for (Movie movie : movies) {
             if (movie.getTitle().equals(request.getTitle())) {
-                return new OkResult(movie);
+                result = new OkResult(movie);
+                map.put(result, request);
+
+                return result;
             }
         }
-        return new NotFoundResult();
+        result = new NotFoundResult();
+        map.put(result, request);
+
+        return result;
     }
 }
