@@ -8,8 +8,14 @@ import academy.pocu.comp2500.lab10.pocuflix.ResultBase;
 import java.util.ArrayList;
 
 public class MovieStore implements IRequestHandler {
-
+    //private static MovieStore instance;
     private final ArrayList<Movie> movies = new ArrayList<>();
+
+    /*public MovieStore() {
+        if (instance == null) {
+            instance = new MovieStore();
+        }
+    }*/
 
     public void add(Movie movie) {
         movies.add(movie);

@@ -5,7 +5,6 @@ public final class OkResult extends ResultBase {
 
     public OkResult(final Movie movie) {
         super(ResultCode.OK);
-
         this.movie = movie;
     }
 
