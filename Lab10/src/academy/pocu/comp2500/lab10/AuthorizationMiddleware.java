@@ -5,7 +5,7 @@ import academy.pocu.comp2500.lab10.pocuflix.User;
 
 import java.util.HashSet;
 
-public class AuthorizationMiddleware implements IRequestHandler {
+public class AuthorizationMiddleware extends HandlerManager implements IRequestHandler {
 
     private HashSet<User> users;
     private IRequestHandler next;
@@ -17,8 +17,15 @@ public class AuthorizationMiddleware implements IRequestHandler {
     }
     @Override
     public ResultBase handle(Request request) {
+
         if (!users.contains(request.getUser())) {
-            return new UnauthorizedResult();
+            super.handler = this;
+            super.request = request;
+
+            ResultBase result = new UnauthorizedResult();
+            super.result = result;
+
+            return result;
         } else {
             return next.handle(request);
         }

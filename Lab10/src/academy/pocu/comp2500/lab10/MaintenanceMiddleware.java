@@ -5,7 +5,7 @@ import academy.pocu.comp2500.lab10.pocuflix.ResultCode;
 
 import java.time.OffsetDateTime;
 
-public class MaintenanceMiddleware implements IRequestHandler {
+public class MaintenanceMiddleware extends HandlerManager implements IRequestHandler {
 
     private IRequestHandler movies;
     private OffsetDateTime startTime;
@@ -18,7 +18,11 @@ public class MaintenanceMiddleware implements IRequestHandler {
     public ResultBase handle(Request request) {
         OffsetDateTime now = OffsetDateTime.now();
         if (now.isAfter(startTime) && now.isBefore(startTime.plusHours(1))) {
-            return new ServiceUnavailableResult(startTime, startTime.plusHours(1));
+            super.handler = this;
+            super.request = request;
+            ResultBase result = new ServiceUnavailableResult(startTime, startTime.plusHours(1));
+            super.result = result;
+            return result;
         } else {
             return movies.handle(request);
         }

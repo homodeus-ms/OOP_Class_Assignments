@@ -8,9 +8,9 @@ import academy.pocu.comp2500.lab10.pocuflix.ResultBase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MovieStore implements IRequestHandler {
+public class MovieStore extends HandlerManager implements IRequestHandler {
 
-    private static ArrayList<Movie> movies = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
     //private final HashMap<ResultBase, Request> results = new HashMap<>();
 
     public void add(Movie movie) {
@@ -27,19 +27,20 @@ public class MovieStore implements IRequestHandler {
     @Override
     public ResultBase handle(Request request) {
 
-        HashMap<ResultBase, Request> map = HandlerManager.getInstance().getRequests();
+        super.handler = this;
+        super.request = request;
+
         ResultBase result;
 
         for (Movie movie : movies) {
             if (movie.getTitle().equals(request.getTitle())) {
                 result = new OkResult(movie);
-                map.put(result, request);
-
+                super.result = result;
                 return result;
             }
         }
         result = new NotFoundResult();
-        map.put(result, request);
+        super.result = result;
 
         return result;
     }

@@ -6,20 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HandlerManager {
-    private static HandlerManager instance;
-    private HashMap<ResultBase, Request> results;
 
-    private HandlerManager() {
-        results = new HashMap<>();
+    protected IRequestHandler handler;
+    protected Request request;
+    protected ResultBase result;
+    protected HashMap<ResultBase, HandlerManager> map = new HashMap<>();
+
+    public IRequestHandler getHandlers() {
+        return handler;
     }
-    public static HandlerManager getInstance() {
-        if (instance == null) {
-            instance = new HandlerManager();
-        }
-        return instance;
+    public Request getRequest() {
+        return request;
     }
-    public HashMap<ResultBase, Request> getRequests() {
-        return results;
+    public ResultBase getResult() {
+        return result;
     }
 
 }

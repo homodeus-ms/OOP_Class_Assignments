@@ -5,6 +5,8 @@ import academy.pocu.comp2500.lab10.pocuflix.OkResult;
 import academy.pocu.comp2500.lab10.pocuflix.ResultBase;
 import academy.pocu.comp2500.lab10.pocuflix.ResultCode;
 
+import java.time.OffsetDateTime;
+
 public class ResultValidator {
 
     private ResultBase resultBase;
@@ -20,23 +22,16 @@ public class ResultValidator {
             resultBase = null;
         }
 
-        if (code == ResultCode.OK || code == ResultCode.NOT_FOUND) {
-
-            Request request = HandlerManager.getInstance().getRequests().get(resultBase);
-
-            MovieStore store = new MovieStore();
-            if (store.handle(request).getCode() == code) {
-                return true;
-            }
-        }
-
         switch (code) {
             case OK:
                 break;
             case NOT_FOUND:
                 break;
             case SERVICE_UNAVAILABLE:
-                break;
+                if (((ServiceUnavailableResult) resultBase).getEndDateTime().isBefore(OffsetDateTime.now())) {
+                    return false;
+                }
+                return true;
             case UNAUTHORIZED:
                 break;
             case NOT_MODIFIED:
