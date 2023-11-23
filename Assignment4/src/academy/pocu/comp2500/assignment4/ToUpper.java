@@ -32,6 +32,7 @@ public class ToUpper extends Command implements ICommand {
             if (oldChar >= 'A' && oldChar <= 'Z') {
                 canvas.toLower(x, y);
             }
+            doneUndo = true;
             return true;
         }
         return false;
@@ -42,6 +43,7 @@ public class ToUpper extends Command implements ICommand {
         if (isExecuted) {
             doneUndo = false;
             canvas.drawPixel(x, y, newChar);
+            doneUndo = false;
             return true;
         }
         return false;
