@@ -11,31 +11,18 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
-        manager.execute(new FillVerticalByOne(0, 'H'));
-        manager.execute(new ToLower(3, 2));
+        manager.execute(new IncreaseCharByOne(21, 13));
+        manager.execute(new ToUpper(22, 14));
+        manager.execute(new DecreaseCharByOne(12, 8));
+        manager.execute(new FillHorizontalByOne(8, '2'));
+        manager.execute(new ToUpper(25, 18));
         manager.undo();
         manager.undo();
-        manager.execute(new DecreaseCharByOne(3, 1));
-        manager.redo();
-        manager.execute(new DrawOnePixel(3, 0, '`'));
-        manager.execute(new DecreaseCharByOne(0, 1));
-        manager.execute(new ToUpper(1, 2));
-        manager.execute(new IncreaseCharByOne(4, 2));
-        manager.redo();
-        manager.execute(new IncreaseCharByOne(1, 2));
-        manager.undo();
-        manager.execute(new ToLower(4, 2));
-        manager.execute(new DecreaseCharByOne(3, 0));
-        manager.undo();
-        manager.execute(new ToUpper(4, 4));
-        manager.execute(new FillHorizontalByOne(1, '}'));
-        manager.execute(new FillVerticalByOne(2, ','));
-        manager.execute(new ToUpper(3, 0));
 
-        System.out.println(analyzer.getOverdrawCount(0, 0));
+
 
         System.out.println(analyzer.getDrawing());
 

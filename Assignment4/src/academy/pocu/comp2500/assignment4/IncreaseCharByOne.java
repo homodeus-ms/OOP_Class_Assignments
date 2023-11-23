@@ -10,9 +10,9 @@ public class IncreaseCharByOne extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         this.canvas = canvas;
-        char oldChar = canvas.getPixel(x, y);
-        if (!isExecuted && isValidPos(canvas, x, y) && oldChar < 126) {
 
+        if (!isExecuted && isValidPos(canvas, x, y) && oldChar < 126) {
+            oldChar = canvas.getPixel(x, y);
             newChar = (char) (oldChar + 1);
             canvas.increasePixel(x, y);
 

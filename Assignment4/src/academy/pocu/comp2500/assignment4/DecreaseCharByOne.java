@@ -10,10 +10,10 @@ public class DecreaseCharByOne extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         this.canvas = canvas;
-        oldChar = canvas.getPixel(x, y);
+
 
         if (!isExecuted && isValidPos(canvas, x, y) && oldChar > 32) {
-
+            oldChar = canvas.getPixel(x, y);
             newChar = (char) (oldChar - 1);
             canvas.decreasePixel(x, y);
 
