@@ -12,11 +12,14 @@ public class ToUpper extends Command implements ICommand {
         if (!isExecuted && isValidPos(canvas, x, y)) {
             this.canvas = canvas;
             oldChar = canvas.getPixel(x, y);
+
             if (oldChar >= 'a' && oldChar <= 'z') {
                 canvas.toUpper(x, y);
                 newChar = canvas.getPixel(x, y);
+            } else {
+                newChar = oldChar;
             }
-            newChar = oldChar;
+
             isExecuted = true;
             return true;
         }
@@ -26,8 +29,7 @@ public class ToUpper extends Command implements ICommand {
     @Override
     public boolean undo() {
         if (isExecuted) {
-            oldChar = canvas.getPixel(x, y);
-            if (oldChar >= 'A' && oldChar <= 'Z' && oldChar != newChar) {
+            if (oldChar >= 'A' && oldChar <= 'Z') {
                 canvas.toLower(x, y);
             }
             return true;
@@ -38,8 +40,9 @@ public class ToUpper extends Command implements ICommand {
     @Override
     public boolean redo() {
         if (isExecuted) {
-            isExecuted = false;
-            return this.execute(canvas);
+            doneUndo = false;
+            canvas.drawPixel(x, y, newChar);
+            return true;
         }
         return false;
     }

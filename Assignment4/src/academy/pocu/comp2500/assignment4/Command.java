@@ -1,5 +1,7 @@
 package academy.pocu.comp2500.assignment4;
 
+import java.util.ArrayList;
+
 public abstract class Command {
     protected Canvas canvas;
     protected int x;
@@ -9,7 +11,8 @@ public abstract class Command {
     protected char newChar;
     protected char oldChar;
     protected boolean isExecuted;
-    public boolean doneUndo;
+    protected boolean doneUndo;
+
 
     /*protected boolean isValid;
     protected boolean isCanvasUpdated;*/
@@ -27,5 +30,8 @@ public abstract class Command {
     }
     public boolean isExecuted() {
         return this.isExecuted;
+    }
+    public boolean isSameCanvas() {
+        return canvas.getPixel(x, y) == newChar;
     }
 }

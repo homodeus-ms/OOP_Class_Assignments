@@ -9,10 +9,9 @@ public class DrawOnePixel extends Command implements ICommand {
     }
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isExecuted && isValidChar (newChar) && isValidPos(canvas, x, y)) {
+        if (!isExecuted && isValidChar(newChar) && isValidPos(canvas, x, y)) {
             this.canvas = canvas;
             oldChar = canvas.getPixel(x, y);
-
             canvas.drawPixel(x, y, newChar);
             isExecuted = true;
             return true;
@@ -23,6 +22,7 @@ public class DrawOnePixel extends Command implements ICommand {
     public boolean undo() {
         if (isExecuted) {
             canvas.drawPixel(x, y, oldChar);
+            doneUndo = true;
             return true;
         }
         return false;
@@ -31,8 +31,10 @@ public class DrawOnePixel extends Command implements ICommand {
     public boolean redo() {
         if (isExecuted) {
             canvas.drawPixel(x, y, newChar);
+            doneUndo = false;
             return true;
         }
         return false;
     }
+
 }

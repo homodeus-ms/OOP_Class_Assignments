@@ -51,6 +51,7 @@ public class Clear extends Command implements ICommand {
                 }
             }
         }
+        doneUndo = true;
 
         return true;
     }
@@ -62,7 +63,19 @@ public class Clear extends Command implements ICommand {
             execute(canvas);
             return true;
         }
+        doneUndo = false;
 
         return false;
+    }
+    @Override
+    public boolean isSameCanvas() {
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                if (canvas.getPixel(j, i) != ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

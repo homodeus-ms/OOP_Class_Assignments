@@ -10,9 +10,13 @@ public class DecreaseCharByOne extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         this.canvas = canvas;
-        if (!isExecuted && isValidPos(canvas, x, y) && canvas.getPixel(x, y) > 32) {
+        oldChar = canvas.getPixel(x, y);
 
+        if (!isExecuted && isValidPos(canvas, x, y) && oldChar > 32) {
+
+            newChar = (char) (oldChar - 1);
             canvas.decreasePixel(x, y);
+
             isExecuted = true;
             return true;
         }
@@ -23,6 +27,7 @@ public class DecreaseCharByOne extends Command implements ICommand {
     public boolean undo() {
         if (isExecuted) {
             canvas.increasePixel(x, y);
+            doneUndo = true;
             return true;
         }
         return false;
@@ -32,8 +37,10 @@ public class DecreaseCharByOne extends Command implements ICommand {
     public boolean redo() {
         if (isExecuted) {
             canvas.decreasePixel(x, y);
+            doneUndo = false;
             return true;
         }
         return false;
     }
+
 }

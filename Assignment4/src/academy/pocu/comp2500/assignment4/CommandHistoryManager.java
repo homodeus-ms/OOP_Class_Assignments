@@ -7,60 +7,61 @@ public class CommandHistoryManager {
 
     private final Canvas canvas;
     private Stack<ICommand> commands = new Stack<>();
-    private Stack<ICommand> undos = new Stack<>();
+    //private Stack<ICommand> undos = new Stack<>();
     private String currCanvas;
+    private int undoTargetIndex = -1;
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
         currCanvas = canvas.getDrawing();
     }
     public boolean execute(ICommand command) {
-        if (!currCanvas.equals(canvas.getDrawing())) {
+        /*if (!currCanvas.equals(canvas.getDrawing())) {
             commands.add(null);
             undos.clear();
-        }
-        //undos.clear();
+        }*/
 
         boolean isExecuted = command.execute(canvas);
         currCanvas = canvas.getDrawing();
 
         if (isExecuted) {
             commands.push(command);
-            undos.clear();
+            //undos.clear();
         }
-        //recentUndo = null;
 
         return isExecuted;
     }
     public boolean canUndo() {
-        return !commands.isEmpty() && commands.peek() != null;
+        if (commands.isEmpty()) {
+            return false;
+        }
+        int commandsSize = commands.size();
+        for (int i = commandsSize - 1; i >= 0; --i) {
+            Command lastCommand = (Command) commands.get(i);
+            if (!lastCommand.getDoneUndo() && lastCommand.isSameCanvas()) {
+                undoTargetIndex = i;
+                return true;
+            }
+        }
+        return false;
     }
     public boolean canRedo() {
-        return !undos.isEmpty();
+        return !commands.empty() && ((Command) commands.peek()).getDoneUndo();
     }
     public boolean undo() {
         if (canUndo()) {
-            ICommand lastCommand = commands.pop();
+            ICommand lastCommand = commands.get(undoTargetIndex);
             lastCommand.undo();
-            currCanvas = canvas.getDrawing();
-            undos.push(lastCommand);
 
             return true;
-        } else if (!commands.empty() && commands.peek() == null) {
-            commands.pop();
-            return false;
         }
         return false;
     }
     public boolean redo() {
 
         if (canRedo()) {
-            ICommand lastUndo = undos.pop();
+            ICommand lastUndo = commands.peek();
             lastUndo.redo();
-            currCanvas = canvas.getDrawing();
-            // redo를 하면 undo가 리셋 된다고 가정해야할까?
-            //commands.clear();
-            commands.push(lastUndo);
 
             return true;
         }
