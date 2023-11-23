@@ -16,7 +16,7 @@ public class ResultValidator {
     }
 
     public boolean isValid(ResultCode code) {
-        if (resultBase == null || resultBase.getCode() != code) {
+        if (resultBase.getCode() != code) {
             return false;
         }
 
