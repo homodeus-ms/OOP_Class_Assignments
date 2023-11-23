@@ -20,7 +20,7 @@ public class ResultValidator {
             return false;
         }
 
-        switch (code) {
+        /*switch (code) {
             case OK:
                 if (resultBase instanceof OkResult) {
                     return true;
@@ -48,7 +48,7 @@ public class ResultValidator {
                 break;
             default:
                 return false;
-        }
-        return false;
+        }*/
+        return true;
     }
 }

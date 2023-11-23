@@ -29,7 +29,7 @@ public class ToUpper extends Command implements ICommand {
     @Override
     public boolean undo() {
         if (isExecuted) {
-            if (oldChar >= 'A' && oldChar <= 'Z') {
+            if (oldChar >= 'a' && oldChar <= 'z') {
                 canvas.toLower(x, y);
             }
             doneUndo = true;
