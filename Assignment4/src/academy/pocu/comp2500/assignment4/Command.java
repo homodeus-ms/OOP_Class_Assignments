@@ -12,12 +12,15 @@ public abstract class Command {
     protected char oldChar;
     protected boolean isExecuted;
     protected boolean doneUndo;
+    //protected String currCanvas;
 
 
     /*protected boolean isValid;
     protected boolean isCanvasUpdated;*/
 
-
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
     protected boolean isValidPos(Canvas canvas, int x, int y) {
         return x >= 0 && x < canvas.getWidth() && y >= 0 && y < canvas.getHeight();
     }

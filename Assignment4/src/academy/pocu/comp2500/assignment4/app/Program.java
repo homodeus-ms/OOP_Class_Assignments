@@ -13,10 +13,14 @@ public class Program {
 
         OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
-
-        analyzer.drawPixel(0, 2, 'C');
-        manager.redo();
+        ICommand c = new DrawOnePixel(0, 0, 'A');
+        manager.execute(c);
         manager.undo();
+        manager.execute(c);
+        manager.undo();
+        //manager.redo();
+
+
 
 
 

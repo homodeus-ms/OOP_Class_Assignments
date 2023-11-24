@@ -46,7 +46,8 @@ public class CommandHistoryManager {
         return false;
     }
     public boolean canRedo() {
-        return !commands.empty() && !undos.empty();
+        Command lastCommand = (Command) undos.peek();
+        return !undos.empty() && lastCommand.isExecuted && lastCommand.doneUndo;
     }
     public boolean undo() {
         if (canUndo()) {
