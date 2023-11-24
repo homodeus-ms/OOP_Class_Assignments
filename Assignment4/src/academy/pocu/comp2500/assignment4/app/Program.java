@@ -11,16 +11,13 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(25, 30);
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
-        manager.execute(new FillVerticalByOne(24, 'd'));
-        manager.execute(new IncreaseCharByOne(3, 15));
-        manager.execute(new FillHorizontalByOne(26, ','));
-        manager.execute(new FillHorizontalByOne(5, 'u'));
+        analyzer.drawPixel(0, 2, 'C');
+        manager.redo();
         manager.undo();
-        manager.execute(new FillVerticalByOne(22, '2'));
-        manager.execute(new DecreaseCharByOne(22, 14));
+
 
 
 
