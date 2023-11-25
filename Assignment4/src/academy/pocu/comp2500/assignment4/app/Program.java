@@ -11,25 +11,18 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
+        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
         ICommand c = new DrawOnePixel(0, 0, 'A');
         manager.execute(c);
         manager.undo();
         manager.execute(c);
         manager.undo();
-        //manager.redo();
+        manager.redo();
+        System.out.println(analyzer.getDrawing());*/
 
 
-
-
-
-
-
-        System.out.println(analyzer.getDrawing());
-
-
-        /*test12();
+        test12();
         test11();
         test9();  // 21회
         test8();  // 19회
@@ -39,7 +32,7 @@ public class Program {
         test4();
         test3();
         test2();
-        test1();*/
+        test1();
         //test10();
 
 

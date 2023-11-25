@@ -8,24 +8,24 @@ public class CommandHistoryManager {
     private final Canvas canvas;
     private Stack<ICommand> commands = new Stack<>();
     private Stack<ICommand> undos = new Stack<>();
-    //private String currCanvas;
+    private String currCanvas;
     private int undoTargetIndex = -1;
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
-        //currCanvas = canvas.getDrawing();
+        currCanvas = canvas.getDrawing();
     }
     public boolean execute(ICommand command) {
-        /*if (!currCanvas.equals(canvas.getDrawing())) {
-            commands.add(null);
+        if (!currCanvas.equals(canvas.getDrawing())) {
+            commands.clear();
             undos.clear();
-        }*/
-
+        }
+        commands.push(command);
         boolean isExecuted = command.execute(canvas);
-        //currCanvas = canvas.getDrawing();
+        currCanvas = canvas.getDrawing();
 
         if (isExecuted) {
-            commands.push(command);
+            //commands.push(command);
             undos.clear();
         }
 
@@ -38,7 +38,7 @@ public class CommandHistoryManager {
         int commandsSize = commands.size();
         for (int i = commandsSize - 1; i >= 0; --i) {
             Command lastCommand = (Command) commands.get(i);
-            if (!lastCommand.getDoneUndo() && lastCommand.isSameCanvas()) {
+            if (lastCommand.isExecuted && !lastCommand.getDoneUndo() && lastCommand.isSameCanvas()) {
                 undoTargetIndex = i;
                 return true;
             }
@@ -46,8 +46,11 @@ public class CommandHistoryManager {
         return false;
     }
     public boolean canRedo() {
+        if (undos.isEmpty()) {
+            return false;
+        }
         Command lastCommand = (Command) undos.peek();
-        return !undos.empty() && lastCommand.isExecuted && lastCommand.doneUndo;
+        return lastCommand.isExecuted && lastCommand.doneUndo;
     }
     public boolean undo() {
         if (canUndo()) {
