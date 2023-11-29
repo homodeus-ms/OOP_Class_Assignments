@@ -111,6 +111,9 @@ public class App {
             } catch (NumberFormatException e) {
                 continue;
             }
+            if (inputProductNumber <= 0 || inputProductNumber > products.size()) {
+                continue;
+            }
 
             int choosePrice = products.get(inputProductNumber - 1).getPrice();
 
