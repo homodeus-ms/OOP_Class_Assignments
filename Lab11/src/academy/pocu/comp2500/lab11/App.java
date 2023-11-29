@@ -9,6 +9,7 @@ import academy.pocu.comp2500.lab11.pocu.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class App {
@@ -55,6 +56,7 @@ public class App {
         WarehouseType chooseType = types[inputNumber - 1];
 
 
+
         User user = new User();
         Wallet wallet;
         try {
@@ -63,6 +65,15 @@ public class App {
             err.println("AUTH_ERROR");
             return;
         }
+        /*builder.setLength(0);
+
+        builder.append("BALANCE: ");
+        int currDeposit = wallet.getAmount();
+        builder.append(currDeposit);
+        String promptCurrBalance = builder.toString();*/
+
+        Warehouse warehouse = new Warehouse(chooseType);
+        ArrayList<Product> products = warehouse.getProducts();
 
         do {
             // Wallet의 금액 보여주기
@@ -81,14 +92,15 @@ public class App {
             out.println(builder);
 
 
-
             // 선택한 Warehouse를 토대로 물품을 보여주기
+
+
             builder.setLength(0);
             builder.append("PRODUCT_LIST: choose one to buy");
             builder.append(System.lineSeparator());
 
-            Warehouse warehouse = new Warehouse(chooseType);
-            ArrayList<Product> products = warehouse.getProducts();
+            //Warehouse warehouse = new Warehouse(chooseType);
+            //ArrayList<Product> products = warehouse.getProducts();
             count = 1;
             for (Product p : products) {
                 String format = String.format("%-30s, %30d", p.getName(), p.getPrice());
@@ -126,6 +138,7 @@ public class App {
 
             if (wallet.withdraw(choosePrice)) {
                 warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
+                products = warehouse.getProducts();
             }
         } while (true);
 
