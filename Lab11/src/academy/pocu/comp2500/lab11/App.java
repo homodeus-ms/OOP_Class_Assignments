@@ -1,10 +1,6 @@
 package academy.pocu.comp2500.lab11;
 
-import academy.pocu.comp2500.lab11.pocu.Wallet;
-import academy.pocu.comp2500.lab11.pocu.Warehouse;
-import academy.pocu.comp2500.lab11.pocu.WarehouseType;
-import academy.pocu.comp2500.lab11.pocu.User;
-import academy.pocu.comp2500.lab11.pocu.Product;
+import academy.pocu.comp2500.lab11.pocu.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,14 +72,6 @@ public class App {
         ArrayList<Product> products = warehouse.getProducts();
 
         do {
-            // Wallet의 금액 보여주기
-            /*Wallet wallet;
-            try {
-                wallet = new SafeWallet(user);
-            } catch (IllegalAccessException e) {
-                err.println("AUTH_ERROR");
-                return;
-            }*/
             builder.setLength(0);
 
             builder.append("BALANCE: ");
@@ -99,8 +87,8 @@ public class App {
             builder.append("PRODUCT_LIST: choose one to buy");
             builder.append(System.lineSeparator());
 
-            //Warehouse warehouse = new Warehouse(chooseType);
-            //ArrayList<Product> products = warehouse.getProducts();
+            products = warehouse.getProducts();
+
             count = 1;
             for (Product p : products) {
                 String format = String.format("%-30s, %30d", p.getName(), p.getPrice());
@@ -137,8 +125,12 @@ public class App {
             int choosePrice = products.get(inputProductNumber - 1).getPrice();
 
             if (wallet.withdraw(choosePrice)) {
-                warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
-                products = warehouse.getProducts();
+                try {
+                    warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
+                } catch (ProductNotFoundException e) {
+                    wallet.deposit(choosePrice);
+                    continue;
+                }
             }
         } while (true);
 
