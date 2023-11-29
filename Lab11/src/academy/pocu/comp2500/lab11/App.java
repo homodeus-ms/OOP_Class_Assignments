@@ -56,16 +56,23 @@ public class App {
 
 
         User user = new User();
+        Wallet wallet;
+        try {
+            wallet = new SafeWallet(user);
+        } catch (IllegalAccessException e) {
+            err.println("AUTH_ERROR");
+            return;
+        }
 
         do {
             // Wallet의 금액 보여주기
-            Wallet wallet;
+            /*Wallet wallet;
             try {
                 wallet = new SafeWallet(user);
             } catch (IllegalAccessException e) {
                 err.println("AUTH_ERROR");
                 return;
-            }
+            }*/
             builder.setLength(0);
 
             builder.append("BALANCE: ");
@@ -119,7 +126,6 @@ public class App {
 
             if (wallet.withdraw(choosePrice)) {
                 warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
-                return;
             }
         } while (true);
 
