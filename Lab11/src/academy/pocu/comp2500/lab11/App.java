@@ -132,10 +132,6 @@ public class App {
 
             int choosePrice = products.get(inputProductNumber - 1).getPrice();
 
-            if (currDeposit > wallet.getAmount()) {
-                throw new OverflowException("OverFlow");
-            }
-
             if (wallet.withdraw(choosePrice)) {
                 try {
                     warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
