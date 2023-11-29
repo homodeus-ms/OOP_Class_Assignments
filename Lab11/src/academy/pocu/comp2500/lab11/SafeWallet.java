@@ -8,8 +8,9 @@ public class SafeWallet extends Wallet {
     }
     @Override
     public boolean deposit(final int amount) {
+        int beforeAmount = getAmount();
         boolean bDeposit = super.deposit(amount);
-        if (bDeposit && getAmount() <= 0) {
+        if (bDeposit && beforeAmount > getAmount()) {
             throw new OverflowException("Overflow!");
         }
         return bDeposit;
