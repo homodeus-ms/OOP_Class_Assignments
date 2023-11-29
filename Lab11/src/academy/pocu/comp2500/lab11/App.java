@@ -39,16 +39,18 @@ public class App {
                 err.println(e);
                 return;
             }
+
+            if (input.equals("exit")) {
+                return;
+            }
+
             try {
                 inputNumber = Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 continue;
             }
 
-            if (input.equals("exit")) {
-                return;
-            }
-        } while (inputNumber <= 0 && inputNumber >= count);
+        } while (inputNumber <= 0 || inputNumber >= count);
 
         WarehouseType chooseType = types[inputNumber - 1];
 
@@ -99,14 +101,15 @@ public class App {
                 err.println(e);
                 return;
             }
+
+            if (input.equals("exit")) {
+                return;
+            }
+
             try {
                 inputProductNumber = Integer.parseInt(input);
             } catch (NumberFormatException e) {
                 continue;
-            }
-
-            if (input.equals("exit")) {
-                return;
             }
 
             int choosePrice = products.get(inputProductNumber - 1).getPrice();
