@@ -62,6 +62,7 @@ public class App {
 
         User user = new User();
         Wallet wallet;
+
         try {
             wallet = new SafeWallet(user);
         } catch (IllegalAccessException e) {
@@ -135,8 +136,11 @@ public class App {
                 try {
                     warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
                 } catch (ProductNotFoundException e) {
-                    wallet.deposit(choosePrice);
-                    continue;
+                    try {
+                        wallet.deposit(choosePrice);
+                    } catch (OverflowException ee) {
+                        throw ee;
+                    }
                 }
             }
         } while (true);
