@@ -14,17 +14,20 @@ public class Program {
         OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
+        manager.execute(new DecreaseCharByOne(1, 13));
+        manager.execute(new IncreaseCharByOne(29, 1));
+        manager.execute(new DecreaseCharByOne(6, 10));
+        manager.execute(new FillVerticalByOne(19, 'X'));
+        manager.execute(new FillVerticalByOne(16, '1'));
         manager.redo();
-        manager.execute(new ToUpper(11, 10));
-        manager.execute(new DecreaseCharByOne(29, 15));
-        manager.redo();
-        manager.execute(new IncreaseCharByOne(15, 24));
-        manager.execute(new FillVerticalByOne(21, 'T'));
+        manager.execute(new FillHorizontalByOne(14, 'E'));
+        manager.execute(new FillHorizontalByOne(21, ')'));
+        manager.execute(new ToUpper(2, 5));
+        manager.execute(new FillVerticalByOne(27, 'c'));
         manager.undo();
-        manager.execute(new FillVerticalByOne(18, ';'));
-        manager.undo();
-        manager.execute(new DecreaseCharByOne(18, 22));
         manager.redo();
+
+
 
         System.out.println(analyzer.getDrawing());
 

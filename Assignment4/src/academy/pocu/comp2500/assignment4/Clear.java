@@ -30,9 +30,13 @@ public class Clear extends Command implements ICommand {
                     }
                 }
             }
+
+            isExecuted = true;
+            return true;
         }
-        isExecuted = true;
-        return true;
+
+        //isExecuted = true;
+        return false;
     }
 
     @Override

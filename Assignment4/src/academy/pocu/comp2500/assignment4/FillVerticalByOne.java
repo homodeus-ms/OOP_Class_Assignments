@@ -25,9 +25,11 @@ public class FillVerticalByOne extends Command implements ICommand {
                     //isExecuted = true;
                 }
             }
+            isExecuted = true;
+            return true;
         }
-        isExecuted = true;
-        return true;
+        //isExecuted = true;
+        return false;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class FillVerticalByOne extends Command implements ICommand {
     }
     public boolean isSameCanvas() {
         for (int i = 0; i < height; ++i) {
-            if (canvas.getPixel(i, y) != oldChars[i]) {
+            if (canvas.getPixel(x, i) != oldChars[i]) {
                 return false;
             }
         }

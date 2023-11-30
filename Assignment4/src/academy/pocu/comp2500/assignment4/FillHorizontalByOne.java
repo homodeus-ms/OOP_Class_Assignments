@@ -24,10 +24,12 @@ public class FillHorizontalByOne extends Command implements ICommand {
                     //isExecuted = true;
                 }
             }
+            isExecuted = true;
+            return true;
         }
 
-        isExecuted = true;
-        return true;
+        //isExecuted = true;
+        return false;
     }
 
     @Override

@@ -22,10 +22,13 @@ public class ToUpper extends Command implements ICommand {
             } else {
                 newChar = oldChar;
             }
+
+            isExecuted = true;
+            return true;
         }
 
-        isExecuted = true;
-        return true;
+        //isExecuted = true;
+        return false;
     }
 
     @Override
