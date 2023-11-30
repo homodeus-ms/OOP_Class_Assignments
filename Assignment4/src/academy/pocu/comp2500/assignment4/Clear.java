@@ -60,7 +60,7 @@ public class Clear extends Command implements ICommand {
 
     @Override
     public boolean redo() {
-        if (isExecuted && isSameCanvas(oldValues) && doneUndo) {
+        if (isExecuted && isSameCanvas() && doneUndo) {
             isExecuted = false;
             execute(canvas);
             doneUndo = false;
@@ -70,10 +70,10 @@ public class Clear extends Command implements ICommand {
         return false;
     }
     @Override
-    public boolean isSameCanvas(char expected) {
+    public boolean isSameCanvas(char c) {
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                if (canvas.getPixel(j, i) != expected) {
+                if (canvas.getPixel(j, i) != c) {
                     return false;
                 }
             }
@@ -81,10 +81,10 @@ public class Clear extends Command implements ICommand {
         return true;
     }
 
-    public boolean isSameCanvas(char[][] expected) {
+    public boolean isSameCanvas() {
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                if (canvas.getPixel(j, i) != expected[i][j]) {
+                if (canvas.getPixel(j, i) != oldValues[i][j]) {
                     return false;
                 }
             }

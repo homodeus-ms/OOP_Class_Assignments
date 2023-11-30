@@ -48,7 +48,7 @@ public class FillHorizontalByOne extends Command implements ICommand {
     @Override
     public boolean redo() {
         //boolean isChanged = false;
-        if (isExecuted && isSameCanvas(oldChars) && doneUndo) {
+        if (isExecuted && isSameCanvas() && doneUndo) {
             for (int i = 0; i < width; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(i, y, newChar);
@@ -61,15 +61,15 @@ public class FillHorizontalByOne extends Command implements ICommand {
         return false;
     }
     @Override
-    public boolean isSameCanvas(char expected) {
+    public boolean isSameCanvas(char c) {
         for (int i = 0; i < width; ++i) {
-            if (canvas.getPixel(i, y) != expected) {
+            if (canvas.getPixel(i, y) != c) {
                 return false;
             }
         }
         return true;
     }
-    public boolean isSameCanvas(char[] expecteds) {
+    public boolean isSameCanvas() {
         for (int i = 0; i < width; ++i) {
             if (canvas.getPixel(i, y) != oldChars[i]) {
                 return false;

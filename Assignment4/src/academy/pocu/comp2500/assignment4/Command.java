@@ -34,7 +34,7 @@ public abstract class Command {
     public boolean isExecuted() {
         return this.isExecuted;
     }
-    public boolean isSameCanvas(char expected) {
-        return canvas.getPixel(x, y) == expected;
+    public boolean isSameCanvas(char c) {
+        return canvas.getPixel(x, y) == c;
     }
 }

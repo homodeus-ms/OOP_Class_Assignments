@@ -49,7 +49,7 @@ public class FillVerticalByOne extends Command implements ICommand {
     @Override
     public boolean redo() {
         //boolean isChanged = false;
-        if (isExecuted && isSameCanvas(oldChars) && doneUndo) {
+        if (isExecuted && isSameCanvas() && doneUndo) {
             for (int i = 0; i < height; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(x, i, newChar);
@@ -62,15 +62,15 @@ public class FillVerticalByOne extends Command implements ICommand {
         return false;
     }
     @Override
-    public boolean isSameCanvas(char expected) {
+    public boolean isSameCanvas(char c) {
         for (int i = 0; i < height; ++i) {
-            if (canvas.getPixel(x, i) != expected) {
+            if (canvas.getPixel(x, i) != c) {
                 return false;
             }
         }
         return true;
     }
-    public boolean isSameCanvas(char[] expecteds) {
+    public boolean isSameCanvas() {
         for (int i = 0; i < width; ++i) {
             if (canvas.getPixel(i, y) != oldChars[i]) {
                 return false;
