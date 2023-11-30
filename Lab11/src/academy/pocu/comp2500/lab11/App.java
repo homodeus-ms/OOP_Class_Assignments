@@ -128,6 +128,7 @@ public class App {
                 return;
             }
 
+
             try {
                 inputProductNumber = Integer.parseInt(input);
             } catch (NumberFormatException e) {
