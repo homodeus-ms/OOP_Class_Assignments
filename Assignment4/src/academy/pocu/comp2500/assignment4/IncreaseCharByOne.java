@@ -25,8 +25,8 @@ public class IncreaseCharByOne extends Command implements ICommand {
 
     @Override
     public boolean undo() {
-        if (isExecuted) {
-            canvas.decreasePixel(x, y);
+        if (isExecuted && isSameCanvas(newChar) && !doneUndo) {
+            canvas.drawPixel(x, y, oldChar);
             doneUndo = true;
             return true;
         }
@@ -35,8 +35,8 @@ public class IncreaseCharByOne extends Command implements ICommand {
 
     @Override
     public boolean redo() {
-        if (isExecuted) {
-            canvas.increasePixel(x, y);
+        if (isExecuted && isSameCanvas(oldChar) && doneUndo) {
+            canvas.drawPixel(x, y, newChar);
             doneUndo = false;
             return true;
         }

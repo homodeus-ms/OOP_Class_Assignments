@@ -62,9 +62,16 @@ public class App {
 
         User user = new User();
         Wallet wallet;
+        int currDeposit;
 
         try {
             wallet = new SafeWallet(user);
+            currDeposit = wallet.getAmount();
+
+            if (currDeposit < 0) {
+                throw new OverflowException("Overflow");
+            }
+
         } catch (IllegalAccessException e) {
             err.println("AUTH_ERROR");
             return;
@@ -83,7 +90,7 @@ public class App {
             builder.setLength(0);
 
             builder.append("BALANCE: ");
-            int currDeposit = wallet.getAmount();
+            //currDeposit = wallet.getAmount();
             builder.append(currDeposit);
             out.println(builder);
 

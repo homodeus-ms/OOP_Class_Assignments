@@ -11,10 +11,11 @@ public class Clear extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
 
+        this.canvas = canvas;
+
         if (!isExecuted) {
             width = canvas.getWidth();
             height = canvas.getHeight();
-            this.canvas = canvas;
 
             oldValues = new char[height][width];
 
@@ -29,17 +30,18 @@ public class Clear extends Command implements ICommand {
                     }
                 }
             }
-
-            isExecuted = true;
-            return true;
         }
-        return false;
+        isExecuted = true;
+        return true;
     }
 
     @Override
     public boolean undo() {
 
         if (width == 0 || height == 0 || !isExecuted) {
+            return false;
+        }
+        if (!isSameCanvas(' ')) {
             return false;
         }
 
@@ -58,20 +60,31 @@ public class Clear extends Command implements ICommand {
 
     @Override
     public boolean redo() {
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(oldValues) && doneUndo) {
             isExecuted = false;
             execute(canvas);
+            doneUndo = false;
             return true;
         }
-        doneUndo = false;
 
         return false;
     }
     @Override
-    public boolean isSameCanvas() {
+    public boolean isSameCanvas(char expected) {
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                if (canvas.getPixel(j, i) != ' ') {
+                if (canvas.getPixel(j, i) != expected) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isSameCanvas(char[][] expected) {
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                if (canvas.getPixel(j, i) != expected[i][j]) {
                     return false;
                 }
             }

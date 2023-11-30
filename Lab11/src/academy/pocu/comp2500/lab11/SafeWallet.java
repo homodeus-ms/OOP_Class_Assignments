@@ -15,4 +15,8 @@ public class SafeWallet extends Wallet {
         }
         return bDeposit;
     }
+    /*@Override
+    public int getAmount() {
+        deposit(0);
+    }*/
 }

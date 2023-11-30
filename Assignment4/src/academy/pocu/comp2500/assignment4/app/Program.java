@@ -22,7 +22,7 @@ public class Program {
         System.out.println(analyzer.getDrawing());*/
 
 
-        test12();
+        /*test12();
         test11();
         test9();  // 21회
         test8();  // 19회
@@ -32,8 +32,8 @@ public class Program {
         test4();
         test3();
         test2();
-        test1();
-        //test10();
+        test1();*/
+        test10();
 
 
 

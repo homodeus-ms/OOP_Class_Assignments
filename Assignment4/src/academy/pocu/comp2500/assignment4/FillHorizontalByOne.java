@@ -12,7 +12,7 @@ public class FillHorizontalByOne extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         this.canvas = canvas;
-        if (!isExecuted && isValidPos(canvas, 0, y) && isValidChar(newChar)) {
+        if (!isExecuted && isValidPos(canvas, 0, y)) {
             this.width = canvas.getWidth();
             this.height = canvas.getHeight();
             oldChars = new char[width];
@@ -24,16 +24,16 @@ public class FillHorizontalByOne extends Command implements ICommand {
                     //isExecuted = true;
                 }
             }
-            isExecuted = true;
-            return true;
         }
-        return false;
+
+        isExecuted = true;
+        return true;
     }
 
     @Override
     public boolean undo() {
         //boolean isChanged = false;
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(newChar) && !doneUndo) {
             for (int i = 0; i < width; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(i, y, oldChars[i]);
@@ -48,7 +48,7 @@ public class FillHorizontalByOne extends Command implements ICommand {
     @Override
     public boolean redo() {
         //boolean isChanged = false;
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(oldChars) && doneUndo) {
             for (int i = 0; i < width; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(i, y, newChar);
@@ -61,9 +61,17 @@ public class FillHorizontalByOne extends Command implements ICommand {
         return false;
     }
     @Override
-    public boolean isSameCanvas() {
+    public boolean isSameCanvas(char expected) {
         for (int i = 0; i < width; ++i) {
-            if (canvas.getPixel(i, y) != newChar) {
+            if (canvas.getPixel(i, y) != expected) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isSameCanvas(char[] expecteds) {
+        for (int i = 0; i < width; ++i) {
+            if (canvas.getPixel(i, y) != oldChars[i]) {
                 return false;
             }
         }

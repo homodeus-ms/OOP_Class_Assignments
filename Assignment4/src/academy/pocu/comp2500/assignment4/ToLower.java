@@ -9,9 +9,10 @@ public class ToLower extends Command implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
+        this.canvas = canvas;
+
         if (!isExecuted && isValidPos(canvas, x, y)) {
 
-            this.canvas = canvas;
             oldChar = canvas.getPixel(x, y);
 
             if (oldChar >= 'A' && oldChar <= 'Z') {
@@ -20,18 +21,16 @@ public class ToLower extends Command implements ICommand {
             } else {
                 newChar = oldChar;
             }
-            isExecuted = true;
-            return true;
         }
-        return false;
+
+        isExecuted = true;
+        return true;
     }
 
     @Override
     public boolean undo() {
-        if (isExecuted) {
-            if (oldChar >= 'A' && oldChar <= 'Z') {
-                canvas.toUpper(x, y);
-            }
+        if (isExecuted && isSameCanvas(newChar) && !doneUndo) {
+            canvas.drawPixel(x, y, oldChar);
             doneUndo = true;
 
             return true;
@@ -41,7 +40,7 @@ public class ToLower extends Command implements ICommand {
 
     @Override
     public boolean redo() {
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(oldChar) && doneUndo) {
             canvas.drawPixel(x, y, newChar);
             doneUndo = false;
 

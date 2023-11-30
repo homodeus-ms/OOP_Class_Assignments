@@ -12,7 +12,8 @@ public class FillVerticalByOne extends Command implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         this.canvas = canvas;
-        if (!isExecuted && isValidPos(canvas, x, 0) && isValidChar(newChar)) {
+
+        if (!isExecuted && isValidPos(canvas, x, 0)) {
             this.width = canvas.getWidth();
             this.height = canvas.getHeight();
             oldChars = new char[height];
@@ -24,16 +25,15 @@ public class FillVerticalByOne extends Command implements ICommand {
                     //isExecuted = true;
                 }
             }
-            isExecuted = true;
-            return true;
         }
-        return false;
+        isExecuted = true;
+        return true;
     }
 
     @Override
     public boolean undo() {
         //boolean isChanged = false;
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(newChar) && !doneUndo) {
             for (int i = 0; i < height; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(x, i, oldChars[i]);
@@ -49,22 +49,30 @@ public class FillVerticalByOne extends Command implements ICommand {
     @Override
     public boolean redo() {
         //boolean isChanged = false;
-        if (isExecuted) {
+        if (isExecuted && isSameCanvas(oldChars) && doneUndo) {
             for (int i = 0; i < height; ++i) {
                 if (oldChars[i] != newChar) {
                     canvas.drawPixel(x, i, newChar);
                     //isChanged = true;
                 }
             }
-            doneUndo = true;
+            doneUndo = false;
             return true;
         }
         return false;
     }
     @Override
-    public boolean isSameCanvas() {
+    public boolean isSameCanvas(char expected) {
         for (int i = 0; i < height; ++i) {
-            if (canvas.getPixel(x, i) != newChar) {
+            if (canvas.getPixel(x, i) != expected) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isSameCanvas(char[] expecteds) {
+        for (int i = 0; i < width; ++i) {
+            if (canvas.getPixel(i, y) != oldChars[i]) {
                 return false;
             }
         }
