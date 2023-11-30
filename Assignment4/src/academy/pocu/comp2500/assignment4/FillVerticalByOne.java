@@ -71,7 +71,7 @@ public class FillVerticalByOne extends Command implements ICommand {
         return true;
     }
     public boolean isSameCanvas() {
-        for (int i = 0; i < width; ++i) {
+        for (int i = 0; i < height; ++i) {
             if (canvas.getPixel(i, y) != oldChars[i]) {
                 return false;
             }

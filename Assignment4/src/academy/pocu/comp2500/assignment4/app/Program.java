@@ -11,16 +11,50 @@ public class Program {
 
     public static void main(String[] args) {
 
-        /*OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
-        ICommand c = new DrawOnePixel(0, 0, 'A');
-        manager.execute(c);
-        manager.undo();
-        manager.execute(c);
-        manager.undo();
-        manager.redo();
-        System.out.println(analyzer.getDrawing());*/
 
+        manager.redo();
+        manager.execute(new ToUpper(11, 10));
+        manager.execute(new DecreaseCharByOne(29, 15));
+        manager.redo();
+        manager.execute(new IncreaseCharByOne(15, 24));
+        manager.execute(new FillVerticalByOne(21, 'T'));
+        manager.undo();
+        manager.execute(new FillVerticalByOne(18, ';'));
+        manager.undo();
+        manager.execute(new DecreaseCharByOne(18, 22));
+        manager.redo();
+
+        System.out.println(analyzer.getDrawing());
+
+
+        analyzer = new OverdrawAnalyzer(30, 25);
+        manager = new CommandHistoryManager(analyzer);
+
+        manager.execute(new FillVerticalByOne(0, 'H'));
+        manager.execute(new ToLower(3, 2));
+        manager.undo();
+        manager.undo();
+        manager.execute(new DecreaseCharByOne(3, 1));
+        manager.redo();
+        manager.execute(new DrawOnePixel(3, 0, '`'));
+        manager.execute(new DecreaseCharByOne(0, 1));
+        manager.execute(new ToUpper(1, 2));
+        manager.execute(new IncreaseCharByOne(4, 2));
+        manager.redo();
+        manager.execute(new IncreaseCharByOne(1, 2));
+        manager.undo();
+        manager.execute(new ToLower(4, 2));
+        manager.execute(new DecreaseCharByOne(3, 0));
+        manager.undo();
+        manager.execute(new ToUpper(4, 4));
+        manager.execute(new FillHorizontalByOne(1, '}'));
+        manager.execute(new FillVerticalByOne(2, ','));
+        manager.execute(new ToUpper(3, 0));
+
+        System.out.printf("(0, 0) Overdraw Count: %d%s",
+                analyzer.getOverdrawCount(0, 0), System.lineSeparator());
 
         /*test12();
         test11();
@@ -33,7 +67,7 @@ public class Program {
         test3();
         test2();
         test1();*/
-        test10();
+        //test10();
 
 
 
