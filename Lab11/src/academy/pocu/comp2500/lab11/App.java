@@ -90,7 +90,7 @@ public class App {
             builder.setLength(0);
 
             builder.append("BALANCE: ");
-            //currDeposit = wallet.getAmount();
+            currDeposit = wallet.getAmount();
             builder.append(currDeposit);
             out.println(builder);
 
