@@ -11,53 +11,21 @@ public class Program {
 
     public static void main(String[] args) {
 
-        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(30, 25);
+        OverdrawAnalyzer analyzer = new OverdrawAnalyzer(5, 5);
         CommandHistoryManager manager = new CommandHistoryManager(analyzer);
 
-        manager.execute(new DecreaseCharByOne(1, 13));
-        manager.execute(new IncreaseCharByOne(29, 1));
-        manager.execute(new DecreaseCharByOne(6, 10));
-        manager.execute(new FillVerticalByOne(19, 'X'));
-        manager.execute(new FillVerticalByOne(16, '1'));
-        manager.redo();
-        manager.execute(new FillHorizontalByOne(14, 'E'));
-        manager.execute(new FillHorizontalByOne(21, ')'));
-        manager.execute(new ToUpper(2, 5));
-        manager.execute(new FillVerticalByOne(27, 'c'));
-        manager.undo();
-        manager.redo();
+        manager.execute(new DrawOnePixel(1, 1, 'A'));
+        System.out.println(manager.canUndo());
+        System.out.println(manager.undo());
+        System.out.println(manager.canUndo());
+        System.out.println(manager.undo());
+        System.out.println(manager.redo());
 
 
 
         System.out.println(analyzer.getDrawing());
 
 
-        analyzer = new OverdrawAnalyzer(30, 25);
-        manager = new CommandHistoryManager(analyzer);
-
-        manager.execute(new FillVerticalByOne(0, 'H'));
-        manager.execute(new ToLower(3, 2));
-        manager.undo();
-        manager.undo();
-        manager.execute(new DecreaseCharByOne(3, 1));
-        manager.redo();
-        manager.execute(new DrawOnePixel(3, 0, '`'));
-        manager.execute(new DecreaseCharByOne(0, 1));
-        manager.execute(new ToUpper(1, 2));
-        manager.execute(new IncreaseCharByOne(4, 2));
-        manager.redo();
-        manager.execute(new IncreaseCharByOne(1, 2));
-        manager.undo();
-        manager.execute(new ToLower(4, 2));
-        manager.execute(new DecreaseCharByOne(3, 0));
-        manager.undo();
-        manager.execute(new ToUpper(4, 4));
-        manager.execute(new FillHorizontalByOne(1, '}'));
-        manager.execute(new FillVerticalByOne(2, ','));
-        manager.execute(new ToUpper(3, 0));
-
-        System.out.printf("(0, 0) Overdraw Count: %d%s",
-                analyzer.getOverdrawCount(0, 0), System.lineSeparator());
 
         /*test12();
         test11();
