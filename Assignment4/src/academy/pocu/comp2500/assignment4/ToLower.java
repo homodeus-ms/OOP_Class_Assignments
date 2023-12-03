@@ -25,7 +25,6 @@ public class ToLower extends Command implements ICommand {
             return true;
         }
 
-        //isExecuted = true;
         return false;
     }
 

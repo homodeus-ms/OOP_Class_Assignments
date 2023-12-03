@@ -71,15 +71,6 @@ public class OverdrawAnalyzer extends Canvas {
         return count;
     }
 
-    /*public void fillHorizontalLine(int y, char letter) {
-        super.fillHorizontalLine(y, letter);
-    }
-    public void fillVerticalLine(int x, char letter) {
-        super.fillVerticalLine(x, letter);
-    }
-    public void clear() {
-        super.clear();
-    }*/
     private void update(int x, int y, char newChar) {
         int index = getIndex(x, y);
         histories.get(index).add(newChar);

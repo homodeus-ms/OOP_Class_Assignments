@@ -6,8 +6,8 @@ import java.util.Stack;
 public class CommandHistoryManager {
 
     private final Canvas canvas;
-    private Stack<ICommand> commands = new Stack<>();
-    private Stack<ICommand> undos = new Stack<>();
+    private ArrayList<ICommand> commands = new ArrayList<>();
+    private ArrayList<ICommand> undos = new ArrayList<>();
 
     public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
@@ -15,7 +15,7 @@ public class CommandHistoryManager {
     }
     public boolean execute(ICommand command) {
 
-        commands.push(command);
+        commands.add(command);
         boolean bExecuted = command.execute(canvas);
         if (bExecuted) {
             undos.clear();
@@ -42,8 +42,8 @@ public class CommandHistoryManager {
         if (canUndo()) {
             int size = commands.size();
             for (int i = size - 1; i >= 0; --i) {
-                if (commands.elementAt(i).undo()) {
-                    undos.push(commands.elementAt(i));
+                if (commands.get(i).undo()) {
+                    undos.add(commands.get(i));
                     return true;
                 }
             }
@@ -55,7 +55,7 @@ public class CommandHistoryManager {
         if (canRedo()) {
             int size = undos.size();
             for (int i = size - 1; i >= 0; --i) {
-                if (undos.elementAt(i).redo()) {
+                if (undos.get(i).redo()) {
                     undos.remove(i);
                     return true;
                 }

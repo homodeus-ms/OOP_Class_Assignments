@@ -60,24 +60,17 @@ public class App {
         WarehouseType selectedType = wareHouseTypes[inputNumber - 1];
 
 
-
+        // user가 속한 부서의 지갑 가져오기
         User user = new User();
         Wallet wallet;
         int currDeposit;
 
         try {
             wallet = new SafeWallet(user);
-            /*currDeposit = wallet.getAmount();
-
-            if (currDeposit < 0) {
-                throw new OverflowException("Overflow");
-            }*/
-
         } catch (IllegalAccessException e) {
             err.println("AUTH_ERROR");
             return;
         }
-
 
         Warehouse warehouse = new Warehouse(selectedType);
         ArrayList<Product> products;
@@ -102,7 +95,7 @@ public class App {
             out.print(builder);
 
 
-            // 입력을 받아서 처리
+            // 입력을 받아서 처리함
             int inputProductNumber = -1;
 
             String input;
@@ -128,13 +121,13 @@ public class App {
                 continue;
             }
 
-            int choosePrice = products.get(inputProductNumber - 1).getPrice();
+            int selectedPrice = products.get(inputProductNumber - 1).getPrice();
 
-            if (wallet.withdraw(choosePrice)) {
+            if (wallet.withdraw(selectedPrice)) {
                 try {
                     warehouse.removeProduct(products.get(inputProductNumber - 1).getId());
                 } catch (ProductNotFoundException e) {
-                    wallet.deposit(choosePrice);
+                    wallet.deposit(selectedPrice);
                 }
             }
         } while (true);

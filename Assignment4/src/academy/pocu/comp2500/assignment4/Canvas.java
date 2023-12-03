@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.assignment4;
 
-import java.util.HashMap;
-
 public class Canvas {
 
     private final int LETTER_MIN = 32;

@@ -12,11 +12,6 @@ public abstract class Command {
     protected char oldChar;
     protected boolean isExecuted;
     protected boolean doneUndo;
-    //protected String currCanvas;
-
-
-    /*protected boolean isValid;
-    protected boolean isCanvasUpdated;*/
 
     public Canvas getCanvas() {
         return this.canvas;
